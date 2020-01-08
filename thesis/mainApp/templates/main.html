@@ -1,0 +1,121 @@
+{% extends 'baseLayout.html' %}
+
+{% block content %}
+
+<nav>
+
+  <div class="brand">
+    An automated indoor gardening system using raspberry pi.
+    | <a href="{% url 'databasePage' %}">See Database Log</a>
+
+  </div>
+
+</nav>
+
+<div class="title">
+  IOT dashboard
+</div>
+
+<div class="titleLogoContainer">
+  <img src="../assets/rpilogo.png" class="titleLogo" />
+</div>
+
+<div class="leftContainer">
+  <ul>
+    <li><a>Lights<a></li>
+    <li><a>Fans<a></li>
+    <li><a>Watering System<a></li>
+    <li><a>Seeding System<a></li>
+  </ul>
+
+</div>
+
+<div class="leftContainer2">
+  <ul>
+    <li><a>On<a></li>
+    <li><a>On<a></li>
+    <li><a>On<a></li>
+    <li><a>On<a></li>
+  </ul>
+
+</div>
+
+<div class="leftContainer3">
+  <ul>
+    <li><a>Fans<a></li>
+    <li><a>Lights<a></li>
+    <li><a>Water<a></li>
+    <li><a>Seed<a></li>
+  </ul>
+
+</div>
+<div class="leftContainer4">
+
+  <ul>
+    <form method='get'>
+      <input type='submit' name="onLED_btn" value="on"></button>
+      <input type='submit' name="offLED_btn" value="off"></button>
+
+      <input type='submit' name="onFAN_btn" value="on"></button>
+      <input type='submit' name="offFAN_btn" value="off"></button>
+
+      <input type='submit' name="onWater_btn" value="on"></button>
+      <input type='submit' name="offWater_btn" value="off"></button>
+
+      <input type='submit' name="onSeed_btn" value="on"></button>
+      <input type='submit' name="offSeed_btn" value="off"></button>
+    </form>
+
+  </ul>
+
+</div>
+
+<div class="rightContainer">
+  <ul>
+    <li><a>Sensors<a></li>
+    <li><a>Temperature(C)<a></li>
+    <li><a>Soil Moisture<a></li>
+    <li><a>Humidity<a></li>
+  </ul>
+</div>
+<div class="rightContainer2">
+  <ul>
+    <li><a>reading<a></li>
+    <li><a>27<a></li>
+    <li><a>55<a></li>
+    <li><a>65<a></li>
+  </ul>
+</div>
+<div class="rightContainer3">
+  <ul>
+    <li><a>Status<a></li>
+    <li><a>Fine<a></li>
+    <li><a>Fine<a></li>
+    <li><a>Fine<a></li>
+  </ul>
+</div>
+<div class="rightContainer4">
+  <ul>
+    <li><a>growth monitor<a></li>
+  </ul>
+  <ul>
+    <li><a>Plant1<a></li>
+    <li><a>Plant2<a></li>
+    <li><a>Plant3<a></li>
+    <li><a>Plant4<a></li>
+  </ul>
+</div>
+
+<div class="rightContainer5">
+  <ul>
+    <li><a>SUMMARY<a></li>
+  </ul>
+  Your garden is in great condition.
+</div>
+
+<div class="cameraImgContainer">
+
+  <img src="../assets/gardenPics/garden1.jpg" class="cameraImg" />
+</div>
+
+{% endblock %}

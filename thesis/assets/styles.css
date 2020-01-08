@@ -1,0 +1,342 @@
+@font-face {
+  src: url(../assets/fonts/Roboto-Regular.ttf);
+  font-family: Roboto;
+}
+
+@font-face {
+  src: url(../assets/fonts/Ubuntu-Regular.ttf);
+  font-family: Ubuntu;
+}
+
+@font-face {
+  src: url(../assets/fonts/Ubuntu-Light.ttf);
+  font-family: Ubuntu-Light;
+}
+
+@font-face {
+  src: url(../assets/fonts/OpenSans-Regular.ttf);
+  font-family: OpenSans;
+}
+
+body {
+  background-color: #333940;
+  background-repeat: no repeat;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: #1F2226;
+  padding: 0 100px;
+  box-sizing: border-box;
+}
+
+nav .brand {
+  padding-left: 31.5%;
+  margin: 0;
+  color: WHITE;
+  float: left;
+  height: 100%;
+  line-height: 65px;
+  text-align: center;
+  font-size: 17px;
+  font-family: OpenSans;
+}
+
+.brand a {
+  color: GRAY;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.brand a:hover {
+  color: WHITE;
+}
+
+.title {
+  margin: 80px;
+  margin-top: 32px;
+  padding: 0;
+  font-family: Ubuntu;
+  font-size: 23px;
+  color: WHITE;
+  text-transform: uppercase;
+}
+
+.titleLogoContainer {
+  top: 10.5%;
+  left: 1%;
+  position: absolute;
+}
+
+.titleLogo {
+  width: 60px;
+  height: 50px;
+  border-radius: 20px;
+  padding: 0;
+}
+
+.leftContainer {
+  border-style: none;
+  width: 150px;
+  height: 300px;
+  margin-left: 100px;
+  margin-top: 70px;
+  padding-left: 20px;
+  font-family: Ubuntu-Light;
+  text-transform: uppercase;
+  color: white;
+}
+
+.leftContainer li {
+  list-style: none;
+  padding-top: 10px;
+}
+
+.leftContainer a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+}
+
+.leftContainer2 {
+  border-style: none;
+  width: 80px;
+  height: 300px;
+  margin-left: 100px;
+  margin-top: 70px;
+  padding-left: 20px;
+  font-family: Ubuntu-Light;
+  text-transform: uppercase;
+  color: white;
+  position: absolute;
+  top: 15.6%;
+  left: 10%;
+}
+
+.leftContainer2 li {
+  list-style: none;
+  padding-top: 10px;
+}
+
+.leftContainer2 a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+}
+
+.leftContainer3 {
+  border-style: none;
+  width: 60px;
+  height: 200px;
+  margin-left: 100px;
+  margin-top: 20px;
+  padding-left: 20px;
+  font-family: Ubuntu-Light;
+  text-transform: uppercase;
+  color: white;
+}
+
+.leftContainer3 li {
+  list-style: none;
+  padding-top: 28px;
+}
+
+.leftContainer3 a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+}
+
+.leftContainer4 {
+  border-style: none;
+  width: 210px;
+  height: 200px;
+  margin-left: 100px;
+  margin-top: 20px;
+  padding-left: 20px;
+  font-family: Ubuntu-Light;
+  text-transform: uppercase;
+  color: white;
+  position: absolute;
+  top: 55.2%;
+  left: 5%;
+}
+
+.leftContainer4 input[type="submit"] {
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 60px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0);
+  color: #fff;
+  font-size: 15px;
+  border: 1px solid WHITE;
+  border-radius: 15px;
+}
+
+.leftContainer4 input[type="submit"]:hover {
+  border: 1px solid WHITE;
+  background: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  background: WHITE;
+  color: #000;
+}
+
+.rightContainer {
+  border-style: none;
+  width: 120px;
+  height: 200px;
+  margin-left: 100px;
+  margin-top: 70px;
+  padding-left: 20px;
+  font-family: Ubuntu-Light;
+  text-transform: uppercase;
+  color: white;
+  position: absolute;
+  top: 15.6%;
+  left: 75%;
+}
+
+.rightContainer li {
+  list-style: none;
+  padding-top: 10px;
+}
+
+.rightContainer a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+}
+
+.rightContainer2 {
+  border-style: none;
+  width: 65px;
+  height: 200px;
+  margin-left: 100px;
+  margin-top: 70px;
+  padding-left: 20px;
+  font-family: Ubuntu-Light;
+  text-transform: uppercase;
+  color: white;
+  position: absolute;
+  top: 15.6%;
+  left: 83%;
+}
+
+.rightContainer2 li {
+  list-style: none;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.rightContainer2 a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+}
+
+.rightContainer3 {
+  border-style: none;
+  width: 62px;
+  height: 200px;
+  margin-left: 100px;
+  margin-top: 70px;
+  padding-left: 10px;
+  font-family: Ubuntu-Light;
+  text-transform: uppercase;
+  color: white;
+  position: absolute;
+  top: 15.6%;
+  left: 88%;
+}
+
+.rightContainer3 li {
+  list-style: none;
+  padding-top: 10px;
+    text-align: center;
+}
+
+.rightContainer3 a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+}
+
+.rightContainer4 {
+  border-style: none;
+  width: 320px;
+  height: 200px;
+  margin-left: 100px;
+  margin-top: 70px;
+  padding-left: 20px;
+  font-family: Ubuntu-Light;
+  text-transform: uppercase;
+  color: white;
+  position: absolute;
+  top: 40.2%;
+  left: 75%;
+  text-align: center;
+}
+.rightContainer4 li {
+  list-style: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.rightContainer4 a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+}
+
+.rightContainer5 {
+  border-style: none;
+  width: 320px;
+  height: 100px;
+  margin-left: 100px;
+  margin-top: 70px;
+  padding-left: 20px;
+  font-family: Ubuntu-Light;
+  text-transform: uppercase;
+  color: white;
+  position: absolute;
+  top: 65.2%;
+  left: 75%;
+  text-align: center;
+}
+.rightContainer5 li {
+  list-style: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.rightContainer5 a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+}
+.cameraImgContainer {
+  width: 910px;
+  height: 650px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  position: absolute;
+  top: 19.7%;
+  left: 26.5%;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.cameraImg {
+  width: 100%;
+  height: 100%;
+}
