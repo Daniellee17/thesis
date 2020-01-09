@@ -22,20 +22,23 @@
 
 <div class="leftContainer">
   <ul>
-    <li><a>Lights<a></li>
     <li><a>Fans<a></li>
+    <li><a>Lights<a></li>
     <li><a>Watering System<a></li>
     <li><a>Seeding System<a></li>
   </ul>
 
 </div>
 
+
 <div class="leftContainer2">
+
+
   <ul>
-    <li><a>On<a></li>
-    <li><a>On<a></li>
-    <li><a>On<a></li>
-    <li><a>On<a></li>
+    <li><a>{{deviceStatusObjects.fansStatus}}<a></li>
+    <li><a>{{deviceStatusObjects.lightsStatus}}<a></li>
+    <li><a>{{deviceStatusObjects.waterStatus}}<a></li>
+    <li><a>{{deviceStatusObjects.seedStatus}}<a></li>
   </ul>
 
 </div>
@@ -53,11 +56,11 @@
 
   <ul>
     <form method='get'>
-      <input type='submit' name="onLED_btn" value="on"></button>
-      <input type='submit' name="offLED_btn" value="off"></button>
+      <input type='submit' name="onFans_btn" value="on"></button>
+      <input type='submit' name="offFans_btn" value="off"></button>
 
-      <input type='submit' name="onFAN_btn" value="on"></button>
-      <input type='submit' name="offFAN_btn" value="off"></button>
+      <input type='submit' name="onLights_btn" value="on"></button>
+      <input type='submit' name="offLights_btn" value="off"></button>  
 
       <input type='submit' name="onWater_btn" value="on"></button>
       <input type='submit' name="offWater_btn" value="off"></button>
