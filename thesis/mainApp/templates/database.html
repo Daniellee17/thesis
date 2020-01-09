@@ -20,6 +20,22 @@
 </div>
 
 
+<div>
+  {% for values in deviceStatusObjects %}
+
+  <ul>
+    <li><a>fans: {{values.fansStatus}}
+        lights: {{values.lightsStatus}}
+        water: {{values.waterStatus}}
+        seed: {{values.seedStatus}}<a></li>
+  </ul>
+
+
+  {% endfor %}
+</div>
+
+
+
 
 
 {% endblock %}

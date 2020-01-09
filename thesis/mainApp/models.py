@@ -7,8 +7,6 @@ class sensors(models.Model):
     temperature = models.FloatField(max_length=250, default=0.0);
     moisture = models.FloatField(max_length=250, default=0.0);
     humidity = models.FloatField(max_length=250, default=0.0);
-    fanStatus = models.TextField(max_length=250, default="off");
-    lightStatus = models.TextField(max_length=250, default="off");
     action = models.TextField(max_length=250, default="None");
     date = models.DateTimeField(auto_now=True);
     camera = models.ImageField(default='default.png', blank=True);

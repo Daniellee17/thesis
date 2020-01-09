@@ -44,7 +44,10 @@ def mainPage(response):
     return render(response, 'main.html', {'deviceStatusObjects': deviceStatusObjects})
 
 def databasePage(response):
-    return render(response, 'database.html')
+
+    deviceStatusObjects = devicestatus.objects.all()
+
+    return render(response, 'database.html', {'deviceStatusObjects': deviceStatusObjects})
 
 
 
