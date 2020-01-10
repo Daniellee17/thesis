@@ -26,7 +26,7 @@
 <script src="/assets/js/bootstrap.min.js"></script>
 
 <script>
-   $(".onFan").click(function(e) {
+  $(".onFan").click(function(e) {
 
     e.preventDefault();
     $.ajax({
@@ -45,73 +45,161 @@
 
     });
   });
-  </script>
+</script>
 
-  <script>
-     $(".offFan").click(function(e) {
+<script>
+  $(".offFan").click(function(e) {
 
-      e.preventDefault();
-      $.ajax({
-        type: 'POST',
-        url: '{% url "mainPage" %}',
-        data: {
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
 
-          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-          action: 'offFan',
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'offFan',
 
-        },
-        success: function(json) {
-          document.getElementById("buttonForm").reset();
-          $('#labelFans').text('off');
-        },
+      },
+      success: function(json) {
+        document.getElementById("buttonForm").reset();
+        $('#labelFans').text('off');
+      },
 
-      });
     });
-    </script>
+  });
+</script>
 
-    <script>
-       $(".onLights").click(function(e) {
+<script>
+  $(".onLights").click(function(e) {
 
-        e.preventDefault();
-        $.ajax({
-          type: 'POST',
-          url: '{% url "mainPage" %}',
-          data: {
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
 
-            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-            action: 'onLights',
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'onLights',
 
-          },
-          success: function(json) {
-            document.getElementById("buttonForm").reset();
-            $('#labelLights').text('on');
-          },
+      },
+      success: function(json) {
+        document.getElementById("buttonForm").reset();
+        $('#labelLights').text('on');
+      },
 
-        });
-      });
-      </script>
+    });
+  });
+</script>
 
-      <script>
-         $(".offLights").click(function(e) {
+<script>
+  $(".offLights").click(function(e) {
 
-          e.preventDefault();
-          $.ajax({
-            type: 'POST',
-            url: '{% url "mainPage" %}',
-            data: {
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
 
-              csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-              action: 'onLights',
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'offLights',
 
-            },
-            success: function(json) {
-              document.getElementById("buttonForm").reset();
-              $('#labelLights').text('off');
-            },
+      },
+      success: function(json) {
+        document.getElementById("buttonForm").reset();
+        $('#labelLights').text('off');
+      },
 
-          });
-        });
-        </script>
+    });
+  });
+</script>
 
+
+<script>
+  $(".onWater").click(function(e) {
+
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'onWater',
+
+      },
+      success: function(json) {
+        document.getElementById("buttonForm").reset();
+        $('#labelWater').text('on');
+      },
+
+    });
+  });
+</script>
+
+<script>
+  $(".offWater").click(function(e) {
+
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'offWater',
+
+      },
+      success: function(json) {
+        document.getElementById("buttonForm").reset();
+        $('#labelWater').text('off');
+      },
+
+    });
+  });
+</script>
+
+<script>
+  $(".onSeed").click(function(e) {
+
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'onSeed',
+
+      },
+      success: function(json) {
+        document.getElementById("buttonForm").reset();
+        $('#labelSeed').text('on');
+      },
+
+    });
+  });
+</script>
+
+<script>
+  $(".offSeed").click(function(e) {
+
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'offSeed',
+
+      },
+      success: function(json) {
+        document.getElementById("buttonForm").reset();
+        $('#labelSeed').text('off');
+      },
+
+    });
+  });
+</script>
 
 </html>
