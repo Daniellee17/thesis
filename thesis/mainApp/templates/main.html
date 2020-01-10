@@ -80,17 +80,17 @@
 <div class="rightContainer">
   <ul>
     <li><a>Sensors<a></li>
-    <li><a>Temperature(C)<a></li>
-    <li><a>Soil Moisture<a></li>
+    <li><a>Temperature(C)<a></li>    
     <li><a>Humidity<a></li>
+    <li><a>Soil Moisture<a></li>
   </ul>
 </div>
 <div class="rightContainer2">
   <ul>
     <li><a>reading<a></li>
-    <li><a>27<a></li>
-    <li><a>55<a></li>
-    <li><a>65<a></li>
+    <li><a>{{sensorsObjects.temperature}}<a></li>
+    <li><a>{{sensorsObjects.humidity}}<a></li>
+    <li><a>{{sensorsObjects.moisture}}<a></li>
   </ul>
 </div>
 <div class="rightContainer3">
@@ -117,7 +117,7 @@
   <ul>
     <li><a>SUMMARY<a></li>
   </ul>
-  Your garden is in great condition.
+  {{sensorsObjects.summary}}
 </div>
 
 <div class="cameraImgContainer">

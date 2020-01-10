@@ -122,7 +122,7 @@ def mainPage(response):
         insertDeviceStatus.seedStatus = 'off'
         insertDeviceStatus.save()
 
-    if(currentTemp > 30):
+    if(currentTemperature > 30):
 
         # Turn on fans automatically
         GPIO.output(21, GPIO.HIGH)
@@ -144,14 +144,14 @@ def mainPage(response):
         insertSensors.humidity = currentHumidity
         insertSensors.moisture = currentMoisture
 
-        if(currentTemp>30):
+        if(currentTemperature > 30):
             insertSensors.summary = 'Temperature is too high and Humidity is too low!!!'
             insertSensors.save()
         else:
             insertSensors.summary = 'Humidity is too low!!!'
             insertSensors.save()
 
-    if(currentTemp < 30):
+    if(currentTemperature < 30):
 
         # Turn off fans automatically
         GPIO.output(21, GPIO.LOW)
