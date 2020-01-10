@@ -26,6 +26,12 @@
 <script src="/assets/js/bootstrap.min.js"></script>
 
 <script>
+  window.setTimeout(function() {
+    location.href = "{% url 'mainPage' %}";
+  }, 5000);
+</script>
+
+<script>
   $(".onFan").click(function(e) {
 
     e.preventDefault();
