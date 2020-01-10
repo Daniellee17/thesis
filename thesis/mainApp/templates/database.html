@@ -20,7 +20,7 @@
 </div>
 
 
-<div>
+<div class="deviceStatusTable">
   {% for values in deviceStatusObjects %}
 
   <ul>
@@ -36,7 +36,21 @@
   {% endfor %}
 </div>
 
+<div class="sensorsTable">
+  {% for values2 in sensorsObjects %}
 
+  <ul>
+    <li><a>Temp: {{values2.temperature}}
+        Humidity: {{values2.humidity}}
+        Moisture: {{values2.moisture}}
+        Summary: {{values2.summary}}
+        date/time: {{values2.date}}
+        <a></li>
+  </ul>
+
+
+  {% endfor %}
+</div>
 
 
 

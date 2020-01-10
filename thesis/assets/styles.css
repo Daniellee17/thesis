@@ -340,3 +340,53 @@ nav .brand {
   width: 100%;
   height: 100%;
 }
+
+
+.deviceStatusTable {
+  border-style: none;
+  width: 550px;
+  height: 300px;
+  margin-left: 100px;
+  margin-top: 70px;
+  padding-left: 20px;
+  font-family: Ubuntu-Light;
+  text-transform: uppercase;
+  color: white;
+}
+
+.deviceStatusTable li {
+  list-style: none;
+  padding-top: 10px;
+}
+
+.deviceStatusTable a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+}
+
+.sensorsTable {
+  border-style: none;
+  width: 520px;
+  height: 200px;
+  margin-left: 100px;
+  margin-top: 70px;
+  padding-left: 20px;
+  font-family: Ubuntu-Light;
+  text-transform: uppercase;
+  color: white;
+  position: absolute;
+  top: 15.6%;
+  left: 55%;
+}
+
+.sensorsTable li {
+  list-style: none;
+  padding-top: 10px;
+}
+
+.sensorsTable a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+}

@@ -166,8 +166,8 @@ def mainPage(response):
             insertSensors.summary = 'Humidity is too low!!!'
             insertSensors.save()
 
-
-
+    #Dito nakalagay sa baba kasi if sa taas, 
+    #mauuna kunin data before saving the sensor data so late ng isang query
     sensorsObjects = sensors.objects.latest('date')
     
     myObjects = {'deviceStatusObjects': deviceStatusObjects, 'sensorsObjects': sensorsObjects}
@@ -177,8 +177,8 @@ def mainPage(response):
 
 def databasePage(response):
     
-    deviceStatusObjects = devicestatus.objects.latest('date')
-    sensorsObjects = sensors.objects.latest('date')
+    deviceStatusObjects = devicestatus.objects.all()
+    sensorsObjects = sensors.objects.all()
 
     myObjects = {'deviceStatusObjects': deviceStatusObjects, 'sensorsObjects': sensorsObjects}
 
