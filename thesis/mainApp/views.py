@@ -2,13 +2,23 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import devicestatus;
 
+import sys
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
 
+GPIO.setup(21, GPIO.OUT, initial=0) #Fans
+GPIO.setup(20, GPIO.OUT, initial=0) #Lights
+GPIO.setup(16, GPIO.OUT, initial=0) #Seeder
+GPIO.setup(12, GPIO.OUT, initial=0) #Water
 
 def mainPage(response):
     deviceStatusObjects = devicestatus.objects.latest('date')
     insertDeviceStatus = devicestatus()
 
     if response.POST.get('action') == 'onFan':
+
+        GPIO.output(21, GPIO.HIGH)
+
         label = response.POST.get('label')
         insertDeviceStatus.fansStatus = 'on'
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
@@ -18,6 +28,8 @@ def mainPage(response):
 
     if response.POST.get('action') == 'offFan':
 
+        GPIO.output(21, GPIO.LOW)
+
         insertDeviceStatus.fansStatus = 'off'
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
@@ -26,6 +38,8 @@ def mainPage(response):
 
     if response.POST.get('action') == 'onLights':
 
+        GPIO.output(20, GPIO.HIGH)
+
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = 'on'
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
@@ -33,6 +47,8 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'offLights':
+
+        GPIO.output(20, GPIO.LOW)
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = 'off'
