@@ -169,16 +169,16 @@ def mainPage(response):
 
 
 
+    myObjects = {'deviceStatusObjects': deviceStatusObjects, 'sensorsObjects': sensorsObjects}
 
-
-    return render(response, 'main.html', {'deviceStatusObjects': deviceStatusObjects})
+    return render(response, 'main.html', )
 
 
 def databasePage(response):
 
     deviceStatusObjects = devicestatus.objects.all()
 
-    return render(response, 'database.html', {'deviceStatusObjects': deviceStatusObjects})
+    return render(response, 'database.html', context = myObjects)
 
 
 # Create your views here.
