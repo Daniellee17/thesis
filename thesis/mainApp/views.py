@@ -133,10 +133,10 @@ def mainPage(response):
 
         if(currentHumidity < 40):
             insertSensors.summary = 'Temperature is too high and Humidity is too low!!!'
-            save()
+            insertSensors.save()
         else:
             insertSensors.summary = 'Temperature is too high!!!'
-            save()
+            insertSensors.save()
 
     if(currentHumidity < 40):
 
@@ -146,10 +146,10 @@ def mainPage(response):
 
         if(currentTemp>30):
             insertSensors.summary = 'Temperature is too high and Humidity is too low!!!'
-            save()
+            insertSensors.save()
         else:
             insertSensors.summary = 'Humidity is too low!!!'
-            save()
+            insertSensors.save()
 
     if(currentTemp < 30):
 
@@ -162,10 +162,10 @@ def mainPage(response):
 
         if(currentHumidity > 40):
             insertSensors.summary = 'Temperature and Humidity are okay!!!'
-            save()
+            insertSensors.save()
         else:
             insertSensors.summary = 'Humidity is too low!!!'
-            save()
+            insertSensors.save()
 
 
 
