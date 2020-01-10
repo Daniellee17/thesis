@@ -23,8 +23,7 @@ def mainPage(response):
 
     print("------------------------------------------REFRESHED!------------------------------------------")
 
-    deviceStatusObjects = devicestatus.objects.latest('date')
-    sensorsObjects = sensors.objects.latest('date')
+    deviceStatusObjects = devicestatus.objects.latest('date')    
 
     # Create instance para makapag insert
     insertDeviceStatus = devicestatus()
@@ -169,6 +168,8 @@ def mainPage(response):
 
 
 
+    sensorsObjects = sensors.objects.latest('date')
+    
     myObjects = {'deviceStatusObjects': deviceStatusObjects, 'sensorsObjects': sensorsObjects}
 
     return render(response, 'main.html', context = myObjects)
