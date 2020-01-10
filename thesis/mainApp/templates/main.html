@@ -20,56 +20,60 @@
   <img src="../assets/rpilogo.png" class="titleLogo" />
 </div>
 
-<div class="leftContainer">
-  <ul>
-    <li><a>Fans<a></li>
-    <li><a>Lights<a></li>
-    <li><a>Watering System<a></li>
-    <li><a>Seeding System<a></li>
-  </ul>
 
-</div>
+<form method='POST' id="buttonForm">
+  {% csrf_token %}
+
+  <div class="leftContainer">
+    <ul>
+
+      <li><a>Fans<a></li>
+      <li><a>Lights<a></li>
+      <li><a>Watering System<a></li>
+      <li><a>Seeding System<a></li>
+    </ul>
+
+  </div>
 
 
-<div class="leftContainer2">
+  <div class="leftContainer2">
 
 
-  <ul>
-    <li><a>{{deviceStatusObjects.fansStatus}}<a></li>
-    <li><a>{{deviceStatusObjects.lightsStatus}}<a></li>
-    <li><a>{{deviceStatusObjects.waterStatus}}<a></li>
-    <li><a>{{deviceStatusObjects.seedStatus}}<a></li>
-  </ul>
+    <ul>
+      <li><a id="labelFans">{{deviceStatusObjects.fansStatus}}<a></li>
+      <li><a id="labelLights">{{deviceStatusObjects.lightsStatus}}<a></li>
+      <li><a id="labelWater">{{deviceStatusObjects.waterStatus}}<a></li>
+      <li><a id="labelSeed">{{deviceStatusObjects.seedStatus}}<a></li>
+    </ul>
 
-</div>
+  </div>
 
-<div class="leftContainer3">
-  <ul>
-    <li><a>Fans<a></li>
-    <li><a>Lights<a></li>
-    <li><a>Water<a></li>
-    <li><a>Seed<a></li>
-  </ul>
+  <div class="leftContainer3">
+    <ul>
+      <li><a>Fans<a></li>
+      <li><a>Lights<a></li>
+      <li><a>Water<a></li>
+      <li><a>Seed<a></li>
+    </ul>
 
-</div>
-<div class="leftContainer4">
+  </div>
+  <div class="leftContainer4">
 
-  <ul>
-    <form method='get'>
-      <input type='submit' name="onFans_btn" value="on"></button>
-      <input type='submit' name="offFans_btn" value="off"></button>
+    <ul>
+      <input type='submit' name="onFans_btn" value="on" class="onFan"></button>
+      <input type='submit' name="offFans_btn" value="off" class="offFan"></button>
 
-      <input type='submit' name="onLights_btn" value="on"></button>
-      <input type='submit' name="offLights_btn" value="off"></button>  
+      <input type='submit' name="onLights_btn" value="on" class="onLights"></button>
+      <input type='submit' name="offLights_btn" value="off" class="offLights"></button>
 
       <input type='submit' name="onWater_btn" value="on"></button>
       <input type='submit' name="offWater_btn" value="off"></button>
 
       <input type='submit' name="onSeed_btn" value="on"></button>
       <input type='submit' name="offSeed_btn" value="off"></button>
-    </form>
+</form>
 
-  </ul>
+</ul>
 
 </div>
 

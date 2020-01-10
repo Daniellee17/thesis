@@ -8,15 +8,15 @@ def mainPage(response):
     deviceStatusObjects = devicestatus.objects.latest('date')
     insertDeviceStatus = devicestatus()
 
-    if (response.GET.get('onFans_btn')):
-
+    if response.POST.get('action') == 'onFan':
+        label = response.POST.get('label')
         insertDeviceStatus.fansStatus = 'on'
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
 
-    if (response.GET.get('offFans_btn')):
+    if response.POST.get('action') == 'offFan':
 
         insertDeviceStatus.fansStatus = 'off'
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
@@ -24,7 +24,7 @@ def mainPage(response):
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
 
-    if (response.GET.get('onLights_btn')):
+    if response.POST.get('action') == 'onLights':
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = 'on'
@@ -32,7 +32,7 @@ def mainPage(response):
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
 
-    if (response.GET.get('offLights_btn')):
+    if response.POST.get('action') == 'offLights':
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = 'off'
