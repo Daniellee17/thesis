@@ -4,10 +4,11 @@ from django.db import models
 #ONE CLASS ONE TABLE
 
 class sensors(models.Model):
-    temperature = models.FloatField(max_length=250, default=0.0);
-    moisture = models.FloatField(max_length=250, default=0.0);
-    humidity = models.FloatField(max_length=250, default=0.0);
-    summary = models.TextField(max_length=250, default="None");
+    temperature = models.IntegerField(max_length=250, default=1);
+    moisture = models.IntegerField(max_length=250, default=2);
+    humidity = models.IntegerField(max_length=250, default=3);
+    summary = models.IntegerField(max_length=250, default="None");
+    refreshRate = models.IntegerField(max_length=250, default=30000);
     date = models.DateTimeField(auto_now=True);
 
 
