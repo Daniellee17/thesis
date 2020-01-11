@@ -30,7 +30,6 @@ def mainPage(response):
     print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
     deviceStatusObjects = devicestatus.objects.latest('date')
-    cameraObjects = camerasnaps.objects.latest('date')
 
     # Create instance para makapag insert
     insertDeviceStatus = devicestatus()
@@ -190,7 +189,8 @@ def mainPage(response):
     #Dito nakalagay sa baba kasi if sa taas,
     #mauuna kunin data before saving the sensor data so late ng isang query
     sensorsObjects = sensors.objects.latest('date')
-
+    cameraObjects = camerasnaps.objects.latest('date')
+    
     myObjects = {'deviceStatusObjects': deviceStatusObjects, 'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}
 
     return render(response, 'main.html', context = myObjects)
