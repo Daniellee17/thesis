@@ -200,6 +200,7 @@ def databasePage(response):
 
     deviceStatusObjects = devicestatus.objects.all()
     sensorsObjects = sensors.objects.all()
+    cameraObjects = camerasnaps.objects.all()
 
     myObjects = {'deviceStatusObjects': deviceStatusObjects, 'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}
 
