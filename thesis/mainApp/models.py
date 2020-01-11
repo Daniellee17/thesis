@@ -8,7 +8,6 @@ class sensors(models.Model):
     moisture = models.IntegerField(default=2);
     humidity = models.IntegerField(default=3);
     summary = models.TextField(max_length=250, default="None");
-    refreshRate = models.IntegerField(default=30000);
     date = models.DateTimeField(auto_now=True);
 
 
