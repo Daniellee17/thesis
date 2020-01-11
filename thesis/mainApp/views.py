@@ -28,6 +28,15 @@ def mainPage(response):
     print("------------------------------------------REFRESHED!------------------------------------------")
     print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
+    #CameraPart
+    pygame.init()
+    pygame.camera.init()
+    cam = pygame.camera.Camera("/dev/video0",(352,288))
+    cam.start()
+    image= cam.get_image()
+    pygame.image.save(image,'/assets/' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '.bmp')
+    cam.stop()
+
     deviceStatusObjects = devicestatus.objects.latest('date')
 
     # Create instance para makapag insert
