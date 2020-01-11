@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import devicestatus
 from .models import sensors
-from .models import camera
+from .models import camerasnaps
 from pygame.locals import *
 from datetime import datetime
 
@@ -30,11 +30,11 @@ def mainPage(response):
     print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
     deviceStatusObjects = devicestatus.objects.latest('date')
-    cameraObjects = camera.objects.latest('date')
+    cameraObjects = camerasnaps.objects.latest('date')
 
     # Create instance para makapag insert
     insertDeviceStatus = devicestatus()
-    insertCamera = camera()
+    insertCamera = camerasnaps()
     insertSensors = sensors()
 
 
@@ -44,10 +44,10 @@ def mainPage(response):
     cam = pygame.camera.Camera("/dev/video0",(352,288))
     cam.start()
     image= cam.get_image()
-    pygame.image.save(image,'/home/pi/Desktop/thesis/thesis/assets/gardenPics/' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '.bmp')
+    pygame.image.save(image,'/home/pi/Desktop/thesis/thesis/assets/gardenPics/' + datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.bmp')
     cam.stop()
 
-    insertCamera.camera = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '.bmp'
+    insertCamera.camera = datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.bmp'
     insertCamera.save()
 
     humidity, temperature = Adafruit_DHT.read_retry(sensor, 1)
@@ -191,7 +191,7 @@ def mainPage(response):
     #mauuna kunin data before saving the sensor data so late ng isang query
     sensorsObjects = sensors.objects.latest('date')
 
-    myObjects = {'deviceStatusObjects': deviceStatusObjects, 'sensorsObjects': sensorsObjects}
+    myObjects = {'deviceStatusObjects': deviceStatusObjects, 'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}
 
     return render(response, 'main.html', context = myObjects)
 

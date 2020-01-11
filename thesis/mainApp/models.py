@@ -18,6 +18,6 @@ class devicestatus(models.Model):
     seedStatus = models.TextField(max_length=250, default="off");
     date = models.DateTimeField(auto_now=True);
 
-class camera(models.Model):
+class camerasnaps(models.Model):
     camera = models.ImageField(default='default.png', blank=True);
     date = models.DateTimeField(auto_now=True);
