@@ -25,7 +25,6 @@ def mainPage(response):
 
     datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-
     print("------------------------------------------REFRESHED!------------------------------------------")
     print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
@@ -36,14 +35,14 @@ def mainPage(response):
     insertCamera = camerasnaps()
     insertSensors = sensors()
 
-
-    #CameraPart
+    # CameraPart
     pygame.init()
     pygame.camera.init()
-    cam = pygame.camera.Camera("/dev/video0",(352,288))
+    cam = pygame.camera.Camera("/dev/video0", (352, 288))
     cam.start()
-    image= cam.get_image()
-    pygame.image.save(image,'/home/pi/Desktop/thesis/thesis/assets/gardenPics/' + datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.bmp')
+    image = cam.get_image()
+    pygame.image.save(image, '/home/pi/Desktop/thesis/thesis/assets/gardenPics/' +
+                      datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.bmp')
     cam.stop()
 
     insertCamera.camera = datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.bmp'
@@ -186,14 +185,15 @@ def mainPage(response):
             insertSensors.summary = 'Humidity is too low!!!'
             insertSensors.save()
 
-    #Dito nakalagay sa baba kasi if sa taas,
-    #mauuna kunin data before saving the sensor data so late ng isang query
+    # Dito nakalagay sa baba kasi if sa taas,
+    # mauuna kunin data before saving the sensor data so late ng isang query
     sensorsObjects = sensors.objects.latest('date')
     cameraObjects = camerasnaps.objects.latest('date')
-    
-    myObjects = {'deviceStatusObjects': deviceStatusObjects, 'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}
 
-    return render(response, 'main.html', context = myObjects)
+    myObjects = {'deviceStatusObjects': deviceStatusObjects,
+                 'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}
+
+    return render(response, 'main.html', context=myObjects)
 
 
 def databasePage(response):
@@ -202,9 +202,10 @@ def databasePage(response):
     sensorsObjects = sensors.objects.all()
     cameraObjects = camerasnaps.objects.all()
 
-    myObjects = {'deviceStatusObjects': deviceStatusObjects, 'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}
+    myObjects = {'deviceStatusObjects': deviceStatusObjects,
+                 'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}
 
-    return render(response, 'database.html', context = myObjects)
+    return render(response, 'database.html', context=myObjects)
 
 
 # Create your views here.

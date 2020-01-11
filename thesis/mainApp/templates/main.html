@@ -13,7 +13,7 @@
 </nav>
 
 <div class="title">
-  IOT dashboard
+  <a href="{% url 'mainPage' %}">IOT Dashboard</a>
 </div>
 
 <div class="titleLogoContainer">
@@ -106,7 +106,7 @@
     <li><a>growth monitor<a></li>
   </ul>
   <ul>
-    <li><a>"../assets/gardenPics/{{cameraObjects.camera}}"<a></li>
+    <li><a>Plant1<a></li>
     <li><a>Plant2<a></li>
     <li><a>Plant3<a></li>
     <li><a>Plant4<a></li>
@@ -123,6 +123,10 @@
 <div class="cameraImgContainer">
 
   <img src="../assets/gardenPics/{{cameraObjects.camera}}" class="cameraImg" />
+</div>
+
+<div class="dateContainer">
+  As of: {{cameraObjects.date}}
 </div>
 
 {% endblock %}
