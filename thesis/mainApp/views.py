@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import devicestatus
 from .models import sensors
 from pygame.locals import *
+from datetime import datetime
 
 import sys
 import pygame
@@ -21,9 +22,13 @@ GPIO.setup(12, GPIO.OUT, initial=0)  # Water
 
 def mainPage(response):
 
-    print("------------------------------------------REFRESHED!------------------------------------------")
+datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-    deviceStatusObjects = devicestatus.objects.latest('date')    
+
+    print("------------------------------------------REFRESHED!------------------------------------------")
+    print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+
+    deviceStatusObjects = devicestatus.objects.latest('date')
 
     # Create instance para makapag insert
     insertDeviceStatus = devicestatus()
@@ -166,17 +171,17 @@ def mainPage(response):
             insertSensors.summary = 'Humidity is too low!!!'
             insertSensors.save()
 
-    #Dito nakalagay sa baba kasi if sa taas, 
+    #Dito nakalagay sa baba kasi if sa taas,
     #mauuna kunin data before saving the sensor data so late ng isang query
     sensorsObjects = sensors.objects.latest('date')
-    
+
     myObjects = {'deviceStatusObjects': deviceStatusObjects, 'sensorsObjects': sensorsObjects}
 
     return render(response, 'main.html', context = myObjects)
 
 
 def databasePage(response):
-    
+
     deviceStatusObjects = devicestatus.objects.all()
     sensorsObjects = sensors.objects.all()
 
