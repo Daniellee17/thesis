@@ -22,7 +22,7 @@ GPIO.setup(12, GPIO.OUT, initial=0)  # Water
 
 def mainPage(response):
 
-datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 
     print("------------------------------------------REFRESHED!------------------------------------------")
