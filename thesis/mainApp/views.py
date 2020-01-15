@@ -140,6 +140,13 @@ def mainPage(response):
         insertDeviceStatus.seedStatus = 'off'
         insertDeviceStatus.save()
 
+
+    insertSensors.temperature = currentTemperature
+    insertSensors.humidity = currentHumidity
+    insertSensors.moisture = currentMoisture
+    insertSensors.summary = 'okay'
+    insertSensors.save()
+
     if(currentTemperature > 30):
 
         # Turn on fans automatically
@@ -168,6 +175,9 @@ def mainPage(response):
         else:
             insertSensors.summary = 'Humidity is too low!!!'
             insertSensors.save()
+
+
+
 
     # Dito nakalagay sa baba kasi if sa taas,
     # mauuna kunin data before saving the sensor data so late ng isang query
