@@ -146,10 +146,11 @@ if response.POST.get('action') == 'getSensorValues':
         cam.stop()
 
         insertCamera.camera = datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.bmp'
+        insertCamera.cameraURL = '../assets/gardenPics/' + datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.bmp'
         insertCamera.save()
 
         cameraObjectsJSON = {
-        'cameraURLJSON': datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.bmp',
+        'cameraURLJSON': '../assets/gardenPics/' + datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.bmp',
         }
         return JsonResponse(cameraObjectsJSON)
 
@@ -270,9 +271,6 @@ if response.POST.get('action') == 'getSensorValues':
         else:
             insertSensors.summary = 'Humidity is too low!!!'
             insertSensors.save()
-
-
-
 
     # Dito nakalagay sa baba kasi if sa taas,
     # mauuna kunin data before saving the sensor data so late ng isang query
