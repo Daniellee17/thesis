@@ -52,19 +52,19 @@ def mainPage(response):
 
     insertCamera.camera = datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.bmp'
     insertCamera.save()
-    
+
     # Start SPI connection
     spi = spidev.SpiDev() # Created an object
-    spi.open(0,0) 
+    spi.open(0,0)
 
     humidity, temperature = Adafruit_DHT.read_retry(sensor, 1)
-    
+
     def analogInput(channel):
       spi.max_speed_hz = 1350000
       adc = spi.xfer2([1,(8+channel)<<4,0])
       data = ((adc[1]&3) << 8) + adc[2]
       return data
-    
+
     output = analogInput(0) # Reading from CH0
     output = interp(output, [0, 1023], [100, 0])
     output = int(output)
