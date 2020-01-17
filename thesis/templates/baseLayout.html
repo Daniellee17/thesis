@@ -67,6 +67,32 @@
 
 <!--
 
+Code to snapImage and refresh whole page
+
+<script>
+  window.setTimeout(function() {
+
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'snapImage',
+
+      },
+      success: function(json) {
+        document.getElementById("imageForm").reset();
+        $('#cameraID').attr('src', '{{cameraObjects.cameraURL}}');
+      },
+
+    });
+
+    location.href = "{% url 'mainPage' %}";
+    //alert("Picture Updated!");
+  }, 6000);
+</script>
+
 Code to refresh whole page
 
 <script>
