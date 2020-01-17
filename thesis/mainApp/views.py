@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import JsonResponse
 from .models import devicestatus
 from .models import sensors
 from .models import camerasnaps
@@ -8,8 +9,8 @@ from datetime import datetime
 
 import sys
 
-def mainPage(response):
 
+def mainPage(response):
 
     print(" ")
     print("--------------------------- Main Page Refreshed! -------------------------------")
@@ -28,10 +29,9 @@ def mainPage(response):
         print("~Sensor Values Updated~")
         print(" ")
 
-        currentTemperature = 1
-        currentHumidity = 2
-        currentMoisture = 54
-        currentSummary = 'default'
+        currentTemperature = 69
+        currentHumidity = 11
+        currentMoisture = 12
 
         if(currentTemperature > 30):
 
@@ -78,6 +78,17 @@ def mainPage(response):
                 insertSensors.summary = 'Humidity is too low!!!'
                 insertSensors.save()
 
+        currentSummary = 'pakyu'
+
+        deviceStatusObjectsJSON = {
+        'currentTemperatureJSON': currentTemperature,
+        'currentHumidityJSON': currentHumidity,
+        'currentMoistureJSON': currentMoisture,
+        'currentSummaryJSON': currentSummary,
+        }
+
+
+        return JsonResponse(deviceStatusObjectsJSON)
 
     if response.POST.get('action') == 'snapImage':
         print(" ")
@@ -87,6 +98,10 @@ def mainPage(response):
         insertCamera.cameraURL = '../assets/gardenPics/rpilogo.png'
         insertCamera.save()
 
+        cameraObjectsJSON = {
+        'cameraURLJSON': '../assets/gardenPics/rpilogo.png',
+        }
+        return JsonResponse(cameraObjectsJSON)
 
     if response.POST.get('action') == 'onFan':
         print(" ")
@@ -171,13 +186,10 @@ def mainPage(response):
         insertDeviceStatus.seedStatus = 'off'
         insertDeviceStatus.save()
 
-
-
     # Dito nakalagay sa baba kasi if sa taas,
     # mauuna kunin data before saving the sensor data so late ng isang query
     sensorsObjects = sensors.objects.latest('date')
     cameraObjects = camerasnaps.objects.latest('date')
-
 
     myObjects = {'d': 'aa', 'deviceStatusObjects': deviceStatusObjects,
                  'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}

@@ -28,12 +28,12 @@
         action: 'getSensorValues',
 
       },
-      success: function(json) {
-        document.getElementById("sensorsForm").reset();
-        $('#labelTemperature').text('22');
-        $('#labelHumidity').text('11');
-        $('#labelMoisture').text('33');
-        $('#labelSummary').text('44');
+      success: function(sensorsJson) {
+
+        $('#labelTemperature').text(sensorsJson.currentTemperatureJSON);
+        $('#labelHumidity').text(sensorsJson.currentHumidityJSON);
+        $('#labelMoisture').text(sensorsJson.currentMoistureJSON);
+        $('#labelSummary').text(sensorsJson.currentSummaryJSON);
       },
 
     });
@@ -49,22 +49,22 @@
         action: 'snapImage',
 
       },
-      success: function(json) {
-        document.getElementById("imageForm").reset();
-        $('#cameraID').attr('src', 'd');
+      success: function(cameraJson) {
+        $('#cameraID').attr('src', cameraJson.cameraURLJSON);
       },
 
     });
   }
 
   $(document).ready(function() {
-    setInterval(getSensorValues, 5000);
+    setInterval(getSensorValues, 10000);
   });
 
   $(document).ready(function() {
-    setInterval(snapImage, 10000);
+    setInterval(snapImage, 15000);
   });
 </script>
+
 
 <script>
   $(".onFan").click(function(e) {
