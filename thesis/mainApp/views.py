@@ -28,10 +28,10 @@ GPIO.setup(12, GPIO.OUT)  # Water
 
 def mainPage(response):
 
-    datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-
-    print("------------------------------------------REFRESHED!------------------------------------------")
+    print(" ")
+    print("--------------------------- Main Page Refreshed! -------------------------------")
     print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+    print(" ")
 
     deviceStatusObjects = devicestatus.objects.latest('date')
 

@@ -36,6 +36,7 @@ nav {
   background-color: #1F2226;
   padding: 0 100px;
   box-sizing: border-box;
+  position: fixed;
 }
 
 nav .brand {
@@ -61,6 +62,7 @@ nav .brand {
 }
 
 .title {
+  position: fixed;
   margin: 80px;
   margin-top: 32px;
   padding: 0;
@@ -81,12 +83,14 @@ nav .brand {
 }
 
 .titleLogoContainer {
+  position: fixed;
   top: 10.5%;
   left: 1%;
   position: absolute;
 }
 
 .titleLogo {
+  position: fixed;
   width: 60px;
   height: 50px;
   border-radius: 20px;
@@ -103,6 +107,9 @@ nav .brand {
   font-family: Ubuntu-Light;
   text-transform: uppercase;
   color: white;
+  position: absolute;
+  top: 15.6%;
+
 }
 
 .leftContainer li {
@@ -152,6 +159,8 @@ nav .brand {
   font-family: Ubuntu-Light;
   text-transform: uppercase;
   color: white;
+  position: absolute;
+  top: 40.2%;
 }
 
 .leftContainer3 li {
@@ -176,7 +185,7 @@ nav .brand {
   text-transform: uppercase;
   color: white;
   position: absolute;
-  top: 55.2%;
+  top: 40.2%;
   left: 5%;
 }
 
