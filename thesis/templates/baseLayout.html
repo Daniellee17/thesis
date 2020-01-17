@@ -10,26 +10,72 @@
 </head>
 
 <body>
-
-
-
-
   {% block content %}
   {% endblock %}
-
-
-
-
 </body>
 
 <script src="/assets/js/jquery-2.2.4.min.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>
 
 <script>
+  function getSensorValues() {
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'getSensorValues',
+
+      },
+      success: function(json) {
+        document.getElementById("imageForm").reset();
+        $('#cameraID').attr('src', '{{cameraObjects.cameraURL}}');
+      },
+
+    });
+  }
+
+  $(document).ready(function() {
+    setTimeout(getSensorValues, 3000);
+  });
+</script>
+
+<script>
+  function snapImage() {
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'snapImage',
+
+      },
+      success: function(json) {
+        document.getElementById("imageForm").reset();
+        $('#cameraID').attr('src', '{{cameraObjects.cameraURL}}');
+      },
+
+    });
+  }
+
+  $(document).ready(function() {
+    setTimeout(snapImage, 4000);
+  });
+</script>
+
+<!--
+
+Code to refresh whole page
+
+<script>
   window.setTimeout(function() {
     location.href = "{% url 'mainPage' %}";
   }, 30000);
 </script>
+
+-->
 
 <script>
   $(".onFan").click(function(e) {

@@ -20,4 +20,5 @@ class devicestatus(models.Model):
 
 class camerasnaps(models.Model):
     camera = models.ImageField(default='default.png', blank=True);
+    cameraURL = models.ImageField(default='../assets/gardenPics/default.png', blank=True); 
     date = models.DateTimeField(auto_now=True);

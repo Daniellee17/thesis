@@ -71,6 +71,7 @@
 
       <input type='submit' name="onSeed_btn" value="on" class="onSeed"></button>
       <input type='submit' name="offSeed_btn" value="off" class="offSeed"></button>
+
 </form>
 
 </ul>
@@ -119,14 +120,17 @@
   </ul>
   {{sensorsObjects.summary}}
 </div>
+<form method='POST' id="imageForm">
+  {% csrf_token %}
+  <div class="cameraImgContainer">
+    <img id="cameraID" src={{cameraObjects.cameraURL}}>
+  </div>
 
-<div class="cameraImgContainer">
 
-  <img src="../assets/gardenPics/{{cameraObjects.camera}}" class="cameraImg" />
-</div>
+  <div class="dateContainer">
+    As of: {{cameraObjects.date}}
+  </div>
+</form>
 
-<div class="dateContainer">
-  As of: {{cameraObjects.date}}
-</div>
 
 {% endblock %}
