@@ -109,7 +109,6 @@ nav .brand {
   color: white;
   position: absolute;
   top: 15.6%;
-
 }
 
 .leftContainer li {
@@ -280,7 +279,7 @@ nav .brand {
 .rightContainer3 li {
   list-style: none;
   padding-top: 10px;
-    text-align: center;
+  text-align: center;
 }
 
 .rightContainer3 a {
@@ -304,6 +303,7 @@ nav .brand {
   left: 75%;
   text-align: center;
 }
+
 .rightContainer4 li {
   list-style: none;
   padding-top: 10px;
@@ -332,6 +332,7 @@ nav .brand {
   left: 75%;
   text-align: center;
 }
+
 .rightContainer5 li {
   list-style: none;
   padding-top: 10px;
@@ -344,6 +345,7 @@ nav .brand {
   color: #fff;
   font-size: 15px;
 }
+
 .cameraImgContainer {
   width: 910px;
   height: 650px;
@@ -372,52 +374,121 @@ nav .brand {
   font-size: 16px;
 }
 
-
-.deviceStatusTable {
-  border-style: none;
-  width: 550px;
-  height: 300px;
-  margin-left: 100px;
-  margin-top: 70px;
-  padding-left: 20px;
-  font-family: Ubuntu-Light;
-  text-transform: uppercase;
+.deviceStatusTableFixedHeader {
+  width: 675px;
+  table-layout: fixed;
+  border-collapse: collapse;
   color: white;
+  margin-left: 50px;
+  margin-top: -250px;
+  position: fixed;
+  top: 45.6%;
 }
 
-.deviceStatusTable li {
-  list-style: none;
-  padding-top: 10px;
+.deviceStatusTableFixedHeader tbody {
+  display: inline-block;
+  height: 600px;
+  width: 675px;
+  overflow: auto;
 }
 
-.deviceStatusTable a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 15px;
+.deviceStatusTableFixedHeader th, td {
+  padding: 5px;
+  text-align: center;
 }
 
-.sensorsTable {
-  border-style: none;
-  width: 520px;
-  height: 200px;
-  margin-left: 100px;
-  margin-top: 70px;
-  padding-left: 20px;
-  font-family: Ubuntu-Light;
-  text-transform: uppercase;
+.deviceStatusTableFixedHeader td:nth-child(1), th:nth-child(1) {
+  min-width: 200px;
+}
+
+.deviceStatusTableFixedHeader td:nth-child(2), th:nth-child(2) {
+  min-width: 100px;
+}
+
+.deviceStatusTableFixedHeader td:nth-child(3), th:nth-child(3) {
+  min-width: 100px;
+}
+
+.deviceStatusTableFixedHeader td:nth-child(4), th:nth-child(4) {
+  min-width: 100px;
+}
+
+.deviceStatusTableFixedHeader td:nth-child(5), th:nth-child(5) {
+  min-width: 100px;
+}
+
+.deviceStatusTableFixedHeader thead {
+  background-color: black
+}
+
+.deviceStatusTableFixedHeader tr {
+  display: block;
+  position: relative;
+}
+
+.sensorStatusTableFixedHeader {
+  width: 675px;
+  table-layout: fixed;
+  border-collapse: collapse;
   color: white;
-  position: absolute;
-  top: 15.6%;
-  left: 55%;
+  margin-left: 1000px;
+  margin-top: -650px;
+  position: fixed;
+  top: 90.6%;
 }
 
-.sensorsTable li {
-  list-style: none;
-  padding-top: 10px;
+.sensorStatusTableFixedHeader tbody {
+  display: inline-block;
+  height: 600px;
+  width: 675px;
+  overflow: auto;
 }
 
-.sensorsTable a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 15px;
+.sensorStatusTableFixedHeader th, td {
+  padding: 5px;
+  text-align: center;
+}
+
+.sensorStatusTableFixedHeader td:nth-child(1), .sensorStatusTableFixedHeader th:nth-child(1) {
+  min-width: 200px;
+}
+
+.sensorStatusTableFixedHeader td:nth-child(2), .sensorStatusTableFixedHeader th:nth-child(2) {
+  min-width: 90px;
+}
+
+.sensorStatusTableFixedHeader td:nth-child(3), sensorStatusTableFixedHeader th:nth-child(3) {
+  min-width: 90px;
+}
+
+.sensorStatusTableFixedHeader td:nth-child(4), sensorStatusTableFixedHeader th:nth-child(4) {
+  min-width: 90px;
+}
+
+.sensorStatusTableFixedHeader td:nth-child(5), sensorStatusTableFixedHeader th:nth-child(5) {
+  min-width: 130px;
+}
+
+.sensorStatusTableFixedHeader thead {
+  background-color: black
+}
+
+.sensorStatusTableFixedHeader tr {
+  display: block;
+  position: relative;
+}
+
+.old_ie_wrapper {
+  height: 600px;
+  width: 675px;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  tbody {
+    height: auto;
+  }
+}
+
+.old_ie_wrapper tbody {
+  height: auto;
 }

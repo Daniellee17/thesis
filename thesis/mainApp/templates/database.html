@@ -20,38 +20,60 @@
 </div>
 
 
-<div class="deviceStatusTable">
-  {% for values in deviceStatusObjects %}
-
-  <ul>
-    <li><a>fans: {{values.fansStatus}}
-        lights: {{values.lightsStatus}}
-        water: {{values.waterStatus}}
-        seed: {{values.seedStatus}}
-        date/time: {{values.date}}
-        <a></li>
-  </ul>
-
-
-  {% endfor %}
-</div>
-
-<div class="sensorsTable">
-  {% for values2 in sensorsObjects %}
-
-  <ul>
-    <li><a>Temp: {{values2.temperature}}
-        Humidity: {{values2.humidity}}
-        Moisture: {{values2.moisture}}
-        Summary: {{values2.summary}}
-        date/time: {{values2.date}}
-        <a></li>
-  </ul>
-
-
-  {% endfor %}
-</div>
+<table class="deviceStatusTableFixedHeader">
+  <caption>Devices</caption>
+  <thead>
+    <tr>
+      <th>Date&Time</th>
+      <th>Fan</th>
+      <th>Light</th>
+      <th>Watering</th>
+      <th>Seeding</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for values in deviceStatusObjects %}
+    <tr>
+      <td>{{values.date}}</td>
+      <td>{{values.fansStatus}}</td>
+      <td>{{values.lightsStatus}}</td>
+      <td>{{values.waterStatus}}</td>
+      <td>{{values.seedStatus}}</td>
+    </tr>
+    {% endfor %}
 
 
 
-{% endblock %}
+  </tbody>
+
+</table>
+
+<table class="sensorStatusTableFixedHeader">
+  <caption>Sensors</caption>
+  <thead>
+    <tr>
+      <th>Date&Time</th>
+      <th>Temperature</th>
+      <th>Humidity</th>
+      <th>Soil Moisture</th>
+      <th>Summary</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for values2 in sensorsObjects %}
+    <tr>
+      <td>{{values2.date}}</td>
+      <td>{{values2.temperature}}</td>
+      <td>{{values2.humidity}}</td>
+      <td>{{values2.moisture}}</td>
+      <td>{{values2.summary}}</td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+  </body>
+
+  </html>
+
+  {% endblock %}
