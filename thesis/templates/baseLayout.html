@@ -29,19 +29,16 @@
 
       },
       success: function(json) {
-        document.getElementById("imageForm").reset();
-        $('#cameraID').attr('src', '{{cameraObjects.cameraURL}}');
+        document.getElementById("sensorsForm").reset();
+        $('#labelTemperature').text('22');
+        $('#labelHumidity').text('11');
+        $('#labelMoisture').text('33');
+        $('#labelSummary').text('44');
       },
 
     });
   }
 
-  $(document).ready(function() {
-    setTimeout(getSensorValues, 3000);
-  });
-</script>
-
-<script>
   function snapImage() {
     $.ajax({
       type: 'POST',
@@ -54,54 +51,20 @@
       },
       success: function(json) {
         document.getElementById("imageForm").reset();
-        $('#cameraID').attr('src', '{{cameraObjects.cameraURL}}');
+        $('#cameraID').attr('src', 'd');
       },
 
     });
   }
 
   $(document).ready(function() {
-    setTimeout(snapImage, 4000);
+    setInterval(getSensorValues, 5000);
+  });
+
+  $(document).ready(function() {
+    setInterval(snapImage, 10000);
   });
 </script>
-
-<!--
-
-Code to snapImage and refresh whole page
-
-<script>
-  window.setTimeout(function() {
-
-    $.ajax({
-      type: 'POST',
-      url: '{% url "mainPage" %}',
-      data: {
-
-        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-        action: 'snapImage',
-
-      },
-      success: function(json) {
-        document.getElementById("imageForm").reset();
-        $('#cameraID').attr('src', '{{cameraObjects.cameraURL}}');
-      },
-
-    });
-
-    location.href = "{% url 'mainPage' %}";
-    //alert("Picture Updated!");
-  }, 6000);
-</script>
-
-Code to refresh whole page
-
-<script>
-  window.setTimeout(function() {
-    location.href = "{% url 'mainPage' %}";
-  }, 30000);
-</script>
-
--->
 
 <script>
   $(".onFan").click(function(e) {
@@ -123,9 +86,7 @@ Code to refresh whole page
 
     });
   });
-</script>
 
-<script>
   $(".offFan").click(function(e) {
 
     e.preventDefault();
@@ -145,9 +106,7 @@ Code to refresh whole page
 
     });
   });
-</script>
 
-<script>
   $(".onLights").click(function(e) {
 
     e.preventDefault();
@@ -167,9 +126,7 @@ Code to refresh whole page
 
     });
   });
-</script>
 
-<script>
   $(".offLights").click(function(e) {
 
     e.preventDefault();
@@ -189,10 +146,7 @@ Code to refresh whole page
 
     });
   });
-</script>
 
-
-<script>
   $(".onWater").click(function(e) {
 
     e.preventDefault();
@@ -212,9 +166,7 @@ Code to refresh whole page
 
     });
   });
-</script>
 
-<script>
   $(".offWater").click(function(e) {
 
     e.preventDefault();
@@ -234,9 +186,7 @@ Code to refresh whole page
 
     });
   });
-</script>
 
-<script>
   $(".onSeed").click(function(e) {
 
     e.preventDefault();
@@ -256,9 +206,7 @@ Code to refresh whole page
 
     });
   });
-</script>
 
-<script>
   $(".offSeed").click(function(e) {
 
     e.preventDefault();

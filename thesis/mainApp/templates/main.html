@@ -20,7 +20,6 @@
   <img src="../assets/rpilogo.png" class="titleLogo" />
 </div>
 
-
 <form method='POST' id="buttonForm">
   {% csrf_token %}
 
@@ -71,55 +70,62 @@
 
       <input type='submit' name="onSeed_btn" value="on" class="onSeed"></button>
       <input type='submit' name="offSeed_btn" value="off" class="offSeed"></button>
+    </ul>
+
+  </div>
 
 </form>
 
-</ul>
+<form method='POST' id="sensorsForm">
+  {% csrf_token %}
 
-</div>
 
-<div class="rightContainer">
-  <ul>
-    <li><a>Sensors<a></li>
-    <li><a>Temperature(C)<a></li>
-    <li><a>Humidity<a></li>
-    <li><a>Soil Moisture<a></li>
-  </ul>
-</div>
-<div class="rightContainer2">
-  <ul>
-    <li><a>reading<a></li>
-    <li><a>{{sensorsObjects.temperature}}<a></li>
-    <li><a>{{sensorsObjects.humidity}}<a></li>
-    <li><a>{{sensorsObjects.moisture}}<a></li>
-  </ul>
-</div>
-<div class="rightContainer3">
-  <ul>
-    <li><a>Status<a></li>
-    <li><a>Fine<a></li>
-    <li><a>Fine<a></li>
-    <li><a>Fine<a></li>
-  </ul>
-</div>
-<div class="rightContainer4">
-  <ul>
-    <li><a>growth monitor<a></li>
-  </ul>
-  <ul>
-    <li><a>Plant1<a></li>
-    <li><a>Plant2<a></li>
-    <li><a>Plant3<a></li>
-    <li><a>Plant4<a></li>
-  </ul>
-</div>
 
-<div class="rightContainer5">
-  <ul>
-    <li><a>SUMMARY<a></li>
-  </ul>
-  {{sensorsObjects.summary}}
-</div>
+  <div class="rightContainer">
+    <ul>
+      <li><a>Sensors<a></li>
+      <li><a>Temperature(C)<a></li>
+      <li><a>Humidity<a></li>
+      <li><a>Soil Moisture<a></li>
+    </ul>
+  </div>
+  <div class="rightContainer2">
+    <ul>
+      <li><a>reading<a></li>
+      <li><a id="labelTemperature">{{sensorsObjects.temperature}}<a></li>
+      <li><a id="labelHumidity">{{sensorsObjects.humidity}}<a></li>
+      <li><a id="labelMoisture">{{sensorsObjects.moisture}}<a></li>
+    </ul>
+  </div>
+  <div class="rightContainer3">
+    <ul>
+      <li><a>Status<a></li>
+      <li><a>Fine<a></li>
+      <li><a>Fine<a></li>
+      <li><a>Fine<a></li>
+    </ul>
+  </div>
+  <div class="rightContainer4">
+    <ul>
+      <li><a>growth monitor<a></li>
+    </ul>
+    <ul>
+      <li><a>Plant1<a></li>
+      <li><a>Plant2<a></li>
+      <li><a>Plant3<a></li>
+      <li><a>Plant4<a></li>
+    </ul>
+  </div>
+
+  <div class="rightContainer5">
+    Summary
+    <ul>
+      <li><a id="labelSummary">{{sensorsObjects.summary}}<a></li>
+    </ul>
+  </div>
+
+</form>
+
 <form method='POST' id="imageForm">
   {% csrf_token %}
   <div class="cameraImgContainer">
@@ -130,6 +136,7 @@
   <div class="dateContainer">
     As of: {{cameraObjects.date}}
   </div>
+
 </form>
 
 

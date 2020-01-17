@@ -23,17 +23,60 @@ def mainPage(response):
     insertCamera = camerasnaps()
     insertSensors = sensors()
 
-    currentTemperature = 1
-    currentHumidity = 2
-    # currentMoisture = sensorsObjects.humidity
-    # currentSummary = sensorsObjects.summary
-    currentMoisture = 3
-    currentSummary = 'default'
-
     if response.POST.get('action') == 'getSensorValues':
         print(" ")
         print("~Sensor Values Updated~")
         print(" ")
+
+        currentTemperature = 1
+        currentHumidity = 2
+        currentMoisture = 54
+        currentSummary = 'default'
+
+        if(currentTemperature > 30):
+
+            # Turn on fans automatically
+
+            insertDeviceStatus.fansStatus = 'on'
+            insertSensors.temperature = currentTemperature
+            insertSensors.humidity = currentHumidity
+            insertSensors.moisture = currentMoisture
+
+            if(currentHumidity < 40):
+                insertSensors.summary = 'Temperature is too high and Humidity is too low!!!'
+                insertSensors.save()
+            else:
+                insertSensors.summary = 'Temperature is too high!!!'
+                insertSensors.save()
+
+        if(currentHumidity < 40):
+
+            insertSensors.temperature = currentTemperature
+            insertSensors.humidity = currentHumidity
+            insertSensors.moisture = currentMoisture
+
+            if(currentTemperature > 30):
+                insertSensors.summary = 'Temperature is too high and Humidity is too low!!!'
+                insertSensors.save()
+            else:
+                insertSensors.summary = 'Humidity is too low!!!'
+                insertSensors.save()
+
+        if(currentTemperature < 30):
+
+            # Turn off fans automatically
+
+            insertDeviceStatus.fansStatus = 'off'
+            insertSensors.temperature = currentTemperature
+            insertSensors.humidity = currentHumidity
+            insertSensors.moisture = currentMoisture
+
+            if(currentHumidity > 40):
+                insertSensors.summary = 'Temperature and Humidity are okay!!!'
+                insertSensors.save()
+            else:
+                insertSensors.summary = 'Humidity is too low!!!'
+                insertSensors.save()
 
 
     if response.POST.get('action') == 'snapImage':
@@ -43,6 +86,7 @@ def mainPage(response):
 
         insertCamera.cameraURL = '../assets/gardenPics/rpilogo.png'
         insertCamera.save()
+
 
     if response.POST.get('action') == 'onFan':
         print(" ")
@@ -127,57 +171,15 @@ def mainPage(response):
         insertDeviceStatus.seedStatus = 'off'
         insertDeviceStatus.save()
 
-    if(currentTemperature > 30):
 
-        # Turn on fans automatically
-
-        insertDeviceStatus.fansStatus = 'on'
-        insertSensors.temperature = currentTemperature
-        insertSensors.humidity = currentHumidity
-        insertSensors.moisture = currentMoisture
-
-        if(currentHumidity < 40):
-            insertSensors.summary = 'Temperature is too high and Humidity is too low!!!'
-            insertSensors.save()
-        else:
-            insertSensors.summary = 'Temperature is too high!!!'
-            insertSensors.save()
-
-    if(currentHumidity < 40):
-
-        insertSensors.temperature = currentTemperature
-        insertSensors.humidity = currentHumidity
-        insertSensors.moisture = currentMoisture
-
-        if(currentTemperature > 30):
-            insertSensors.summary = 'Temperature is too high and Humidity is too low!!!'
-            insertSensors.save()
-        else:
-            insertSensors.summary = 'Humidity is too low!!!'
-            insertSensors.save()
-
-    if(currentTemperature < 30):
-
-        # Turn off fans automatically
-
-        insertDeviceStatus.fansStatus = 'off'
-        insertSensors.temperature = currentTemperature
-        insertSensors.humidity = currentHumidity
-        insertSensors.moisture = currentMoisture
-
-        if(currentHumidity > 40):
-            insertSensors.summary = 'Temperature and Humidity are okay!!!'
-            insertSensors.save()
-        else:
-            insertSensors.summary = 'Humidity is too low!!!'
-            insertSensors.save()
 
     # Dito nakalagay sa baba kasi if sa taas,
     # mauuna kunin data before saving the sensor data so late ng isang query
     sensorsObjects = sensors.objects.latest('date')
     cameraObjects = camerasnaps.objects.latest('date')
 
-    myObjects = {'deviceStatusObjects': deviceStatusObjects,
+
+    myObjects = {'d': 'aa', 'deviceStatusObjects': deviceStatusObjects,
                  'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}
 
     return render(response, 'main.html', context=myObjects)
@@ -193,6 +195,3 @@ def databasePage(response):
                  'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}
 
     return render(response, 'database.html', context=myObjects)
-
-
-# Create your views here.
