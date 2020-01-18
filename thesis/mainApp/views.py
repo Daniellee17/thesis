@@ -149,8 +149,11 @@ if response.POST.get('action') == 'getSensorValues':
         insertCamera.cameraURL = '../assets/gardenPics/' + datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.bmp'
         insertCamera.save()
 
+        cameraObjects = camerasnaps.objects.latest('date')
+
         cameraObjectsJSON = {
         'cameraURLJSON': '../assets/gardenPics/' + datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.bmp',
+        'cameraDateJSON': cameraObjects.date
         }
         return JsonResponse(cameraObjectsJSON)
 
