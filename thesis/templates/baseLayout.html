@@ -50,12 +50,11 @@
 
       },
       success: function(cameraJson) {
-
         var date = new Date(cameraJson.cameraDateJSON);
         //var newDate = date.replace("GMT+0800 (Philippine Standard Time)", " ");
         //alert(newDate);
         $('#cameraID').attr('src', cameraJson.cameraURLJSON);
-        $('#dateID').text('As of: ' + date);
+        $('#dateID').text('As of: ' + cameraJson.cameraDateJSON);
 
       },
 
