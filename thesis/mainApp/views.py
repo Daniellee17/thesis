@@ -41,83 +41,83 @@ def mainPage(response):
     insertSensors = sensors()
 
 
-if response.POST.get('action') == 'getSensorValues':
-    print(" ")
-    print("~Sensor Values Updated~")
-    print(" ")
+    if response.POST.get('action') == 'getSensorValues':
+        print(" ")
+        print("~Sensor Values Updated~")
+        print(" ")
 
-    # Start SPI connection
-    spi = spidev.SpiDev() # Created an object
-    spi.open(0,0)
+        # Start SPI connection
+        spi = spidev.SpiDev() # Created an object
+        spi.open(0,0)
 
-    humidity, temperature = Adafruit_DHT.read_retry(sensor, 1)
+        humidity, temperature = Adafruit_DHT.read_retry(sensor, 1)
 
-    def analogInput(channel):
-      spi.max_speed_hz = 1350000
-      adc = spi.xfer2([1,(8+channel)<<4,0])
-      data = ((adc[1]&3) << 8) + adc[2]
-      return data
+        def analogInput(channel):
+          spi.max_speed_hz = 1350000
+          adc = spi.xfer2([1,(8+channel)<<4,0])
+          data = ((adc[1]&3) << 8) + adc[2]
+          return data
 
-    output = analogInput(0) # Reading from CH0
-    output = interp(output, [0, 1023], [100, 0])
-    output = int(output)
-    #print("Moistures", output)
+        output = analogInput(0) # Reading from CH0
+        output = interp(output, [0, 1023], [100, 0])
+        output = int(output)
+        #print("Moistures", output)
 
-    currentTemperature = temperature
-    currentHumidity = humidity
-    currentMoisture = output
+        currentTemperature = temperature
+        currentHumidity = humidity
+        currentMoisture = output
 
-
-    if(currentTemperature > 30):
-
-        # Turn on fans automatically
-
-        insertDeviceStatus.fansStatus = 'on'
-        insertSensors.temperature = currentTemperature
-        insertSensors.humidity = currentHumidity
-        insertSensors.moisture = currentMoisture
-
-        if(currentHumidity < 40):
-            insertSensors.summary = 'Temperature is too high and Humidity is too low!!!'
-            currentSummary = 'Temperature is too high and Humidity is too low!!!'
-            insertSensors.save()
-        else:
-            insertSensors.summary = 'Temperature is too high!!!'
-            currentSummary = 'Temperature is too high!!!'
-            insertSensors.save()
-
-    if(currentHumidity < 40):
-
-        insertSensors.temperature = currentTemperature
-        insertSensors.humidity = currentHumidity
-        insertSensors.moisture = currentMoisture
 
         if(currentTemperature > 30):
-            insertSensors.summary = 'Temperature is too high and Humidity is too low!!!'
-            currentSummary = 'Temperature is too high and Humidity is too low!!!'
-            insertSensors.save()
-        else:
-            insertSensors.summary = 'Humidity is too low!!!'
-            currentSummary = 'Humidity is too low!!!'
-            insertSensors.save()
 
-    if(currentTemperature < 30):
+            # Turn on fans automatically
 
-        # Turn off fans automatically
+            insertDeviceStatus.fansStatus = 'on'
+            insertSensors.temperature = currentTemperature
+            insertSensors.humidity = currentHumidity
+            insertSensors.moisture = currentMoisture
 
-        insertDeviceStatus.fansStatus = 'off'
-        insertSensors.temperature = currentTemperature
-        insertSensors.humidity = currentHumidity
-        insertSensors.moisture = currentMoisture
+            if(currentHumidity < 40):
+                insertSensors.summary = 'Temperature is too high and Humidity is too low!!!'
+                currentSummary = 'Temperature is too high and Humidity is too low!!!'
+                insertSensors.save()
+            else:
+                insertSensors.summary = 'Temperature is too high!!!'
+                currentSummary = 'Temperature is too high!!!'
+                insertSensors.save()
 
-        if(currentHumidity > 40):
-            insertSensors.summary = 'Temperature and Humidity are okay!!!'
-            currentSummary = 'Temperature and Humidity are okay!!!'
-            insertSensors.save()
-        else:
-            insertSensors.summary = 'Humidity is too low!!!'
-            currentSummary = 'Humidity is too low!!!'
-            insertSensors.save()
+        if(currentHumidity < 40):
+
+            insertSensors.temperature = currentTemperature
+            insertSensors.humidity = currentHumidity
+            insertSensors.moisture = currentMoisture
+
+            if(currentTemperature > 30):
+                insertSensors.summary = 'Temperature is too high and Humidity is too low!!!'
+                currentSummary = 'Temperature is too high and Humidity is too low!!!'
+                insertSensors.save()
+            else:
+                insertSensors.summary = 'Humidity is too low!!!'
+                currentSummary = 'Humidity is too low!!!'
+                insertSensors.save()
+
+        if(currentTemperature < 30):
+
+            # Turn off fans automatically
+
+            insertDeviceStatus.fansStatus = 'off'
+            insertSensors.temperature = currentTemperature
+            insertSensors.humidity = currentHumidity
+            insertSensors.moisture = currentMoisture
+
+            if(currentHumidity > 40):
+                insertSensors.summary = 'Temperature and Humidity are okay!!!'
+                currentSummary = 'Temperature and Humidity are okay!!!'
+                insertSensors.save()
+            else:
+                insertSensors.summary = 'Humidity is too low!!!'
+                currentSummary = 'Humidity is too low!!!'
+                insertSensors.save()
 
 
     deviceStatusObjectsJSON = {
@@ -153,6 +153,7 @@ if response.POST.get('action') == 'getSensorValues':
         'cameraURLJSON': '../assets/gardenPics/' + datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.bmp',
         'cameraDateJSON': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p'))
         }
+
         return JsonResponse(cameraObjectsJSON)
 
     if response.POST.get('action') == 'onFan':
