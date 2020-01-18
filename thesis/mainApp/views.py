@@ -120,15 +120,15 @@ def mainPage(response):
                 insertSensors.save()
 
 
-    deviceStatusObjectsJSON = {
-    'currentTemperatureJSON': currentTemperature,
-    'currentHumidityJSON': currentHumidity,
-    'currentMoistureJSON': currentMoisture,
-    'currentSummaryJSON': currentSummary,
-    }
+        deviceStatusObjectsJSON = {
+        'currentTemperatureJSON': currentTemperature,
+        'currentHumidityJSON': currentHumidity,
+        'currentMoistureJSON': currentMoisture,
+        'currentSummaryJSON': currentSummary,
+        }
 
 
-    return JsonResponse(deviceStatusObjectsJSON)
+        return JsonResponse(deviceStatusObjectsJSON)
 
     if response.POST.get('action') == 'snapImage':
         print(" ")
@@ -237,42 +237,6 @@ def mainPage(response):
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = 'off'
         insertDeviceStatus.save()
-
-
-    insertSensors.temperature = currentTemperature
-    insertSensors.humidity = currentHumidity
-    insertSensors.moisture = currentMoisture
-    insertSensors.summary = 'okay'
-    insertSensors.save()
-
-    if(currentTemperature > 30):
-
-        # Turn on fans automatically
-        GPIO.output(21, GPIO.HIGH)
-        insertDeviceStatus.fansStatus = 'on'
-        insertSensors.temperature = currentTemperature
-        insertSensors.humidity = currentHumidity
-        insertSensors.moisture = currentMoisture
-
-        if(currentHumidity < 40):
-            insertSensors.summary = 'Temperature is too high and Humidity is too low!!!'
-            insertSensors.save()
-        else:
-            insertSensors.summary = 'Temperature is too high!!!'
-            insertSensors.save()
-
-    if(currentHumidity < 40):
-
-        insertSensors.temperature = currentTemperature
-        insertSensors.humidity = currentHumidity
-        insertSensors.moisture = currentMoisture
-
-        if(currentTemperature > 30):
-            insertSensors.summary = 'Temperature is too high and Humidity is too low!!!'
-            insertSensors.save()
-        else:
-            insertSensors.summary = 'Humidity is too low!!!'
-            insertSensors.save()
 
     # Dito nakalagay sa baba kasi if sa taas,
     # mauuna kunin data before saving the sensor data so late ng isang query
