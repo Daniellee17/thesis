@@ -18,6 +18,11 @@
   font-family: OpenSans;
 }
 
+@font-face {
+  src: url(../assets/fonts/ProximaNovaReg.ttf);
+  font-family: ProximaNova;
+}
+
 body {
   background-color: #333940;
   background-repeat: no repeat;
@@ -376,45 +381,45 @@ nav .brand {
 }
 
 .deviceStatusTableFixedHeader {
-  width: 675px;
+  width: 677px;
   table-layout: fixed;
   border-collapse: collapse;
   color: white;
   margin-left: 50px;
   margin-top: -250px;
   position: fixed;
-  top: 45.6%;
+  top: 50%;
+  font-family: ProximaNova;
 }
 
 .deviceStatusTableFixedHeader tbody {
   display: inline-block;
   height: 600px;
-  width: 675px;
   overflow: auto;
 }
 
-.deviceStatusTableFixedHeader th, td {
+.deviceStatusTableFixedHeader th, .deviceStatusTableFixedHeader td {
   padding: 5px;
   text-align: center;
 }
 
-.deviceStatusTableFixedHeader td:nth-child(1), th:nth-child(1) {
+.deviceStatusTableFixedHeader td:nth-child(1), .deviceStatusTableFixedHeader th:nth-child(1) {
   min-width: 200px;
 }
 
-.deviceStatusTableFixedHeader td:nth-child(2), th:nth-child(2) {
+.deviceStatusTableFixedHeader td:nth-child(2), .deviceStatusTableFixedHeader th:nth-child(2) {
   min-width: 100px;
 }
 
-.deviceStatusTableFixedHeader td:nth-child(3), th:nth-child(3) {
+.deviceStatusTableFixedHeader td:nth-child(3), .deviceStatusTableFixedHeader th:nth-child(3) {
   min-width: 100px;
 }
 
-.deviceStatusTableFixedHeader td:nth-child(4), th:nth-child(4) {
+.deviceStatusTableFixedHeader td:nth-child(4), .deviceStatusTableFixedHeader th:nth-child(4) {
   min-width: 100px;
 }
 
-.deviceStatusTableFixedHeader td:nth-child(5), th:nth-child(5) {
+.deviceStatusTableFixedHeader td:nth-child(5), .deviceStatusTableFixedHeader th:nth-child(5) {
   min-width: 100px;
 }
 
@@ -428,24 +433,24 @@ nav .brand {
 }
 
 .sensorStatusTableFixedHeader {
-  width: 675px;
+  width: 877px;
   table-layout: fixed;
   border-collapse: collapse;
   color: white;
   margin-left: 1000px;
   margin-top: -650px;
   position: fixed;
-  top: 90.6%;
+  top: 98.5%;
+  font-family: ProximaNova;
 }
 
 .sensorStatusTableFixedHeader tbody {
   display: inline-block;
   height: 600px;
-  width: 675px;
   overflow: auto;
 }
 
-.sensorStatusTableFixedHeader th, td {
+.sensorStatusTableFixedHeader th, .sensorStatusTableFixedHeader td {
   padding: 5px;
   text-align: center;
 }
@@ -455,19 +460,19 @@ nav .brand {
 }
 
 .sensorStatusTableFixedHeader td:nth-child(2), .sensorStatusTableFixedHeader th:nth-child(2) {
-  min-width: 90px;
+  min-width: 100px;
 }
 
-.sensorStatusTableFixedHeader td:nth-child(3), sensorStatusTableFixedHeader th:nth-child(3) {
-  min-width: 90px;
+.sensorStatusTableFixedHeader td:nth-child(3), .sensorStatusTableFixedHeader th:nth-child(3) {
+  min-width: 100px;
 }
 
-.sensorStatusTableFixedHeader td:nth-child(4), sensorStatusTableFixedHeader th:nth-child(4) {
-  min-width: 90px;
+.sensorStatusTableFixedHeader td:nth-child(4), .sensorStatusTableFixedHeader th:nth-child(4) {
+  min-width: 100px;
 }
 
-.sensorStatusTableFixedHeader td:nth-child(5), sensorStatusTableFixedHeader th:nth-child(5) {
-  min-width: 130px;
+.sensorStatusTableFixedHeader td:nth-child(5), .sensorStatusTableFixedHeader th:nth-child(5) {
+  min-width: 300px;
 }
 
 .sensorStatusTableFixedHeader thead {
@@ -481,13 +486,9 @@ nav .brand {
 
 .old_ie_wrapper {
   height: 600px;
-  width: 675px;
+  width: 800px;
   overflow-x: hidden;
   overflow-y: auto;
-
-  tbody {
-    height: auto;
-  }
 }
 
 .old_ie_wrapper tbody {
