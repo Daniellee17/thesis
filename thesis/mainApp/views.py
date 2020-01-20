@@ -21,7 +21,7 @@ sensor = Adafruit_DHT.DHT11
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(21, GPIO.OUT)  # Fan1
-GPIO.setup(26, GPIO.OUT)  # Fan2
+GPIO.setup(7, GPIO.OUT)  # Fan2
 GPIO.setup(20, GPIO.OUT)  # Lights
 GPIO.setup(16, GPIO.OUT)  # Seeder
 GPIO.setup(12, GPIO.OUT)  # Water
@@ -52,11 +52,6 @@ def mainPage(response):
         spi.open(0,0)
 
         humidity, temperature = Adafruit_DHT.read_retry(sensor, 1)
-        
-        print(" ")
-        print("~Sensor dd Updated~")
-        print(" ")
-   
 
         def analogInput(channel):
           spi.max_speed_hz = 1350000
@@ -127,7 +122,7 @@ def mainPage(response):
         print(" ")
 
         GPIO.output(21, GPIO.HIGH)
-        GPIO.output(26, GPIO.HIGH)
+        GPIO.output(7, GPIO.HIGH)
 
         insertDeviceStatus.fansStatus = 'on'
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
@@ -142,7 +137,7 @@ def mainPage(response):
         print(" ")
 
         GPIO.output(21, GPIO.LOW)
-        GPIO.output(26, GPIO.LOW)
+        GPIO.output(7, GPIO.LOW)
 
         insertDeviceStatus.fansStatus = 'off'
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
