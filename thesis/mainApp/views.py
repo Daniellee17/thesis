@@ -106,15 +106,15 @@ def mainPage(response):
         cam.start()
         image = cam.get_image()
         pygame.image.save(image, '/home/pi/Desktop/thesis/thesis/assets/gardenPics/' +
-                          datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.bmp')
+                          datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.jpg')
         cam.stop()
 
-        insertCamera.camera = datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.bmp'
-        insertCamera.cameraURL = '../assets/gardenPics/' + datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.bmp'
+        insertCamera.camera = datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.jpg'
+        insertCamera.cameraURL = '../assets/gardenPics/' + datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.jpg'
         insertCamera.save()
 
         cameraObjectsJSON = {
-        'cameraURLJSON': '../assets/gardenPics/' + datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.bmp',
+        'cameraURLJSON': '../assets/gardenPics/' + datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.jpg',
         'cameraDateJSON': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p'))
         }
 
