@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import JsonResponse
 from .models import devicestatus
 from .models import sensors
 from .models import camerasnaps
@@ -51,6 +52,11 @@ def mainPage(response):
         spi.open(0,0)
 
         humidity, temperature = Adafruit_DHT.read_retry(sensor, 1)
+        
+        print(" ")
+        print("~Sensor dd Updated~")
+        print(" ")
+   
 
         def analogInput(channel):
           spi.max_speed_hz = 1350000
@@ -66,60 +72,15 @@ def mainPage(response):
         currentTemperature = temperature
         currentHumidity = humidity
         currentMoisture = output
+        currentSummary = 'Temperature and Humidity are okay!!!'
+        
+        insertSensors.temperature = currentTemperature
+        insertSensors.humidity = currentHumidity
+        insertSensors.moisture = currentMoisture
+        insertSensors.summary = currentSummary
 
-
-        if(currentTemperature > 30):
-
-            # Turn on fans automatically
-
-            insertDeviceStatus.fansStatus = 'on'
-            insertSensors.temperature = currentTemperature
-            insertSensors.humidity = currentHumidity
-            insertSensors.moisture = currentMoisture
-
-            if(currentHumidity < 40):
-                insertSensors.summary = 'Temperature is too high and Humidity is too low!!!'
-                currentSummary = 'Temperature is too high and Humidity is too low!!!'
-                insertSensors.save()
-            else:
-                insertSensors.summary = 'Temperature is too high!!!'
-                currentSummary = 'Temperature is too high!!!'
-                insertSensors.save()
-
-        if(currentHumidity < 40):
-
-            insertSensors.temperature = currentTemperature
-            insertSensors.humidity = currentHumidity
-            insertSensors.moisture = currentMoisture
-
-            if(currentTemperature > 30):
-                insertSensors.summary = 'Temperature is too high and Humidity is too low!!!'
-                currentSummary = 'Temperature is too high and Humidity is too low!!!'
-                insertSensors.save()
-            else:
-                insertSensors.summary = 'Humidity is too low!!!'
-                currentSummary = 'Humidity is too low!!!'
-                insertSensors.save()
-
-        if(currentTemperature < 30):
-
-            # Turn off fans automatically
-
-            insertDeviceStatus.fansStatus = 'off'
-            insertSensors.temperature = currentTemperature
-            insertSensors.humidity = currentHumidity
-            insertSensors.moisture = currentMoisture
-
-            if(currentHumidity > 40):
-                insertSensors.summary = 'Temperature and Humidity are okay!!!'
-                currentSummary = 'Temperature and Humidity are okay!!!'
-                insertSensors.save()
-            else:
-                insertSensors.summary = 'Humidity is too low!!!'
-                currentSummary = 'Humidity is too low!!!'
-                insertSensors.save()
-
-
+        insertSensors.save()
+    
         deviceStatusObjectsJSON = {
         'currentTemperatureJSON': currentTemperature,
         'currentHumidityJSON': currentHumidity,
@@ -127,6 +88,7 @@ def mainPage(response):
         'currentSummaryJSON': currentSummary,
         }
 
+      
 
         return JsonResponse(deviceStatusObjectsJSON)
 
@@ -138,6 +100,8 @@ def mainPage(response):
         # CameraPart
         pygame.init()
         pygame.camera.init()
+        #screen = pygame.display.set_mode([640, 480])
+        #cam = pygame.camera.Camera("/dev/video0", (640, 480))
         cam = pygame.camera.Camera("/dev/video0", (352, 288))
         cam.start()
         image = cam.get_image()
@@ -157,6 +121,10 @@ def mainPage(response):
         return JsonResponse(cameraObjectsJSON)
 
     if response.POST.get('action') == 'onFan':
+        
+        print(" ")
+        print("~Fans Activated~")
+        print(" ")
 
         GPIO.output(21, GPIO.HIGH)
         GPIO.output(26, GPIO.HIGH)
@@ -168,6 +136,10 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'offFan':
+        
+        print(" ")
+        print("~Fans deactivated~")
+        print(" ")
 
         GPIO.output(21, GPIO.LOW)
         GPIO.output(26, GPIO.LOW)
@@ -179,6 +151,10 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'onLights':
+        
+        print(" ")
+        print("~Lights Activated~")
+        print(" ")
 
         GPIO.output(20, GPIO.HIGH)
 
@@ -189,6 +165,10 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'offLights':
+        
+        print(" ")
+        print("~Lights Deactivated~")
+        print(" ")
 
         GPIO.output(20, GPIO.LOW)
 
@@ -199,6 +179,10 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'onWater':
+    
+        print(" ")
+        print("~Water System Activated~")
+        print(" ")
 
         GPIO.output(16, GPIO.HIGH)
 
@@ -209,7 +193,11 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'offWater':
-
+        
+        print(" ")
+        print("~Water System Deactivated~")
+        print(" ")
+        
         GPIO.output(16, GPIO.LOW)
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
@@ -219,6 +207,10 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'onSeed':
+        
+        print(" ")
+        print("~Seeder Activated~")
+        print(" ")
 
         GPIO.output(12, GPIO.HIGH)
 
@@ -229,6 +221,10 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'offSeed':
+        
+        print(" ")
+        print("~Seeder Deactivated~")
+        print(" ")
 
         GPIO.output(12, GPIO.LOW)
 
