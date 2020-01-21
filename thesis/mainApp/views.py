@@ -71,14 +71,14 @@ def mainPage(response):
         currentHumidity = humidity
         currentMoisture = output
         currentSummary = 'Temperature and Humidity are okay!!!'
-        
+
         insertSensors.temperature = currentTemperature
         insertSensors.humidity = currentHumidity
         insertSensors.moisture = currentMoisture
         insertSensors.summary = currentSummary
 
         insertSensors.save()
-    
+
         deviceStatusObjectsJSON = {
         'currentTemperatureJSON': currentTemperature,
         'currentHumidityJSON': currentHumidity,
@@ -86,7 +86,7 @@ def mainPage(response):
         'currentSummaryJSON': currentSummary,
         }
 
-      
+
 
         return JsonResponse(deviceStatusObjectsJSON)
 
@@ -119,7 +119,7 @@ def mainPage(response):
         return JsonResponse(cameraObjectsJSON)
 
     if response.POST.get('action') == 'onFan':
-        
+
         print(" ")
         print("~Fans Activated~")
         print(" ")
@@ -134,7 +134,7 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'offFan':
-        
+
         print(" ")
         print("~Fans deactivated~")
         print(" ")
@@ -149,7 +149,7 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'onLights':
-        
+
         print(" ")
         print("~Lights Activated~")
         print(" ")
@@ -163,7 +163,7 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'offLights':
-        
+
         print(" ")
         print("~Lights Deactivated~")
         print(" ")
@@ -177,14 +177,14 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'onWater':
-    
+
         print(" ")
         print("~Water System Activated~")
         print(" ")
 
         GPIO.output(16, GPIO.HIGH)
         GPIO.output(22, GPIO.HIGH)
-        
+
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.waterStatus = 'on'
@@ -192,12 +192,12 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'offWater':
-        
+
         print(" ")
         print("~Water System Deactivated~")
         print(" ")
-        
-        GPIO.output(16, GPIO.LOW)                
+
+        GPIO.output(16, GPIO.LOW)
         GPIO.output(22, GPIO.LOW)
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
@@ -207,7 +207,7 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'onSeed':
-        
+
         print(" ")
         print("~Seeder Activated~")
         print(" ")
@@ -222,7 +222,7 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'offSeed':
-        
+
         print(" ")
         print("~Seeder Deactivated~")
         print(" ")

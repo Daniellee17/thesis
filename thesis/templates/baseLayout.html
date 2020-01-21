@@ -40,25 +40,33 @@
   }
 
   function snapImage() {
-    $.ajax({
-      type: 'POST',
-      url: '{% url "mainPage" %}',
-      data: {
 
-        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-        action: 'snapImage',
 
-      },
-      success: function(cameraJson) {
-        var date = new Date(cameraJson.cameraDateJSON);
-        //var newDate = date.replace("GMT+0800 (Philippine Standard Time)", " ");
-        //alert(newDate);
-        $('#cameraID').attr('src', cameraJson.cameraURLJSON);
-        $('#dateID').text('As of: ' + cameraJson.cameraDateJSON);
+    var date1 = new Date();
 
-      },
+    if (date1.getHours() === 19 && date1.getMinutes() === 25) {
 
-    });
+      alert(date1);
+      $.ajax({
+        type: 'POST',
+        url: '{% url "mainPage" %}',
+        data: {
+
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          action: 'snapImage',
+
+        },
+        success: function(cameraJson) {
+          var date = new Date(cameraJson.cameraDateJSON);
+          //var newDate = date.replace("GMT+0800 (Philippine Standard Time)", " ");
+          //alert(newDate);
+          $('#cameraID').attr('src', cameraJson.cameraURLJSON);
+          $('#dateID').text('As of: ' + cameraJson.cameraDateJSON);
+
+        },
+
+      });
+    }
   }
 
   $(document).ready(function() {
@@ -72,6 +80,7 @@
 
 
 <script>
+
   $(".onFan").click(function(e) {
 
     e.preventDefault();
