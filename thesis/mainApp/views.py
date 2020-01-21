@@ -11,6 +11,7 @@ from time import sleep  # To add delay
 
 # Importing modules
 import spidev # To communicate with SPI devices
+import os
 import sys
 import pygame
 import pygame.camera
@@ -98,8 +99,8 @@ def mainPage(response):
         pygame.init()
         pygame.camera.init()
         #screen = pygame.display.set_mode([640, 480])
-        #cam = pygame.camera.Camera("/dev/video0", (640, 480))
-        cam = pygame.camera.Camera("/dev/video0", (352, 288))
+        cam = pygame.camera.Camera("/dev/video0", (640, 480))
+        #cam = pygame.camera.Camera("/dev/video0", (352, 288))
         cam.start()
         image = cam.get_image()
         pygame.image.save(image, '/home/pi/Desktop/thesis/thesis/assets/gardenPics/' +
