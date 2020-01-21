@@ -24,7 +24,9 @@ GPIO.setup(21, GPIO.OUT)  # Fan1
 GPIO.setup(7, GPIO.OUT)  # Fan2
 GPIO.setup(20, GPIO.OUT)  # Lights
 GPIO.setup(16, GPIO.OUT)  # Seeder
+GPIO.setup(27, GPIO.OUT)  # SeederXYZ
 GPIO.setup(12, GPIO.OUT)  # Water
+GPIO.setup(22, GPIO.OUT)  # WaterXYZ
 
 
 def mainPage(response):
@@ -180,7 +182,8 @@ def mainPage(response):
         print(" ")
 
         GPIO.output(16, GPIO.HIGH)
-
+        GPIO.output(22, GPIO.HIGH)
+        
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.waterStatus = 'on'
@@ -193,7 +196,8 @@ def mainPage(response):
         print("~Water System Deactivated~")
         print(" ")
         
-        GPIO.output(16, GPIO.LOW)
+        GPIO.output(16, GPIO.LOW)                
+        GPIO.output(22, GPIO.LOW)
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
@@ -208,6 +212,7 @@ def mainPage(response):
         print(" ")
 
         GPIO.output(12, GPIO.HIGH)
+        GPIO.output(27, GPIO.HIGH)
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
@@ -222,6 +227,7 @@ def mainPage(response):
         print(" ")
 
         GPIO.output(12, GPIO.LOW)
+        GPIO.output(27, GPIO.LOW)
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
