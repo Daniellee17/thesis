@@ -25,9 +25,9 @@ GPIO.setup(21, GPIO.OUT)  # Fan1
 GPIO.setup(7, GPIO.OUT)  # Fan2
 GPIO.setup(20, GPIO.OUT)  # Lights
 GPIO.setup(16, GPIO.OUT)  # Seeder
-GPIO.setup(27, GPIO.OUT)  # SeederXYZ
+GPIO.setup(19, GPIO.OUT)  # SeederXYZ
 GPIO.setup(12, GPIO.OUT)  # Water
-GPIO.setup(22, GPIO.OUT)  # WaterXYZ
+GPIO.setup(26, GPIO.OUT)  # WaterXYZ
 
 
 def mainPage(response):
@@ -99,8 +99,9 @@ def mainPage(response):
         pygame.init()
         pygame.camera.init()
         #screen = pygame.display.set_mode([640, 480])
-        cam = pygame.camera.Camera("/dev/video0", (640, 480))
+        #cam = pygame.camera.Camera("/dev/video0", (640, 480))
         #cam = pygame.camera.Camera("/dev/video0", (352, 288))
+        cam = pygame.camera.Camera("/dev/video0", (960, 720))
         cam.start()
         image = cam.get_image()
         pygame.image.save(image, '/home/pi/Desktop/thesis/thesis/assets/gardenPics/' +
