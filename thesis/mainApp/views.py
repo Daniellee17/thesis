@@ -18,7 +18,10 @@ import pygame.camera
 import Adafruit_DHT
 import RPi.GPIO as GPIO
 
-sensor = Adafruit_DHT.DHT11
+#sensor = Adafruit_DHT.DHT11
+
+DHT_SENSOR = Adafruit_DHT.DHT22
+DHT_PIN = 1
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(21, GPIO.OUT)  # Fan1
@@ -54,7 +57,8 @@ def mainPage(response):
         spi = spidev.SpiDev() # Created an object
         spi.open(0,0)
 
-        humidity, temperature = Adafruit_DHT.read_retry(sensor, 1)
+        humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
+
 
         def analogInput(channel):
           spi.max_speed_hz = 1350000
@@ -67,10 +71,13 @@ def mainPage(response):
         output = int(output)
         #print("Moistures", output)
 
-        currentTemperature = temperature
-        currentHumidity = humidity
+        currentTemperature = round(temperature, 2)
+        currentHumidity = round(humidity, 2)
         currentMoisture = output
         currentSummary = 'Temperature and Humidity are okay!!!'
+        
+        print(currentTemperature)
+        print(currentHumidity)
 
         insertSensors.temperature = currentTemperature
         insertSensors.humidity = currentHumidity
