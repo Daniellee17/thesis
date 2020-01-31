@@ -44,7 +44,7 @@
     var date1 = new Date();
 
  //   if (date1.getHours() === 19 && date1.getMinutes() === 52) {
-      
+
       //Change getHours and getMinutes depending on platform used
       //Rpi 24 hr format
       //Ubuntu 24 hr format
@@ -85,6 +85,26 @@
 
 
 <script>
+
+$(".processImage").click(function(e) {
+
+  e.preventDefault();
+  $.ajax({
+    type: 'POST',
+    url: '{% url "mainPage" %}',
+    data: {
+
+      csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+      action: 'processImage',
+
+    },
+    success: function(json) {
+      document.getElementById("buttonForm").reset();
+      $('#labelFans').text('on');
+    },
+
+  });
+});
 
   $(".onFan").click(function(e) {
 

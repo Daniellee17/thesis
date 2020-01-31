@@ -75,7 +75,7 @@ def mainPage(response):
         currentHumidity = round(humidity, 2)
         currentMoisture = output
         currentSummary = 'Temperature and Humidity are okay!!!'
-        
+
         print(currentTemperature)
         print(currentHumidity)
 
