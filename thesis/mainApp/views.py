@@ -8,22 +8,27 @@ from pygame.locals import *
 from datetime import datetime
 from numpy import interp  # To scale values
 from time import sleep  # To add delay
+from plantcv import plantcv as pcv
 
-# Importing modules
-import spidev # To communicate with SPI devices
 import os
 import sys
+import RPi.GPIO as GPIO
+#Soil Moisture Sensor
+import spidev # To communicate with SPI devices
+#Camera
 import pygame
 import pygame.camera
+#DHT22
 import Adafruit_DHT
-import RPi.GPIO as GPIO
-
 #sensor = Adafruit_DHT.DHT11
-
 DHT_SENSOR = Adafruit_DHT.DHT22
 DHT_PIN = 1
+#Image Processing
+import numpy as np
+import cv2
+import re
 
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BCM) #Read GPIO# and not pin #!
 GPIO.setup(21, GPIO.OUT)  # Fan1
 GPIO.setup(7, GPIO.OUT)  # Fan2
 GPIO.setup(20, GPIO.OUT)  # Lights
@@ -42,13 +47,13 @@ def mainPage(response):
 
     deviceStatusObjects = devicestatus.objects.latest('date')
 
-    # Create instance para makapag insert
+    # Create instance para makapag insert sa DB
     insertDeviceStatus = devicestatus()
     insertCamera = camerasnaps()
     insertSensors = sensors()
 
 
-    if response.POST.get('action') == 'getSensorValues':
+    if response.POST.get('action') == 'getSensorValues_':
         print(" ")
         print("~Sensor Values Updated~")
         print(" ")
@@ -97,17 +102,79 @@ def mainPage(response):
 
         return JsonResponse(deviceStatusObjectsJSON)
 
-    if response.POST.get('action') == 'snapImage':
+
+    if response.POST.get('action') == 'processImage':
+        print(" ")
+        print("~Image Processing Started~")
+        print(" ")
+
+        class options:
+            def __init__(self):
+
+                #self.debug = "plot" #Plot the output using pictures
+                self.debug = "print"
+
+
+        # Get options
+        args = options()
+
+        # Set debug to the global parameter
+        pcv.params.debug = args.debug
+
+        img, path, filename = pcv.readimage(filename='./assets/gardenPics/EXAMPLE.jpg', mode="native")
+        img1 = pcv.white_balance(img, roi = (120,130,30,30))
+        a = pcv.rgb2gray_lab(rgb_img=img1, channel='a')
+        img_binary = pcv.threshold.binary(gray_img=a, threshold=120, max_value=255, object_type='dark')
+        fill_image = pcv.fill(bin_img=img_binary, size=40)
+        dilated = pcv.dilate(gray_img=fill_image, ksize=2, i=1)
+        id_objects, obj_hierarchy = pcv.find_objects(img=img1, mask=dilated)
+        roi_contour, roi_hierarchy = pcv.roi.rectangle(img=img1, x=0, y=100, h=200, w=400)
+        roi_objects, roi_obj_hierarchy, kept_mask, obj_area = pcv.roi_objects(img=img1, roi_contour=roi_contour,
+                                                                                  roi_hierarchy=roi_hierarchy,
+                                                                                  object_contour=id_objects,
+                                                                                  obj_hierarchy=obj_hierarchy,
+                                                                                  roi_type='partial')
+
+        # Parameters might need adjusting, draw ROIs around each plant
+        #rois1, roi_hierarchy1 = pcv.roi.multi(img=img1, coord=(25,120), radius=20,
+        #                                      spacing=(70, 70), nrows=3, ncols=6)
+
+        # Parameters might need adjusting, draw ROIs around each plant
+        roi1, roi_hier1  = pcv.roi.multi(img=img1, coord=(25,120), radius=20,
+            spacing=(70, 70), nrows=3, ncols=6)
+
+        # Initialize list of plant areas
+        plant_area_list = []
+
+        # Loop through and filter each plant, record the size
+        for i in range(0, len(roi1)):
+            roi = roi1[i]
+            hierarchy = roi_hier1[i]
+            # Find objects
+            filtered_contours, filtered_hierarchy, filtered_mask, filtered_area = pcv.roi_objects(
+                img=img, roi_type="partial", roi_contour=roi, roi_hierarchy=hierarchy, object_contour=roi_objects,
+                obj_hierarchy=roi_obj_hierarchy)
+            plant_area_list.append(filtered_area)
+
+
+        # Label area by plant ID, leftmost plant has id=0
+        plant_area_labels = [i for i in range(0, len(plant_area_list))]
+
+        # Create a new measurement
+        pcv.outputs.add_observation(variable='plant_area', trait='plant area ',
+                                    method='plantcv.plantcv.roi_objects', scale='pixels', datatype=list,
+                                    value=plant_area_list, label=plant_area_labels)
+        print (plant_area_list)
+        pcv.print_results(filename="./assets/gardenPics/plant_area_results.xml")
+
+
+    if response.POST.get('action') == 'snapImage_':
         print(" ")
         print("~Image Captured~")
         print(" ")
 
-        # CameraPart
         pygame.init()
         pygame.camera.init()
-        #screen = pygame.display.set_mode([640, 480])
-        #cam = pygame.camera.Camera("/dev/video0", (640, 480))
-        #cam = pygame.camera.Camera("/dev/video0", (352, 288))
         cam = pygame.camera.Camera("/dev/video0", (960, 720))
         cam.start()
         image = cam.get_image()
