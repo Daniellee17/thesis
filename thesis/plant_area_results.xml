@@ -1,1 +1,0 @@
-{"metadata": {}, "observations": {"plant_area": {"trait": "plant area ", "method": "plantcv.plantcv.roi_objects", "scale": "pixels", "datatype": "<class 'list'>", "value": [362, 190, 623, 538, 532, 1121, 971, 595, 733, 390, 1026, 834, 449, 806, 883, 841, 1330, 587], "label": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]}}}
