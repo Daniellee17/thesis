@@ -103,7 +103,7 @@ def mainPage(response):
         return JsonResponse(deviceStatusObjectsJSON)
 
 
-    if response.POST.get('action') == 'processImage':
+if response.POST.get('action') == 'processImage':
         print(" ")
         print("~Image Processing Started~")
         print(" ")
@@ -119,7 +119,7 @@ def mainPage(response):
         plant_area_list = [] #Plant area array for storage
         img, path, filename = pcv.readimage(filename='./assets/gardenPics/EXAMPLE.jpg', mode="native") # Read image to be used
 
-        #START OF MULTI PLANT WORKFLOW
+        # START of  Multi Plant Workflow https://plantcv.readthedocs.io/en/stable/multi-plant_tutorial/
 
         # STEP 1: Check if this is a night image
         # STEP 2: Normalize the white color so you can later
@@ -145,9 +145,14 @@ def mainPage(response):
                                                                                   obj_hierarchy=obj_hierarchy,
                                                                                   roi_type='partial')
 
+        # END of Multi Plant Workflow
+
+        # START of Create Multiple Regions of Interest (ROI) https://plantcv.readthedocs.io/en/stable/roi_multi/
+
+        # Make a grid of ROIs
         roi1, roi_hier1  = pcv.roi.multi(img=img1, coord=(25,120), radius=20, spacing=(70, 70), nrows=3, ncols=6)
 
-        # Loop through and filter each plant, record the size
+        # Loop through and filter each plant, record the area
         for i in range(0, len(roi1)):
             roi = roi1[i]
             hierarchy = roi_hier1[i]
@@ -155,10 +160,14 @@ def mainPage(response):
             filtered_contours, filtered_hierarchy, filtered_mask, filtered_area = pcv.roi_objects(
                 img=img, roi_type="partial", roi_contour=roi, roi_hierarchy=hierarchy, object_contour=roi_objects,
                 obj_hierarchy=roi_obj_hierarchy)
+
+            # Record the area
             plant_area_list.append(filtered_area)
 
             if(i<10):
                 print(plant_area_list[i])
+
+        # END of Create Multiple Regions of Interest (ROI)
 
         # Label area by plant ID, leftmost plant has id=0
         plant_area_labels = [i for i in range(0, len(plant_area_list))]
@@ -198,9 +207,6 @@ def mainPage(response):
         }
 
         return JsonResponse(plantStatusJSON)
-
-
-
 
     if response.POST.get('action') == 'snapImage_':
         print(" ")
