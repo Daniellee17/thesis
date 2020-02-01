@@ -102,8 +102,32 @@ def mainPage(response):
 
         return JsonResponse(deviceStatusObjectsJSON)
 
+    if response.POST.get('action') == 'snapImage_':
+        print(" ")
+        print("~Image Captured~")
+        print(" ")
 
-if response.POST.get('action') == 'processImage':
+        pygame.init()
+        pygame.camera.init()
+        cam = pygame.camera.Camera("/dev/video0", (960, 720))
+        cam.start()
+        image = cam.get_image()
+        pygame.image.save(image, '/home/pi/Desktop/thesis/thesis/assets/gardenPics/' +
+                          datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.jpg')
+        cam.stop()
+
+        insertCamera.camera = datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.jpg'
+        insertCamera.cameraURL = '../assets/gardenPics/' + datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.jpg'
+        insertCamera.save()
+
+        cameraObjectsJSON = {
+        'cameraURLJSON': '../assets/gardenPics/' + datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.jpg',
+        'cameraDateJSON': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p'))
+        }
+
+        return JsonResponse(cameraObjectsJSON)
+
+    if response.POST.get('action') == 'processImage':
         print(" ")
         print("~Image Processing Started~")
         print(" ")
@@ -207,31 +231,6 @@ if response.POST.get('action') == 'processImage':
         }
 
         return JsonResponse(plantStatusJSON)
-
-    if response.POST.get('action') == 'snapImage_':
-        print(" ")
-        print("~Image Captured~")
-        print(" ")
-
-        pygame.init()
-        pygame.camera.init()
-        cam = pygame.camera.Camera("/dev/video0", (960, 720))
-        cam.start()
-        image = cam.get_image()
-        pygame.image.save(image, '/home/pi/Desktop/thesis/thesis/assets/gardenPics/' +
-                          datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.jpg')
-        cam.stop()
-
-        insertCamera.camera = datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.jpg'
-        insertCamera.cameraURL = '../assets/gardenPics/' + datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.jpg'
-        insertCamera.save()
-
-        cameraObjectsJSON = {
-        'cameraURLJSON': '../assets/gardenPics/' + datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.jpg',
-        'cameraDateJSON': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p'))
-        }
-
-        return JsonResponse(cameraObjectsJSON)
 
     if response.POST.get('action') == 'onFan':
 
