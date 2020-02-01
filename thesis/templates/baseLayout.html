@@ -100,7 +100,16 @@ $(".processImage").click(function(e) {
     },
     success: function(json) {
       document.getElementById("buttonForm").reset();
-      $('#labelFans').text('on');
+      $('#labelPlant1Growth').text(json.plant1JASON);
+      $('#labelPlant2Growth').text(json.plant2JASON);
+      $('#labelPlant3Growth').text(json.plant3JASON);
+      $('#labelPlant4Growth').text(json.plant4JASON);
+      $('#labelPlant5Growth').text(json.plant5JASON);
+      $('#labelPlant6Growth').text(json.plant6JASON);
+      $('#labelPlant7Growth').text(json.plant7JASON);
+      $('#labelPlant8Growth').text(json.plant8JASON);
+      $('#labelPlant9Growth').text(json.plant9JASON);
+      $('#labelPlant10Growth').text(json.plant10JASON);
     },
 
   });

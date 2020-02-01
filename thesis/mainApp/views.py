@@ -156,6 +156,21 @@ def mainPage(response):
                 obj_hierarchy=roi_obj_hierarchy)
             plant_area_list.append(filtered_area)
 
+            if(i<10):
+                print(plant_area_list[i])
+
+
+        insertCamera.plant1 = plant_area_list[0]
+        insertCamera.plant2 = plant_area_list[1]
+        insertCamera.plant3 = plant_area_list[2]
+        insertCamera.plant4 = plant_area_list[3]
+        insertCamera.plant5 = plant_area_list[4]
+        insertCamera.plant6 = plant_area_list[5]
+        insertCamera.plant7 = plant_area_list[6]
+        insertCamera.plant8 = plant_area_list[7]
+        insertCamera.plant9 = plant_area_list[8]
+        insertCamera.plant10 = plant_area_list[9]
+        insertCamera.save()
 
         # Label area by plant ID, leftmost plant has id=0
         plant_area_labels = [i for i in range(0, len(plant_area_list))]
@@ -166,6 +181,23 @@ def mainPage(response):
                                     value=plant_area_list, label=plant_area_labels)
         print (plant_area_list)
         pcv.print_results(filename="./assets/gardenPics/plant_area_results.xml")
+
+        plantStatusJSON = {
+        'plant1JASON': plant_area_list[0],
+        'plant2JASON': plant_area_list[1],
+        'plant3JASON': plant_area_list[2],
+        'plant4JASON': plant_area_list[3],
+        'plant5JASON': plant_area_list[4],
+        'plant6JASON': plant_area_list[5],
+        'plant7JASON': plant_area_list[6],
+        'plant8JASON': plant_area_list[7],
+        'plant9JASON': plant_area_list[8],
+        'plant10JASON': plant_area_list[9],
+        }
+
+
+        return JsonResponse(plantStatusJSON)
+
 
 
     if response.POST.get('action') == 'snapImage_':
