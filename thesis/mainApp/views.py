@@ -105,14 +105,14 @@ def mainPage(response):
         print("~Image Captured~")
         print(" ")
 
-        pygame.init()
-        pygame.camera.init()
-        cam = pygame.camera.Camera("/dev/video0", (960, 720))
-        cam.start()
-        image = cam.get_image()
-        getTime = datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
-        pygame.image.save(image, '/home/pi/Desktop/thesis/thesis/assets/gardenPics/' + getTime + '.jpg')
-        cam.stop()
+        #pygame.init()
+        #pygame.camera.init()
+        #cam = pygame.camera.Camera("/dev/video0", (960, 720))
+        #cam.start()
+        #image = cam.get_image()
+        #getTime = datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
+        #pygame.image.save(image, '/home/pi/Desktop/thesis/thesis/assets/gardenPics/' + getTime + '.jpg')
+        #cam.stop()
 
         print(" ")
         print("~Image Processing Started~")
@@ -125,9 +125,11 @@ def mainPage(response):
 
         args = options()
         #pcv.params.debug = args.debug
-
+        
         plant_area_list = [] #Plant area array for storage
-        img, path, filename = pcv.readimage(filename='./assets/gardenPics/' + getTime + '.jpg', mode="native") # Read image to be used
+
+        #img, path, filename = pcv.readimage(filename='./assets/gardenPics/' + getTime + '.jpg', mode="native") # Read image to be used
+        img, path, filename = pcv.readimage(filename= '../assets/gardenPics/EXAMPLE.jpg', mode="native") # Read image to be used
 
         # START of  Multi Plant Workflow https://plantcv.readthedocs.io/en/stable/multi-plant_tutorial/
 
