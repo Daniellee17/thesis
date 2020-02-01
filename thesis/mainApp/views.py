@@ -110,41 +110,42 @@ def mainPage(response):
 
         class options:
             def __init__(self):
+                #self.debug = "print"
+                self.outdir = "./assets/gardenPics/"
 
-                #self.debug = "plot" #Plot the output using pictures
-                self.debug = "print"
-
-
-        # Get options
         args = options()
+        #pcv.params.debug = args.debug
 
-        # Set debug to the global parameter
-        pcv.params.debug = args.debug
+        plant_area_list = [] #Plant area array for storage
+        img, path, filename = pcv.readimage(filename='./assets/gardenPics/EXAMPLE.jpg', mode="native") # Read image to be used
 
-        img, path, filename = pcv.readimage(filename='./assets/gardenPics/EXAMPLE.jpg', mode="native")
+        #START OF MULTI PLANT WORKFLOW
+
+        # STEP 1: Check if this is a night image
+        # STEP 2: Normalize the white color so you can later
         img1 = pcv.white_balance(img, roi = (120,130,30,30))
+        # STEP 3: Rotate the image so that plants line up with grid
+        # STEP 4: Shift image
+        # STEP 5: Convert image from RGB colorspace to LAB colorspace Keep only the green-magenta channel (grayscale)
         a = pcv.rgb2gray_lab(rgb_img=img1, channel='a')
+        # STEP 6: Set a binary threshold on the saturation channel image
         img_binary = pcv.threshold.binary(gray_img=a, threshold=120, max_value=255, object_type='dark')
+        # STEP 7: Fill in small objects (speckles)
         fill_image = pcv.fill(bin_img=img_binary, size=40)
+        # STEP 8: Dilate so that you don't lose leaves (just in case)
         dilated = pcv.dilate(gray_img=fill_image, ksize=2, i=1)
+        # STEP 9: Find objects (contours: black-white boundaries)
         id_objects, obj_hierarchy = pcv.find_objects(img=img1, mask=dilated)
+        # STEP 10: Define region of interest (ROI)
         roi_contour, roi_hierarchy = pcv.roi.rectangle(img=img1, x=0, y=100, h=200, w=400)
+        # STEP 11: Keep objects that overlap with the ROI
         roi_objects, roi_obj_hierarchy, kept_mask, obj_area = pcv.roi_objects(img=img1, roi_contour=roi_contour,
                                                                                   roi_hierarchy=roi_hierarchy,
                                                                                   object_contour=id_objects,
                                                                                   obj_hierarchy=obj_hierarchy,
                                                                                   roi_type='partial')
 
-        # Parameters might need adjusting, draw ROIs around each plant
-        #rois1, roi_hierarchy1 = pcv.roi.multi(img=img1, coord=(25,120), radius=20,
-        #                                      spacing=(70, 70), nrows=3, ncols=6)
-
-        # Parameters might need adjusting, draw ROIs around each plant
-        roi1, roi_hier1  = pcv.roi.multi(img=img1, coord=(25,120), radius=20,
-            spacing=(70, 70), nrows=3, ncols=6)
-
-        # Initialize list of plant areas
-        plant_area_list = []
+        roi1, roi_hier1  = pcv.roi.multi(img=img1, coord=(25,120), radius=20, spacing=(70, 70), nrows=3, ncols=6)
 
         # Loop through and filter each plant, record the size
         for i in range(0, len(roi1)):
@@ -159,6 +160,17 @@ def mainPage(response):
             if(i<10):
                 print(plant_area_list[i])
 
+        # Label area by plant ID, leftmost plant has id=0
+        plant_area_labels = [i for i in range(0, len(plant_area_list))]
+
+        out = args.outdir
+        # Create a new measurement
+        pcv.outputs.add_observation(variable='plant_area', trait='plant area ',
+                                    method='plantcv.plantcv.roi_objects', scale='pixels', datatype=list,
+                                    value=plant_area_list, label=plant_area_labels)
+
+        # Print areas to XML
+        #pcv.print_results(filename="./assets/gardenPics/plant_area_results.xml")
 
         insertCamera.plant1 = plant_area_list[0]
         insertCamera.plant2 = plant_area_list[1]
@@ -171,16 +183,6 @@ def mainPage(response):
         insertCamera.plant9 = plant_area_list[8]
         insertCamera.plant10 = plant_area_list[9]
         insertCamera.save()
-
-        # Label area by plant ID, leftmost plant has id=0
-        plant_area_labels = [i for i in range(0, len(plant_area_list))]
-
-        # Create a new measurement
-        pcv.outputs.add_observation(variable='plant_area', trait='plant area ',
-                                    method='plantcv.plantcv.roi_objects', scale='pixels', datatype=list,
-                                    value=plant_area_list, label=plant_area_labels)
-        print (plant_area_list)
-        pcv.print_results(filename="./assets/gardenPics/plant_area_results.xml")
 
         plantStatusJSON = {
         'plant1JASON': plant_area_list[0],
@@ -195,8 +197,8 @@ def mainPage(response):
         'plant10JASON': plant_area_list[9],
         }
 
-
         return JsonResponse(plantStatusJSON)
+
 
 
 
