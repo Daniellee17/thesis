@@ -120,8 +120,10 @@ def mainPage(response):
         insertCamera.cameraURL = '../assets/gardenPics/' + datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.jpg'
         insertCamera.save()
 
+        cameraObjects0 = camerasnaps.objects.latest('date')
+
         cameraObjectsJSON = {
-        'cameraURLJSON': '../assets/gardenPics/' + datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.jpg',
+        'cameraURLJSON': str(cameraObjects0.cameraURL),
         'cameraDateJSON': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p'))
         }
 
