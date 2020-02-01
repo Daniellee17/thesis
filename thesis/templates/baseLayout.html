@@ -43,7 +43,7 @@
 
     var date1 = new Date();
 
- //   if (date1.getHours() === 19 && date1.getMinutes() === 52) {
+    if (date1.getHours() === 19 && date1.getMinutes() === 52) {
 
       //Change getHours and getMinutes depending on platform used
       //Rpi 24 hr format
@@ -67,11 +67,21 @@
           //alert(newDate);
           $('#cameraID').attr('src', cameraJson.cameraURLJSON);
           $('#dateID').text('As of: ' + cameraJson.cameraDateJSON);
+          $('#labelPlant1Growth').text(cameraJson.plant1JASON);
+          $('#labelPlant2Growth').text(cameraJson.plant2JASON);
+          $('#labelPlant3Growth').text(cameraJson.plant3JASON);
+          $('#labelPlant4Growth').text(cameraJson.plant4JASON);
+          $('#labelPlant5Growth').text(cameraJson.plant5JASON);
+          $('#labelPlant6Growth').text(cameraJson.plant6JASON);
+          $('#labelPlant7Growth').text(cameraJson.plant7JASON);
+          $('#labelPlant8Growth').text(cameraJson.plant8JASON);
+          $('#labelPlant9Growth').text(cameraJson.plant9JASON);
+          $('#labelPlant10Growth').text(cameraJson.plant10JASON);
 
         },
 
       });
-   // }
+    }
   }
 
   $(document).ready(function() {
@@ -85,35 +95,39 @@
 
 
 <script>
+  $(".processImage").click(function(e) {
 
-$(".processImage").click(function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
 
-  e.preventDefault();
-  $.ajax({
-    type: 'POST',
-    url: '{% url "mainPage" %}',
-    data: {
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'snapImage',
 
-      csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-      action: 'processImage',
+      },
+      success: function(cameraJson) {
+        var date = new Date(cameraJson.cameraDateJSON);
+        //var newDate = date.replace("GMT+0800 (Philippine Standard Time)", " ");
+        //alert(newDate);
+        $('#cameraID').attr('src', cameraJson.cameraURLJSON);
+        $('#dateID').text('As of: ' + cameraJson.cameraDateJSON);
+        $('#labelPlant1Growth').text(cameraJson.plant1JASON);
+        $('#labelPlant2Growth').text(cameraJson.plant2JASON);
+        $('#labelPlant3Growth').text(cameraJson.plant3JASON);
+        $('#labelPlant4Growth').text(cameraJson.plant4JASON);
+        $('#labelPlant5Growth').text(cameraJson.plant5JASON);
+        $('#labelPlant6Growth').text(cameraJson.plant6JASON);
+        $('#labelPlant7Growth').text(cameraJson.plant7JASON);
+        $('#labelPlant8Growth').text(cameraJson.plant8JASON);
+        $('#labelPlant9Growth').text(cameraJson.plant9JASON);
+        $('#labelPlant10Growth').text(cameraJson.plant10JASON);
 
-    },
-    success: function(json) {
-      document.getElementById("buttonForm").reset();
-      $('#labelPlant1Growth').text(json.plant1JASON);
-      $('#labelPlant2Growth').text(json.plant2JASON);
-      $('#labelPlant3Growth').text(json.plant3JASON);
-      $('#labelPlant4Growth').text(json.plant4JASON);
-      $('#labelPlant5Growth').text(json.plant5JASON);
-      $('#labelPlant6Growth').text(json.plant6JASON);
-      $('#labelPlant7Growth').text(json.plant7JASON);
-      $('#labelPlant8Growth').text(json.plant8JASON);
-      $('#labelPlant9Growth').text(json.plant9JASON);
-      $('#labelPlant10Growth').text(json.plant10JASON);
-    },
+      },
 
+    });
   });
-});
 
   $(".onFan").click(function(e) {
 

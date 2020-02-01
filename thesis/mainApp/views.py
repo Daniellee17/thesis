@@ -98,11 +98,9 @@ def mainPage(response):
         'currentSummaryJSON': currentSummary,
         }
 
-
-
         return JsonResponse(deviceStatusObjectsJSON)
 
-    if response.POST.get('action') == 'snapImage_':
+    if response.POST.get('action') == 'snapImage':
         print(" ")
         print("~Image Captured~")
         print(" ")
@@ -112,24 +110,10 @@ def mainPage(response):
         cam = pygame.camera.Camera("/dev/video0", (960, 720))
         cam.start()
         image = cam.get_image()
-        pygame.image.save(image, '/home/pi/Desktop/thesis/thesis/assets/gardenPics/' +
-                          datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.jpg')
+        getTime = datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
+        pygame.image.save(image, '/home/pi/Desktop/thesis/thesis/assets/gardenPics/' + getTime + '.jpg')
         cam.stop()
 
-        insertCamera.camera = datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.jpg'
-        insertCamera.cameraURL = '../assets/gardenPics/' + datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + '.jpg'
-        insertCamera.save()
-
-        cameraObjects0 = camerasnaps.objects.latest('date')
-
-        cameraObjectsJSON = {
-        'cameraURLJSON': str(cameraObjects0.cameraURL),
-        'cameraDateJSON': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p'))
-        }
-
-        return JsonResponse(cameraObjectsJSON)
-
-    if response.POST.get('action') == 'processImage':
         print(" ")
         print("~Image Processing Started~")
         print(" ")
@@ -143,7 +127,7 @@ def mainPage(response):
         #pcv.params.debug = args.debug
 
         plant_area_list = [] #Plant area array for storage
-        img, path, filename = pcv.readimage(filename='./assets/gardenPics/EXAMPLE.jpg', mode="native") # Read image to be used
+        img, path, filename = pcv.readimage(filename='./assets/gardenPics/' + getTime + '.jpg', mode="native") # Read image to be used
 
         # START of  Multi Plant Workflow https://plantcv.readthedocs.io/en/stable/multi-plant_tutorial/
 
@@ -207,6 +191,8 @@ def mainPage(response):
         # Print areas to XML
         #pcv.print_results(filename="./assets/gardenPics/plant_area_results.xml")
 
+        insertCamera.camera = getTime + '.jpg'
+        insertCamera.cameraURL = '../assets/gardenPics/' + getTime + '.jpg'
         insertCamera.plant1 = plant_area_list[0]
         insertCamera.plant2 = plant_area_list[1]
         insertCamera.plant3 = plant_area_list[2]
@@ -219,7 +205,11 @@ def mainPage(response):
         insertCamera.plant10 = plant_area_list[9]
         insertCamera.save()
 
-        plantStatusJSON = {
+        cameraObjects0 = camerasnaps.objects.latest('date')
+
+        cameraObjectsJSON = {
+        'cameraURLJSON': str(cameraObjects0.cameraURL),
+        'cameraDateJSON': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),
         'plant1JASON': plant_area_list[0],
         'plant2JASON': plant_area_list[1],
         'plant3JASON': plant_area_list[2],
@@ -229,10 +219,11 @@ def mainPage(response):
         'plant7JASON': plant_area_list[6],
         'plant8JASON': plant_area_list[7],
         'plant9JASON': plant_area_list[8],
-        'plant10JASON': plant_area_list[9],
+        'plant10JASON': plant_area_list[9]
         }
 
-        return JsonResponse(plantStatusJSON)
+        return JsonResponse(cameraObjectsJSON)
+
 
     if response.POST.get('action') == 'onFan':
 
