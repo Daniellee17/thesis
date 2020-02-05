@@ -22,7 +22,9 @@ import pygame.camera
 import Adafruit_DHT
 #sensor = Adafruit_DHT.DHT11
 DHT_SENSOR = Adafruit_DHT.DHT22
+DHT_SENSOR2 = Adafruit_DHT.DHT22
 DHT_PIN = 1
+DHT_PIN2 = 25
 #Image Processing
 import numpy as np
 import cv2
@@ -63,6 +65,7 @@ def mainPage(response):
         spi.open(0,0)
 
         humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
+        humidity2, temperature2 = Adafruit_DHT.read_retry(DHT_SENSOR2, DHT_PIN2)
 
 
         def analogInput(channel):
@@ -78,23 +81,35 @@ def mainPage(response):
 
         currentTemperature = round(temperature, 2)
         currentHumidity = round(humidity, 2)
+        currentTemperature2 = round(temperature2, 2)
+        currentHumidity2 = round(humidity2, 2)
         currentMoisture = output
         currentSummary = 'Temperature and Humidity are okay!!!'
+        
+        averageTemperature = (currentTemperature + currentTemperature2) / 2
+        averageHumidity = (currentHumidity + currentHumidity2) / 2
 
         print(currentTemperature)
         print(currentHumidity)
+        print(currentTemperature2)
+        print(currentHumidity2)
         print(currentMoisture)
+        print("ave temp")
+        print(round(averageTemperature, 2))
+        print("ave humidity")
+        print(round(averageHumidity, 2))
 
-        insertSensors.temperature = currentTemperature
-        insertSensors.humidity = currentHumidity
+
+        insertSensors.temperature = round(averageTemperature, 2)
+        insertSensors.humidity = round(averageHumidity, 2)
         insertSensors.moisture = currentMoisture
         insertSensors.summary = currentSummary
 
         insertSensors.save()
 
         deviceStatusObjectsJSON = {
-        'currentTemperatureJSON': currentTemperature,
-        'currentHumidityJSON': currentHumidity,
+        'currentTemperatureJSON': round(averageTemperature, 2),
+        'currentHumidityJSON': round(averageHumidity, 2),
         'currentMoistureJSON': currentMoisture,
         'currentSummaryJSON': currentSummary,
         }
