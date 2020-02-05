@@ -53,7 +53,7 @@ def mainPage(response):
     insertSensors = sensors()
 
 
-    if response.POST.get('action') == 'getSensorValues_':
+    if response.POST.get('action') == 'getSensorValues':
         print(" ")
         print("~Sensor Values Updated~")
         print(" ")
@@ -83,6 +83,7 @@ def mainPage(response):
 
         print(currentTemperature)
         print(currentHumidity)
+        print(currentMoisture)
 
         insertSensors.temperature = currentTemperature
         insertSensors.humidity = currentHumidity
@@ -105,14 +106,14 @@ def mainPage(response):
         print("~Image Captured~")
         print(" ")
 
-        #pygame.init()
-        #pygame.camera.init()
-        #cam = pygame.camera.Camera("/dev/video0", (960, 720))
-        #cam.start()
-        #image = cam.get_image()
+        pygame.init()
+        pygame.camera.init()
+        cam = pygame.camera.Camera("/dev/video0", (960, 720))
+        cam.start()
+        image = cam.get_image()
         getTime = datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
-        #pygame.image.save(image, '/home/pi/Desktop/thesis/thesis/assets/gardenPics/' + getTime + '.jpg')
-        #cam.stop()
+        pygame.image.save(image, '/home/pi/Desktop/thesis/thesis/assets/gardenPics/' + getTime + '.jpg')
+        cam.stop()
 
         print(" ")
         print("~Image Processing Started~")
@@ -120,36 +121,37 @@ def mainPage(response):
 
         class options:
             def __init__(self):
-                #self.debug = "print"
+                self.debug = "plot"
                 self.outdir = "./assets/gardenPics/"
 
-        args = options()
-        #pcv.params.debug = args.debug
+
+        args = options()    
+        pcv.params.debug = args.debug
 
         plant_area_list = [] #Plant area array for storage
 
-        #img, path, filename = pcv.readimage(filename='./assets/gardenPics/' + getTime + '.jpg', mode="native") # Read image to be used
-        img, path, filename = pcv.readimage(filename= './assets/gardenPics/EXAMPLE.jpg', mode="native") # Read image to be used
+        img, path, filename = pcv.readimage(filename='./assets/gardenPics/' + getTime + '.jpg', mode="native") # Read image to be used
+        #img, path, filename = pcv.readimage(filename= './assets/gardenPics/EXAMPLE.jpg', mode="native") # Read image to be used
 
         # START of  Multi Plant Workflow https://plantcv.readthedocs.io/en/stable/multi-plant_tutorial/
 
         # STEP 1: Check if this is a night image
         # STEP 2: Normalize the white color so you can later
-        img1 = pcv.white_balance(img, roi = (120,130,30,30))
+        img1 = pcv.white_balance(img, roi = (600,70,20,20))
         # STEP 3: Rotate the image so that plants line up with grid
         # STEP 4: Shift image
         # STEP 5: Convert image from RGB colorspace to LAB colorspace Keep only the green-magenta channel (grayscale)
         a = pcv.rgb2gray_lab(rgb_img=img1, channel='a')
         # STEP 6: Set a binary threshold on the saturation channel image
-        img_binary = pcv.threshold.binary(gray_img=a, threshold=120, max_value=255, object_type='dark')
+        img_binary = pcv.threshold.binary(gray_img=a, threshold=119, max_value=255, object_type='dark')
         # STEP 7: Fill in small objects (speckles)
-        fill_image = pcv.fill(bin_img=img_binary, size=40)
+        fill_image = pcv.fill(bin_img=img_binary, size=100)
         # STEP 8: Dilate so that you don't lose leaves (just in case)
         dilated = pcv.dilate(gray_img=fill_image, ksize=2, i=1)
         # STEP 9: Find objects (contours: black-white boundaries)
         id_objects, obj_hierarchy = pcv.find_objects(img=img1, mask=dilated)
         # STEP 10: Define region of interest (ROI)
-        roi_contour, roi_hierarchy = pcv.roi.rectangle(img=img1, x=0, y=100, h=200, w=400)
+        roi_contour, roi_hierarchy = pcv.roi.rectangle(img=img1, x=100, y=160, h=390, w=780)
         # STEP 11: Keep objects that overlap with the ROI
         roi_objects, roi_obj_hierarchy, kept_mask, obj_area = pcv.roi_objects(img=img1, roi_contour=roi_contour,
                                                                                   roi_hierarchy=roi_hierarchy,
@@ -162,7 +164,8 @@ def mainPage(response):
         # START of Create Multiple Regions of Interest (ROI) https://plantcv.readthedocs.io/en/stable/roi_multi/
 
         # Make a grid of ROIs
-        roi1, roi_hier1  = pcv.roi.multi(img=img1, coord=(25,120), radius=20, spacing=(70, 70), nrows=3, ncols=6)
+        roi1, roi_hier1  = pcv.roi.multi(img=img1, coord=(200,260), radius=60, spacing=(150, 200), nrows=2, ncols=5)
+
 
         # Loop through and filter each plant, record the area
         for i in range(0, len(roi1)):
@@ -184,7 +187,7 @@ def mainPage(response):
         # Label area by plant ID, leftmost plant has id=0
         plant_area_labels = [i for i in range(0, len(plant_area_list))]
 
-        out = args.outdir
+        #out = args.outdir
         # Create a new measurement
         pcv.outputs.add_observation(variable='plant_area', trait='plant area ',
                                     method='plantcv.plantcv.roi_objects', scale='pixels', datatype=list,
