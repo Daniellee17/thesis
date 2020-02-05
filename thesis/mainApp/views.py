@@ -164,7 +164,7 @@ def mainPage(response):
         # START of Create Multiple Regions of Interest (ROI) https://plantcv.readthedocs.io/en/stable/roi_multi/
 
         # Make a grid of ROIs
-        roi1, roi_hier1  = pcv.roi.multi(img=img1, coord=(200,260), radius=60, spacing=(150, 200), nrows=2, ncols=5)
+        roi1, roi_hier1  = pcv.roi.multi(img=img1, coord=(180,260), radius=50, spacing=(150, 200), nrows=2, ncols=5)
 
 
         # Loop through and filter each plant, record the area
