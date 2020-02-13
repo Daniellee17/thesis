@@ -24,7 +24,7 @@ import Adafruit_DHT
 DHT_SENSOR = Adafruit_DHT.DHT22
 DHT_SENSOR2 = Adafruit_DHT.DHT22
 DHT_PIN = 1
-DHT_PIN2 = 25
+DHT_PIN2 = 7
 #Image Processing
 import numpy as np
 import cv2
@@ -32,11 +32,12 @@ import re
 
 GPIO.setmode(GPIO.BCM) #Read GPIO# and not pin #!
 GPIO.setup(21, GPIO.OUT)  # Fan1
-GPIO.setup(7, GPIO.OUT)  # Fan2
 GPIO.setup(20, GPIO.OUT)  # Lights
+GPIO.setup(25, GPIO.OUT)  # Fan2
 GPIO.setup(16, GPIO.OUT)  # Water
-GPIO.setup(26, GPIO.OUT)  # WaterXYZ
 GPIO.setup(12, GPIO.OUT)  # Seeder
+GPIO.setup(26, GPIO.OUT)  # WaterXYZ
+
 GPIO.setup(19, GPIO.OUT)  # SeederXYZ
 
 
@@ -252,7 +253,7 @@ def mainPage(response):
         print(" ")
 
         GPIO.output(21, GPIO.HIGH)
-        GPIO.output(7, GPIO.HIGH)
+        GPIO.output(25, GPIO.HIGH)
 
         insertDeviceStatus.fansStatus = 'on'
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
@@ -267,7 +268,7 @@ def mainPage(response):
         print(" ")
 
         GPIO.output(21, GPIO.LOW)
-        GPIO.output(7, GPIO.LOW)
+        GPIO.output(25, GPIO.LOW)
 
         insertDeviceStatus.fansStatus = 'off'
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
