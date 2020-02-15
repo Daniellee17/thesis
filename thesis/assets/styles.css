@@ -44,7 +44,7 @@ nav {
   position: fixed;
 }
 
-nav .brand {
+nav .nav_link {
   padding-left: 31.5%;
   margin: 0;
   color: WHITE;
@@ -56,22 +56,26 @@ nav .brand {
   font-family: OpenSans;
 }
 
-.brand a {
+.nav_link a {
   color: GRAY;
   text-decoration: none;
   transition: .3s;
 }
 
-.brand a:hover {
+.nav_link a:hover {
   color: WHITE;
 }
 
 .title {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  border-style: none;
+  width: 250px;
+  height: 50px;
   position: fixed;
-  top: 8.5%;
-  margin: 80px;
-  margin-top: 32px;
-  padding: 0;
+  top: 10.5%;
+  left: 2.5%;
   font-family: Ubuntu;
   font-size: 23px;
   color: WHITE;
@@ -88,48 +92,53 @@ nav .brand {
   color: BLACK;
 }
 
-.titleLogoContainer {
-  position: fixed;
-  top: 10.5%;
-  left: 1%;
-  position: absolute;
-}
-
 .titleLogo {
-  position: fixed;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
   width: 60px;
   height: 50px;
   border-radius: 20px;
   padding: 0;
 }
 
-.leftContainer {
-  border-style: none;
-  width: 150px;
+.devicesContainer {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  border-style: solid;
+  width: 120px;
   height: 300px;
-  margin-left: 100px;
-  margin-top: 70px;
-  padding-left: 20px;
-  font-family: Ubuntu-Light;
-  text-transform: uppercase;
+  padding-top: 10px;
+  padding-bottom: 10px;
   color: white;
   position: absolute;
-  top: 15.6%;
+  top: 18%;
+  left: 3%
 }
 
-.leftContainer li {
-  list-style: none;
-  padding-top: 10px;
+.devicesContainer input[type="submit"] {
+    margin-left: 10px;
+  border-style: none;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background-color: limegreen;
 }
 
-.leftContainer a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 15px;
+.devicesContainer input[type="submit"]:hover {
+  border: 2px solid WHITE;
+  background: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  background: WHITE;
+  color: #000;
 }
 
 .leftContainer2 {
-  border-style: none;
+  border-style: solid;
   width: 80px;
   height: 300px;
   margin-left: 100px;
@@ -154,68 +163,11 @@ nav .brand {
   font-size: 15px;
 }
 
-.leftContainer3 {
-  border-style: none;
-  width: 60px;
-  height: 200px;
-  margin-left: 100px;
-  margin-top: 20px;
-  padding-left: 20px;
-  font-family: Ubuntu-Light;
-  text-transform: uppercase;
-  color: white;
-  position: absolute;
-  top: 40.2%;
-}
 
-.leftContainer3 li {
-  list-style: none;
-  padding-top: 28px;
-}
 
-.leftContainer3 a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 15px;
-}
-
-.leftContainer4 {
-  border-style: none;
-  width: 210px;
-  height: 200px;
-  margin-left: 100px;
-  margin-top: 20px;
-  padding-left: 20px;
-  font-family: Ubuntu-Light;
-  text-transform: uppercase;
-  color: white;
-  position: absolute;
-  top: 40.2%;
-  left: 5%;
-}
-
-.leftContainer4 input[type="submit"] {
-  margin-top: 10px;
-  margin-left: 10px;
-  width: 60px;
-  height: 40px;
-  background: rgba(0, 0, 0, 0);
-  color: #fff;
-  font-size: 15px;
-  border: 1px solid WHITE;
-  border-radius: 15px;
-}
-
-.leftContainer4 input[type="submit"]:hover {
-  border: 1px solid WHITE;
-  background: rgba(0, 0, 0, 0);
-  cursor: pointer;
-  background: WHITE;
-  color: #000;
-}
 
 .rightContainer {
-  border-style: none;
+  border-style: solid;
   width: 120px;
   height: 200px;
   margin-left: 100px;
@@ -241,7 +193,7 @@ nav .brand {
 }
 
 .rightContainer2 {
-  border-style: none;
+  border-style: solid;
   width: 65px;
   height: 200px;
   margin-left: 100px;
@@ -268,7 +220,7 @@ nav .brand {
 }
 
 .rightContainer3 {
-  border-style: none;
+  border-style: solid;
   width: 62px;
   height: 200px;
   margin-left: 100px;
@@ -295,7 +247,7 @@ nav .brand {
 }
 
 .rightContainer4 {
-  border-style: none;
+  border-style: solid;
   width: 320px;
   height: 200px;
   margin-left: 100px;
@@ -324,7 +276,7 @@ nav .brand {
 }
 
 .rightContainer5 {
-  border-style: none;
+  border-style: solid;
   width: 320px;
   height: 100px;
   margin-left: 100px;
@@ -353,8 +305,8 @@ nav .brand {
 }
 
 .cameraImgContainer {
-  width: 910px;
-  height: 650px;
+  width: 50%;
+  height: 70%;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   position: absolute;
   top: 19.7%;
@@ -369,16 +321,30 @@ nav .brand {
 }
 
 .dateContainer {
-  width: 250px;
-  height: 40px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 auto;
+  border-style: none;
+  width: 100%;
+  text-align: center;
+  height: 5%;
   position: absolute;
-  top: 92%;
-  left: 64%;
-  padding: 0;
+  top: 94%;
+  left: 0%;
   font-family: sans-serif;
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
 }
+
+.dateContainerLogo {
+  display: inline-block;
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  margin-right: 0.5%;
+    padding: 0;
+}
+
 
 .deviceStatusTableFixedHeader {
   width: 677px;
