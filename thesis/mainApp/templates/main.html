@@ -5,68 +5,68 @@
 <form method='POST' id="buttonForm">
   {% csrf_token %}
 
-<div id="mySidenav" class="sidenav2">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <div class="devicesContainer">
+  <div id="mySidenav" class="sidenav2">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="devicesContainer">
 
-    <img src="../assets/icons/airIcon.png" class="dateContainerLogo" />
-    <input style="background-color: limegreen;" type='submit' name="onFans_btn" value=" " class="onFan"></button>
-    <input style="background-color: red;" type='submit' name="offFans_btn" value=" " class="offFan"></button>
+      <img src="../assets/icons/airIcon.png" class="dateContainerLogo" />
+      <input style="background-color: limegreen;" type='submit' name="onFans_btn" value=" " class="onFan"></button>
+      <input style="background-color: red;" type='submit' name="offFans_btn" value=" " class="offFan"></button>
 
-    <img src="../assets/icons/sunIcon.png" class="dateContainerLogo" />
-    <input style="background-color: limegreen;" type='submit' name="onLights_btn" value=" " class="onLights"></button>
-    <input style="background-color: red;" type='submit' name="offLights_btn" value=" " class="offLights"></button>
+      <img src="../assets/icons/sunIcon.png" class="dateContainerLogo" />
+      <input style="background-color: limegreen;" type='submit' name="onLights_btn" value=" " class="onLights"></button>
+      <input style="background-color: red;" type='submit' name="offLights_btn" value=" " class="offLights"></button>
 
-    <img src="../assets/icons/sprinklerIcon.png" class="dateContainerLogo" />
-    <input style="background-color: limegreen;" type='submit' name="onWater_btn" value=" " class="onWater"></button>
-    <input style="background-color: red;" type='submit' name="offWater_btn" value=" " class="offWater"></button>
+      <img src="../assets/icons/sprinklerIcon.png" class="dateContainerLogo" />
+      <input style="background-color: limegreen;" type='submit' name="onWater_btn" value=" " class="onWater"></button>
+      <input style="background-color: red;" type='submit' name="offWater_btn" value=" " class="offWater"></button>
 
-    <img src="../assets/icons/seedIcon.png" class="dateContainerLogo" />
-    <input style="background-color: limegreen;" type='submit' name="onSeed_btn" value=" " class="onSeed"></button>
-    <input style="background-color: red;" type='submit' name="offSeed_btn" value=" " class="offSeed"></button>
+      <img src="../assets/icons/seedIcon.png" class="dateContainerLogo" />
+      <input style="background-color: limegreen;" type='submit' name="onSeed_btn" value=" " class="onSeed"></button>
+      <input style="background-color: red;" type='submit' name="offSeed_btn" value=" " class="offSeed"></button>
 
-    <img src="../assets/icons/cameraIcon.png" class="dateContainerLogo" />
-    <input style="background-color: white;" type='submit' name="camera_btn" value=" " class="processImage"></button>
+      <img src="../assets/icons/cameraIcon.png" class="dateContainerLogo" />
+      <input style="background-color: white;" type='submit' name="camera_btn" value=" " class="processImage"></button>
 
-
-  </div>
-</div>
-
-<span style="color:WHITE;position: absolute;left: 98%;font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-
-<script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "16%";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}
-</script>
-
-<div class="myProgress">
-  GARDEN'S PROGRESS
-
-  </div>
-</div>
-
-<div class="sidenav">
-  <div class="title">
-    <img src="../assets/icons/rpiIcon.png" class="titleLogo" />
-    <a href="{% url 'mainPage' %}">IOT DASHBOARD</a>
-    <div class="nav_link" style="font-size: 15px;">
-      An automated indoor gardening system using raspberry pi.
-      | <a href="{% url 'databasePage' %}">See Database Log</a>
 
     </div>
+
+    <div class="dateContainer">
+
+      <img src="../assets/icons/cameraIcon.png" class="dateContainerLogo" />
+      <p style="float-top" id="dateID">{{cameraObjects.date}}<p>
+      <img src="../assets/icons/sensorIcon.png" class="dateContainerLogo" />
+      <p id="dateID">{{cameraObjects.date}}<p>
+
+    </div>
+
+  </div>
+
+  <span style="top: 5.5%;width:30px;height:30px;color:WHITE;position: absolute;left: 96%;font-size:30px;cursor:pointer" onclick="openNav()"><img src="../assets/icons/controllerIcon.png" class="controllerIcon" /></span>
+
+
+  <div class="myProgress">
+    GARDEN'S PROGRESS
   </div>
 
 
-  <a href="#about">About</a>
-  <a href="#services">Services</a>
-  <a href="#clients">Clients</a>
-  <a href="#contact">Contact</a>
-</div>
+  <div class="sidenav">
+    <div class="title">
+      <img src="../assets/icons/rpiIcon.png" class="titleLogo" />
+      <a href="{% url 'mainPage' %}">IOT DASHBOARD</a>
+      <div class="nav_link" style="font-size: 15px;">
+        An automated indoor gardening system using raspberry pi.
+        | <a href="{% url 'databasePage' %}">See Database Log</a>
+
+      </div>
+    </div>
+
+
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#clients">Clients</a>
+    <a href="#contact">Contact</a>
+  </div>
 
 
 
@@ -91,23 +91,21 @@ function closeNav() {
 
 
 
-  <div class="rightContainer">
+  <div class="sensorsContainer">
     <ul>
       <li><a>Sensors<a></li>
       <img src="../assets/icons/temperatureIcon.png" class="dateContainerLogo" />
       <img src="../assets/icons/humidityIcon.png" class="dateContainerLogo" />
       <img src="../assets/icons/soilMoistureIcon.png" class="dateContainerLogo" />
     </ul>
-  </div>
-  <div class="rightContainer2">
+
     <ul>
       <li><a>reading<a></li>
       <li><a id="labelTemperature">{{sensorsObjects.temperature}}<a></li>
       <li><a id="labelHumidity">{{sensorsObjects.humidity}}<a></li>
       <li><a id="labelMoisture">{{sensorsObjects.moisture}}<a></li>
     </ul>
-  </div>
-  <div class="rightContainer3">
+
     <ul>
       <li><a>Status<a></li>
       <li><a>Fine<a></li>
@@ -115,7 +113,7 @@ function closeNav() {
       <li><a>Fine<a></li>
     </ul>
   </div>
-  <div class="rightContainer4">
+  <div class="growthContainer">
     <ul>
       <li><a>growth monitor<a></li>
     </ul>
@@ -133,7 +131,7 @@ function closeNav() {
     </ul>
   </div>
 
-  <div class="rightContainer5">
+  <div class="summaryContainer">
     Summary
     <ul>
       <li><a id="labelSummary">{{sensorsObjects.summary}}<a></li>
@@ -149,14 +147,6 @@ function closeNav() {
   </div>
 
 
-  <div class="dateContainer">
-
-    <img src="../assets/icons/cameraIcon.png" class="dateContainerLogo" />
-    <a style="float-top" id="dateID">{{cameraObjects.date}}<a>
-        <img src="../assets/icons/sensorIcon.png" class="dateContainerLogo" />
-        <a id="dateID">{{cameraObjects.date}}<a>
-
-  </div>
 
 </form>
 

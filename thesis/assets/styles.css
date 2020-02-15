@@ -76,7 +76,7 @@ body {
 .sidenav {
   height: 100%;
   text-align: center;
-  width: 17%;
+  width: 16%;
   position: fixed;
   z-index: -1;
   top: 0;
@@ -109,6 +109,15 @@ body {
   color: WHITE;
 }
 
+.controllerIcon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 60px;
+  height: 60px;
+  margin-right: 0.5%;
+  padding: 0;
+}
+
 .myProgress {
   display: inline-block;
   vertical-align: middle;
@@ -118,7 +127,7 @@ body {
   height: 70px;
   position: fixed;
   top: 7.5%;
-  left: 18%;
+  left: 21.5%;
   font-family: Ubuntu;
   font-size: 30px;
   color: WHITE;
@@ -159,6 +168,38 @@ body {
   padding: 0;
 }
 
+
+.dateContainer {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  border-style: none;
+  width: 12%;
+  height: 10%;
+  position: fixed;
+  top: 90%;
+  left: 1.8%;
+  font-family: Ubuntu;
+  font-size: 13px;
+  color: WHITE;
+}
+
+.dateContainer p {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.dateContainerLogo {
+  display: inline-block;
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  margin-right: 0.5%;
+  font-size: 13px;
+  padding: 0;
+}
+
 .devicesContainer {
   display: inline-block;
   vertical-align: middle;
@@ -171,7 +212,7 @@ body {
   color: white;
   position: absolute;
   top: 18%;
-  left: 20%
+  left: 28%
 }
 
 .devicesContainer input[type="submit"] {
@@ -196,17 +237,14 @@ body {
 
 .leftContainer2 {
   border-style: solid;
-  width: 80px;
-  height: 300px;
-  margin-left: 100px;
-  margin-top: 70px;
-  padding-left: 20px;
+  width: 21%;
+  height: 30%;
   font-family: Ubuntu-Light;
   text-transform: uppercase;
   color: white;
   position: absolute;
-  top: 15.6%;
-  left: 20%;
+  top: 18.6%;
+  left: 21.5%;
 }
 
 .leftContainer2 li {
@@ -220,151 +258,64 @@ body {
   font-size: 15px;
 }
 
-.rightContainer {
+.sensorsContainer {
   border-style: solid;
-  width: 120px;
-  height: 200px;
-  margin-left: 100px;
-  margin-top: 70px;
-  padding-left: 20px;
+  width: 21%;
+  height: 30%;
   font-family: Ubuntu-Light;
   text-transform: uppercase;
   color: white;
   position: absolute;
-  top: 15.6%;
-  left: 75%;
+  top: 18.6%;
+  left: 47.6%;
 }
 
-.rightContainer li {
+.sensorsContainer li {
   list-style: none;
   padding-top: 10px;
 }
 
-.rightContainer a {
+.sensorsContainer a {
   text-decoration: none;
   color: #fff;
   font-size: 15px;
 }
 
-.rightContainer2 {
+
+.summaryContainer {
   border-style: solid;
-  width: 65px;
-  height: 200px;
-  margin-left: 100px;
-  margin-top: 70px;
-  padding-left: 20px;
+  width: 21%;
+  height: 30%;
   font-family: Ubuntu-Light;
   text-transform: uppercase;
   color: white;
   position: absolute;
-  top: 15.6%;
-  left: 83%;
-}
-
-.rightContainer2 li {
-  list-style: none;
-  padding-top: 10px;
+  top: 18.6%;
+  left: 73.5%;
   text-align: center;
 }
 
-.rightContainer2 a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 15px;
-}
-
-.rightContainer3 {
-  border-style: solid;
-  width: 62px;
-  height: 200px;
-  margin-left: 100px;
-  margin-top: 70px;
-  padding-left: 10px;
-  font-family: Ubuntu-Light;
-  text-transform: uppercase;
-  color: white;
-  position: absolute;
-  top: 15.6%;
-  left: 88%;
-}
-
-.rightContainer3 li {
-  list-style: none;
-  padding-top: 10px;
-  text-align: center;
-}
-
-.rightContainer3 a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 15px;
-}
-
-.rightContainer4 {
-  border-style: solid;
-  width: 320px;
-  height: 200px;
-  margin-left: 100px;
-  margin-top: 70px;
-  padding-left: 20px;
-  font-family: Ubuntu-Light;
-  text-transform: uppercase;
-  color: white;
-  position: absolute;
-  top: 40.2%;
-  left: 75%;
-  text-align: center;
-}
-
-.rightContainer4 li {
+.summaryContainer li {
   list-style: none;
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;
 }
 
-.rightContainer4 a {
+.summaryContainer a {
   text-decoration: none;
   color: #fff;
   font-size: 15px;
 }
 
-.rightContainer5 {
-  border-style: solid;
-  width: 320px;
-  height: 100px;
-  margin-left: 100px;
-  margin-top: 70px;
-  padding-left: 20px;
-  font-family: Ubuntu-Light;
-  text-transform: uppercase;
-  color: white;
-  position: absolute;
-  top: 65.2%;
-  left: 75%;
-  text-align: center;
-}
-
-.rightContainer5 li {
-  list-style: none;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-align: center;
-}
-
-.rightContainer5 a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 15px;
-}
 
 .cameraImgContainer {
-  width: 50%;
-  height: 70%;
+  width: 34%;
+  height: 36%;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   position: absolute;
-  top: 19.7%;
-  left: 26.5%;
+  top: 55.6%;
+  left: 21.5%;
   padding: 0;
   font-family: sans-serif;
 }
@@ -374,30 +325,33 @@ body {
   height: 100%;
 }
 
-.dateContainer {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0 auto;
-  border-style: none;
-  width: 100%;
-  text-align: center;
-  height: 5%;
+
+.growthContainer {
+  border-style: solid;
+  width: 34%;
+  height: 36%;
+  font-family: Ubuntu-Light;
+  text-transform: uppercase;
+  color: white;
   position: absolute;
-  top: 94%;
-  left: 0%;
-  font-family: sans-serif;
-  color: #fff;
-  font-size: 14px;
+  top: 55.6%;
+  left: 60%;
+  text-align: center;
 }
 
-.dateContainerLogo {
-  display: inline-block;
-  vertical-align: middle;
-  width: 40px;
-  height: 40px;
-  margin-right: 0.5%;
-  padding: 0;
+.growthContainer li {
+  list-style: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
 }
+
+.growthContainer a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+}
+
 
 .deviceStatusTableFixedHeader {
   width: 677px;

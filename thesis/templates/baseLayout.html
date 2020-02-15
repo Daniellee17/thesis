@@ -18,6 +18,16 @@
 <script src="/assets/js/bootstrap.min.js"></script>
 
 <script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "16%";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+<script>
   function getSensorValues() {
     $.ajax({
       type: 'POST',
