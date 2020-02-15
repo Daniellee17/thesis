@@ -2,26 +2,11 @@
 
 {% block content %}
 
-<nav>
-
-  <div class="nav_link">
-    An automated indoor gardening system using raspberry pi.
-    | <a href="{% url 'databasePage' %}">See Database Log</a>
-
-  </div>
-
-</nav>
-
-<div class="title">
-  <img src="../assets/icons/rpiIcon.png" class="titleLogo" />
-  <a href="{% url 'mainPage' %}">IOT Dashboard</a>
-</div>
-
-
-
 <form method='POST' id="buttonForm">
   {% csrf_token %}
 
+<div id="mySidenav" class="sidenav2">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <div class="devicesContainer">
 
     <img src="../assets/icons/airIcon.png" class="dateContainerLogo" />
@@ -45,6 +30,46 @@
 
 
   </div>
+</div>
+
+<span style="color:WHITE;position: absolute;left: 98%;font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "16%";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+<div class="myProgress">
+  GARDEN'S PROGRESS
+
+  </div>
+</div>
+
+<div class="sidenav">
+  <div class="title">
+    <img src="../assets/icons/rpiIcon.png" class="titleLogo" />
+    <a href="{% url 'mainPage' %}">IOT DASHBOARD</a>
+    <div class="nav_link" style="font-size: 15px;">
+      An automated indoor gardening system using raspberry pi.
+      | <a href="{% url 'databasePage' %}">See Database Log</a>
+
+    </div>
+  </div>
+
+
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#clients">Clients</a>
+  <a href="#contact">Contact</a>
+</div>
+
+
+
 
   <div class="leftContainer2">
 
@@ -69,9 +94,9 @@
   <div class="rightContainer">
     <ul>
       <li><a>Sensors<a></li>
-      <li><a>Temperature(C)<a></li>
-      <li><a>Humidity<a></li>
-      <li><a>Soil Moisture<a></li>
+      <img src="../assets/icons/temperatureIcon.png" class="dateContainerLogo" />
+      <img src="../assets/icons/humidityIcon.png" class="dateContainerLogo" />
+      <img src="../assets/icons/soilMoistureIcon.png" class="dateContainerLogo" />
     </ul>
   </div>
   <div class="rightContainer2">
