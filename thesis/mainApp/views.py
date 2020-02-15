@@ -23,22 +23,21 @@ import Adafruit_DHT
 #sensor = Adafruit_DHT.DHT11
 DHT_SENSOR = Adafruit_DHT.DHT22
 DHT_SENSOR2 = Adafruit_DHT.DHT22
-DHT_PIN = 1
-DHT_PIN2 = 7
 #Image Processing
 import numpy as np
 import cv2
 import re
 
 GPIO.setmode(GPIO.BCM) #Read GPIO# and not pin #!
-GPIO.setup(21, GPIO.OUT)  # Fan1
-GPIO.setup(20, GPIO.OUT)  # Lights
-GPIO.setup(25, GPIO.OUT)  # Fan2
-GPIO.setup(16, GPIO.OUT)  # Water
-GPIO.setup(12, GPIO.OUT)  # Seeder
-GPIO.setup(26, GPIO.OUT)  # WaterXYZ
-
-GPIO.setup(19, GPIO.OUT)  # SeederXYZ
+GPIO.setup(21, GPIO.OUT)  # Lights, PIN 40 (Right)
+GPIO.setup(20, GPIO.OUT)  # Fan1, PIN 38 (Right)
+GPIO.setup(26, GPIO.OUT)  # Fan2, PIN 37 (Left)
+GPIO.setup(16, GPIO.OUT)  # Water, PIN 36 (Right)
+GPIO.setup(19, GPIO.OUT)  # WaterXYZ, PIN 35 (Left)
+GPIO.setup(12, GPIO.OUT)  # Seeder, PIN 32 (Right)
+GPIO.setup(6, GPIO.OUT)  # SeederXYZ, PIN 31 (Left)
+DHT_PIN = 1 # PIN 28 (Right)
+DHT_PIN2 = 7 # PIN 26 (Right)
 
 
 def mainPage(response):
@@ -50,7 +49,7 @@ def mainPage(response):
 
     deviceStatusObjects = devicestatus.objects.latest('date')
 
-    # Create instance para makapag insert sa DB
+    # Create instance so you can insert into DB
     insertDeviceStatus = devicestatus()
     insertCamera = camerasnaps()
     insertSensors = sensors()
@@ -86,20 +85,24 @@ def mainPage(response):
         currentHumidity2 = round(humidity2, 2)
         currentMoisture = output
         currentSummary = 'Temperature and Humidity are okay!!!'
-        
+
         averageTemperature = (currentTemperature + currentTemperature2) / 2
         averageHumidity = (currentHumidity + currentHumidity2) / 2
 
+        print("Current Temp1:")
         print(currentTemperature)
+        print("Current Hum1:")
         print(currentHumidity)
+        print("Current Temp2:")
         print(currentTemperature2)
+        print("Current Hum2:")
         print(currentHumidity2)
+        print("Current Moisture:")
         print(currentMoisture)
-        print("ave temp")
+        print("Ave temp")
         print(round(averageTemperature, 2))
-        print("ave humidity")
+        print("Ave humidity")
         print(round(averageHumidity, 2))
-
 
         insertSensors.temperature = round(averageTemperature, 2)
         insertSensors.humidity = round(averageHumidity, 2)
@@ -141,7 +144,7 @@ def mainPage(response):
                 self.outdir = "./assets/gardenPics/"
 
 
-        args = options()    
+        args = options()
         #pcv.params.debug = args.debug
 
         plant_area_list = [] #Plant area array for storage
@@ -252,8 +255,8 @@ def mainPage(response):
         print("~Fans Activated~")
         print(" ")
 
-        GPIO.output(21, GPIO.HIGH)
-        GPIO.output(25, GPIO.HIGH)
+        GPIO.output(20, GPIO.HIGH)
+        GPIO.output(26, GPIO.HIGH)
 
         insertDeviceStatus.fansStatus = 'on'
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
@@ -267,8 +270,8 @@ def mainPage(response):
         print("~Fans deactivated~")
         print(" ")
 
-        GPIO.output(21, GPIO.LOW)
-        GPIO.output(25, GPIO.LOW)
+        GPIO.output(20, GPIO.LOW)
+        GPIO.output(26, GPIO.LOW)
 
         insertDeviceStatus.fansStatus = 'off'
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
@@ -282,7 +285,7 @@ def mainPage(response):
         print("~Lights Activated~")
         print(" ")
 
-        GPIO.output(20, GPIO.HIGH)
+        GPIO.output(21, GPIO.HIGH)
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = 'on'
@@ -296,7 +299,7 @@ def mainPage(response):
         print("~Lights Deactivated~")
         print(" ")
 
-        GPIO.output(20, GPIO.LOW)
+        GPIO.output(21, GPIO.LOW)
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = 'off'
@@ -311,7 +314,7 @@ def mainPage(response):
         print(" ")
 
         GPIO.output(16, GPIO.HIGH)
-        GPIO.output(26, GPIO.HIGH)
+        GPIO.output(19, GPIO.HIGH)
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
@@ -326,7 +329,7 @@ def mainPage(response):
         print(" ")
 
         GPIO.output(16, GPIO.LOW)
-        GPIO.output(26, GPIO.LOW)
+        GPIO.output(19, GPIO.LOW)
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
@@ -341,7 +344,7 @@ def mainPage(response):
         print(" ")
 
         GPIO.output(12, GPIO.HIGH)
-        GPIO.output(19, GPIO.HIGH)
+        GPIO.output(6, GPIO.HIGH)
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
@@ -356,7 +359,7 @@ def mainPage(response):
         print(" ")
 
         GPIO.output(12, GPIO.LOW)
-        GPIO.output(19, GPIO.LOW)
+        GPIO.output(6, GPIO.LOW)
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
