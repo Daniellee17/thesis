@@ -5,7 +5,7 @@
 <form method='POST' id="buttonForm">
   {% csrf_token %}
 
-  <div id="mySidenav" class="sidenav2">
+  <div id="mySidenav" class="hiddenSideNav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <div class="devicesContainer">
 
@@ -42,12 +42,7 @@
 
   </div>
 
-  <span style="top: 2.5%;width:30px;height:30px;color:WHITE;position: absolute;left: 91.5%;font-size:30px;cursor:pointer" onclick="openNav()"><img src="../assets/icons/controllerIcon.png" class="controllerIcon" /></span>
-
-
-  <div class="myProgress">
-    GARDEN'S PROGRESS
-  </div>
+  <span style="top: 2%;width:30px;height:30px;color:WHITE;position: absolute;left: 95.4%;font-size:30px;cursor:pointer" onclick="openNav()"><img src="../assets/icons/controllerIcon.png" class="controllerIcon" /></span>
 
 
   <div class="sidenav">
@@ -71,8 +66,8 @@
 
 
 
-  <div class="leftContainer2">
-
+  <div class="devicesStatusContainer">
+Devices
     <ul>
       <li><a id="labelFans">{{deviceStatusObjects.fansStatus}}<a></li>
       <li><a id="labelLights">{{deviceStatusObjects.lightsStatus}}<a></li>

@@ -24,7 +24,7 @@
 }
 
 body {
-  background-color: #333940;
+  background-color: #21303B;
   background-repeat: no repeat;
 }
 
@@ -34,20 +34,20 @@ body {
 }
 
 
-.sidenav2 {
+.hiddenSideNav {
   height: 100%;
   width: 0;
   position: fixed;
   z-index: 1;
   top: 0;
   left: 85%;
-  background-color: #111;
+  background-color: black;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
 }
 
-.sidenav2 a {
+.hiddenSideNav a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
@@ -56,11 +56,11 @@ body {
   transition: 0.3s;
 }
 
-.sidenav2 a:hover {
+.hiddenSideNav a:hover {
   color: #f1f1f1;
 }
 
-.sidenav2 .closebtn {
+.hiddenSideNav .closebtn {
   position: absolute;
   top: 0;
   right: 25px;
@@ -81,7 +81,7 @@ body {
   z-index: -1;
   top: 0;
   left: 0;
-  background-color: #111;
+background: rgba(33, 48, 59, 0.1);
   overflow-x: hidden;
   padding-top: 20%;
 }
@@ -112,25 +112,10 @@ body {
 .controllerIcon {
   display: inline-block;
   vertical-align: middle;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   margin-right: 0.5%;
   padding: 0;
-}
-
-.myProgress {
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  border-style: none;
-  width: 300px;
-  height: 70px;
-  position: fixed;
-  top: 4.5%;
-  left: 21.5%;
-  font-family: Ubuntu;
-  font-size: 30px;
-  color: WHITE;
 }
 
 .title {
@@ -145,11 +130,11 @@ body {
   left: 0%;
   font-family: Ubuntu;
   font-size: 23px;
-  color: WHITE;
+  color: BLACK;
 }
 
 .title a {
-  color: WHITE;
+  color: #66FCF1;
   text-decoration: none;
   transition: .3s;
 }
@@ -181,7 +166,7 @@ body {
   left: 1.8%;
   font-family: Ubuntu;
   font-size: 13px;
-  color: WHITE;
+  color: black;
 }
 
 .dateContainer p {
@@ -235,39 +220,50 @@ body {
   color: #000;
 }
 
-.leftContainer2 {
-  border-style: solid;
-  width: 21%;
-  height: 30%;
+.devicesStatusContainer {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  border-style: none;
+  width: 26%;
+  height: 32%;
+  top: 8.6%;
+  color: ##EDEFF0;
+  background: rgba(82, 109, 130, 0.1);
+  border-radius: 1%;
+  left: 15.5%;
   font-family: Ubuntu-Light;
   text-transform: uppercase;
-  color: white;
   position: absolute;
-  top: 14.6%;
-  left: 21.5%;
 }
 
-.leftContainer2 li {
+.devicesStatusContainer li {
   list-style: none;
   padding-top: 10px;
 }
 
-.leftContainer2 a {
+.devicesStatusContainer a {
   text-decoration: none;
+  foregrcolor: black;
   color: #fff;
   font-size: 15px;
 }
 
 .sensorsContainer {
-  border-style: solid;
-  width: 21%;
-  height: 30%;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  border-style: none;
+  width: 26%;
+  height: 32%;
+  top: 8.6%;
+  color: ##EDEFF0;
+  background: rgba(82, 109, 130, 0.1);
+  border-radius: 1%;
+  left: 43.5%;
   font-family: Ubuntu-Light;
   text-transform: uppercase;
-  color: white;
   position: absolute;
-  top: 14.6%;
-  left: 47.6%;
 }
 
 .sensorsContainer li {
@@ -283,16 +279,21 @@ body {
 
 
 .summaryContainer {
-  border-style: solid;
-  width: 21%;
-  height: 30%;
+
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  border-style: none;
+  width: 26%;
+  height: 32%;
+  top: 8.6%;
+  color: ##EDEFF0;
+  background: rgba(82, 109, 130, 0.1);
+  border-radius: 1%;
+  left: 71.5%;
   font-family: Ubuntu-Light;
   text-transform: uppercase;
-  color: white;
   position: absolute;
-  top: 14.6%;
-  left: 73.5%;
-  text-align: center;
 }
 
 .summaryContainer li {
@@ -310,12 +311,13 @@ body {
 
 
 .cameraImgContainer {
-  width: 34%;
-  height: 41.5%;
+
+  width: 40%;
+  height: 51.5%;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   position: absolute;
-  top: 52.6%;
-  left: 21.5%;
+  top: 44.6%;
+  left: 15.5%;
   padding: 0;
   font-family: sans-serif;
 }
@@ -327,16 +329,22 @@ body {
 
 
 .growthContainer {
-  border-style: solid;
-  width: 34%;
-  height: 41.5%;
+
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  border-style: none;
+
+    width: 40%;
+    height: 51.5%;
+  top: 44.6%;
+  color: ##EDEFF0;
+  background: rgba(82, 109, 130, 0.1);
+  border-radius: 1%;
+  left: 57.60%;
   font-family: Ubuntu-Light;
   text-transform: uppercase;
-  color: white;
   position: absolute;
-  top: 52.6%;;
-  left: 60.6%;
-  text-align: center;
 }
 
 .growthContainer li {
