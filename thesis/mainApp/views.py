@@ -258,7 +258,7 @@ def mainPage(response):
         GPIO.output(20, GPIO.HIGH)
         GPIO.output(26, GPIO.HIGH)
 
-        insertDeviceStatus.fansStatus = 'on'
+        insertDeviceStatus.fansStatus = 'Activated'
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
@@ -273,7 +273,7 @@ def mainPage(response):
         GPIO.output(20, GPIO.LOW)
         GPIO.output(26, GPIO.LOW)
 
-        insertDeviceStatus.fansStatus = 'off'
+        insertDeviceStatus.fansStatus = 'Deactivated'
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
@@ -288,7 +288,7 @@ def mainPage(response):
         GPIO.output(21, GPIO.HIGH)
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
-        insertDeviceStatus.lightsStatus = 'on'
+        insertDeviceStatus.lightsStatus = 'Activated'
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
@@ -302,7 +302,7 @@ def mainPage(response):
         GPIO.output(21, GPIO.LOW)
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
-        insertDeviceStatus.lightsStatus = 'off'
+        insertDeviceStatus.lightsStatus = 'Deactivated'
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
@@ -318,7 +318,7 @@ def mainPage(response):
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
-        insertDeviceStatus.waterStatus = 'on'
+        insertDeviceStatus.waterStatus = 'Activated'
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
 
@@ -333,7 +333,7 @@ def mainPage(response):
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
-        insertDeviceStatus.waterStatus = 'off'
+        insertDeviceStatus.waterStatus = 'Deactivated'
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
 
@@ -349,7 +349,7 @@ def mainPage(response):
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
-        insertDeviceStatus.seedStatus = 'on'
+        insertDeviceStatus.seedStatus = 'Activated'
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'offSeed':
@@ -364,7 +364,7 @@ def mainPage(response):
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
-        insertDeviceStatus.seedStatus = 'off'
+        insertDeviceStatus.seedStatus = 'Deactivated'
         insertDeviceStatus.save()
 
     # Dito nakalagay sa baba kasi if sa taas,

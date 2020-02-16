@@ -3,7 +3,7 @@
 {% block content %}
 
 <nav>
-  
+
   <div class="title">
     <img src="../assets/icons/rpiIcon.png" class="titleLogo" />
     <a href="{% url 'mainPage' %}">IOT DASHBOARD</a>
@@ -27,36 +27,28 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <div class="devicesContainer">
 
-      <img src="../assets/icons/airIcon.png" class="dateContainerLogo" />
+      <img style="width: 30px; height: 30px;" src="../assets/icons/airIcon.png" class="dateContainerLogo" />
       <input style="background-color: limegreen;" type='submit' name="onFans_btn" value=" " class="onFan"></button>
       <input style="background-color: red;" type='submit' name="offFans_btn" value=" " class="offFan"></button>
 
-      <img src="../assets/icons/sunIcon.png" class="dateContainerLogo" />
+      <img style="width: 30px; height: 30px;" src="../assets/icons/sunIcon.png" class="dateContainerLogo" />
       <input style="background-color: limegreen;" type='submit' name="onLights_btn" value=" " class="onLights"></button>
       <input style="background-color: red;" type='submit' name="offLights_btn" value=" " class="offLights"></button>
 
-      <img src="../assets/icons/sprinklerIcon.png" class="dateContainerLogo" />
+      <img style="width: 30px; height: 30px;" src="../assets/icons/sprinklerIcon.png" class="dateContainerLogo" />
       <input style="background-color: limegreen;" type='submit' name="onWater_btn" value=" " class="onWater"></button>
       <input style="background-color: red;" type='submit' name="offWater_btn" value=" " class="offWater"></button>
 
-      <img src="../assets/icons/seedIcon.png" class="dateContainerLogo" />
+      <img style="width: 30px; height: 30px;" src="../assets/icons/seedIcon.png" class="dateContainerLogo" />
       <input style="background-color: limegreen;" type='submit' name="onSeed_btn" value=" " class="onSeed"></button>
       <input style="background-color: red;" type='submit' name="offSeed_btn" value=" " class="offSeed"></button>
 
-      <img src="../assets/icons/cameraIcon.png" class="dateContainerLogo" />
+      <img style="width: 30px; height: 30px;" src="../assets/icons/cameraIcon.png" class="dateContainerLogo" />
       <input style="background-color: white;" type='submit' name="camera_btn" value=" " class="processImage"></button>
 
 
     </div>
 
-    <div class="dateContainer">
-
-      <img src="../assets/icons/cameraIcon.png" class="dateContainerLogo" />
-      <p style="float-top" id="dateID">{{cameraObjects.date}}<p>
-      <img src="../assets/icons/sensorIcon.png" class="dateContainerLogo" />
-      <p id="dateID">{{cameraObjects.date}}<p>
-
-    </div>
 
   </div>
 
@@ -76,14 +68,47 @@
 
 
   <div class="devicesStatusContainer">
-Devices
-    <ul>
-      <li><a id="labelFans">{{deviceStatusObjects.fansStatus}}<a></li>
-      <li><a id="labelLights">{{deviceStatusObjects.lightsStatus}}<a></li>
-      <li><a id="labelWater">{{deviceStatusObjects.waterStatus}}<a></li>
-      <li><a id="labelSeed">{{deviceStatusObjects.seedStatus}}<a></li>
-    </ul>
+    <div class="devicesStatus_iconContainer">
+      <img src="../assets/icons/airIcon.png" class="devicesStatus_icon" />
 
+    </div>
+    <div class="devicesStatusContainerName">
+      <a id="labelFans">Fans: {{deviceStatusObjects.fansStatus}}<a>
+    </div>
+    <div class="devicesStatus_iconContainer">
+      <img src="../assets/icons/sunIcon.png" class="devicesStatus_icon" />
+
+    </div>
+      <div class="devicesStatusContainerName" style="left: 50%;">
+    <a id="labelLights">Lights: {{deviceStatusObjects.lightsStatus}}<a>
+    </div>
+    <div class="devicesStatus_iconContainer">
+      <img src="../assets/icons/waterIcon.png" class="devicesStatus_icon" />
+
+    </div>
+      <div class="devicesStatusContainerName" style="top: 67%;">
+      <a id="labelWater">Sprinkler: {{deviceStatusObjects.waterStatus}}<a>
+    </div>
+    <div class="devicesStatus_iconContainer">
+      <img src="../assets/icons/soilMoistureIcon.png" class="devicesStatus_icon" />
+
+    </div>
+          <div class="devicesStatusContainerName" style="top: 67%; left: 50%;">
+        <a id="labelSeed">Seeder: {{deviceStatusObjects.seedStatus}}<a>
+    </div>
+
+
+
+
+
+    <div class="dateContainer">
+
+      <img src="../assets/icons/updateIcon.png" class="dateContainerLogo" />
+      <p id="dateID">{{cameraObjects.date}}
+        <p>
+
+
+    </div>
   </div>
 
 
@@ -116,23 +141,62 @@ Devices
       <li><a>Fine<a></li>
       <li><a>Fine<a></li>
     </ul>
+
+    <div class="dateContainer">
+
+      <img src="../assets/icons/updateIcon.png" class="dateContainerLogo" />
+      <p id="dateID">{{cameraObjects.date}}
+        <p>
+
+
+    </div>
+
   </div>
   <div class="growthContainer">
     <ul>
       <li><a>growth monitor<a></li>
     </ul>
-    <ul>
-      <li><a id="labelPlant1Growth">{{cameraObjects.plant1}}<a></li>
-      <li><a id="labelPlant2Growth">{{cameraObjects.plant2}}<a></li>
-      <li><a id="labelPlant3Growth">{{cameraObjects.plant3}}<a></li>
-      <li><a id="labelPlant4Growth">{{cameraObjects.plant4}}<a></li>
-      <li><a id="labelPlant5Growth">{{cameraObjects.plant5}}<a></li>
-      <li><a id="labelPlant6Growth">{{cameraObjects.plant6}}<a></li>
-      <li><a id="labelPlant7Growth">{{cameraObjects.plant7}}<a></li>
-      <li><a id="labelPlant8Growth">{{cameraObjects.plant8}}<a></li>
-      <li><a id="labelPlant9Growth">{{cameraObjects.plant9}}<a></li>
-      <li><a id="labelPlant10Growth">{{cameraObjects.plant10}}<a></li>c
-    </ul>
+    <div class="circle small">
+      <a id="labelPlant1Growth">{{cameraObjects.plant1}}<a>
+    </div>
+    <div class="circle small">
+      <a id="labelPlant2Growth">{{cameraObjects.plant2}}<a>
+    </div>
+    <div class="circle small">
+      <a id="labelPlant3Growth">{{cameraObjects.plant3}}<a>
+    </div>
+    <div class="circle small">
+      <a id="labelPlant4Growth">{{cameraObjects.plant4}}<a>
+    </div>
+
+    <div class="circle small">
+      <a id="labelPlant5Growth">{{cameraObjects.plant5}}<a>
+    </div>
+    <div class="circle small">
+      <a id="labelPlant6Growth">{{cameraObjects.plant6}}<a>
+    </div>
+    <div class="circle small">
+      <a id="labelPlant7Growth">{{cameraObjects.plant7}}<a>
+    </div>
+    <div class="circle small">
+      <a id="labelPlant8Growth">{{cameraObjects.plant8}}<a>
+    </div>
+    <div class="circle small">
+      <a id="labelPlant9Growth">{{cameraObjects.plant9}}<a>
+    </div>
+
+    <div class="circle small">
+      <a id="labelPlant10Growth">{{cameraObjects.plant10}}<a>
+    </div>
+
+    <div class="dateContainer" style="top:94%;">
+
+      <img src="../assets/icons/updateIcon.png" class="dateContainerLogo" />
+      <p id="dateID">{{cameraObjects.date}}
+        <p>
+
+
+    </div>
   </div>
 
   <div class="summaryContainer">
@@ -140,19 +204,28 @@ Devices
     <ul>
       <li><a id="labelSummary">{{sensorsObjects.summary}}<a></li>
     </ul>
+
+    <div class="dateContainer">
+
+      <img src="../assets/icons/updateIcon.png" class="dateContainerLogo" />
+      <p id="dateID">{{cameraObjects.date}}
+        <p>
+
+
+    </div>
   </div>
 
 
-    <div class="devicesStatusContainer" style="top: 100%;">
-  Devices
-      <ul>
-        <li><a id="labelFans">{{deviceStatusObjects.fansStatus}}<a></li>
-        <li><a id="labelLights">{{deviceStatusObjects.lightsStatus}}<a></li>
-        <li><a id="labelWater">{{deviceStatusObjects.waterStatus}}<a></li>
-        <li><a id="labelSeed">{{deviceStatusObjects.seedStatus}}<a></li>
-      </ul>
+  <div class="devicesStatusContainer" style="top: 100%;">
+    Devices
+    <ul>
+      <li><a id="labelFans">{{deviceStatusObjects.fansStatus}}<a></li>
+      <li><a id="labelLights">{{deviceStatusObjects.lightsStatus}}<a></li>
+      <li><a id="labelWater">{{deviceStatusObjects.waterStatus}}<a></li>
+      <li><a id="labelSeed">{{deviceStatusObjects.seedStatus}}<a></li>
+    </ul>
 
-    </div>
+  </div>
 
 
 </form>
@@ -163,7 +236,14 @@ Devices
     <img id="cameraID" class="cameraImg" src="../assets/gardenPics/test.jpg">
     <!--   <img id="cameraID" class="cameraImg" src={{cameraObjects.cameraURL}}> -->
     <!--   <img id="cameraID" class="cameraImg" src="../assets/gardenPics/test.jpg"> -->
+    <div class="dateContainer" style="top:94%;">
 
+      <img src="../assets/icons/updateIcon.png" class="dateContainerLogo" />
+      <p id="dateID">{{cameraObjects.date}}
+        <p>
+
+
+    </div>
   </div>
 
 
