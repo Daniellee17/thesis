@@ -11,18 +11,12 @@
 
       </div>
     <div class="circularButton">
-      <input type='submit' name="onFans_btn" onclick="openNav()" value=" " class="onFan">
+      <input type='submit' onclick="openNav()" value=" " >
 
 
 
-
-        <input type='submit' name="onFans_btn" onclick="openNav()" value=" " class="onFan">
-
-
-
-
-          <input type='submit' name="onFans_btn" onclick="openNav()" value=" " class="onFan">
-
+ <input type='submit' onclick="openNav()" value=" " >
+  <input type='submit' onclick="openNav()" value=" " >
 
           </button>
 
@@ -257,7 +251,7 @@ AGE THESIS
 <form method='POST' id="imageForm">
   {% csrf_token %}
   <div class="cameraImgContainer">
-    <img id="cameraID" class="cameraImg" src="../assets/gardenPics/test.jpg">
+    <img id="cameraID" class="cameraImg" src={{cameraObjects.cameraURL}}>
     <!--   <img id="cameraID" class="cameraImg" src={{cameraObjects.cameraURL}}> -->
     <!--   <img id="cameraID" class="cameraImg" src="../assets/gardenPics/test.jpg"> -->
     <div class="dateContainer" style="top:94%;">
