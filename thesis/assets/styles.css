@@ -361,7 +361,10 @@ nav {
   height: 32%;
   top: 45.1%;
   color: ##EDEFF0;
-  background: rgba(82, 109, 130, 0.1);
+  /* background-color: #2A3843; */
+  background: url("background/devicesBG.jpg") no-repeat center center;
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 1%;
   left: 15.5%;
   font-family: Ubuntu-Light;
@@ -442,7 +445,7 @@ nav {
 .dateContainerLogo {
   display: inline-block;
   vertical-align: middle;
-  width: 16px;
+  width: 14px;
   height: 13px;
   margin-right: 0.5%;
   font-size: 12px;
@@ -458,7 +461,7 @@ nav {
   height: 32%;
   top: 45.1%;
   color: ##EDEFF0;
-  background: rgba(82, 109, 130, 0.1);
+  background-color: #2A3843;
   border-radius: 1%;
   left: 43.5%;
   font-family: Ubuntu-Light;
@@ -486,7 +489,7 @@ nav {
   height: 32%;
   top: 45.1%;
   color: ##EDEFF0;
-  background: rgba(82, 109, 130, 0.1);
+  background-color: #2A3843;
   border-radius: 1%;
   left: 71.5%;
   font-family: Ubuntu-Light;
@@ -532,7 +535,7 @@ nav {
   height: 51.5%;
   top: 81.5%;
   color: ##EDEFF0;
-  background: rgba(82, 109, 130, 0.1);
+  background-color: #2A3843;
   border-radius: 1%;
   left: 57.60%;
   font-family: Ubuntu-Light;
