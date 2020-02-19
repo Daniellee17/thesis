@@ -126,7 +126,7 @@ body {
   vertical-align: middle;
   font-weight: 800;
   font-size: 38px;
-  color: #222222;
+  color:white;
   text-decoration: none;
   display: block;
   letter-spacing: -0.02em;
@@ -415,7 +415,7 @@ nav {
   vertical-align: middle;
   font-weight: 800;
   font-size: 13px;
-  color: #222222;
+  color:white;
   text-decoration: none;
   display: block;
   letter-spacing: -0.02em;
@@ -434,7 +434,7 @@ nav {
   left: 0%;
   font-family: Ubuntu;
   font-size: 12px;
-  color: black;
+  color: white;
   text-transform: none;
 }
 
@@ -457,11 +457,17 @@ nav {
   vertical-align: middle;
   text-align: center;
   border-style: none;
+  display: inline-block;
+  text-align: center;
+  border-style: none;
   width: 26%;
   height: 32%;
   top: 45.1%;
   color: ##EDEFF0;
-  background-color: #2A3843;
+  /* background-color: #2A3843; */
+  background: url("background/devicesBG.jpg") no-repeat center center;
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 1%;
   left: 43.5%;
   font-family: Ubuntu-Light;
@@ -469,16 +475,59 @@ nav {
   position: absolute;
 }
 
-.sensorsContainer li {
-  list-style: none;
-  padding-top: 10px;
+.sensorsContainer_iconContainer {
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  z-index: 86;
+  vertical-align: middle;
+  display: inline-block;
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  text-align: center;
 }
 
-.sensorsContainer a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 15px;
+.sensorsContainer_icon {
+  width: 100%;
+  height: 100%;
 }
+
+.sensorsContainerName {
+  border: none;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+  position: absolute;
+  left: 10%;
+  top: 25%;
+  vertical-align: middle;
+  display: inline-block;
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.sensorsContainerName a {
+  text-align: center;
+  font-family: Times, serif;
+  vertical-align: middle;
+  font-weight: 800;
+  font-size: 13px;
+  color:white;
+  text-decoration: none;
+  display: block;
+  letter-spacing: -0.02em;
+  word-spacing: -0.02em;
+  align-items: center;
+  text-transform: none;
+}
+
+
 
 .summaryContainer {
   display: inline-block;

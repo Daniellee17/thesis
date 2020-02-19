@@ -9,16 +9,16 @@
     <a href="{% url 'mainPage' %}">IOT DASHBOARD</a>
 
 
-      </div>
-    <div class="circularButton">
-      <input type='submit' onclick="openNav()" value=" " >
+  </div>
+  <div class="circularButton">
+    <input type='submit' onclick="openNav()" value=" ">
 
 
 
- <input type='submit' onclick="openNav()" value=" " >
-  <input type='submit' onclick="openNav()" value=" " >
+    <input type='submit' onclick="openNav()" value=" ">
+    <input type='submit' onclick="openNav()" value=" ">
 
-          </button>
+    </button>
 
 
 
@@ -32,12 +32,12 @@
 </nav>
 
 <div class="headlineContainer">
-AGE THESIS
-<div class="brand">
-  An automated indoor gardening system using raspberry pi.
-  | <a href="{% url 'databasePage' %}">See Database Log</a>
+  AGE THESIS
+  <div class="brand">
+    An automated indoor gardening system using raspberry pi.
+    | <a href="{% url 'databasePage' %}">See Database Log</a>
 
-</div>
+  </div>
 
 </div>
 
@@ -79,11 +79,11 @@ AGE THESIS
   <div class="sidenav">
     <div class="sidenavButtonContainer">
 
-          <img src="../assets/icons/airIcon_white.png" class="dateContainerLogo" />
-          <a href="#about">Schedule</a>
-          <a href="#services">Services</a>
-          <a href="#clients">Clients</a>
-          <a href="#contact">Contact</a>
+      <img src="../assets/icons/airIcon_white.png" class="dateContainerLogo" />
+      <a href="#about">Schedule</a>
+      <a href="#services">Services</a>
+      <a href="#clients">Clients</a>
+      <a href="#contact">Contact</a>
 
     </div>
 
@@ -106,22 +106,22 @@ AGE THESIS
       <img src="../assets/icons/sunIcon_white.png" class="devicesStatus_icon" />
 
     </div>
-      <div class="devicesStatusContainerName" style="left: 50%;">
-    <a id="labelLights">Lights: {{deviceStatusObjects.lightsStatus}}<a>
+    <div class="devicesStatusContainerName" style="left: 50%;">
+      <a id="labelLights">Lights: {{deviceStatusObjects.lightsStatus}}<a>
     </div>
     <div class="devicesStatus_iconContainer">
       <img src="../assets/icons/waterIcon_white.png" class="devicesStatus_icon" />
 
     </div>
-      <div class="devicesStatusContainerName" style="top: 67%;">
+    <div class="devicesStatusContainerName" style="top: 67%;">
       <a id="labelWater">Sprinkler: {{deviceStatusObjects.waterStatus}}<a>
     </div>
     <div class="devicesStatus_iconContainer">
       <img src="../assets/icons/seedIcon_white.png" class="devicesStatus_icon" />
 
     </div>
-          <div class="devicesStatusContainerName" style="top: 67%; left: 50%;">
-        <a id="labelSeed">Seeder: {{deviceStatusObjects.seedStatus}}<a>
+    <div class="devicesStatusContainerName" style="top: 67%; left: 50%;">
+      <a id="labelSeed">Seeder: {{deviceStatusObjects.seedStatus}}<a>
     </div>
 
 
@@ -146,28 +146,33 @@ AGE THESIS
   {% csrf_token %}
 
 
-
   <div class="sensorsContainer">
-    <ul>
-      <li><a>Sensors<a></li>
-      <img src="../assets/icons/temperatureIcon.png" class="dateContainerLogo" />
-      <img src="../assets/icons/humidityIcon_white.png" class="dateContainerLogo" />
-      <img src="../assets/icons/soilMoistureIcon_white.png" class="dateContainerLogo" />
-    </ul>
+    <div class="sensorsContainer_iconContainer">
+      <img src="../assets/icons/temperatureIcon.png" class="devicesStatus_icon" />
 
-    <ul>
-      <li><a>reading<a></li>
-      <li><a id="labelTemperature">{{sensorsObjects.temperature}}<a></li>
-      <li><a id="labelHumidity">{{sensorsObjects.humidity}}<a></li>
-      <li><a id="labelMoisture">{{sensorsObjects.moisture}}<a></li>
-    </ul>
 
-    <ul>
-      <li><a>Status<a></li>
-      <li><a>Fine<a></li>
-      <li><a>Fine<a></li>
-      <li><a>Fine<a></li>
-    </ul>
+    </div>
+    <div class="sensorsContainerName">
+      <a>Temperature<a>
+          <a id="labelTemperature">{{sensorsObjects.temperature}}<a>
+    </div>
+    <div class="devicesStatus_iconContainer">
+      <img src="../assets/icons/humidityIcon_white.png" class="devicesStatus_icon" />
+
+    </div>
+    <div class="sensorsContainerName" style="left: 50%;">
+      <a>Humidity<a>
+          <a id="labelHumidity">{{sensorsObjects.humidity}}<a>
+    </div>
+    <div class="devicesStatus_iconContainer">
+      <img src="../assets/icons/soilMoistureIcon_white.png" class="devicesStatus_icon" />
+
+    </div>
+    <div class="sensorsContainerName" style="top: 67%;">
+      <a>Moisure<a>
+          <a id="labelMoisture">{{sensorsObjects.moisture}}<a>
+    </div>
+
 
     <div class="dateContainer">
 
@@ -177,8 +182,8 @@ AGE THESIS
 
 
     </div>
-
   </div>
+
   <div class="growthContainer">
     <ul>
       <li><a>growth monitor<a></li>

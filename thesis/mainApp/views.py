@@ -388,3 +388,5 @@ def databasePage(response):
                  'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}
 
     return render(response, 'database.html', context=myObjects)
+
+
