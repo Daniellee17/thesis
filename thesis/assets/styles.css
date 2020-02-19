@@ -24,8 +24,13 @@
 }
 
 body {
-  background-color: #21303B;
+  margin: 0;
+     padding: 0;
+
+
+  background: url("background/gradient1.png");
   background-repeat: no repeat;
+  background-size: cover;
 }
 
 * {
@@ -139,7 +144,8 @@ nav {
   left: 0;
   width: 100%;
   height: 25%;
-  background-color: #1D2932;
+  background: rgba(0, 0, 0, 0);
+  color: #fff;
   padding: 0 100px;
   box-sizing: border-box;
   position: absolute;
@@ -222,7 +228,8 @@ nav {
   z-index: -1;
   top: 0;
   left: 0;
-  background: rgba(33, 48, 59, 0.1);
+  background: rgba(0, 0, 0, 0);
+  color: #fff;
   overflow-x: hidden;
   padding-top: 20%;
 }
@@ -340,89 +347,96 @@ nav {
   width: 82%;
   height: 31%;
   top: 10.1%;
-  color: #2A3843;
-  background: #2A3843;
+
+
   border-radius: 1%;
   left: 15.5%;
   font-family: Ubuntu-Light;
   text-transform: uppercase;
   position: absolute;
-}
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  }
+  
+  .singleContainer {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    border-style: none;
+    display: inline-block;
+    text-align: center;
+    border-style: none;
+    width: 8%;
+    height: 16%;
+    top: 45.1%;
+    color: ##EDEFF0;
+    /* background-color: #2A3843; */
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border-radius: 2%;
+    left: 15.5%;
+    font-family: Ubuntu-Light;
+    text-transform: uppercase;
+    position: absolute;
+  }
 
-.devicesStatusContainer {
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  border-style: none;
-  display: inline-block;
-  text-align: center;
-  border-style: none;
-  width: 26%;
-  height: 32%;
-  top: 45.1%;
-  color: ##EDEFF0;
-  /* background-color: #2A3843; */
-  background: url("background/devicesBG.jpg") no-repeat center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 1%;
-  left: 15.5%;
-  font-family: Ubuntu-Light;
-  text-transform: uppercase;
-  position: absolute;
-}
+  .singleContainer_iconContainer {
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    z-index: 86;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    text-align: center;
+  }
 
-.devicesStatus_iconContainer {
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  z-index: 86;
-  vertical-align: middle;
-  display: inline-block;
-  margin-left: 60px;
-  margin-right: 60px;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  text-align: center;
-}
+  .singleContainer_icon {
+    width: 100%;
+    height: 100%;
+  }
 
-.devicesStatus_icon {
-  width: 100%;
-  height: 100%;
-}
 
-.devicesStatusContainerName {
-  border: none;
-  width: 40px;
-  height: 40px;
-  z-index: 1;
-  position: absolute;
-  left: 10%;
-  top: 25%;
-  vertical-align: middle;
-  display: inline-block;
-  margin-left: 60px;
-  margin-right: 60px;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  text-align: center;
-}
+  .singleContainer a {
+    text-align: center;
+    font-family: Times, serif;
+    vertical-align: middle;
 
-.devicesStatusContainerName a {
-  text-align: center;
-  font-family: Times, serif;
-  vertical-align: middle;
-  font-weight: 800;
-  font-size: 13px;
-  color:white;
-  text-decoration: none;
-  display: block;
-  letter-spacing: -0.02em;
-  word-spacing: -0.02em;
-  align-items: center;
-  text-transform: none;
-}
+    font-size: 13px;
+    color:white;
+    text-decoration: none;
+    display: block;
+    letter-spacing: -0.02em;
+    word-spacing: -0.02em;
+    align-items: center;
+    text-transform: none;
+  }
+  
+  
+  .singleContainer_iconContainer {
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    z-index: 86;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+
+  .singleContainer_icon {
+    width: 100%;
+    height: 100%;
+  }
+  
 
 .dateContainer {
   text-align: right;
@@ -452,95 +466,18 @@ nav {
   padding: 0;
 }
 
-.sensorsContainer {
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  border-style: none;
-  display: inline-block;
-  text-align: center;
-  border-style: none;
-  width: 26%;
-  height: 32%;
-  top: 45.1%;
-  color: ##EDEFF0;
-  /* background-color: #2A3843; */
-  background: url("background/devicesBG.jpg") no-repeat center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 1%;
-  left: 43.5%;
-  font-family: Ubuntu-Light;
-  text-transform: uppercase;
-  position: absolute;
-}
-
-.sensorsContainer_iconContainer {
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  z-index: 86;
-  vertical-align: middle;
-  display: inline-block;
-  margin-left: 60px;
-  margin-right: 60px;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  text-align: center;
-}
-
-.sensorsContainer_icon {
-  width: 100%;
-  height: 100%;
-}
-
-.sensorsContainerName {
-  border: none;
-  width: 40px;
-  height: 40px;
-  z-index: 1;
-  position: absolute;
-  left: 10%;
-  top: 25%;
-  vertical-align: middle;
-  display: inline-block;
-  margin-left: 60px;
-  margin-right: 60px;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  text-align: center;
-}
-
-.sensorsContainerName a {
-  text-align: center;
-  font-family: Times, serif;
-  vertical-align: middle;
-  font-weight: 800;
-  font-size: 13px;
-  color:white;
-  text-decoration: none;
-  display: block;
-  letter-spacing: -0.02em;
-  word-spacing: -0.02em;
-  align-items: center;
-  text-transform: none;
-}
-
-
-
 .summaryContainer {
   display: inline-block;
   vertical-align: middle;
   text-align: center;
   border-style: none;
-  width: 26%;
+  width: 20%;
   height: 32%;
   top: 45.1%;
-  color: ##EDEFF0;
-  background-color: #2A3843;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
   border-radius: 1%;
-  left: 71.5%;
+  left: 77.5%;
   font-family: Ubuntu-Light;
   text-transform: uppercase;
   position: absolute;
@@ -583,8 +520,8 @@ nav {
   width: 40%;
   height: 51.5%;
   top: 81.5%;
-  color: ##EDEFF0;
-  background-color: #2A3843;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
   border-radius: 1%;
   left: 57.60%;
   font-family: Ubuntu-Light;

@@ -92,49 +92,52 @@
   </div>
 
 
-
-
-  <div class="devicesStatusContainer">
-    <div class="devicesStatus_iconContainer">
-      <img src="../assets/icons/airIcon_white.png" class="devicesStatus_icon" />
-
-    </div>
-    <div class="devicesStatusContainerName">
+  <div class="singleContainer">
+    <div class="singleContainer_iconContainer">
+      <img src="../assets/icons/airIcon_white.png" class="singleContainer_icon" />
       <a id="labelFans">Fans: {{deviceStatusObjects.fansStatus}}<a>
     </div>
-    <div class="devicesStatus_iconContainer">
-      <img src="../assets/icons/sunIcon_white.png" class="devicesStatus_icon" />
+  </div>
 
-    </div>
-    <div class="devicesStatusContainerName" style="left: 50%;">
+  <div class="singleContainer" style="left: 25%">
+    <div class="singleContainer_iconContainer">
+      <img src="../assets/icons/sunIcon_white.png" class="singleContainer_icon" />
       <a id="labelLights">Lights: {{deviceStatusObjects.lightsStatus}}<a>
     </div>
-    <div class="devicesStatus_iconContainer">
-      <img src="../assets/icons/waterIcon_white.png" class="devicesStatus_icon" />
+  </div>
 
-    </div>
-    <div class="devicesStatusContainerName" style="top: 67%;">
+  <div class="singleContainer" style="left: 34.5%">
+    <div class="singleContainer_iconContainer">
+      <img src="../assets/icons/waterIcon_white.png" class="singleContainer_icon" />
       <a id="labelWater">Sprinkler: {{deviceStatusObjects.waterStatus}}<a>
     </div>
-    <div class="devicesStatus_iconContainer">
-      <img src="../assets/icons/seedIcon_white.png" class="devicesStatus_icon" />
+  </div>
 
-    </div>
-    <div class="devicesStatusContainerName" style="top: 67%; left: 50%;">
+  <div class="singleContainer" style="left: 44%">
+    <div class="singleContainer_iconContainer">
+      <img src="../assets/icons/seedIcon_white.png" class="singleContainer_icon" />
       <a id="labelSeed">Seeder: {{deviceStatusObjects.seedStatus}}<a>
     </div>
+  </div>
 
+  <div class="singleContainer" style="left: 53.5%">
+    <div class="singleContainer_iconContainer">
+      <img src="../assets/icons/temperatureIcon.png" class="singleContainer_icon" />
+      <a id="labelTemperature">Temperature: {{sensorsObjects.temperature}}<a>
+    </div>
+  </div>
 
+  <div class="singleContainer" style="left: 63%">
+    <div class="singleContainer_iconContainer">
+      <img src="../assets/icons/humidityIcon_white.png" class="singleContainer_icon" />
+      <a id="labelHumidity">Humidity: {{sensorsObjects.humidity}}<a>
+    </div>
+  </div>
 
-
-
-    <div class="dateContainer">
-
-      <img src="../assets/icons/updateIcon_white.png" class="dateContainerLogo" />
-      <p id="dateID">{{cameraObjects.date}}
-        <p>
-
-
+  <div class="singleContainer" style="left: 72.5%">
+    <div class="singleContainer_iconContainer">
+      <img src="../assets/icons/soilMoistureIcon_white.png" class="singleContainer_icon" />
+      <a style="font-size: 12px;" id="labelMoisture">S. Moisture: {{sensorsObjects.moisture}}<a>
     </div>
   </div>
 
@@ -145,44 +148,6 @@
 <form method='POST' id="sensorsForm">
   {% csrf_token %}
 
-
-  <div class="sensorsContainer">
-    <div class="sensorsContainer_iconContainer">
-      <img src="../assets/icons/temperatureIcon.png" class="devicesStatus_icon" />
-
-
-    </div>
-    <div class="sensorsContainerName">
-      <a>Temperature<a>
-          <a id="labelTemperature">{{sensorsObjects.temperature}}<a>
-    </div>
-    <div class="devicesStatus_iconContainer">
-      <img src="../assets/icons/humidityIcon_white.png" class="devicesStatus_icon" />
-
-    </div>
-    <div class="sensorsContainerName" style="left: 50%;">
-      <a>Humidity<a>
-          <a id="labelHumidity">{{sensorsObjects.humidity}}<a>
-    </div>
-    <div class="devicesStatus_iconContainer">
-      <img src="../assets/icons/soilMoistureIcon_white.png" class="devicesStatus_icon" />
-
-    </div>
-    <div class="sensorsContainerName" style="top: 67%;">
-      <a>Moisure<a>
-          <a id="labelMoisture">{{sensorsObjects.moisture}}<a>
-    </div>
-
-
-    <div class="dateContainer">
-
-      <img src="../assets/icons/updateIcon_white.png" class="dateContainerLogo" />
-      <p id="dateID">{{cameraObjects.date}}
-        <p>
-
-
-    </div>
-  </div>
 
   <div class="growthContainer">
     <ul>

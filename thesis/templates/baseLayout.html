@@ -40,10 +40,10 @@ function closeNav() {
       },
       success: function(sensorsJson) {
 
-        $('#labelTemperature').text(sensorsJson.currentTemperatureJSON);
-        $('#labelHumidity').text(sensorsJson.currentHumidityJSON);
-        $('#labelMoisture').text(sensorsJson.currentMoistureJSON);
-        $('#labelSummary').text(sensorsJson.currentSummaryJSON);
+        $('#labelTemperature').text('Temperature: ' + sensorsJson.currentTemperatureJSON);
+        $('#labelHumidity').text('Humidity: ' + sensorsJson.currentHumidityJSON);
+        $('#labelMoisture').text('S. Moisture: ' + sensorsJson.currentMoistureJSON);
+        $('#labelSummary').text('Summary: ' + sensorsJson.currentSummaryJSON);
       },
 
     });
