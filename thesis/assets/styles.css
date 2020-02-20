@@ -513,7 +513,7 @@ nav {
 
 .cameraImgContainer {
   width: 40%;
-  height: 55%;
+  height: 53%;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   position: absolute;
   top: 84%;
@@ -535,7 +535,7 @@ nav {
   text-align: center;
   border-style: none;
   width: 40%;
-  height: 55%;
+  height: 53%;
   top: 84%;
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
