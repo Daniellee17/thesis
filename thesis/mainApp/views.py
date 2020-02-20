@@ -4,41 +4,14 @@ from django.http import JsonResponse
 from .models import devicestatus
 from .models import sensors
 from .models import camerasnaps
-from pygame.locals import *
-from datetime import datetime
-from numpy import interp  # To scale values
-from time import sleep  # To add delay
-from plantcv import plantcv as pcv
 
-import os
+from datetime import datetime
+
 import sys
-import RPi.GPIO as GPIO
-#Soil Moisture Sensor
-import spidev # To communicate with SPI devices
-#Camera
-import pygame
-import pygame.camera
-#DHT22
-import Adafruit_DHT
-#sensor = Adafruit_DHT.DHT11
-DHT_SENSOR = Adafruit_DHT.DHT22
-DHT_SENSOR2 = Adafruit_DHT.DHT22
-#Image Processing
 import numpy as np
 import cv2
 import re
-
-GPIO.setmode(GPIO.BCM) #Read GPIO# and not pin #!
-GPIO.setup(21, GPIO.OUT)  # Lights, PIN 40 (Right)
-GPIO.setup(20, GPIO.OUT)  # Fan1, PIN 38 (Right)
-GPIO.setup(26, GPIO.OUT)  # Fan2, PIN 37 (Left)
-GPIO.setup(16, GPIO.OUT)  # Water, PIN 36 (Right)
-GPIO.setup(19, GPIO.OUT)  # WaterXYZ, PIN 35 (Left)
-GPIO.setup(12, GPIO.OUT)  # Seeder, PIN 32 (Right)
-GPIO.setup(6, GPIO.OUT)  # SeederXYZ, PIN 31 (Left)
-DHT_PIN = 1 # PIN 28 (Right)
-DHT_PIN2 = 7 # PIN 26 (Right)
-
+from plantcv import plantcv as pcv
 
 def mainPage(response):
 
@@ -49,74 +22,74 @@ def mainPage(response):
 
     deviceStatusObjects = devicestatus.objects.latest('date')
 
-    # Create instance so you can insert into DB
+    # Create instance para makapag insert
     insertDeviceStatus = devicestatus()
     insertCamera = camerasnaps()
     insertSensors = sensors()
-
 
     if response.POST.get('action') == 'getSensorValues':
         print(" ")
         print("~Sensor Values Updated~")
         print(" ")
 
-        # Start SPI connection
-        spi = spidev.SpiDev() # Created an object
-        spi.open(0,0)
+        currentTemperature = 69
+        currentHumidity = 11
+        currentMoisture = 12
 
-        humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
-        humidity2, temperature2 = Adafruit_DHT.read_retry(DHT_SENSOR2, DHT_PIN2)
+        if(currentTemperature > 30):
 
+            # Turn on fans automatically
 
-        def analogInput(channel):
-          spi.max_speed_hz = 1350000
-          adc = spi.xfer2([1,(8+channel)<<4,0])
-          data = ((adc[1]&3) << 8) + adc[2]
-          return data
+            insertDeviceStatus.fansStatus = 'on'
+            insertSensors.temperature = currentTemperature
+            insertSensors.humidity = currentHumidity
+            insertSensors.moisture = currentMoisture
 
-        output = analogInput(0) # Reading from CH0
-        output = interp(output, [0, 1023], [100, 0])
-        output = int(output)
-        #print("Moistures", output)
+            if(currentHumidity < 40):
+                insertSensors.summary = 'Temperature is too high and Humidity is too low!!!'
+                insertSensors.save()
+            else:
+                insertSensors.summary = 'Temperature is too high!!!'
+                insertSensors.save()
 
-        currentTemperature = round(temperature, 2)
-        currentHumidity = round(humidity, 2)
-        currentTemperature2 = round(temperature2, 2)
-        currentHumidity2 = round(humidity2, 2)
-        currentMoisture = output
-        currentSummary = 'Temperature and Humidity are okay!!!'
+        if(currentHumidity < 40):
 
-        averageTemperature = (currentTemperature + currentTemperature2) / 2
-        averageHumidity = (currentHumidity + currentHumidity2) / 2
+            insertSensors.temperature = currentTemperature
+            insertSensors.humidity = currentHumidity
+            insertSensors.moisture = currentMoisture
 
-        print("Current Temp1:")
-        print(currentTemperature)
-        print("Current Hum1:")
-        print(currentHumidity)
-        print("Current Temp2:")
-        print(currentTemperature2)
-        print("Current Hum2:")
-        print(currentHumidity2)
-        print("Current Moisture:")
-        print(currentMoisture)
-        print("Ave temp")
-        print(round(averageTemperature, 2))
-        print("Ave humidity")
-        print(round(averageHumidity, 2))
+            if(currentTemperature > 30):
+                insertSensors.summary = 'Temperature is too high and Humidity is too low!!!'
+                insertSensors.save()
+            else:
+                insertSensors.summary = 'Humidity is too low!!!'
+                insertSensors.save()
 
-        insertSensors.temperature = round(averageTemperature, 2)
-        insertSensors.humidity = round(averageHumidity, 2)
-        insertSensors.moisture = currentMoisture
-        insertSensors.summary = currentSummary
+        if(currentTemperature < 30):
 
-        insertSensors.save()
+            # Turn off fans automatically
+
+            insertDeviceStatus.fansStatus = 'off'
+            insertSensors.temperature = currentTemperature
+            insertSensors.humidity = currentHumidity
+            insertSensors.moisture = currentMoisture
+
+            if(currentHumidity > 40):
+                insertSensors.summary = 'Temperature and Humidity are okay!!!'
+                insertSensors.save()
+            else:
+                insertSensors.summary = 'Humidity is too low!!!'
+                insertSensors.save()
+
+        currentSummary = 'pakyu'
 
         deviceStatusObjectsJSON = {
-        'currentTemperatureJSON': round(averageTemperature, 2),
-        'currentHumidityJSON': round(averageHumidity, 2),
+        'currentTemperatureJSON': currentTemperature,
+        'currentHumidityJSON': currentHumidity,
         'currentMoistureJSON': currentMoisture,
         'currentSummaryJSON': currentSummary,
         }
+
 
         return JsonResponse(deviceStatusObjectsJSON)
 
@@ -124,19 +97,11 @@ def mainPage(response):
         print(" ")
         print("~Image Captured~")
         print(" ")
-
-        pygame.init()
-        pygame.camera.init()
-        cam = pygame.camera.Camera("/dev/video0", (960, 720))
-        cam.start()
-        image = cam.get_image()
-        getTime = datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
-        pygame.image.save(image, '/home/pi/Desktop/thesis/thesis/assets/gardenPics/' + getTime + '.jpg')
-        cam.stop()
-
         print(" ")
         print("~Image Processing Started~")
         print(" ")
+
+        getTime = datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
 
         class options:
             def __init__(self):
@@ -215,6 +180,7 @@ def mainPage(response):
         # Print areas to XML
         #pcv.print_results(filename="./assets/gardenPics/plant_area_results.xml")
 
+
         insertCamera.camera = getTime + '.jpg'
         insertCamera.cameraURL = '../assets/gardenPics/' + getTime + '.jpg'
         insertCamera.plant1 = plant_area_list[0]
@@ -249,15 +215,12 @@ def mainPage(response):
         return JsonResponse(cameraObjectsJSON)
 
 
-    if response.POST.get('action') == 'onFan':
 
+    if response.POST.get('action') == 'onFan':
         print(" ")
         print("~Fans Activated~")
         print(" ")
-
-        GPIO.output(20, GPIO.HIGH)
-        GPIO.output(26, GPIO.HIGH)
-
+        label = response.POST.get('label')
         insertDeviceStatus.fansStatus = 'Activated'
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
@@ -265,14 +228,9 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'offFan':
-
         print(" ")
-        print("~Fans deactivated~")
+        print("~Fans Deactivated~")
         print(" ")
-
-        GPIO.output(20, GPIO.LOW)
-        GPIO.output(26, GPIO.LOW)
-
         insertDeviceStatus.fansStatus = 'Deactivated'
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
@@ -280,13 +238,9 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'onLights':
-
         print(" ")
         print("~Lights Activated~")
         print(" ")
-
-        GPIO.output(21, GPIO.HIGH)
-
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = 'Activated'
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
@@ -294,13 +248,9 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'offLights':
-
         print(" ")
         print("~Lights Deactivated~")
         print(" ")
-
-        GPIO.output(21, GPIO.LOW)
-
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = 'Deactivated'
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
@@ -308,14 +258,10 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'onWater':
-
         print(" ")
-        print("~Water System Activated~")
+        print("~Watering System Activated~")
         print(" ")
-
-        GPIO.output(16, GPIO.HIGH)
-        GPIO.output(19, GPIO.HIGH)
-
+        label = response.POST.get('label')
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.waterStatus = 'Activated'
@@ -323,14 +269,10 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'offWater':
-
         print(" ")
-        print("~Water System Deactivated~")
+        print("~Watering System deactivated~")
         print(" ")
-
-        GPIO.output(16, GPIO.LOW)
-        GPIO.output(19, GPIO.LOW)
-
+        label = response.POST.get('label')
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.waterStatus = 'Deactivated'
@@ -338,14 +280,9 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'onSeed':
-
         print(" ")
         print("~Seeder Activated~")
         print(" ")
-
-        GPIO.output(12, GPIO.HIGH)
-        GPIO.output(6, GPIO.HIGH)
-
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
@@ -353,14 +290,9 @@ def mainPage(response):
         insertDeviceStatus.save()
 
     if response.POST.get('action') == 'offSeed':
-
         print(" ")
-        print("~Seeder Deactivated~")
+        print("~Seeder deactivated~")
         print(" ")
-
-        GPIO.output(12, GPIO.LOW)
-        GPIO.output(6, GPIO.LOW)
-
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
