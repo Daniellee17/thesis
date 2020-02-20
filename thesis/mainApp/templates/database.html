@@ -2,78 +2,121 @@
 
 {% block content %}
 
-<nav>
+<div class="title">
+  <img src="../assets/icons/leafIcon.png" class="titleLogo" />
+  <a href="{% url 'mainPage' %}">A.G.E DASHBOARD</a>
 
-  <div class="nav_link">
-    The database log of your system.
-    | <a href="{% url 'mainPage' %}">Home Page</a>
+
+</div>
+
+
+
+<form method='POST' id="buttonForm">
+  {% csrf_token %}
+
+  <div id="mySidenav" class="hiddenSideNav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="devicesContainer">
+
+      <img style="width: 30px; height: 30px;" src="../assets/icons/airIcon_white.png" class="dateContainerLogo" />
+      <input style="background-color: limegreen;" type='submit' name="onFans_btn" value=" " class="onFan"></button>
+      <input style="background-color: red;" type='submit' name="offFans_btn" value=" " class="offFan"></button>
+
+      <img style="width: 30px; height: 30px;" src="../assets/icons/sunIcon_white.png" class="dateContainerLogo" />
+      <input style="background-color: limegreen;" type='submit' name="onLights_btn" value=" " class="onLights"></button>
+      <input style="background-color: red;" type='submit' name="offLights_btn" value=" " class="offLights"></button>
+
+      <img style="width: 30px; height: 30px;" src="../assets/icons/irrigationIcon_white.png" class="dateContainerLogo" />
+      <input style="background-color: limegreen;" type='submit' name="onWater_btn" value=" " class="onWater"></button>
+      <input style="background-color: red;" type='submit' name="offWater_btn" value=" " class="offWater"></button>
+
+      <img style="width: 30px; height: 30px;" src="../assets/icons/seedIcon_white.png" class="dateContainerLogo" />
+      <input style="background-color: limegreen;" type='submit' name="onSeed_btn" value=" " class="onSeed"></button>
+      <input style="background-color: red;" type='submit' name="offSeed_btn" value=" " class="offSeed"></button>
+
+      <img style="width: 30px; height: 30px;" src="../assets/icons/cameraIcon.png" class="dateContainerLogo" />
+      <input style="background-color: white;" type='submit' name="camera_btn" value=" " class="processImage"></button>
+
+
+    </div>
+
+
   </div>
 
-</nav>
+  <div class="sidenav">
+    <div class="sidenavTitleContainer">
+      ADMIN TOOLS
+    </div>
 
-<div class="title">
-  IOT database
-</div>
+    <div class="sidenavButtonContainer">
 
-<div class="titleLogoContainer">
-  <img src="../assets/rpilogo.png" class="titleLogo" />
-</div>
+      <a onclick="openNav()"> <img src="../assets/icons/remoteController_black.png" class="sidenavIcon" /> Controller</a>
+      <a href="{% url 'databasePage' %}"> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> Database</a>
+      <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> Full Reset</a>
 
+      <!--         <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" />
+                <a href="#clients">Clients</a> -->
 
-<table class="deviceStatusTableFixedHeader">
-  <caption>Devices</caption>
-  <thead>
-    <tr>
-      <th>Date&Time</th>
-      <th>Fan</th>
-      <th>Light</th>
-      <th>Watering</th>
-      <th>Seeding</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for values in deviceStatusObjects %}
-    <tr>
-      <td>{{values.date}}</td>
-      <td>{{values.fansStatus}}</td>
-      <td>{{values.lightsStatus}}</td>
-      <td>{{values.waterStatus}}</td>
-      <td>{{values.seedStatus}}</td>
-    </tr>
-    {% endfor %}
+    </div>
+
+    <div class="sidenavTitleContainer" style="top: 24%">
+      FAQs
+    </div>
+    <div class="sidenavButtonContainer" style="top: 27.4%">
+      <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon_white.jpg" class="sidenavIcon" /> Controller</a>
+      <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> Full Reset</a>
+    </div>
+  </div>
 
 
+  <div class="growthContainer" style="left: 15.5%; top: 10.1%;">
+    <table class="deviceStatusTableFixedHeader">
+      <caption>Devices</caption>
+      <thead>
+        <tr>
+          <th>Date&Time</th>
+          <th>Fan</th>
+          <th>Light</th>
+          <th>Watering</th>
+          <th>Seeding</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for values in deviceStatusObjects %}
+        <tr>
+          <td>{{values.date}}</td>
+          <td>{{values.fansStatus}}</td>
+          <td>{{values.lightsStatus}}</td>
+          <td>{{values.waterStatus}}</td>
+          <td>{{values.seedStatus}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
-  </tbody>
-
-</table>
-
-<table class="sensorStatusTableFixedHeader">
-  <caption>Sensors</caption>
-  <thead>
-    <tr>
-      <th>Date&Time</th>
-      <th>Temperature</th>
-      <th>Humidity</th>
-      <th>Soil Moisture</th>
-      <th>Summary</th>
-    </tr>
-  </thead>
-  <tbody>
-
-    {% for values2 in sensorsObjects %}
-    <tr>
-      <td>{{values2.date}}</td>
-      <td>{{values2.temperature}}</td>
-      <td>{{values2.humidity}}</td>
-      <td>{{values2.moisture}}</td>
-      <td>{{values2.summary}}</td>
-    </tr>
-    {% endfor %}
-
-  </tbody>
-  </body>
-
-  </html>
-
+  <div class="growthContainer" style="top: 10.1%;">
+    <table class="sensorStatusTableFixedHeader">
+      <caption>Sensors</caption>
+      <thead>
+        <tr>
+          <th>Date&Time</th>
+          <th>Temperature</th>
+          <th>Humidity</th>
+          <th>Soil Moisture</th>
+          <th>Summary</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for values2 in sensorsObjects %}
+        <tr>
+          <td>{{values2.date}}</td>
+          <td>{{values2.temperature}}</td>
+          <td>{{values2.humidity}}</td>
+          <td>{{values2.moisture}}</td>
+          <td>{{values2.summary}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </div>
   {% endblock %}

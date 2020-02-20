@@ -538,20 +538,16 @@ nav {
 }
 
 .deviceStatusTableFixedHeader {
-  width: 677px;
   table-layout: fixed;
   border-collapse: collapse;
   color: white;
-  margin-left: 50px;
-  margin-top: -250px;
-  position: fixed;
-  top: 50%;
+  position: absolute;
   font-family: ProximaNova;
 }
 
 .deviceStatusTableFixedHeader tbody {
   display: inline-block;
-  height: 600px;
+  height: 400px;
   overflow: auto;
 }
 
@@ -590,20 +586,16 @@ nav {
 }
 
 .sensorStatusTableFixedHeader {
-  width: 877px;
   table-layout: fixed;
   border-collapse: collapse;
   color: white;
-  margin-left: 1000px;
-  margin-top: -650px;
-  position: fixed;
-  top: 98.5%;
+  position: absolute;
   font-family: ProximaNova;
 }
 
 .sensorStatusTableFixedHeader tbody {
   display: inline-block;
-  height: 600px;
+  height: 400px;
   overflow: auto;
 }
 
@@ -613,7 +605,7 @@ nav {
 }
 
 .sensorStatusTableFixedHeader td:nth-child(1), .sensorStatusTableFixedHeader th:nth-child(1) {
-  min-width: 200px;
+  min-width: 80px;
 }
 
 .sensorStatusTableFixedHeader td:nth-child(2), .sensorStatusTableFixedHeader th:nth-child(2) {
