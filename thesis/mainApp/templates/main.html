@@ -57,7 +57,7 @@
       <input style="background-color: limegreen;" type='submit' name="onLights_btn" value=" " class="onLights"></button>
       <input style="background-color: red;" type='submit' name="offLights_btn" value=" " class="offLights"></button>
 
-      <img style="width: 30px; height: 30px;" src="../assets/icons/waterIcon_white.png" class="dateContainerLogo" />
+      <img style="width: 30px; height: 30px;" src="../assets/icons/irrigationIcon_white.png" class="dateContainerLogo" />
       <input style="background-color: limegreen;" type='submit' name="onWater_btn" value=" " class="onWater"></button>
       <input style="background-color: red;" type='submit' name="offWater_btn" value=" " class="offWater"></button>
 
@@ -120,28 +120,33 @@
     </div>
   </div>
 
-  <div class="singleContainer" style="left: 53.5%">
+  <div class="singleContainer" style="top: 64%">
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/temperatureIcon.png" class="singleContainer_icon" />
       <a id="labelTemperature">Temperature: {{sensorsObjects.temperature}}<a>
     </div>
   </div>
 
-  <div class="singleContainer" style="left: 63%">
+  <div class="singleContainer" style="left: 25%; top: 64%">
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/humidityIcon_white.png" class="singleContainer_icon" />
       <a id="labelHumidity">Humidity: {{sensorsObjects.humidity}}<a>
     </div>
   </div>
 
-  <div class="singleContainer" style="left: 72.5%">
+  <div class="singleContainer" style="left: 34.5%; top: 64%">
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/soilMoistureIcon_white.png" class="singleContainer_icon" />
       <a style="font-size: 12px;" id="labelMoisture">S. Moisture: {{sensorsObjects.moisture}}<a>
     </div>
   </div>
 
-
+  <div class="singleContainer" style="left: 44%; top: 64%">
+    <div class="singleContainer_iconContainer">
+      <img src="../assets/icons/healthIcon.png" class="singleContainer_icon" style="width:70px; height:70px"/>
+      <a style="font-size: 12px;" id="labelMoisture">S. Moisture: {{sensorsObjects.moisture}}<a>
+    </div>
+  </div>
 
 </form>
 
