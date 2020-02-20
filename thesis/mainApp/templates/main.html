@@ -2,34 +2,16 @@
 
 {% block content %}
 
-<nav>
-
-  <div class="title">
-    <img src="../assets/icons/rpiIcon.png" class="titleLogo" />
-    <a href="{% url 'mainPage' %}">IOT DASHBOARD</a>
 
 
-  </div>
-  <div class="circularButton">
-    <input type='submit' onclick="openNav()" value=" ">
+<div class="title">
+  <img src="../assets/icons/leafIcon.png" class="titleLogo" />
+  <a href="{% url 'mainPage' %}">A.G.E DASHBOARD</a>
 
 
-
-    <input type='submit' onclick="openNav()" value=" ">
-    <input type='submit' onclick="openNav()" value=" ">
-
-    </button>
+</div>
 
 
-
-
-
-  </div>
-
-
-
-
-</nav>
 
 <div class="headlineContainer">
   AGE THESIS
@@ -74,21 +56,28 @@
 
   </div>
 
-
-
   <div class="sidenav">
+    <div class="sidenavTitleContainer">
+      ADMIN TOOLS
+    </div>
+
     <div class="sidenavButtonContainer">
 
-      <img src="../assets/icons/airIcon_white.png" class="dateContainerLogo" />
-      <a href="#about">Schedule</a>
-      <a href="#services">Services</a>
-      <a href="#clients">Clients</a>
-      <a href="#contact">Contact</a>
+      <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon_white.jpg" class="sidenavIcon" /> Controller</a>
+      <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> Full Reset</a>
+
+      <!--         <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" />
+                <a href="#clients">Clients</a> -->
 
     </div>
 
-
-
+    <div class="sidenavTitleContainer" style="top: 21%">
+      FAQs
+    </div>
+    <div class="sidenavButtonContainer" style="top: 24.4%">
+      <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon_white.jpg" class="sidenavIcon" /> Controller</a>
+      <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> Full Reset</a>
+    </div>
   </div>
 
 
@@ -143,8 +132,8 @@
 
   <div class="singleContainer" style="left: 44%; top: 64%">
     <div class="singleContainer_iconContainer">
-      <img src="../assets/icons/healthIcon.png" class="singleContainer_icon" style="width:70px; height:70px"/>
-      <a style="font-size: 12px;" id="labelMoisture">S. Moisture: {{sensorsObjects.moisture}}<a>
+      <img src="../assets/icons/healthIcon_white.png" class="singleContainer_icon" />
+      <a style="font-size: 12px;" id="labelMoisture">Condition: {{sensorsObjects.moisture}}<a>
     </div>
   </div>
 
@@ -200,6 +189,23 @@
 
     </div>
   </div>
+  
+  <div class="summaryContainer" style="left:54%">
+    Summary
+    <ul>
+      <li><a id="labelSummary">{{sensorsObjects.summary}}<a></li>
+    </ul>
+
+    <div class="dateContainer">
+
+      <img src="../assets/icons/updateIcon_white.png" class="dateContainerLogo" />
+      <p id="dateID">{{cameraObjects.date}}
+        <p>
+
+
+    </div>
+  </div>
+
 
   <div class="summaryContainer">
     Summary
