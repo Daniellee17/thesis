@@ -18,13 +18,13 @@
 <script src="/assets/js/bootstrap.min.js"></script>
 
 <script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "16%";
-}
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "16%";
+  }
 
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
 </script>
 
 <script>
@@ -134,6 +134,26 @@ function closeNav() {
         $('#labelPlant9Growth').text(cameraJson.plant9JASON);
         $('#labelPlant10Growth').text(cameraJson.plant10JASON);
 
+      },
+
+    });
+  });
+
+
+  $(".fullReset").click(function(e) {
+
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'fullReset',
+
+      },
+      success: function(json) {
+        document.getElementById("buttonForm").reset();
       },
 
     });

@@ -248,6 +248,40 @@ def mainPage(response):
 
         return JsonResponse(cameraObjectsJSON)
 
+    if response.POST.get('action') == 'fullReset':
+        
+        print(" ")
+        print("~Database Cleared~")
+        print(" ")
+        devicestatus.objects.all().delete()
+        insertDeviceStatus.fansStatus = 'start'
+        insertDeviceStatus.lightsStatus = 'start'
+        insertDeviceStatus.waterStatus = 'start'
+        insertDeviceStatus.seedStatus = 'start'
+        insertDeviceStatus.save()
+        
+        camerasnaps.objects.all().delete()
+        insertCamera.camera = 'EXAMPLE.jpg'
+        insertCamera.cameraURL = '../assets/gardenPics/test.jpg'
+        insertCamera.plant1 = 0
+        insertCamera.plant2 = 0
+        insertCamera.plant3 = 0
+        insertCamera.plant4 = 0
+        insertCamera.plant5 = 0
+        insertCamera.plant6 = 0
+        insertCamera.plant7 = 0
+        insertCamera.plant8 = 0
+        insertCamera.plant9 = 0
+        insertCamera.plant10 = 0
+        insertCamera.save()
+
+        sensors.objects.all().delete()
+        insertSensors.temperature = 0
+        insertSensors.humidity = 0
+        insertSensors.moisture = 0
+        insertSensors.summary = 'start'
+        insertSensors.save()
+
 
     if response.POST.get('action') == 'onFan':
 
