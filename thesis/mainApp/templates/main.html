@@ -25,7 +25,7 @@
 </div>
 
 
-<form method='POST' id="buttonForm">
+<form method='POST' id="mainForm">
   {% csrf_token %}
 
   <div id="mySidenav" class="hiddenSideNav">
@@ -139,9 +139,9 @@
     </div>
   </div>
 
-</form>
 
-<form method='POST' id="sensorsForm">
+
+
   {% csrf_token %}
 
 
@@ -185,7 +185,7 @@
     <div class="dateContainer" style="top:94%;">
 
       <img src="../assets/icons/updateIcon_white.png" class="dateContainerLogo" />
-      <p id="dateID">{{cameraObjects.date}}
+      <p id="growthDateID">{{cameraObjects.date}}
       </p>
 
 
@@ -199,7 +199,7 @@
       <a style="font-size: 20px">Days</a>
     </div>
     
-    <div class="dateContainer" style="top:89%; width:50%; left:49%;">
+    <div class="dateContainer" style="top:89%; width:50%; left:48%;">
 
 
       <p id="firstDayID">Started: {{countersObject_first.date}}
@@ -224,7 +224,7 @@
     <div class="dateContainer">
 
       <img src="../assets/icons/updateIcon_white.png" class="dateContainerLogo" />
-      <p id="dateID">{{cameraObjects.date}}
+      <p id="summaryDateID">{{cameraObjects.date}}
       </p>
 
 
@@ -235,9 +235,9 @@
 
 
 
-</form>
 
-<form method='POST' id="imageForm">
+
+
   {% csrf_token %}
   <div class="cameraImgContainer">
     <img id="cameraID" class="cameraImg" src={{cameraObjects.cameraURL}}>
@@ -246,7 +246,7 @@
     <div class="dateContainer" style="top:94%;">
 
       <img src="../assets/icons/updateIcon_white.png" class="dateContainerLogo" />
-      <p id="dateID">{{cameraObjects.date}}
+      <p id="cameraDateID">{{cameraObjects.date}}
       </p>
 
 

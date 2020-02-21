@@ -117,7 +117,9 @@
       },
       success: function(cameraJson) {
         $('#cameraID').attr('src', cameraJson.cameraURLJSON);
-        $('#dateID').text('As of: ' + cameraJson.cameraDateJSON);
+        $('#cameraDateID').text('As of: ' + cameraJson.cameraDateJSON);
+        $('#summaryDateID').text('As of: ' + cameraJson.cameraDateJSON);
+        $('#growthDateID').text('As of: ' + cameraJson.cameraDateJSON);
         $('#labelPlant1Growth').text(cameraJson.plant1JASON);
         $('#labelPlant2Growth').text(cameraJson.plant2JASON);
         $('#labelPlant3Growth').text(cameraJson.plant3JASON);
@@ -150,11 +152,35 @@
 
       },
       success: function(daysJSON) {
-        document.getElementById("buttonForm").reset();
+        document.getElementById("mainForm").reset();
         $('#cameraID').attr('src', '../assets/background/defaultBG.jpg');        
         $('#firstDayID').text('Started: ' + daysJSON.day1Formatted);
         $('#lastDayID').text('Current: ' + daysJSON.day1Formatted);
-
+        $('#cameraDateID').text('As of: ' + daysJSON.day1Formatted);
+        $('#summaryDateID').text('As of: ' + daysJSON.day1Formatted);
+        $('#growthDateID').text('As of: ' + daysJSON.day1Formatted);
+        
+        $('#labelPlant1Growth').text(0);
+        $('#labelPlant2Growth').text(0);
+        $('#labelPlant3Growth').text(0);
+        $('#labelPlant4Growth').text(0);
+        $('#labelPlant5Growth').text(0);
+        $('#labelPlant6Growth').text(0);
+        $('#labelPlant7Growth').text(0);
+        $('#labelPlant8Growth').text(0);
+        $('#labelPlant9Growth').text(0);
+        $('#labelPlant10Growth').text(0);    
+        
+        $('#labelFans').text('Fans: start');  
+        $('#labelLights').text('Lights: start');
+        $('#labelWater').text('Sprinkler: start');
+        $('#labelSeed').text('Seeder: start');
+        
+        $('#labelTemperature').text('Temperature: ' + daysJSON.temperatureJSON);
+        $('#labelHumidity').text('Humidity: ' + daysJSON.humidityJSON);
+        $('#labelMoisture').text('S. Moisture: ' + daysJSON.moistureJSON);
+        $('#labelSummary').text('Summary: ' + daysJSON.summaryJSON);
+        
       },
 
     });
@@ -173,7 +199,7 @@
 
       },
       success: function(json) {
-        document.getElementById("buttonForm").reset();
+        document.getElementById("mainForm").reset();
         $('#labelFans').text('Fans: Activated');
       },
 
@@ -193,7 +219,7 @@
 
       },
       success: function(json) {
-        document.getElementById("buttonForm").reset();
+        document.getElementById("mainForm").reset();
         $('#labelFans').text('Fans: Deactivated');
       },
 
@@ -213,7 +239,7 @@
 
       },
       success: function(json) {
-        document.getElementById("buttonForm").reset();
+        document.getElementById("mainForm").reset();
         $('#labelLights').text('Lights: Activated');
       },
 
@@ -233,7 +259,7 @@
 
       },
       success: function(json) {
-        document.getElementById("buttonForm").reset();
+        document.getElementById("mainForm").reset();
         $('#labelLights').text('Lights: Deactivated');
       },
 
@@ -253,7 +279,7 @@
 
       },
       success: function(json) {
-        document.getElementById("buttonForm").reset();
+        document.getElementById("mainForm").reset();
         $('#labelWater').text('Sprinkler: Activated');
       },
 
@@ -273,7 +299,7 @@
 
       },
       success: function(json) {
-        document.getElementById("buttonForm").reset();
+        document.getElementById("mainForm").reset();
         $('#labelWater').text('Sprinkler: Deactivated');
       },
 
@@ -293,7 +319,7 @@
 
       },
       success: function(json) {
-        document.getElementById("buttonForm").reset();
+        document.getElementById("mainForm").reset();
         $('#labelSeed').text('Seeder: Activated');
       },
 
@@ -313,7 +339,7 @@
 
       },
       success: function(json) {
-        document.getElementById("buttonForm").reset();
+        document.getElementById("mainForm").reset();
         $('#labelSeed').text('Seeder: Deactivated');
       },
 
