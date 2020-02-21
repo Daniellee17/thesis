@@ -303,12 +303,21 @@ def mainPage(response):
         counters.objects.all().delete()
         insertCounters.daysCounter = 0
         insertCounters.save()
-
+        
+        sensorsObjectsReset = sensors.objects.latest('date')
+        
         daysJSON = {
-        'day1Formatted': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),       
+        'day1Formatted': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),
+        'temperatureJSON': sensorsObjectsReset.temperature,
+        'humidityJSON': sensorsObjectsReset.humidity,
+        'moistureJSON': sensorsObjectsReset.moisture,
+        'summaryJSON': sensorsObjectsReset.summary,
+               
         }
 
         return JsonResponse(daysJSON)
+
+
 
     if response.POST.get('action') == 'onFan':
 
