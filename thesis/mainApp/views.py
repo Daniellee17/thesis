@@ -6,6 +6,7 @@ from .models import sensors
 from .models import camerasnaps
 from pygame.locals import *
 from datetime import datetime
+from datetime import date 
 from numpy import interp  # To scale values
 from time import sleep  # To add delay
 from plantcv import plantcv as pcv
@@ -53,6 +54,7 @@ def mainPage(response):
     insertDeviceStatus = devicestatus()
     insertCamera = camerasnaps()
     insertSensors = sensors()
+    insertCounters = counters()
 
 
     if response.POST.get('action') == 'getSensorValues':
@@ -230,14 +232,26 @@ def mainPage(response):
         insertCamera.save()
 
         cameraObjectsSnap = camerasnaps.objects.latest('date')
-        cameraObjectsSnap_first = camerasnaps.objects.first()                
+        countersObjectSnap_first = counters.objects.first()
+
+        date1 = countersObjectSnap_first.date
+        date2 = cameraObjectsSnap.date
+        print(date1)
+        print(date2)     
+                
+        def numOfDays(date1, date2): 
+            return (date2-date1).days
+        
+        print(numOfDays(date1, date2), "days")       
+        
+        
+        insertCounters.daysCounter = numOfDays(date1, date2)
+        insertCounters.save()
 
         cameraObjectsJSON = {
         'cameraURLJSON': str(cameraObjectsSnap.cameraURL),
-        'day1Formatted': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),
-        'day1': cameraObjectsSnap_first.date,
-        'day2': cameraObjectsSnap.date,
         'cameraDateJSON': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),
+        'daysCounterJSON' : str(numOfDays(date1, date2)),
         'plant1JASON': plant_area_list[0],
         'plant2JASON': plant_area_list[1],
         'plant3JASON': plant_area_list[2],
@@ -286,13 +300,12 @@ def mainPage(response):
         insertSensors.summary = 'start'
         insertSensors.save()
         
-        cameraObjectsDays = camerasnaps.objects.latest('date')
-        cameraObjectsDays_first = camerasnaps.objects.first()
+        counters.objects.all().delete()
+        insertCounters.daysCounter = 0
+        insertCounters.save()
 
         daysJSON = {
-        'day1Formatted': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),
-        'day1': cameraObjectsDays_first.date,
-        'day2': cameraObjectsDays.date,
+        'day1Formatted': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),       
         }
 
         return JsonResponse(daysJSON)
@@ -419,9 +432,11 @@ def mainPage(response):
     # mauuna kunin data before saving the sensor data so late ng isang query
     sensorsObjects = sensors.objects.latest('date')
     cameraObjects = camerasnaps.objects.latest('date')
+    countersObject = counters.objects.latest('date')
+    countersObject_first = counters.objects.first()
 
-    myObjects = {'deviceStatusObjects': deviceStatusObjects,
-                 'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}
+    myObjects = {'deviceStatusObjects': deviceStatusObjects, 
+                 'countersObject': countersObject, 'countersObject_first': countersObject_first, 'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}
 
     return render(response, 'main.html', context=myObjects)
 
@@ -436,6 +451,8 @@ def databasePage(response):
                  'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}
 
     return render(response, 'database.html', context=myObjects)
+
+
 
 
 

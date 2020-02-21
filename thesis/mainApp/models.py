@@ -32,3 +32,7 @@ class camerasnaps(models.Model):
     plant9 = models.IntegerField(default=0);
     plant10 = models.IntegerField(default=0);
     date = models.DateTimeField(auto_now=True);
+    
+class counters(models.Model):
+    daysCounter = models.IntegerField(default=0);
+    date = models.DateTimeField(auto_now=True);

@@ -195,14 +195,18 @@
   <div class="daysContainer" style="left:54%">
 
     <div class="circle big">
-      <a id="daysID" style="font-size: 100px">0</a>
+      <a id="daysID" style="font-size: 100px">{{countersObject.daysCounter}}</a>
       <a style="font-size: 20px">Days</a>
     </div>
     
-    <div class="dateContainer" style="top:94%;">
+    <div class="dateContainer" style="top:89%; width:50%; left:49%;">
 
-      <img src="../assets/icons/updateIcon_white.png" class="dateContainerLogo" />
-      <p id="daysDateID">Started: {{cameraObjects_first.date}}
+
+      <p id="firstDayID">Started: {{countersObject_first.date}}
+      </p>
+
+
+      <p id="lastDayID">Current: {{cameraObjects.date}}
       </p>
 
 
