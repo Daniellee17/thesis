@@ -72,9 +72,6 @@
 
         },
         success: function(cameraJson) {
-          var date = new Date(cameraJson.cameraDateJSON);
-          //var newDate = date.replace("GMT+0800 (Philippine Standard Time)", " ");
-          //alert(newDate);
           $('#cameraID').attr('src', cameraJson.cameraURLJSON);
           $('#dateID').text('As of: ' + cameraJson.cameraDateJSON);
           $('#labelPlant1Growth').text(cameraJson.plant1JASON);
@@ -87,6 +84,16 @@
           $('#labelPlant8Growth').text(cameraJson.plant8JASON);
           $('#labelPlant9Growth').text(cameraJson.plant9JASON);
           $('#labelPlant10Growth').text(cameraJson.plant10JASON);
+          
+          var firstDayFormatted = new Date(cameraJson.day1Formatted);        
+          var firstDay = new Date(cameraJson.day1);
+          var lastDay = new Date(cameraJson.day2);
+          var firstDayShort = new Date((firstDay.getMonth()+1)+'/'+firstDay.getDate()+'/'+firstDay.getFullYear());      
+          var lastDayShort = new Date((lastDay.getMonth()+1)+'/'+lastDay.getDate()+'/'+lastDay.getFullYear());  
+          var Difference_In_Time = lastDayShort.getTime() - firstDayShort.getTime();
+          var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+          $('#daysID').text(Difference_In_Days);
+          $('#daysDateID').text('Started: ' + cameraJson.day1Formatted);
 
         },
 
@@ -103,7 +110,6 @@
   });
 </script>
 
-
 <script>
   $(".processImage").click(function(e) {
 
@@ -118,9 +124,6 @@
 
       },
       success: function(cameraJson) {
-        var date = new Date(cameraJson.cameraDateJSON);
-        //var newDate = date.replace("GMT+0800 (Philippine Standard Time)", " ");
-        //alert(newDate);
         $('#cameraID').attr('src', cameraJson.cameraURLJSON);
         $('#dateID').text('As of: ' + cameraJson.cameraDateJSON);
         $('#labelPlant1Growth').text(cameraJson.plant1JASON);
@@ -133,6 +136,16 @@
         $('#labelPlant8Growth').text(cameraJson.plant8JASON);
         $('#labelPlant9Growth').text(cameraJson.plant9JASON);
         $('#labelPlant10Growth').text(cameraJson.plant10JASON);
+        
+        var firstDayFormatted = new Date(cameraJson.day1Formatted);        
+        var firstDay = new Date(cameraJson.day1);
+        var lastDay = new Date(cameraJson.day2);
+        var firstDayShort = new Date((firstDay.getMonth()+1)+'/'+firstDay.getDate()+'/'+firstDay.getFullYear());      
+        var lastDayShort = new Date((lastDay.getMonth()+1)+'/'+lastDay.getDate()+'/'+lastDay.getFullYear());  
+        var Difference_In_Time = lastDayShort.getTime() - firstDayShort.getTime();
+        var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+        $('#daysID').text(Difference_In_Days);
+        $('#daysDateID').text('Started: ' + cameraJson.day1Formatted);
 
       },
 
@@ -152,8 +165,20 @@
         action: 'fullReset',
 
       },
-      success: function(json) {
+      success: function(daysJSON) {
         document.getElementById("buttonForm").reset();
+        $('#cameraID').attr('src', '../assets/background/defaultBG.jpg');        
+        
+        var firstDayFormatted = new Date(daysJSON.day1Formatted);        
+        var firstDay = new Date(daysJSON.day1);
+        var lastDay = new Date(daysJSON.day2);
+        var firstDayShort = new Date((firstDay.getMonth()+1)+'/'+firstDay.getDate()+'/'+firstDay.getFullYear());      
+        var lastDayShort = new Date((lastDay.getMonth()+1)+'/'+lastDay.getDate()+'/'+lastDay.getFullYear());  
+        var Difference_In_Time = lastDayShort.getTime() - firstDayShort.getTime();
+        var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+        $('#daysID').text(Difference_In_Days);
+        $('#daysDateID').text('Started: ' + daysJSON.day1Formatted);
+
       },
 
     });

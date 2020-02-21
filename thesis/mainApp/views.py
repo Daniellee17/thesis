@@ -229,10 +229,14 @@ def mainPage(response):
         insertCamera.plant10 = plant_area_list[9]
         insertCamera.save()
 
-        cameraObjects0 = camerasnaps.objects.latest('date')
+        cameraObjectsSnap = camerasnaps.objects.latest('date')
+        cameraObjectsSnap_first = camerasnaps.objects.first()                
 
         cameraObjectsJSON = {
-        'cameraURLJSON': str(cameraObjects0.cameraURL),
+        'cameraURLJSON': str(cameraObjectsSnap.cameraURL),
+        'day1Formatted': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),
+        'day1': cameraObjectsSnap_first.date,
+        'day2': cameraObjectsSnap.date,
         'cameraDateJSON': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),
         'plant1JASON': plant_area_list[0],
         'plant2JASON': plant_area_list[1],
@@ -245,7 +249,7 @@ def mainPage(response):
         'plant9JASON': plant_area_list[8],
         'plant10JASON': plant_area_list[9]
         }
-
+        
         return JsonResponse(cameraObjectsJSON)
 
     if response.POST.get('action') == 'fullReset':
@@ -261,8 +265,8 @@ def mainPage(response):
         insertDeviceStatus.save()
         
         camerasnaps.objects.all().delete()
-        insertCamera.camera = 'EXAMPLE.jpg'
-        insertCamera.cameraURL = '../assets/gardenPics/test.jpg'
+        insertCamera.camera = 'defaultBG.jpg'
+        insertCamera.cameraURL = '../assets/background/defaultBG.jpg'
         insertCamera.plant1 = 0
         insertCamera.plant2 = 0
         insertCamera.plant3 = 0
@@ -281,7 +285,17 @@ def mainPage(response):
         insertSensors.moisture = 0
         insertSensors.summary = 'start'
         insertSensors.save()
+        
+        cameraObjectsDays = camerasnaps.objects.latest('date')
+        cameraObjectsDays_first = camerasnaps.objects.first()
 
+        daysJSON = {
+        'day1Formatted': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),
+        'day1': cameraObjectsDays_first.date,
+        'day2': cameraObjectsDays.date,
+        }
+
+        return JsonResponse(daysJSON)
 
     if response.POST.get('action') == 'onFan':
 
@@ -422,5 +436,6 @@ def databasePage(response):
                  'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}
 
     return render(response, 'database.html', context=myObjects)
+
 
 
