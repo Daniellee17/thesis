@@ -40,6 +40,7 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.4);
+  
 }
 
 /* Handle on hover */
@@ -51,7 +52,7 @@ body {
   margin: 0;
   padding: 0;
   background: #4a919e;
-  background: url("background/websiteBG2.jpg");
+  background: url("background/websiteBG4.jpg");
   background-repeat: no repeat;
   background-size: cover;
 }
