@@ -69,8 +69,97 @@
   </div>
 
 
-  <div class="growthContainer" style="left: 15.5%; top: 10.1%;">
-    <table class="deviceStatusTableFixedHeader">
+
+  <div class="growthContainer" style="left: 15.5%; top: 8.2%; width: 62.54%; border-radius: 0.5%;">
+    <table class="cameraTable">
+      <caption>Camera Snaps</caption>
+      <thead>
+        <tr>
+          <th>Date&Time</th>
+          <th>Image File Name</th>
+          <th>Plant 1</th>
+          <th>Plant 2</th>
+          <th>Plant 3</th>
+          <th>Plant 4</th>
+          <th>Plant 5</th>
+          <th>Plant 6</th>
+          <th>Plant 7</th>
+          <th>Plant 8</th>
+          <th>Plant 9</th>
+          <th>Plant 10</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for values in cameraObjects %}
+        <tr>
+          <td>{{values.date}}</td>
+          <td>{{values.camera}}</td>
+          <td>{{values.plant1}}</td>
+          <td>{{values.plant2}}</td>
+          <td>{{values.plant3}}</td>
+          <td>{{values.plant4}}</td>
+          <td>{{values.plant5}}</td>
+          <td>{{values.plant6}}</td>
+          <td>{{values.plant7}}</td>
+          <td>{{values.plant8}}</td>
+          <td>{{values.plant9}}</td>
+          <td>{{values.plant10}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="growthContainer" style="left: 80%; top: 8.2%; width: 17.82%; border-radius: 0.5%;">
+    <table class="countersTable">
+      <caption>Counters</caption>
+      <thead>
+        <tr>
+          <th>Date&Time</th>
+          <th>daysCounter</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for values in countersObjects %}
+        <tr>
+          <td>{{values.date}}</td>
+          <td>{{values.daysCounter}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="growthContainer" style="top: 55.2%;  width: 49.5%; left: 15.5%; border-radius: 0.5%;">
+    <table class="sensorsTable">
+      <caption>Sensors</caption>
+      <thead>
+        <tr>
+          <th>Date&Time</th>
+          <th>Temperature</th>
+          <th>Humidity</th>
+          <th>Soil Moisture</th>
+          <th>Summary</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for values in sensorsObjects %}
+        <tr>
+          <td>{{values.date}}</td>
+          <td>{{values.temperature}}</td>
+          <td>{{values.humidity}}</td>
+          <td>{{values.moisture}}</td>
+          <td>{{values.summary}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="growthContainer" style="left: 67%; top: 55.2%; width: 30.82%; border-radius: 0.5%;">
+    <table class="devicesTable">
       <caption>Devices</caption>
       <thead>
         <tr>
@@ -95,28 +184,8 @@
     </table>
   </div>
 
-  <div class="growthContainer" style="top: 10.1%;">
-    <table class="sensorStatusTableFixedHeader">
-      <caption>Sensors</caption>
-      <thead>
-        <tr>
-          <th>Date&Time</th>
-          <th>Temperature</th>
-          <th>Humidity</th>
-          <th>Soil Moisture</th>
-          <th>Summary</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for values2 in sensorsObjects %}
-        <tr>
-          <td>{{values2.date}}</td>
-          <td>{{values2.temperature}}</td>
-          <td>{{values2.humidity}}</td>
-          <td>{{values2.moisture}}</td>
-          <td>{{values2.summary}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-  </div>
+
+
+
+
   {% endblock %}

@@ -80,7 +80,7 @@
             document.getElementById("mainForm").reset();
             $('#cameraID').attr('src', '../assets/background/defaultBG.jpg');
             $('#firstDayID').text('Started: ' + daysJSON.day1Formatted);
-            $('#lastDayID').text('Current: ' + daysJSON.day1Formatted);
+            $('#lastDayID').text('As of: ' + daysJSON.day1Formatted);
             $('#cameraDateID').text('As of: ' + daysJSON.day1Formatted);
             $('#summaryDateID').text('As of: ' + daysJSON.day1Formatted);
             $('#growthDateID').text('As of: ' + daysJSON.day1Formatted);
@@ -154,7 +154,7 @@
           $('#labelPlant9Growth').text(cameraJson.plant9JASON);
           $('#labelPlant10Growth').text(cameraJson.plant10JASON);
           $('#daysID').text(cameraJson.daysCounterJSON);
-          $('#lastDayID').text('Current: ' + cameraJson.cameraDateJSON);
+          $('#lastDayID').text('As of: ' + cameraJson.cameraDateJSON);
 
         },
 
@@ -200,7 +200,7 @@
         $('#labelPlant9Growth').text(cameraJson.plant9JASON);
         $('#labelPlant10Growth').text(cameraJson.plant10JASON);
         $('#daysID').text(cameraJson.daysCounterJSON);
-        $('#lastDayID').text('Current: ' + cameraJson.cameraDateJSON);
+        $('#lastDayID').text('As of: ' + cameraJson.cameraDateJSON);
 
       },
 

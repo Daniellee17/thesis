@@ -455,8 +455,9 @@ def databasePage(response):
     deviceStatusObjects = devicestatus.objects.all()
     sensorsObjects = sensors.objects.all()
     cameraObjects = camerasnaps.objects.all()
+    countersObjects = counters.objects.all()
 
     myObjects = {'deviceStatusObjects': deviceStatusObjects,
-                 'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}
+                 'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects, 'countersObjects': countersObjects}
 
     return render(response, 'database.html', context=myObjects)
