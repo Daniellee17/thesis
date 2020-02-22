@@ -2,16 +2,13 @@
 
 {% block content %}
 
+
 <div class="title">
   <img src="../assets/icons/leafIcon.png" class="titleLogo" />
-  <a href="{% url 'mainPage' %}">A.G.E DASHBOARD</a>
-
-
 </div>
 
 
-
-<form method='POST' id="buttonForm">
+<form method='POST' id="mainForm">
   {% csrf_token %}
 
   <div id="mySidenav" class="hiddenSideNav">
@@ -50,20 +47,21 @@
 
     <div class="sidenavButtonContainer">
 
-      <a onclick="openNav()"> <img src="../assets/icons/remoteController_black.png" class="sidenavIcon" /> Controller</a>
-      <a href="{% url 'databasePage' %}"> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> Database</a>
-      <a class='fullReset' type='submit'> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> Full Reset</a>
+      <a href="{% url 'mainPage' %}"><img src="../assets/icons/remoteController_black.png" class="sidenavIcon" />DASHBOARD</a>
+      <a href="{% url 'databasePage' %}"> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> DATABASE</a>
+      <a onclick="openNav()"> <img src="../assets/icons/remoteController_black.png" class="sidenavIcon" />CONTROLLER</a>
+      <a class='fullReset' onclick="confirmFullReset()" type='submit'> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" />RESET</a>
 
       <!--         <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" />
                 <a href="#clients">Clients</a> -->
 
     </div>
 
-    <div class="sidenavTitleContainer" style="top: 24%">
+    <div class="sidenavTitleContainer" style="top: 27%">
       FAQs
     </div>
-    <div class="sidenavButtonContainer" style="top: 27.4%">
-      <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon_white.jpg" class="sidenavIcon" /> Controller</a>
+    <div class="sidenavButtonContainer" style="top: 30.4%">
+      <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon_white.jpg" class="sidenavIcon" /> CROP INFO</a>
       <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> Full Reset</a>
     </div>
   </div>

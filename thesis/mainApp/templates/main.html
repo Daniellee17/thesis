@@ -2,16 +2,9 @@
 
 {% block content %}
 
-
-
 <div class="title">
   <img src="../assets/icons/leafIcon.png" class="titleLogo" />
-  <a href="{% url 'mainPage' %}">A.G.E DASHBOARD</a>
-
-
 </div>
-
-
 
 <div class="headlineContainer">
   AGE THESIS
@@ -23,7 +16,6 @@
   </div>
 -->
 </div>
-
 
 <form method='POST' id="mainForm">
   {% csrf_token %}
@@ -64,21 +56,22 @@
 
     <div class="sidenavButtonContainer">
 
-      <a onclick="openNav()"> <img src="../assets/icons/remoteController_black.png" class="sidenavIcon" /> Controller</a>
-      <a href="{% url 'databasePage' %}"> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> Database</a>
+      <a href="{% url 'mainPage' %}"><img src="../assets/icons/remoteController_black.png" class="sidenavIcon" />DASHBOARD</a>
+      <a href="{% url 'databasePage' %}"> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> DATABASE</a>
+      <a onclick="openNav()"> <img src="../assets/icons/remoteController_black.png" class="sidenavIcon" />CONTROLLER</a>
+      <a class='fullReset' onclick="confirmFullReset()" type='submit'> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" />RESET</a>
 
-      <a class='fullReset' onclick="confirmFullReset()" type='submit'> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> Full Reset</a>
 
       <!--         <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" />
                 <a href="#clients">Clients</a> -->
 
     </div>
 
-    <div class="sidenavTitleContainer" style="top: 24%">
+    <div class="sidenavTitleContainer" style="top: 27%">
       FAQs
     </div>
-    <div class="sidenavButtonContainer" style="top: 27.4%">
-      <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon_white.jpg" class="sidenavIcon" /> Controller</a>
+    <div class="sidenavButtonContainer" style="top: 30.4%">
+      <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon_white.jpg" class="sidenavIcon" /> CROP INFO</a>
       <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> Full Reset</a>
     </div>
   </div>
@@ -148,7 +141,7 @@
 
 
 
-  <div class="daysContainer" style="left:54%">
+  <div class="daysContainer" style="left:54.3%">
 
     <div class="circle big" style="color: BLACK;">
       <a id="daysID" style="margin-top: 20%; font-size: 100px; font-family: Simplifica; margin-bottom: -11%;">{{countersObject.daysCounter}}</a>
