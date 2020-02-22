@@ -557,6 +557,143 @@ nav {
   font-size: 15px;
 }
 
+.cameraTable {
+  table-layout: fixed;
+  border-collapse: collapse;
+  color: white;
+  position: absolute;
+  font-family: Simplifica;
+  text-transform: none;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.cameraTable tbody {
+  display: inline-block;
+  height: 330px;
+  width: 1150px;
+  overflow: auto;
+}
+
+.cameraTable th, .cameraTable td {
+  padding: 7px;
+  padding-left: 11px;
+  text-align: center;
+}
+
+.cameraTable td:nth-child(1), .cameraTable th:nth-child(1) {
+  min-width: 120px;
+  text-align: center;
+}
+
+.cameraTable td:nth-child(2), .cameraTable th:nth-child(2) {
+  min-width: 150px;
+  text-align: center;
+}
+
+.cameraTable td:nth-child(3), .cameraTable th:nth-child(3) {
+  min-width: 65px;
+  text-align: center;
+}
+
+.cameraTable td:nth-child(4), .cameraTable th:nth-child(4) {
+  min-width: 65px;
+  text-align: center;
+}
+
+.cameraTable td:nth-child(5), .cameraTable th:nth-child(5) {
+  min-width: 65px;
+  text-align: center;
+}
+
+.cameraTable td:nth-child(6), .cameraTable th:nth-child(6) {
+  min-width: 65px;
+  text-align: center;
+}
+
+.cameraTable td:nth-child(7), .cameraTable th:nth-child(7) {
+  min-width: 65px;
+  text-align: center;
+}
+
+.cameraTable td:nth-child(8), .cameraTable th:nth-child(8) {
+  min-width: 65px;
+  text-align: center;
+}
+
+.cameraTable td:nth-child(9), .cameraTable th:nth-child(9) {
+  min-width: 65px;
+  text-align: center;
+}
+
+.cameraTable td:nth-child(10), .cameraTable th:nth-child(10) {
+  min-width: 65px;
+  text-align: center;
+}
+
+.cameraTable td:nth-child(11), .cameraTable th:nth-child(11) {
+  min-width: 65px;
+  text-align: center;
+}
+
+.cameraTable td:nth-child(12), .cameraTable th:nth-child(12) {
+  min-width: 65px;
+  text-align: center;
+}
+
+.cameraTable thead {
+  background: rgba(0, 0, 0, 0);
+  text-align: center;
+}
+
+.cameraTable tr {
+  display: block;
+  position: relative;
+}
+
+.countersTable {
+  table-layout: fixed;
+  border-collapse: collapse;
+  color: white;
+  position: absolute;
+  font-family: Simplifica;
+  text-transform: none;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.countersTable tbody {
+  display: inline-block;
+  height: 330px;
+  width: 327px;
+  overflow: auto;
+}
+
+.countersTable th, .countersTable td {
+  padding: 7px;
+  text-align: center;
+}
+
+.countersTable td:nth-child(1), .countersTable th:nth-child(1) {
+  min-width: 130px;
+  text-align: center;
+}
+
+.countersTable td:nth-child(2), .countersTable th:nth-child(2) {
+  min-width: 130px;
+  text-align: center;
+}
+
+.countersTable thead {
+  background: rgba(0, 0, 0, 0);
+  text-align: center;
+}
+
+.countersTable tr {
+  display: block;
+  position: relative;
+}
+
 .devicesTable {
   table-layout: fixed;
   border-collapse: collapse;
@@ -577,6 +714,7 @@ nav {
 
 .devicesTable th, .devicesTable td {
   padding: 7px;
+  padding-left: 11px;
   text-align: center;
 }
 
@@ -672,144 +810,3 @@ nav {
   display: block;
   position: relative;
 }
-
-.cameraTable {
-  table-layout: fixed;
-  border-collapse: collapse;
-  color: white;
-  position: absolute;
-  font-family: Simplifica;
-  text-transform: none;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-.cameraTable tbody {
-  display: inline-block;
-  height: 330px;
-  width: 1150px;
-  overflow: auto;
-}
-
-.cameraTable th, .cameraTable td {
-  padding: 7px;
-  padding-left: 11px;
-  text-align: center;
-}
-
-.cameraTable td:nth-child(1), .cameraTable th:nth-child(1) {
-  min-width: 120px;
-  text-align: center;
-}
-
-.cameraTable td:nth-child(2), .cameraTable th:nth-child(2) {
-  min-width: 150px;
-  text-align: center;
-}
-
-.cameraTable td:nth-child(3), .cameraTable th:nth-child(3) {
-  min-width: 65px;
-  text-align: center;
-}
-
-.cameraTable td:nth-child(4), .cameraTable th:nth-child(4) {
-  min-width: 65px;
-  text-align: center;
-}
-
-.cameraTable td:nth-child(5), .cameraTable th:nth-child(5) {
-  min-width: 65px;
-  text-align: center;
-}
-
-
-.cameraTable td:nth-child(6), .cameraTable th:nth-child(6) {
-  min-width: 65px;
-  text-align: center;
-}
-
-
-.cameraTable td:nth-child(7), .cameraTable th:nth-child(7) {
-  min-width: 65px;
-  text-align: center;
-}
-
-.cameraTable td:nth-child(8), .cameraTable th:nth-child(8) {
-  min-width: 65px;
-  text-align: center;
-}
-
-
-.cameraTable td:nth-child(9), .cameraTable th:nth-child(9) {
-  min-width: 65px;
-  text-align: center;
-}
-
-.cameraTable td:nth-child(10), .cameraTable th:nth-child(10) {
-  min-width: 65px;
-  text-align: center;
-}
-
-.cameraTable td:nth-child(11), .cameraTable th:nth-child(11) {
-  min-width: 65px;
-  text-align: center;
-}
-
-.cameraTable td:nth-child(12), .cameraTable th:nth-child(12) {
-  min-width: 65px;
-  text-align: center;
-}
-
-.cameraTable thead {
-  background: rgba(0, 0, 0, 0);
-  text-align: center;
-}
-
-.cameraTable tr {
-  display: block;
-  position: relative;
-}
-
-.countersTable {
-  table-layout: fixed;
-  border-collapse: collapse;
-  color: white;
-  position: absolute;
-  font-family: Simplifica;
-  text-transform: none;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-.countersTable tbody {
-  display: inline-block;
-  height: 330px;
-  width: 327px;
-  overflow: auto;
-}
-
-.countersTable th, .countersTable td {
-  padding: 7px;
-  text-align: center;
-}
-
-.countersTable td:nth-child(1), .countersTable th:nth-child(1) {
-  min-width: 130px;
-  text-align: center;
-}
-
-.countersTable td:nth-child(2), .countersTable th:nth-child(2) {
-  min-width: 130px;
-  text-align: center;
-}
-
-.countersTable thead {
-  background: rgba(0, 0, 0, 0);
-  text-align: center;
-}
-
-.countersTable tr {
-  display: block;
-  position: relative;
-}
-
