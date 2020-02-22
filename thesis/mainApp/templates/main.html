@@ -66,7 +66,8 @@
 
       <a onclick="openNav()"> <img src="../assets/icons/remoteController_black.png" class="sidenavIcon" /> Controller</a>
       <a href="{% url 'databasePage' %}"> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> Database</a>
-      <a class='fullReset' type='submit'> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> Full Reset</a>
+
+      <a class='fullReset' onclick="confirmFullReset()" type='submit'> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> Full Reset</a>
 
       <!--         <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" />
                 <a href="#clients">Clients</a> -->
@@ -198,7 +199,7 @@
       <a id="daysID" style="font-size: 100px">{{countersObject.daysCounter}}</a>
       <a style="font-size: 20px">Days</a>
     </div>
-    
+
     <div class="dateContainer" style="top:89%; width:50%; left:48%;">
 
 

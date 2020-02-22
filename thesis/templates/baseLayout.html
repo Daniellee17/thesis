@@ -14,20 +14,19 @@
   {% endblock %}
 </body>
 
-<script src="/assets/js/jquery-2.2.4.min.js"></script>
-<script src="/assets/js/bootstrap.min.js"></script>
+<!-- Jquery for ajax calls -->
+<script src="/assets/js/jquery-3.4.1.min.js"></script>
+
+<!-- Alertify for confirmation prompts -->
+<script src="/assets/alertify.js-0.3.11/lib/alertify.min.js"></script>
+<link rel="stylesheet" href="/assets/alertify.js-0.3.11/themes//alertify.core.css" />
+<link rel="stylesheet" href="/assets/alertify.js-0.3.11/themes/alertify.default.css" id="toggleCSS" />
 
 <script>
   function openNav() {
     document.getElementById("mySidenav").style.width = "16%";
   }
 
-  function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-  }
-</script>
-
-<script>
   function getSensorValues() {
     $.ajax({
       type: 'POST',
@@ -46,6 +45,76 @@
         $('#labelSummary').text('Summary: ' + sensorsJson.currentSummaryJSON);
       },
 
+    });
+  }
+
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+
+  function confirmFullReset() {
+    var txt;
+
+    alertify.set({
+      labels: {
+        ok: " ",
+        cancel: " "
+      }
+    });
+
+    alertify.set({
+      delay: 2500
+    });
+    alertify.confirm("Are you sure, you want to delete this file?", function(e) {
+      if (e) {
+        $.ajax({
+          type: 'POST',
+          url: '{% url "mainPage" %}',
+          data: {
+
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            action: 'fullReset',
+
+          },
+          success: function(daysJSON) {
+            document.getElementById("mainForm").reset();
+            $('#cameraID').attr('src', '../assets/background/defaultBG.jpg');
+            $('#firstDayID').text('Started: ' + daysJSON.day1Formatted);
+            $('#lastDayID').text('Current: ' + daysJSON.day1Formatted);
+            $('#cameraDateID').text('As of: ' + daysJSON.day1Formatted);
+            $('#summaryDateID').text('As of: ' + daysJSON.day1Formatted);
+            $('#growthDateID').text('As of: ' + daysJSON.day1Formatted);
+
+            $('#labelPlant1Growth').text(0);
+            $('#labelPlant2Growth').text(0);
+            $('#labelPlant3Growth').text(0);
+            $('#labelPlant4Growth').text(0);
+            $('#labelPlant5Growth').text(0);
+            $('#labelPlant6Growth').text(0);
+            $('#labelPlant7Growth').text(0);
+            $('#labelPlant8Growth').text(0);
+            $('#labelPlant9Growth').text(0);
+            $('#labelPlant10Growth').text(0);
+
+            $('#labelFans').text('Fans: start');
+            $('#labelLights').text('Lights: start');
+            $('#labelWater').text('Sprinkler: start');
+            $('#labelSeed').text('Seeder: start');
+
+            $('#labelTemperature').text('Temperature: ' + daysJSON.temperatureJSON);
+            $('#labelHumidity').text('Humidity: ' + daysJSON.humidityJSON);
+            $('#labelMoisture').text('S. Moisture: ' + daysJSON.moistureJSON);
+            $('#labelSummary').text('Summary: ' + daysJSON.summaryJSON);
+
+          },
+
+        });
+        alertify.custom = alertify.extend("custom");
+        alertify.custom("Database Cleared!");
+      } else {
+        alertify.custom = alertify.extend("custom");
+        alertify.custom("Action Cancelled!");
+      }
     });
   }
 
@@ -139,52 +208,7 @@
   });
 
 
-  $(".fullReset").click(function(e) {
 
-    e.preventDefault();
-    $.ajax({
-      type: 'POST',
-      url: '{% url "mainPage" %}',
-      data: {
-
-        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-        action: 'fullReset',
-
-      },
-      success: function(daysJSON) {
-        document.getElementById("mainForm").reset();
-        $('#cameraID').attr('src', '../assets/background/defaultBG.jpg');        
-        $('#firstDayID').text('Started: ' + daysJSON.day1Formatted);
-        $('#lastDayID').text('Current: ' + daysJSON.day1Formatted);
-        $('#cameraDateID').text('As of: ' + daysJSON.day1Formatted);
-        $('#summaryDateID').text('As of: ' + daysJSON.day1Formatted);
-        $('#growthDateID').text('As of: ' + daysJSON.day1Formatted);
-        
-        $('#labelPlant1Growth').text(0);
-        $('#labelPlant2Growth').text(0);
-        $('#labelPlant3Growth').text(0);
-        $('#labelPlant4Growth').text(0);
-        $('#labelPlant5Growth').text(0);
-        $('#labelPlant6Growth').text(0);
-        $('#labelPlant7Growth').text(0);
-        $('#labelPlant8Growth').text(0);
-        $('#labelPlant9Growth').text(0);
-        $('#labelPlant10Growth').text(0);    
-        
-        $('#labelFans').text('Fans: start');  
-        $('#labelLights').text('Lights: start');
-        $('#labelWater').text('Sprinkler: start');
-        $('#labelSeed').text('Seeder: start');
-        
-        $('#labelTemperature').text('Temperature: ' + daysJSON.temperatureJSON);
-        $('#labelHumidity').text('Humidity: ' + daysJSON.humidityJSON);
-        $('#labelMoisture').text('S. Moisture: ' + daysJSON.moistureJSON);
-        $('#labelSummary').text('Summary: ' + daysJSON.summaryJSON);
-        
-      },
-
-    });
-  });
 
   $(".onFan").click(function(e) {
 
