@@ -113,7 +113,25 @@ def mainPage(response):
 
         insertSensors.save()
 
+        cameraObjectsSensors = camerasnaps.objects.latest('date')
+        countersObjectSensors_first = counters.objects.first()
+
+        date1 = countersObjectSensors_first.date
+        date2 = cameraObjectsSensors.date
+        print(date1)
+        print(date2)
+
+        def numOfDays(date1, date2):
+            return (date2-date1).days
+
+        print(numOfDays(date1, date2), "days")
+
+        insertCounters.daysCounter = numOfDays(date1, date2)
+        insertCounters.save()
+
         deviceStatusObjectsJSON = {
+        'daysCounterJSON' : str(numOfDays(date1, date2)),
+        'dateJSON': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),
         'currentTemperatureJSON': round(averageTemperature, 2),
         'currentHumidityJSON': round(averageHumidity, 2),
         'currentMoistureJSON': currentMoisture,
