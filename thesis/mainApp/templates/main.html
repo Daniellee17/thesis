@@ -2,62 +2,8 @@
 
 {% block content %}
 
-<div class="title">
-  <img src="../assets/icons/leafIcon.png" class="titleLogo" />
-</div>
-
 <form method='POST' id="mainForm">
   {% csrf_token %}
-
-  <div id="mySidenav" class="hiddenSideNav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-
-    <div class="devicesContainer">
-      <img style="width: 30px; height: 30px;" src="../assets/icons/airIcon_white.png" class="dateContainerLogo" />
-      <input style="background-color: limegreen;" type='submit' name="onFans_btn" value=" " class="onFan"></button>
-      <input style="background-color: red;" type='submit' name="offFans_btn" value=" " class="offFan"></button>
-
-      <img style="width: 30px; height: 30px;" src="../assets/icons/sunIcon_white.png" class="dateContainerLogo" />
-      <input style="background-color: limegreen;" type='submit' name="onLights_btn" value=" " class="onLights"></button>
-      <input style="background-color: red;" type='submit' name="offLights_btn" value=" " class="offLights"></button>
-
-      <img style="width: 30px; height: 30px;" src="../assets/icons/irrigationIcon_white.png" class="dateContainerLogo" />
-      <input style="background-color: limegreen;" type='submit' name="onWater_btn" value=" " class="onWater"></button>
-      <input style="background-color: red;" type='submit' name="offWater_btn" value=" " class="offWater"></button>
-
-      <img style="width: 30px; height: 30px;" src="../assets/icons/seedIcon_white.png" class="dateContainerLogo" />
-      <input style="background-color: limegreen;" type='submit' name="onSeed_btn" value=" " class="onSeed"></button>
-      <input style="background-color: red;" type='submit' name="offSeed_btn" value=" " class="offSeed"></button>
-
-      <img style="width: 30px; height: 30px;" src="../assets/icons/cameraIcon.png" class="dateContainerLogo" />
-      <input style="background-color: white;" type='submit' name="camera_btn" value=" " class="processImage"></button>
-    </div>
-
-  </div>
-
-  <div class="sidenav">
-    <div class="sidenavTitleContainer">
-      ADMIN TOOLS
-    </div>
-
-    <div class="sidenavButtonContainer">
-
-      <a href="{% url 'mainPage' %}"><img src="../assets/icons/remoteController_black.png" class="sidenavIcon" />DASHBOARD</a>
-      <a href="{% url 'databasePage' %}"> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> DATABASE</a>
-      <a onclick="openNav()"> <img src="../assets/icons/remoteController_black.png" class="sidenavIcon" />CONTROLLER</a>
-      <a class='fullReset' onclick="confirmFullReset()" type='submit'> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" />RESET</a>
-
-    </div>
-
-    <div class="sidenavTitleContainer" style="top: 27%">
-      FAQs
-    </div>
-    <div class="sidenavButtonContainer" style="top: 30.4%">
-      <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon_white.jpg" class="sidenavIcon" /> CROP INFO</a>
-      <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> Full Reset</a>
-    </div>
-  </div>
-
 
   <div class="headlineContainer">
     AGE THESIS
@@ -69,7 +15,6 @@
     </div>
   -->
   </div>
-
 
   <div class="singleContainer">
     <div class="singleContainer_iconContainer">
@@ -128,13 +73,6 @@
     <a id="labelMoisture">Condition: {{sensorsObjects.moisture}}</a>
   </div>
 
-
-
-
-  {% csrf_token %}
-
-
-
   <div class="daysContainer" style="left:54.3%">
 
     <div class="circle big" style="color: BLACK;">
@@ -143,38 +81,20 @@
     </div>
 
     <div class="dateContainer" style="top:89%; width:50%; left:48%;">
-
-
-      <p id="firstDayID">Started: {{countersObject_first.date}}
-      </p>
-
-
-      <p id="lastDayID">As of: {{cameraObjects.date}}
-      </p>
-
-
+      <p id="firstDayID">Started: {{countersObject_first.date}}</p>
+      <p id="lastDayID">As of: {{cameraObjects.date}}</p>
     </div>
-
   </div>
-
 
   <div class="summaryContainer">
-    Summary
-    <ul>
-      <li><a id="labelSummary">{{sensorsObjects.summary}}<a></li>
-    </ul>
-
+    <li> Summary </li>
+    <a id="labelSummary">{{sensorsObjects.summary}} </a>
     <div class="dateContainer">
-
       <img src="../assets/icons/updateIcon_white.png" class="dateContainerLogo" />
-      <p id="summaryDateID">{{cameraObjects.date}}
-      </p>
-
-
+      <p id="summaryDateID">{{cameraObjects.date}}</p>
     </div>
   </div>
 
-  {% csrf_token %}
   <div class="cameraImgContainer">
     <img id="cameraID" class="cameraImg" src={{cameraObjects.cameraURL}}>
     <!--   <img id="cameraID" class="cameraImg" src={{cameraObjects.cameraURL}}> -->
@@ -183,10 +103,8 @@
 
       <img src="../assets/icons/updateIcon_white.png" class="dateContainerLogo" />
       <p id="cameraDateID">{{cameraObjects.date}}</p>
-
     </div>
   </div>
-
 
   <div class="growthContainer">
     <li> <a>growth monitor</a> </li>
@@ -253,14 +171,10 @@
     <div class="dateContainer" style="top:94%;">
 
       <img src="../assets/icons/updateIcon_white.png" class="dateContainerLogo" />
-      <p id="growthDateID">{{cameraObjects.date}}
-      </p>
-
-
+      <p id="growthDateID">{{cameraObjects.date}}</p>
     </div>
   </div>
 
 </form>
-
 
 {% endblock %}

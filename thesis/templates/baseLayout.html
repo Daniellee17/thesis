@@ -4,58 +4,83 @@
 <html>
 
 <head>
-  <title>Thesis</title>
+
+  <title>A.G.E Thesis</title>
+
   <meta name=”viewport” content=”width=device-width, initial-scale=1″>
   <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+  <!-- Jquery for ajax calls -->
+  <script src="/assets/js/jquery-3.4.1.min.js"></script>
+
+  <!-- Alertify for confirmation prompts -->
+  <script src="/assets/alertify.js-0.3.11/lib/alertify.min.js"></script>
+  <link rel="stylesheet" href="/assets/alertify.js-0.3.11/themes//alertify.core.css" />
+  <link rel="stylesheet" href="/assets/alertify.js-0.3.11/themes/alertify.default.css" id="toggleCSS" />
+
 </head>
 
 <body>
+
+  <div class="title">
+    <img src="../assets/icons/leafIcon.png" class="titleLogo" />
+  </div>
+
+  <div id="mySidenav" class="hiddenSideNav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+    <div class="devicesContainer">
+      <img style="width: 30px; height: 30px;" src="../assets/icons/airIcon_white.png" class="dateContainerLogo" />
+      <input style="background-color: limegreen;" type='submit' name="onFans_btn" value=" " class="onFan"></button>
+      <input style="background-color: red;" type='submit' name="offFans_btn" value=" " class="offFan"></button>
+
+      <img style="width: 30px; height: 30px;" src="../assets/icons/sunIcon_white.png" class="dateContainerLogo" />
+      <input style="background-color: limegreen;" type='submit' name="onLights_btn" value=" " class="onLights"></button>
+      <input style="background-color: red;" type='submit' name="offLights_btn" value=" " class="offLights"></button>
+
+      <img style="width: 30px; height: 30px;" src="../assets/icons/irrigationIcon_white.png" class="dateContainerLogo" />
+      <input style="background-color: limegreen;" type='submit' name="onWater_btn" value=" " class="onWater"></button>
+      <input style="background-color: red;" type='submit' name="offWater_btn" value=" " class="offWater"></button>
+
+      <img style="width: 30px; height: 30px;" src="../assets/icons/seedIcon_white.png" class="dateContainerLogo" />
+      <input style="background-color: limegreen;" type='submit' name="onSeed_btn" value=" " class="onSeed"></button>
+      <input style="background-color: red;" type='submit' name="offSeed_btn" value=" " class="offSeed"></button>
+
+      <img style="width: 30px; height: 30px;" src="../assets/icons/cameraIcon.png" class="dateContainerLogo" />
+      <input style="background-color: white;" type='submit' name="camera_btn" value=" " class="processImage"></button>
+    </div>
+
+  </div>
+
+  <div class="sidenav">
+    <div class="sidenavTitleContainer">
+      ADMIN TOOLS
+    </div>
+
+    <div class="sidenavButtonContainer">
+
+      <a href="{% url 'mainPage' %}"><img src="../assets/icons/remoteController_black.png" class="sidenavIcon" />DASHBOARD</a>
+      <a href="{% url 'databasePage' %}"> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> DATABASE</a>
+      <a onclick="openNav()"> <img src="../assets/icons/remoteController_black.png" class="sidenavIcon" />CONTROLLER</a>
+      <a class='fullReset' onclick="confirmFullReset()" type='submit'> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" />RESET</a>
+
+    </div>
+
+    <div class="sidenavTitleContainer" style="top: 27%">
+      FAQs
+    </div>
+    <div class="sidenavButtonContainer" style="top: 30.4%">
+      <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon_white.jpg" class="sidenavIcon" /> CROP INFO</a>
+      <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> Full Reset</a>
+    </div>
+  </div>
+
   {% block content %}
   {% endblock %}
+
 </body>
 
-<!-- Jquery for ajax calls -->
-<script src="/assets/js/jquery-3.4.1.min.js"></script>
-
-<!-- Alertify for confirmation prompts -->
-<script src="/assets/alertify.js-0.3.11/lib/alertify.min.js"></script>
-<link rel="stylesheet" href="/assets/alertify.js-0.3.11/themes//alertify.core.css" />
-<link rel="stylesheet" href="/assets/alertify.js-0.3.11/themes/alertify.default.css" id="toggleCSS" />
-
 <script>
-
-  function openNav() {
-    document.getElementById("mySidenav").style.width = "16%";
-  }
-
-  function getSensorValues() {
-
-    var date1 = new Date();
-
-    if (date1.getMinutes() === 00) {
-
-      $.ajax({
-        type: 'POST',
-        url: '{% url "mainPage" %}',
-        data: {
-
-          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-          action: 'getSensorValues',
-
-        },
-        success: function(sensorsJson) {
-          $('#daysID').text(sensorsJson.daysCounterJSON);
-          $('#lastDayID').text('As of: ' + sensorsJson.dateJSON);
-          $('#labelTemperature').text('Temperature: ' + sensorsJson.currentTemperatureJSON);
-          $('#labelHumidity').text('Humidity: ' + sensorsJson.currentHumidityJSON);
-          $('#labelMoisture').text('Soil Moisture: ' + sensorsJson.currentMoistureJSON);
-          $('#labelSummary').text(sensorsJson.currentSummaryJSON);
-        },
-
-      });
-    }
-  }
-
   function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
   }
@@ -73,6 +98,7 @@
     alertify.set({
       delay: 2500
     });
+
     alertify.confirm("Are you sure you want to reset your database?", function(e) {
       if (e) {
         $.ajax({
@@ -114,10 +140,9 @@
             $('#labelHumidity').text('Humidity: ' + daysJSON.humidityJSON);
             $('#labelMoisture').text('Soil Moisture: ' + daysJSON.moistureJSON);
             $('#labelSummary').text('Summary: ' + daysJSON.summaryJSON);
-
           },
-
         });
+
         alertify.custom = alertify.extend("custom");
         alertify.custom("Database Cleared!");
       } else {
@@ -127,27 +152,46 @@
     });
   }
 
-  function snapImage() {
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "16%";
+  }
 
+  function getSensorValues() {
     var date1 = new Date();
-
-    if (date1.getHours() === 11 && date1.getMinutes() === 30) {
-
-      //Change getHours and getMinutes depending on platform used
-      //Rpi 24 hr format
-      //Ubuntu 12 hr format
-      //Windows 12 hr format
-
-      //alert(date1);
-
+    if (date1.getMinutes() === 00) {
       $.ajax({
         type: 'POST',
         url: '{% url "mainPage" %}',
         data: {
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          action: 'getSensorValues',
+        },
+        success: function(sensorsJson) {
+          $('#daysID').text(sensorsJson.daysCounterJSON);
+          $('#lastDayID').text('As of: ' + sensorsJson.dateJSON);
+          $('#labelTemperature').text('Temperature: ' + sensorsJson.currentTemperatureJSON);
+          $('#labelHumidity').text('Humidity: ' + sensorsJson.currentHumidityJSON);
+          $('#labelMoisture').text('Soil Moisture: ' + sensorsJson.currentMoistureJSON);
+          $('#labelSummary').text(sensorsJson.currentSummaryJSON);
+        },
+      });
+    }
+  }
 
+  function snapImage() {
+    var date1 = new Date();
+    if (date1.getHours() === 11 && date1.getMinutes() === 30) {
+      //Change getHours and getMinutes depending on platform used
+      //Rpi 24 hr format
+      //Ubuntu 12 hr format
+      //Windows 12 hr format
+      //alert(date1);
+      $.ajax({
+        type: 'POST',
+        url: '{% url "mainPage" %}',
+        data: {
           csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
           action: 'snapImage',
-
         },
         success: function(cameraJson) {
           $('#cameraID').attr('src', cameraJson.cameraURLJSON);
@@ -164,9 +208,7 @@
           $('#labelPlant10Growth').text(cameraJson.plant10JASON);
           $('#daysID').text(cameraJson.daysCounterJSON);
           $('#lastDayID').text('As of: ' + cameraJson.cameraDateJSON);
-
         },
-
       });
     }
   }
@@ -179,18 +221,14 @@
     setInterval(snapImage, 25000);
   });
 
-
   $(".processImage").click(function(e) {
-
     e.preventDefault();
     $.ajax({
       type: 'POST',
       url: '{% url "mainPage" %}',
       data: {
-
         csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
         action: 'snapImage',
-
       },
       success: function(cameraJson) {
         $('#cameraID').attr('src', cameraJson.cameraURLJSON);
@@ -209,14 +247,9 @@
         $('#labelPlant10Growth').text(cameraJson.plant10JASON);
         $('#daysID').text(cameraJson.daysCounterJSON);
         $('#lastDayID').text('As of: ' + cameraJson.cameraDateJSON);
-
       },
-
     });
   });
-
-
-
 
   $(".onFan").click(function(e) {
 

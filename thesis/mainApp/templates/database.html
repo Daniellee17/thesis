@@ -2,71 +2,8 @@
 
 {% block content %}
 
-
-<div class="title">
-  <img src="../assets/icons/leafIcon.png" class="titleLogo" />
-</div>
-
-
-<form method='POST' id="mainForm">
+<form method='POST' id="databaseForm">
   {% csrf_token %}
-
-  <div id="mySidenav" class="hiddenSideNav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <div class="devicesContainer">
-
-      <img style="width: 30px; height: 30px;" src="../assets/icons/airIcon_white.png" class="dateContainerLogo" />
-      <input style="background-color: limegreen;" type='submit' name="onFans_btn" value=" " class="onFan"></button>
-      <input style="background-color: red;" type='submit' name="offFans_btn" value=" " class="offFan"></button>
-
-      <img style="width: 30px; height: 30px;" src="../assets/icons/sunIcon_white.png" class="dateContainerLogo" />
-      <input style="background-color: limegreen;" type='submit' name="onLights_btn" value=" " class="onLights"></button>
-      <input style="background-color: red;" type='submit' name="offLights_btn" value=" " class="offLights"></button>
-
-      <img style="width: 30px; height: 30px;" src="../assets/icons/irrigationIcon_white.png" class="dateContainerLogo" />
-      <input style="background-color: limegreen;" type='submit' name="onWater_btn" value=" " class="onWater"></button>
-      <input style="background-color: red;" type='submit' name="offWater_btn" value=" " class="offWater"></button>
-
-      <img style="width: 30px; height: 30px;" src="../assets/icons/seedIcon_white.png" class="dateContainerLogo" />
-      <input style="background-color: limegreen;" type='submit' name="onSeed_btn" value=" " class="onSeed"></button>
-      <input style="background-color: red;" type='submit' name="offSeed_btn" value=" " class="offSeed"></button>
-
-      <img style="width: 30px; height: 30px;" src="../assets/icons/cameraIcon.png" class="dateContainerLogo" />
-      <input style="background-color: white;" type='submit' name="camera_btn" value=" " class="processImage"></button>
-
-
-    </div>
-
-
-  </div>
-
-  <div class="sidenav">
-    <div class="sidenavTitleContainer">
-      ADMIN TOOLS
-    </div>
-
-    <div class="sidenavButtonContainer">
-
-      <a href="{% url 'mainPage' %}"><img src="../assets/icons/remoteController_black.png" class="sidenavIcon" />DASHBOARD</a>
-      <a href="{% url 'databasePage' %}"> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> DATABASE</a>
-      <a onclick="openNav()"> <img src="../assets/icons/remoteController_black.png" class="sidenavIcon" />CONTROLLER</a>
-      <a class='fullReset' onclick="confirmFullReset()" type='submit'> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" />RESET</a>
-
-      <!--         <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" />
-                <a href="#clients">Clients</a> -->
-
-    </div>
-
-    <div class="sidenavTitleContainer" style="top: 27%">
-      FAQs
-    </div>
-    <div class="sidenavButtonContainer" style="top: 30.4%">
-      <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon_white.jpg" class="sidenavIcon" /> CROP INFO</a>
-      <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> Full Reset</a>
-    </div>
-  </div>
-
-
 
   <div class="growthContainer" style="left: 15.5%; top: 8.2%; width: 62.54%; border-radius: 0.5%;">
     <table class="cameraTable">
@@ -107,7 +44,6 @@
       </tbody>
     </table>
   </div>
-
 
   <div class="growthContainer" style="left: 80%; top: 8.2%; width: 17.82%; border-radius: 0.5%;">
     <table class="countersTable">
@@ -155,7 +91,6 @@
     </table>
   </div>
 
-
   <div class="growthContainer" style="left: 67%; top: 55.2%; width: 30.82%; border-radius: 0.5%;">
     <table class="devicesTable">
       <caption>Devices</caption>
@@ -182,8 +117,6 @@
     </table>
   </div>
 
+</form>
 
-
-
-
-  {% endblock %}
+{% endblock %}
