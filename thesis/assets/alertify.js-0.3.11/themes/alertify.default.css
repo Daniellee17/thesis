@@ -8,8 +8,9 @@
 
 .alertify {
   /* background: rgba(255, 255, 255, 0.9); */  
-  background: rgba(0, 0, 0, .8);
-  border: 10px solid rgba(0, 0, 0, .8);
+  /* background: rgba(0, 0, 0, .8); */  
+  background: rgba(0, 0, 0, .6);
+  border: 10px solid rgba(0, 0, 0, .6);
   border-radius: 8px;
   box-shadow: 0 3px 3px rgba(0, 0, 0, .3);
   -webkit-background-clip: padding;
@@ -18,7 +19,9 @@
   /* Firefox 3.6 */
   background-clip: padding-box;
   /* Firefox 4, Safari 5, Opera 10, IE 9 */
-  color: #FFF;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: OpenSans;
+  font-size: 14px;
 }
 
 .alertify-text {
