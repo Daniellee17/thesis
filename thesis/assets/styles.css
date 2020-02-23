@@ -40,7 +40,6 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.4);
-
 }
 
 /* Handle on hover */
@@ -275,6 +274,26 @@ nav {
   color: WHITE;
 }
 
+.headlineContainer {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  border-style: none;
+  display: inline-block;
+  text-align: center;
+  border-style: none;
+  width: 82%;
+  height: 33%;
+  top: 8.2%;
+  border-radius: 0.5%;
+  left: 15.5%;
+  font-family: Ubuntu-Light;
+  text-transform: uppercase;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+}
+
 .title {
   width: 14%;
   height: 5%;
@@ -339,26 +358,6 @@ nav {
   cursor: pointer;
   background: WHITE;
   color: #000;
-}
-
-.headlineContainer {
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  border-style: none;
-  display: inline-block;
-  text-align: center;
-  border-style: none;
-  width: 82%;
-  height: 33%;
-  top: 8.2%;
-  border-radius: 0.5%;
-  left: 15.5%;
-  font-family: Ubuntu-Light;
-  text-transform: uppercase;
-  position: absolute;
-  background: rgba(0, 0, 0, 0.45);
-  color: #fff;
 }
 
 .singleContainer {

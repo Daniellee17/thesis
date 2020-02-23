@@ -6,24 +6,13 @@
   <img src="../assets/icons/leafIcon.png" class="titleLogo" />
 </div>
 
-<div class="headlineContainer">
-  AGE THESIS
-  <!--
-  <div class="brand">
-    An automated indoor gardening system using raspberry pi.
-    | <a href="{% url 'databasePage' %}">See Database Log</a>
-
-  </div>
--->
-</div>
-
 <form method='POST' id="mainForm">
   {% csrf_token %}
 
   <div id="mySidenav" class="hiddenSideNav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <div class="devicesContainer">
 
+    <div class="devicesContainer">
       <img style="width: 30px; height: 30px;" src="../assets/icons/airIcon_white.png" class="dateContainerLogo" />
       <input style="background-color: limegreen;" type='submit' name="onFans_btn" value=" " class="onFan"></button>
       <input style="background-color: red;" type='submit' name="offFans_btn" value=" " class="offFan"></button>
@@ -42,10 +31,7 @@
 
       <img style="width: 30px; height: 30px;" src="../assets/icons/cameraIcon.png" class="dateContainerLogo" />
       <input style="background-color: white;" type='submit' name="camera_btn" value=" " class="processImage"></button>
-
-
     </div>
-
 
   </div>
 
@@ -61,10 +47,6 @@
       <a onclick="openNav()"> <img src="../assets/icons/remoteController_black.png" class="sidenavIcon" />CONTROLLER</a>
       <a class='fullReset' onclick="confirmFullReset()" type='submit'> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" />RESET</a>
 
-
-      <!--         <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" />
-                <a href="#clients">Clients</a> -->
-
     </div>
 
     <div class="sidenavTitleContainer" style="top: 27%">
@@ -74,6 +56,18 @@
       <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon_white.jpg" class="sidenavIcon" /> CROP INFO</a>
       <a onclick="openNav()"> <img src="../assets/icons/navControllerIcon.png" class="sidenavIcon" /> Full Reset</a>
     </div>
+  </div>
+
+
+  <div class="headlineContainer">
+    AGE THESIS
+    <!--
+    <div class="brand">
+      An automated indoor gardening system using raspberry pi.
+      | <a href="{% url 'databasePage' %}">See Database Log</a>
+
+    </div>
+  -->
   </div>
 
 
