@@ -128,8 +128,8 @@ nav {
 .circle.big {
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 50%;
-  width: 50%;
-  height: 55%;
+  width: 55%;
+  height: 62%;
   z-index: 86;
   vertical-align: middle;
   display: inline-block;
@@ -217,12 +217,13 @@ nav {
   text-align: left;
   border-style: none;
   width: 50%;
-  height: 2%;
+  height: 4%;
   position: absolute;
   top: 7.1%;
   left: 14%;
   font-family: Ubuntu;
   color: rgba(255, 255, 255, 0.55);
+  font-size: 17.5px;
 }
 
 .sidenavButtonContainer {
@@ -242,7 +243,7 @@ nav {
 .sidenavButtonContainer a {
   display: inline-block;
   vertical-align: middle;
-  font-size: 16px;
+  font-size: 15.45px;
   color: rgba(255, 255, 255, 0.55);
   text-decoration: none;
   margin-bottom: 0px;
@@ -261,7 +262,7 @@ nav {
   border-radius: 0%;
   padding: 0;
   margin-bottom: 2px;
-  margin-right: 17px;
+  margin-right: 19px;
   opacity: 0.55;
 }
 
@@ -274,57 +275,6 @@ nav {
 
 .nav_link a:hover {
   color: WHITE;
-}
-
-.headlineContainer {
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  border-style: none;
-  display: inline-block;
-  text-align: center;
-  border-style: none;
-  width: 82%;
-  height: 33%;
-  top: 8.2%;
-  border-radius: 0.5%;
-  left: 15.5%;
-  font-family: Ubuntu-Light;
-  text-transform: uppercase;
-  position: absolute;
-  background: rgba(0, 0, 0, 0.45);
-  color: #fff;
-}
-
-.title {
-  width: 14%;
-  height: 5%;
-  position: fixed;
-  top: 3.1%;
-  left: 2.5%;
-  font-family: Ubuntu;
-  font-size: 17px;
-  color: rgba(255, 255, 255, 0.45);
-  border: none;
-}
-
-.title a {
-  display: inline-block;
-  vertical-align: middle;
-  color: rgba(255, 255, 255, 0.45);
-  text-decoration: none;
-  transition: .3s;
-}
-
-.title a:hover {
-  color: WHITE;
-}
-
-.titleLogo {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  padding: 0;
 }
 
 .devicesContainer {
@@ -362,6 +312,57 @@ nav {
   color: #000;
 }
 
+.title {
+  width: 14%;
+  height: 5%;
+  position: fixed;
+  top: 3.1%;
+  left: 2.5%;
+  font-family: Ubuntu;
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.45);
+  border: none;
+}
+
+.title a {
+  display: inline-block;
+  vertical-align: middle;
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: none;
+  transition: .3s;
+}
+
+.title a:hover {
+  color: WHITE;
+}
+
+.titleLogo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.headlineContainer {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  border-style: none;
+  display: inline-block;
+  text-align: center;
+  border-style: none;
+  width: 82.3%;
+  height: 33%;
+  top: 5.7%;
+  border-radius: 7px;
+  left: 15.5%;
+  font-family: Ubuntu-Light;
+  text-transform: uppercase;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+}
+
 .singleContainer {
   display: inline-block;
   vertical-align: middle;
@@ -372,7 +373,7 @@ nav {
   border-style: none;
   width: 8%;
   height: 16%;
-  top: 45.1%;
+  top: 43%;
   color: black;
   /* background-color: #2A3843; */
   background: rgba(0, 0, 0, 0.45);
@@ -416,6 +417,115 @@ nav {
   height: 100%;
 }
 
+.daysContainer {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  border-style: none;
+  width: 20.7%;
+  height: 34.6%;
+  top: 43%;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  border-radius: 2.5%;
+  left: 76.9%;
+  font-family: Ubuntu-Light;
+  text-transform: uppercase;
+  position: absolute;
+}
+
+.daysContainer a {
+  text-align: center;
+  vertical-align: center;
+  font-family: Times, serif;
+  font-size: 80%;
+  color: white;
+  text-decoration: none;
+  display: block;
+  align-items: center;
+  text-transform: none;
+}
+
+.summaryContainer {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  border-style: none;
+  width: 20.7%;
+  height: 34.6%;
+  top: 43%;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  border-radius: 2.5%;
+  left: 76.9%;
+  font-family: Ubuntu-Light;
+  text-transform: uppercase;
+  position: absolute;
+}
+
+.summaryContainer li {
+  list-style: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.summaryContainer a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+  font-family: Simplifica;
+}
+
+.cameraImgContainer {
+  width: 36.5%;
+  height: 43%;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  position: absolute;
+  top: 81.9%;
+  left: 15.5%;
+  padding: 0;
+  font-family: sans-serif;
+  border-radius: 7px;
+}
+
+.cameraImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 1%;
+}
+
+.growthContainer {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  border-style: none;
+  width: 43.3%;
+  height: 43%;
+  top: 81.9%;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  border-radius: 7px;
+  left: 54.3%;
+  font-family: Ubuntu-Light;
+  text-transform: uppercase;
+  position: absolute;
+  margin-bottom: 3%;
+}
+
+.growthContainer li {
+  list-style: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.growthContainer a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+}
+
 .dateContainer {
   text-align: right;
   border-style: none;
@@ -442,115 +552,6 @@ nav {
   margin-right: 0.5%;
   font-size: 12px;
   padding: 0;
-}
-
-.summaryContainer {
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  border-style: none;
-  width: 20.7%;
-  height: 35%;
-  top: 45.1%;
-  background: rgba(0, 0, 0, 0.45);
-  color: #fff;
-  border-radius: 2.5%;
-  left: 76.9%;
-  font-family: Ubuntu-Light;
-  text-transform: uppercase;
-  position: absolute;
-}
-
-.summaryContainer li {
-  list-style: none;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-align: center;
-}
-
-.summaryContainer a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 15px;
-  font-family: Simplifica;
-}
-
-.daysContainer {
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  border-style: none;
-  width: 20.7%;
-  height: 35%;
-  top: 45.1%;
-  background: rgba(0, 0, 0, 0.45);
-  color: #fff;
-  border-radius: 2.5%;
-  left: 76.9%;
-  font-family: Ubuntu-Light;
-  text-transform: uppercase;
-  position: absolute;
-}
-
-.daysContainer a {
-  text-align: center;
-  vertical-align: center;
-  font-family: Times, serif;
-  font-size: 80%;
-  color: white;
-  text-decoration: none;
-  display: block;
-  align-items: center;
-  text-transform: none;
-}
-
-.cameraImgContainer {
-  width: 36.5%;
-  height: 43%;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-  position: absolute;
-  top: 84%;
-  left: 15.5%;
-  padding: 0;
-  font-family: sans-serif;
-  border-radius: 1%;
-}
-
-.cameraImg {
-  width: 100%;
-  height: 100%;
-  border-radius: 1%;
-}
-
-.growthContainer {
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  border-style: none;
-  width: 43.3%;
-  height: 43%;
-  top: 84%;
-  background: rgba(0, 0, 0, 0.45);
-  color: #fff;
-  border-radius: 1.5%;
-  left: 54.3%;
-  font-family: Ubuntu-Light;
-  text-transform: uppercase;
-  position: absolute;
-  margin-bottom: 3%;
-}
-
-.growthContainer li {
-  list-style: none;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-align: center;
-}
-
-.growthContainer a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 15px;
 }
 
 .cameraTable {
