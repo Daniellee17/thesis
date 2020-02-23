@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="/assets/alertify.js-0.3.11/themes/alertify.default.css" id="toggleCSS" />
 
 <script>
+
   function openNav() {
     document.getElementById("mySidenav").style.width = "16%";
   }
@@ -72,7 +73,7 @@
     alertify.set({
       delay: 2500
     });
-    alertify.confirm("Are you sure, you want to delete this file?", function(e) {
+    alertify.confirm("Are you sure you want to reset your database?", function(e) {
       if (e) {
         $.ajax({
           type: 'POST',
@@ -130,7 +131,7 @@
 
     var date1 = new Date();
 
-    if (date1.getHours() === 19 && date1.getMinutes() === 52) {
+    if (date1.getHours() === 11 && date1.getMinutes() === 30) {
 
       //Change getHours and getMinutes depending on platform used
       //Rpi 24 hr format
@@ -175,11 +176,10 @@
   });
 
   $(document).ready(function() {
-    setInterval(snapImage, 12000);
+    setInterval(snapImage, 25000);
   });
-</script>
 
-<script>
+
   $(".processImage").click(function(e) {
 
     e.preventDefault();
