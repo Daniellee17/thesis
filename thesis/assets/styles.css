@@ -51,7 +51,7 @@ body {
   margin: 0;
   padding: 0;
   background: #4a919e;
-  background: url("background/websiteBG4.jpg");
+  background: url("background/websiteBG4_2.jpg");
   background-repeat: no repeat;
   background-size: cover;
 }
@@ -230,7 +230,7 @@ nav {
   vertical-align: middle;
   text-align: left;
   border-style: none;
-  width: 55%;
+  width: 70%;
   height: 20%;
   position: absolute;
   top: 10.5%;
@@ -256,11 +256,13 @@ nav {
   display: inline-block;
   vertical-align: middle;
   text-align: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+  width: 29px;
+  height: 29px;
+  border-radius: 0%;
   padding: 0;
   margin-bottom: 2px;
+  margin-right: 17px;
+  opacity: 0.55;
 }
 
 .nav_link a {
