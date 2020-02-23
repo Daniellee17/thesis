@@ -40,7 +40,7 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.4);
-  
+
 }
 
 /* Handle on hover */
@@ -223,7 +223,7 @@ nav {
   top: 7.1%;
   left: 14%;
   font-family: Ubuntu;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.55);
 }
 
 .sidenavButtonContainer {
@@ -244,7 +244,7 @@ nav {
   display: inline-block;
   vertical-align: middle;
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.55);
   text-decoration: none;
   margin-bottom: 0px;
 }

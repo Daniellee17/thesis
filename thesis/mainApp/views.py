@@ -439,10 +439,29 @@ def mainPage(response):
 
     # Dito nakalagay sa baba kasi if sa taas,
     # mauuna kunin data before saving the sensor data so late ng isang query
+
     sensorsObjects = sensors.objects.latest('date')
     cameraObjects = camerasnaps.objects.latest('date')
-    countersObject = counters.objects.latest('date')
     countersObject_first = counters.objects.first()
+
+    ##############################################################################
+    #date1 = countersObject_first.date
+    #date2 = cameraObjects.date
+    #print(date1)
+    #print(date2)
+
+    #def numOfDays(date1, date2):
+    #    return (date2-date1).days
+
+    #print(numOfDays(date1, date2), "days")
+
+
+    #insertCounters.daysCounter = numOfDays(date1, date2)
+    #insertCounters.save()
+    ##############################################################################
+
+    countersObject = counters.objects.latest('date')
+
 
     myObjects = {'deviceStatusObjects': deviceStatusObjects,
                  'countersObject': countersObject, 'countersObject_first': countersObject_first, 'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}

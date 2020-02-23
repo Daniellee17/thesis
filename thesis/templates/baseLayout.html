@@ -28,24 +28,30 @@
   }
 
   function getSensorValues() {
-    $.ajax({
-      type: 'POST',
-      url: '{% url "mainPage" %}',
-      data: {
 
-        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-        action: 'getSensorValues',
+    var date1 = new Date();
 
-      },
-      success: function(sensorsJson) {
+    if (date1.getMinutes() === 00) {
 
-        $('#labelTemperature').text('Temperature: ' + sensorsJson.currentTemperatureJSON);
-        $('#labelHumidity').text('Humidity: ' + sensorsJson.currentHumidityJSON);
-        $('#labelMoisture').text('Soil Moisture: ' + sensorsJson.currentMoistureJSON);
-        $('#labelSummary').text('Summary: ' + sensorsJson.currentSummaryJSON);
-      },
+      $.ajax({
+        type: 'POST',
+        url: '{% url "mainPage" %}',
+        data: {
 
-    });
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          action: 'getSensorValues',
+
+        },
+        success: function(sensorsJson) {
+
+          $('#labelTemperature').text('Temperature: ' + sensorsJson.currentTemperatureJSON);
+          $('#labelHumidity').text('Humidity: ' + sensorsJson.currentHumidityJSON);
+          $('#labelMoisture').text('Soil Moisture: ' + sensorsJson.currentMoistureJSON);
+          $('#labelSummary').text('Summary: ' + sensorsJson.currentSummaryJSON);
+        },
+
+      });
+    }
   }
 
   function closeNav() {
@@ -164,7 +170,7 @@
   }
 
   $(document).ready(function() {
-    setInterval(getSensorValues, 10000);
+    setInterval(getSensorValues, 25000);
   });
 
   $(document).ready(function() {
