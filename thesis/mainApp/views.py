@@ -401,23 +401,30 @@ def mainPage(response):
         print(" ")
         print("~Water System Activated~")
         print(" ")
-
-        GPIO.output(16, GPIO.HIGH)
-        GPIO.output(19, GPIO.HIGH)
-
+        
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.waterStatus = 'Activated'
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
 
-    if response.POST.get('action') == 'offWater':
-
+        GPIO.output(16, GPIO.HIGH)
+        sleep(1)
+        GPIO.output(16, GPIO.LOW)
+        
         print(" ")
         print("~Water System Deactivated~")
         print(" ")
 
-        GPIO.output(16, GPIO.LOW)
+
+    if response.POST.get('action') == 'offWater':
+
+        print(" ")
+        print("~Calibration System Activated~")
+        print(" ")
+
+        GPIO.output(19, GPIO.HIGH)
+        sleep(1)
         GPIO.output(19, GPIO.LOW)
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
@@ -431,15 +438,20 @@ def mainPage(response):
         print(" ")
         print("~Seeder Activated~")
         print(" ")
-
-        GPIO.output(12, GPIO.HIGH)
-        GPIO.output(6, GPIO.HIGH)
-
+        
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = 'Activated'
         insertDeviceStatus.save()
+
+        GPIO.output(12, GPIO.HIGH)
+        sleep(1)
+        GPIO.output(12, GPIO.LOW)
+        
+        print(" ")
+        print("~Seeder Deactivated~")
+        print(" ")
 
     if response.POST.get('action') == 'offSeed':
 
