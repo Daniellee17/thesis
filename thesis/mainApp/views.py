@@ -7,7 +7,7 @@ from .models import camerasnaps
 from .models import counters
 from pygame.locals import *
 from datetime import datetime
-from datetime import date
+from datetime import date 
 from numpy import interp  # To scale values
 from time import sleep  # To add delay
 from plantcv import plantcv as pcv
@@ -256,14 +256,14 @@ def mainPage(response):
         date1 = countersObjectSnap_first.date
         date2 = cameraObjectsSnap.date
         print(date1)
-        print(date2)
-
-        def numOfDays(date1, date2):
+        print(date2)     
+                
+        def numOfDays(date1, date2): 
             return (date2-date1).days
-
-        print(numOfDays(date1, date2), "days")
-
-
+        
+        print(numOfDays(date1, date2), "days")       
+        
+        
         insertCounters.daysCounter = numOfDays(date1, date2)
         insertCounters.save()
 
@@ -282,11 +282,11 @@ def mainPage(response):
         'plant9JASON': plant_area_list[8],
         'plant10JASON': plant_area_list[9]
         }
-
+        
         return JsonResponse(cameraObjectsJSON)
 
     if response.POST.get('action') == 'fullReset':
-
+        
         print(" ")
         print("~Database Cleared~")
         print(" ")
@@ -296,7 +296,7 @@ def mainPage(response):
         insertDeviceStatus.waterStatus = 'start'
         insertDeviceStatus.seedStatus = 'start'
         insertDeviceStatus.save()
-
+        
         camerasnaps.objects.all().delete()
         insertCamera.camera = 'defaultBG.jpg'
         insertCamera.cameraURL = '../assets/background/defaultBG.jpg'
@@ -318,20 +318,20 @@ def mainPage(response):
         insertSensors.moisture = 0
         insertSensors.summary = 'start'
         insertSensors.save()
-
+        
         counters.objects.all().delete()
         insertCounters.daysCounter = 0
         insertCounters.save()
-
+        
         sensorsObjectsReset = sensors.objects.latest('date')
-
+        
         daysJSON = {
         'day1Formatted': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),
         'temperatureJSON': sensorsObjectsReset.temperature,
         'humidityJSON': sensorsObjectsReset.humidity,
         'moistureJSON': sensorsObjectsReset.moisture,
         'summaryJSON': sensorsObjectsReset.summary,
-
+               
         }
 
         return JsonResponse(daysJSON)
@@ -402,122 +402,14 @@ def mainPage(response):
         print("~Water System Activated~")
         print(" ")
 
+        GPIO.output(16, GPIO.HIGH)
+        GPIO.output(19, GPIO.HIGH)
+
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.waterStatus = 'Activated'
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
-        
-        #plant1
-        GPIO.output(16, GPIO.HIGH)
-        GPIO.output(19, GPIO.HIGH)
-        
-        sleep(3)
-        
-        GPIO.output(16, GPIO.LOW)
-        GPIO.output(19, GPIO.LOW)
-        
-        sleep(2)
-        
-        #plant2
-        GPIO.output(16, GPIO.HIGH)
-        GPIO.output(19, GPIO.HIGH)
-        
-        sleep(3)
-        
-        GPIO.output(16, GPIO.LOW)
-        GPIO.output(19, GPIO.LOW)
-        
-        sleep(2)
-        
-        #plant3
-        GPIO.output(16, GPIO.HIGH)
-        GPIO.output(19, GPIO.HIGH)
-        
-        sleep(3)
-        
-        GPIO.output(16, GPIO.LOW)
-        GPIO.output(19, GPIO.LOW)
-        
-        sleep(2)
-        
-        #plant4
-        GPIO.output(16, GPIO.HIGH)
-        GPIO.output(19, GPIO.HIGH)
-        
-        sleep(3)
-        
-        GPIO.output(16, GPIO.LOW)
-        GPIO.output(19, GPIO.LOW)
-        
-        sleep(2)
-        
-        #plant5
-        GPIO.output(16, GPIO.HIGH)
-        GPIO.output(19, GPIO.HIGH)
-        
-        sleep(3)
-        
-        GPIO.output(16, GPIO.LOW)
-        GPIO.output(19, GPIO.LOW)
-        
-        sleep(2)
-        
-        #plant6
-        GPIO.output(16, GPIO.HIGH)
-        GPIO.output(19, GPIO.HIGH)
-        
-        sleep(3)
-        
-        GPIO.output(16, GPIO.LOW)
-        GPIO.output(19, GPIO.LOW)
-        
-        sleep(2)
-        
-        #plant7
-        GPIO.output(16, GPIO.HIGH)
-        GPIO.output(19, GPIO.HIGH)
-        
-        sleep(3)
-        
-        GPIO.output(16, GPIO.LOW)
-        GPIO.output(19, GPIO.LOW)
-        
-        sleep(2)
-        
-        #plant8
-        GPIO.output(16, GPIO.HIGH)
-        GPIO.output(19, GPIO.HIGH)
-        
-        sleep(3)
-        
-        GPIO.output(16, GPIO.LOW)
-        GPIO.output(19, GPIO.LOW)
-        
-        sleep(2)
-        
-        #plant9
-        GPIO.output(16, GPIO.HIGH)
-        GPIO.output(19, GPIO.HIGH)
-        
-        sleep(3)
-        
-        GPIO.output(16, GPIO.LOW)
-        GPIO.output(19, GPIO.LOW)
-        
-        sleep(2)
-        
-        #plant10
-        GPIO.output(16, GPIO.HIGH)
-        GPIO.output(19, GPIO.HIGH)
-        
-        sleep(3)
-        
-        GPIO.output(16, GPIO.LOW)
-        GPIO.output(19, GPIO.LOW)
-        
-        
-        
 
     if response.POST.get('action') == 'offWater':
 
@@ -590,7 +482,7 @@ def mainPage(response):
     countersObject = counters.objects.latest('date')
 
 
-    myObjects = {'deviceStatusObjects': deviceStatusObjects,
+    myObjects = {'deviceStatusObjects': deviceStatusObjects, 
                  'countersObject': countersObject, 'countersObject_first': countersObject_first, 'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}
 
     return render(response, 'main.html', context=myObjects)
@@ -607,3 +499,10 @@ def databasePage(response):
                  'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects, 'countersObjects': countersObjects}
 
     return render(response, 'database.html', context=myObjects)
+
+
+
+
+
+
+
