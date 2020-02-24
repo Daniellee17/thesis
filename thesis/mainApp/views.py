@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from .models import devicestatus
 from .models import sensors
 from .models import camerasnaps
+from .models import counters
 from pygame.locals import *
 from datetime import datetime
 from datetime import date
@@ -401,14 +402,122 @@ def mainPage(response):
         print("~Water System Activated~")
         print(" ")
 
-        GPIO.output(16, GPIO.HIGH)
-        GPIO.output(19, GPIO.HIGH)
-
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.waterStatus = 'Activated'
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
+        
+        #plant1
+        GPIO.output(16, GPIO.HIGH)
+        GPIO.output(19, GPIO.HIGH)
+        
+        sleep(3)
+        
+        GPIO.output(16, GPIO.LOW)
+        GPIO.output(19, GPIO.LOW)
+        
+        sleep(2)
+        
+        #plant2
+        GPIO.output(16, GPIO.HIGH)
+        GPIO.output(19, GPIO.HIGH)
+        
+        sleep(3)
+        
+        GPIO.output(16, GPIO.LOW)
+        GPIO.output(19, GPIO.LOW)
+        
+        sleep(2)
+        
+        #plant3
+        GPIO.output(16, GPIO.HIGH)
+        GPIO.output(19, GPIO.HIGH)
+        
+        sleep(3)
+        
+        GPIO.output(16, GPIO.LOW)
+        GPIO.output(19, GPIO.LOW)
+        
+        sleep(2)
+        
+        #plant4
+        GPIO.output(16, GPIO.HIGH)
+        GPIO.output(19, GPIO.HIGH)
+        
+        sleep(3)
+        
+        GPIO.output(16, GPIO.LOW)
+        GPIO.output(19, GPIO.LOW)
+        
+        sleep(2)
+        
+        #plant5
+        GPIO.output(16, GPIO.HIGH)
+        GPIO.output(19, GPIO.HIGH)
+        
+        sleep(3)
+        
+        GPIO.output(16, GPIO.LOW)
+        GPIO.output(19, GPIO.LOW)
+        
+        sleep(2)
+        
+        #plant6
+        GPIO.output(16, GPIO.HIGH)
+        GPIO.output(19, GPIO.HIGH)
+        
+        sleep(3)
+        
+        GPIO.output(16, GPIO.LOW)
+        GPIO.output(19, GPIO.LOW)
+        
+        sleep(2)
+        
+        #plant7
+        GPIO.output(16, GPIO.HIGH)
+        GPIO.output(19, GPIO.HIGH)
+        
+        sleep(3)
+        
+        GPIO.output(16, GPIO.LOW)
+        GPIO.output(19, GPIO.LOW)
+        
+        sleep(2)
+        
+        #plant8
+        GPIO.output(16, GPIO.HIGH)
+        GPIO.output(19, GPIO.HIGH)
+        
+        sleep(3)
+        
+        GPIO.output(16, GPIO.LOW)
+        GPIO.output(19, GPIO.LOW)
+        
+        sleep(2)
+        
+        #plant9
+        GPIO.output(16, GPIO.HIGH)
+        GPIO.output(19, GPIO.HIGH)
+        
+        sleep(3)
+        
+        GPIO.output(16, GPIO.LOW)
+        GPIO.output(19, GPIO.LOW)
+        
+        sleep(2)
+        
+        #plant10
+        GPIO.output(16, GPIO.HIGH)
+        GPIO.output(19, GPIO.HIGH)
+        
+        sleep(3)
+        
+        GPIO.output(16, GPIO.LOW)
+        GPIO.output(19, GPIO.LOW)
+        
+        
+        
 
     if response.POST.get('action') == 'offWater':
 
