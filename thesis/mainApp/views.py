@@ -7,7 +7,7 @@ from .models import camerasnaps
 from .models import counters
 from pygame.locals import *
 from datetime import datetime
-from datetime import date 
+from datetime import date
 from numpy import interp  # To scale values
 from time import sleep  # To add delay
 from plantcv import plantcv as pcv
@@ -22,7 +22,6 @@ import pygame
 import pygame.camera
 #DHT22
 import Adafruit_DHT
-#sensor = Adafruit_DHT.DHT11
 DHT_SENSOR = Adafruit_DHT.DHT22
 DHT_SENSOR2 = Adafruit_DHT.DHT22
 #Image Processing
@@ -34,10 +33,9 @@ GPIO.setmode(GPIO.BCM) #Read GPIO# and not pin #!
 GPIO.setup(21, GPIO.OUT)  # Lights, PIN 40 (Right)
 GPIO.setup(20, GPIO.OUT)  # Fan1, PIN 38 (Right)
 GPIO.setup(26, GPIO.OUT)  # Fan2, PIN 37 (Left)
-GPIO.setup(16, GPIO.OUT)  # Water, PIN 36 (Right)
-GPIO.setup(19, GPIO.OUT)  # WaterXYZ, PIN 35 (Left)
-GPIO.setup(12, GPIO.OUT)  # Seeder, PIN 32 (Right)
-GPIO.setup(6, GPIO.OUT)  # SeederXYZ, PIN 31 (Left)
+GPIO.setup(16, GPIO.OUT)  # WaterXYZ, PIN 36 (Right)
+GPIO.setup(19, GPIO.OUT)  # CalibrationXYZ, PIN 35 (Left)
+GPIO.setup(12, GPIO.OUT)  # SeederXYZ, PIN 32 (Right)
 DHT_PIN = 1 # PIN 28 (Right)
 DHT_PIN2 = 7 # PIN 26 (Right)
 
@@ -53,6 +51,7 @@ def mainPage(response):
 
     # Create instance so you can insert into DB
     insertDeviceStatus = devicestatus()
+    insertDeviceStatus2 = devicestatus()
     insertCamera = camerasnaps()
     insertSensors = sensors()
     insertCounters = counters()
@@ -256,14 +255,14 @@ def mainPage(response):
         date1 = countersObjectSnap_first.date
         date2 = cameraObjectsSnap.date
         print(date1)
-        print(date2)     
-                
-        def numOfDays(date1, date2): 
+        print(date2)
+
+        def numOfDays(date1, date2):
             return (date2-date1).days
-        
-        print(numOfDays(date1, date2), "days")       
-        
-        
+
+        print(numOfDays(date1, date2), "days")
+
+
         insertCounters.daysCounter = numOfDays(date1, date2)
         insertCounters.save()
 
@@ -282,21 +281,23 @@ def mainPage(response):
         'plant9JASON': plant_area_list[8],
         'plant10JASON': plant_area_list[9]
         }
-        
+
         return JsonResponse(cameraObjectsJSON)
 
     if response.POST.get('action') == 'fullReset':
-        
+
         print(" ")
         print("~Database Cleared~")
         print(" ")
         devicestatus.objects.all().delete()
-        insertDeviceStatus.fansStatus = 'start'
-        insertDeviceStatus.lightsStatus = 'start'
-        insertDeviceStatus.waterStatus = 'start'
-        insertDeviceStatus.seedStatus = 'start'
+        insertDeviceStatus.modeStatus = '/'
+        insertDeviceStatus.calibrationStatus = '/'
+        insertDeviceStatus.fansStatus = '/'
+        insertDeviceStatus.lightsStatus = '/'
+        insertDeviceStatus.waterStatus = '/'
+        insertDeviceStatus.seedStatus = '/'
         insertDeviceStatus.save()
-        
+
         camerasnaps.objects.all().delete()
         insertCamera.camera = 'defaultBG.jpg'
         insertCamera.cameraURL = '../assets/background/defaultBG.jpg'
@@ -316,27 +317,136 @@ def mainPage(response):
         insertSensors.temperature = 0
         insertSensors.humidity = 0
         insertSensors.moisture = 0
-        insertSensors.summary = 'start'
+        insertSensors.summary = '/'
         insertSensors.save()
-        
+
         counters.objects.all().delete()
         insertCounters.daysCounter = 0
         insertCounters.save()
-        
+
+        countersObjectsReset = counters.objects.latest('date')
+        camerasnapsObjectsReset = camerasnaps.objects.latest('date')
         sensorsObjectsReset = sensors.objects.latest('date')
-        
+        deviceStatusObjectsReset = devicestatus.objects.latest('date')
+
         daysJSON = {
         'day1Formatted': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),
         'temperatureJSON': sensorsObjectsReset.temperature,
         'humidityJSON': sensorsObjectsReset.humidity,
         'moistureJSON': sensorsObjectsReset.moisture,
         'summaryJSON': sensorsObjectsReset.summary,
-               
+
+        'modeStatusJSON' : deviceStatusObjectsReset.modeStatus,
+        'fansStatusJSON' : deviceStatusObjectsReset.fansStatus,
+        'lightsStatusJSON' : deviceStatusObjectsReset.lightsStatus,
+        'calibrationStatusJSON' : deviceStatusObjectsReset.calibrationStatus,
+        'waterStatusJSON' : deviceStatusObjectsReset.waterStatus,
+        'seedStatusJSON' : deviceStatusObjectsReset.seedStatus,
+
+        'cameraJSON' : str(camerasnapsObjectsReset.camera),
+        'cameraURLJSON' : str(camerasnapsObjectsReset.cameraURL),
+        'plant1JSON' : camerasnapsObjectsReset.plant1,
+        'plant2JSON' : camerasnapsObjectsReset.plant2,
+        'plant3JSON' : camerasnapsObjectsReset.plant3,
+        'plant4JSON' : camerasnapsObjectsReset.plant4,
+        'plant5JSON' : camerasnapsObjectsReset.plant5,
+        'plant6JSON' : camerasnapsObjectsReset.plant6,
+        'plant7JSON' : camerasnapsObjectsReset.plant7,
+        'plant8JSON' : camerasnapsObjectsReset.plant8,
+        'plant9JSON' : camerasnapsObjectsReset.plant9,
+        'plant10JSON' : camerasnapsObjectsReset.plant10,
+
+        'daysCounterJSON' : countersObjectsReset.daysCounter,
         }
 
         return JsonResponse(daysJSON)
 
+    if response.POST.get('action') == 'onMode1':
 
+        print(" ")
+        print("~Mode 1 Activated~")
+        print(" ")
+
+        insertDeviceStatus.modeStatus = '1'
+        insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
+        insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
+        insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
+        insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
+        insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
+        insertDeviceStatus.save()
+
+    if response.POST.get('action') == 'onMode2':
+
+        print(" ")
+        print("~Mode 2 Activated~")
+        print(" ")
+
+        insertDeviceStatus.modeStatus = '2'
+        insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
+        insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
+        insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
+        insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
+        insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
+        insertDeviceStatus.save()
+
+    if response.POST.get('action') == 'onMode3':
+
+        print(" ")
+        print("~Mode 3 Activated~")
+        print(" ")
+
+        insertDeviceStatus.modeStatus = '3'
+        insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
+        insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
+        insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
+        insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
+        insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
+        insertDeviceStatus.save()
+
+    if response.POST.get('action') == 'onMode4':
+
+        print(" ")
+        print("~Mode 4 Activated~")
+        print(" ")
+
+        insertDeviceStatus.modeStatus = '4'
+        insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
+        insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
+        insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
+        insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
+        insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
+        insertDeviceStatus.save()
+
+
+    if response.POST.get('action') == 'onCalibration':
+
+        print(" ")
+        print("~Calibration Activated~")
+        print(" ")
+
+        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
+        insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
+        insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
+        insertDeviceStatus.calibrationStatus = 'On'
+        insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
+        insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
+        insertDeviceStatus.save()
+
+        GPIO.output(19, GPIO.HIGH)
+        sleep(1)
+        GPIO.output(19, GPIO.LOW)
+
+        print(" ")
+        print("~Calibration Deactivated~")
+        print(" ")
+
+        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
+        insertDeviceStatus2.fansStatus = deviceStatusObjects.fansStatus
+        insertDeviceStatus2.lightsStatus = deviceStatusObjects.lightsStatus
+        insertDeviceStatus2.calibrationStatus = 'Off'
+        insertDeviceStatus2.waterStatus = deviceStatusObjects.waterStatus
+        insertDeviceStatus2.seedStatus = deviceStatusObjects.seedStatus
+        insertDeviceStatus2.save()
 
     if response.POST.get('action') == 'onFan':
 
@@ -347,8 +457,10 @@ def mainPage(response):
         GPIO.output(20, GPIO.HIGH)
         GPIO.output(26, GPIO.HIGH)
 
-        insertDeviceStatus.fansStatus = 'Activated'
+        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
+        insertDeviceStatus.fansStatus = 'On'
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
+        insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
@@ -362,8 +474,10 @@ def mainPage(response):
         GPIO.output(20, GPIO.LOW)
         GPIO.output(26, GPIO.LOW)
 
-        insertDeviceStatus.fansStatus = 'Deactivated'
+        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
+        insertDeviceStatus.fansStatus = 'Off'
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
+        insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
@@ -376,11 +490,14 @@ def mainPage(response):
 
         GPIO.output(21, GPIO.HIGH)
 
+        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
-        insertDeviceStatus.lightsStatus = 'Activated'
+        insertDeviceStatus.lightsStatus = 'On'
+        insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
+
 
     if response.POST.get('action') == 'offLights':
 
@@ -390,8 +507,10 @@ def mainPage(response):
 
         GPIO.output(21, GPIO.LOW)
 
+        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
-        insertDeviceStatus.lightsStatus = 'Deactivated'
+        insertDeviceStatus.lightsStatus = 'Off'
+        insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
@@ -399,74 +518,65 @@ def mainPage(response):
     if response.POST.get('action') == 'onWater':
 
         print(" ")
-        print("~Water System Activated~")
+        print("~Watering System Activated~")
         print(" ")
-        
+
+        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
-        insertDeviceStatus.waterStatus = 'Activated'
+        insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
+        insertDeviceStatus.waterStatus = 'On'
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
 
         GPIO.output(16, GPIO.HIGH)
         sleep(1)
         GPIO.output(16, GPIO.LOW)
-        
-        print(" ")
-        print("~Water System Deactivated~")
-        print(" ")
-
-
-    if response.POST.get('action') == 'offWater':
 
         print(" ")
-        print("~Calibration System Activated~")
+        print("~Watering System Deactivated~")
         print(" ")
 
-        GPIO.output(19, GPIO.HIGH)
-        sleep(1)
-        GPIO.output(19, GPIO.LOW)
-
+        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
-        insertDeviceStatus.waterStatus = 'Deactivated'
+        insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
+        insertDeviceStatus.waterStatus = 'On'
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
+
 
     if response.POST.get('action') == 'onSeed':
 
         print(" ")
         print("~Seeder Activated~")
         print(" ")
-        
+
+        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
+        insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
-        insertDeviceStatus.seedStatus = 'Activated'
+        insertDeviceStatus.seedStatus = 'On'
         insertDeviceStatus.save()
 
         GPIO.output(12, GPIO.HIGH)
         sleep(1)
         GPIO.output(12, GPIO.LOW)
-        
-        print(" ")
-        print("~Seeder Deactivated~")
-        print(" ")
-
-    if response.POST.get('action') == 'offSeed':
 
         print(" ")
         print("~Seeder Deactivated~")
         print(" ")
 
-        GPIO.output(12, GPIO.LOW)
-        GPIO.output(6, GPIO.LOW)
-
+        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
+        insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
-        insertDeviceStatus.seedStatus = 'Deactivated'
+        insertDeviceStatus.seedStatus = 'Off'
         insertDeviceStatus.save()
+
+
 
     # Dito nakalagay sa baba kasi if sa taas,
     # mauuna kunin data before saving the sensor data so late ng isang query
@@ -474,27 +584,9 @@ def mainPage(response):
     sensorsObjects = sensors.objects.latest('date')
     cameraObjects = camerasnaps.objects.latest('date')
     countersObject_first = counters.objects.first()
-
-    ##############################################################################
-    #date1 = countersObject_first.date
-    #date2 = cameraObjects.date
-    #print(date1)
-    #print(date2)
-
-    #def numOfDays(date1, date2):
-    #    return (date2-date1).days
-
-    #print(numOfDays(date1, date2), "days")
-
-
-    #insertCounters.daysCounter = numOfDays(date1, date2)
-    #insertCounters.save()
-    ##############################################################################
-
     countersObject = counters.objects.latest('date')
 
-
-    myObjects = {'deviceStatusObjects': deviceStatusObjects, 
+    myObjects = {'deviceStatusObjects': deviceStatusObjects,
                  'countersObject': countersObject, 'countersObject_first': countersObject_first, 'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}
 
     return render(response, 'main.html', context=myObjects)
@@ -511,10 +603,3 @@ def databasePage(response):
                  'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects, 'countersObjects': countersObjects}
 
     return render(response, 'database.html', context=myObjects)
-
-
-
-
-
-
-

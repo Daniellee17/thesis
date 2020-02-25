@@ -101,8 +101,8 @@ nav {
 .circle.small {
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 50%;
-  width: 90px;
-  height: 90px;
+  width: 85px;
+  height: 85px;
   z-index: 86;
   vertical-align: middle;
   display: inline-block;
@@ -148,7 +148,7 @@ nav {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.55);
+  background-color: rgba(0, 0, 0, 0.75);
   overflow-x: hidden;
   transition: 0.4s;
   padding-top: 60px;
@@ -281,14 +281,14 @@ nav {
   display: inline-block;
   vertical-align: middle;
   text-align: center;
-  border-style: solid;
+  border-style: none;
   width: 120px;
-  height: 300px;
+  height: 600px;
   padding-top: 10px;
   padding-bottom: 10px;
   color: white;
   position: absolute;
-  top: 18%;
+  top: 10%;
   left: 28%
 }
 
@@ -368,11 +368,10 @@ nav {
   vertical-align: middle;
   text-align: center;
   border-style: none;
-  display: inline-block;
   text-align: center;
   border-style: none;
   width: 8%;
-  height: 16%;
+  height: 11.5%;
   top: 43%;
   color: black;
   /* background-color: #2A3843; */
@@ -395,26 +394,42 @@ nav {
   display: block;
   align-items: center;
   text-transform: none;
+  margin-top: 10px;
+}
+
+.singleContainer_iconContainer p {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 30px;
+  font-family: Simplifica;
+  color: white;
+  text-transform: Uppercase;
+  margin-top: 9%;
 }
 
 .singleContainer_iconContainer {
   border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 70%;
+  height: 40%;
   z-index: 86;
   vertical-align: middle;
   display: inline-block;
-  margin-left: 10%;
+  margin-left: 9%;
   margin-right: 10%;
-  margin-top: 21%;
-  margin-bottom: 8%;
+  margin-top: 13%;
   text-align: center;
+  padding: 0;
 }
 
 .singleContainer_icon {
-  width: 100%;
-  height: 100%;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  align-items: center;
+  width: 40%;
+  height: 90%;
+  margin-right: 10px;
 }
 
 .daysContainer {
@@ -424,11 +439,11 @@ nav {
   border-style: none;
   width: 20.7%;
   height: 34.6%;
-  top: 43%;
+  left: 15.5%;
+  top: 103%;
   background: rgba(0, 0, 0, 0.45);
   color: #fff;
   border-radius: 2.5%;
-  left: 76.9%;
   font-family: Ubuntu-Light;
   text-transform: uppercase;
   position: absolute;
@@ -451,13 +466,13 @@ nav {
   vertical-align: middle;
   text-align: center;
   border-style: none;
-  width: 20.7%;
-  height: 34.6%;
+  width: 35.7%;
+  height: 40.4%;
   top: 43%;
   background: rgba(0, 0, 0, 0.45);
   color: #fff;
-  border-radius: 2.5%;
-  left: 76.9%;
+  border-radius: 7px;
+  left: 62%;
   font-family: Ubuntu-Light;
   text-transform: uppercase;
   position: absolute;
@@ -478,11 +493,11 @@ nav {
 }
 
 .cameraImgContainer {
-  width: 36.5%;
-  height: 43%;
+  width: 41.3%;
+  height: 52.7%;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   position: absolute;
-  top: 81.9%;
+  top: 87.8%;
   left: 15.5%;
   padding: 0;
   font-family: sans-serif;
@@ -492,7 +507,7 @@ nav {
 .cameraImg {
   width: 100%;
   height: 100%;
-  border-radius: 1%;
+  border-radius: 7px;
 }
 
 .growthContainer {
@@ -500,24 +515,17 @@ nav {
   vertical-align: middle;
   text-align: center;
   border-style: none;
-  width: 43.3%;
-  height: 43%;
-  top: 81.9%;
+  width: 38.8%;
+  height: 40%;
+  top: 87.8%;
   background: rgba(0, 0, 0, 0.45);
   color: #fff;
   border-radius: 7px;
-  left: 54.3%;
+  left: 59%;
   font-family: Ubuntu-Light;
   text-transform: uppercase;
   position: absolute;
   margin-bottom: 3%;
-}
-
-.growthContainer li {
-  list-style: none;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-align: center;
 }
 
 .growthContainer a {

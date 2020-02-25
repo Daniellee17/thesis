@@ -97,6 +97,8 @@
       <thead>
         <tr>
           <th>Date&Time</th>
+          <th>Mode</th>
+          <th>Calibration</th>
           <th>Fan</th>
           <th>Light</th>
           <th>Watering</th>
@@ -107,6 +109,8 @@
         {% for values in deviceStatusObjects %}
         <tr>
           <td>{{values.date}}</td>
+          <td>{{values.modeStatus}}</td>
+          <td>{{values.calibrationStatus}}</td>
           <td>{{values.fansStatus}}</td>
           <td>{{values.lightsStatus}}</td>
           <td>{{values.waterStatus}}</td>

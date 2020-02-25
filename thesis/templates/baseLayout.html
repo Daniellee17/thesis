@@ -30,24 +30,38 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
     <div class="devicesContainer">
-      <img style="width: 30px; height: 30px;" src="../assets/icons/controllerIcons/airIcon_white.png" class="dateContainerLogo" />
-      <input style="background-color: limegreen;" type='submit' name="onFans_btn" value=" " class="onFan"></button>
-      <input style="background-color: red;" type='submit' name="offFans_btn" value=" " class="offFan"></button>
 
-      <img style="width: 30px; height: 30px;" src="../assets/icons/controllerIcons/sunIcon_white.png" class="dateContainerLogo" />
+      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/sunIcon_white.png" class="dateContainerLogo" />
       <input style="background-color: limegreen;" type='submit' name="onLights_btn" value=" " class="onLights"></button>
       <input style="background-color: red;" type='submit' name="offLights_btn" value=" " class="offLights"></button>
 
-      <img style="width: 30px; height: 30px;" src="../assets/icons/controllerIcons/waterIcon_white.png" class="dateContainerLogo" />
+      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/airIcon_white.png" class="dateContainerLogo" />
+      <input style="background-color: limegreen;" type='submit' name="onFans_btn" value=" " class="onFan"></button>
+      <input style="background-color: red;" type='submit' name="offFans_btn" value=" " class="offFan"></button>
+
+      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/calibrationIcon_white.png" class="dateContainerLogo" />
+      <input style="background-color: limegreen;" type='submit' name="onCalibration_btn" value=" " class="onCalibration"></button>
+
+      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/waterIcon_white.png" class="dateContainerLogo" />
       <input style="background-color: limegreen;" type='submit' name="onWater_btn" value=" " class="onWater"></button>
-      <input style="background-color: red;" type='submit' name="offWater_btn" value=" " class="offWater"></button>
 
-      <img style="width: 30px; height: 30px;" src="../assets/icons/controllerIcons/seedIcon_white.png" class="dateContainerLogo" />
+      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/seedIcon_white.png" class="dateContainerLogo" />
       <input style="background-color: limegreen;" type='submit' name="onSeed_btn" value=" " class="onSeed"></button>
-      <input style="background-color: red;" type='submit' name="offSeed_btn" value=" " class="offSeed"></button>
 
-      <img style="width: 30px; height: 30px;" src="../assets/icons/controllerIcons/cameraIcon_white.png" class="dateContainerLogo" />
+      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/cameraIcon_white.png" class="dateContainerLogo" />
       <input style="background-color: white;" type='submit' name="camera_btn" value=" " class="processImage"></button>
+
+      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/modeIcon_white.png" class="dateContainerLogo" />
+      <input style="background-color: white;" type='submit' name="onMode1_btn" value="1" class="onMode1"></button>
+
+      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/modeIcon_white.png" class="dateContainerLogo" />
+      <input style="background-color: white;" type='submit' name="onMode2_btn" value="2" class="onMode2"></button>
+
+      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/modeIcon_white.png" class="dateContainerLogo" />
+      <input style="background-color: white;" type='submit' name="onMode3_btn" value="3" class="onMode3"></button>
+
+      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/modeIcon_white.png" class="dateContainerLogo" />
+      <input style="background-color: white;" type='submit' name="onMode4_btn" value="4" class="onMode4"></button>
     </div>
 
   </div>
@@ -114,33 +128,35 @@
           success: function(daysJSON) {
             document.getElementById("mainForm").reset();
             $('#cameraID').attr('src', '../assets/background/defaultBG.jpg');
-            $('#firstDayID').text('Started: ' + daysJSON.day1Formatted);
-            $('#lastDayID').text('As of: ' + daysJSON.day1Formatted);
+            $('#firstDayID').text(daysJSON.day1Formatted);
+            $('#lastDayID').text('Age since: ' + daysJSON.day1Formatted);
             $('#cameraDateID').text('As of: ' + daysJSON.day1Formatted);
             $('#summaryDateID').text('As of: ' + daysJSON.day1Formatted);
             $('#growthDateID').text('As of: ' + daysJSON.day1Formatted);
-            $('#daysID').text(0);
+            $('#daysID').text(daysJSON.daysCounterJSON);
 
-            $('#labelPlant1Growth').text(0);
-            $('#labelPlant2Growth').text(0);
-            $('#labelPlant3Growth').text(0);
-            $('#labelPlant4Growth').text(0);
-            $('#labelPlant5Growth').text(0);
-            $('#labelPlant6Growth').text(0);
-            $('#labelPlant7Growth').text(0);
-            $('#labelPlant8Growth').text(0);
-            $('#labelPlant9Growth').text(0);
-            $('#labelPlant10Growth').text(0);
+            $('#labelPlant1Growth').text(daysJSON.plant1JSON);
+            $('#labelPlant2Growth').text(daysJSON.plant2JSON);
+            $('#labelPlant3Growth').text(daysJSON.plant3JSON);
+            $('#labelPlant4Growth').text(daysJSON.plant4JSON);
+            $('#labelPlant5Growth').text(daysJSON.plant5JSON);
+            $('#labelPlant6Growth').text(daysJSON.plant6JSON);
+            $('#labelPlant7Growth').text(daysJSON.plant7JSON);
+            $('#labelPlant8Growth').text(daysJSON.plant8JSON);
+            $('#labelPlant9Growth').text(daysJSON.plant9JSON);
+            $('#labelPlant10Growth').text(daysJSON.plant10JSON);
 
-            $('#labelFans').text('Fans: start');
-            $('#labelLights').text('Lights: start');
-            $('#labelWater').text('Sprinkler: start');
-            $('#labelSeed').text('Seeder: start');
+            $('#labelMode').text(daysJSON.modeStatusJSON);
+            $('#labelCalibration').text(daysJSON.calibrationStatusJSON);
+            $('#labelFans').text(daysJSON.fansStatusJSON);
+            $('#labelLights').text(daysJSON.lightsStatusJSON);
+            $('#labelWater').text(daysJSON.waterStatusJSON);
+            $('#labelSeed').text(daysJSON.seedStatusJSON);
 
-            $('#labelTemperature').text('Temperature: ' + daysJSON.temperatureJSON);
-            $('#labelHumidity').text('Humidity: ' + daysJSON.humidityJSON);
-            $('#labelMoisture').text('Soil Moisture: ' + daysJSON.moistureJSON);
-            $('#labelSummary').text('Summary: ' + daysJSON.summaryJSON);
+            $('#labelTemperature').text(daysJSON.temperatureJSON);
+            $('#labelHumidity').text(daysJSON.humidityJSON);
+            $('#labelMoisture').text(daysJSON.moistureJSON);
+            $('#labelSummary').text(daysJSON.summaryJSON);
           },
         });
 
@@ -169,7 +185,7 @@
         },
         success: function(sensorsJson) {
           $('#daysID').text(sensorsJson.daysCounterJSON);
-          $('#lastDayID').text('As of: ' + sensorsJson.dateJSON);
+          $('#lastDayID').text('Age since: ' + sensorsJson.dateJSON);
           $('#labelTemperature').text('Temperature: ' + sensorsJson.currentTemperatureJSON);
           $('#labelHumidity').text('Humidity: ' + sensorsJson.currentHumidityJSON);
           $('#labelMoisture').text('Soil Moisture: ' + sensorsJson.currentMoistureJSON);
@@ -208,7 +224,7 @@
           $('#labelPlant9Growth').text(cameraJson.plant9JASON);
           $('#labelPlant10Growth').text(cameraJson.plant10JASON);
           $('#daysID').text(cameraJson.daysCounterJSON);
-          $('#lastDayID').text('As of: ' + cameraJson.cameraDateJSON);
+          $('#lastDayID').text('Age since: ' + cameraJson.cameraDateJSON);
         },
       });
     }
@@ -247,7 +263,7 @@
         $('#labelPlant9Growth').text(cameraJson.plant9JASON);
         $('#labelPlant10Growth').text(cameraJson.plant10JASON);
         $('#daysID').text(cameraJson.daysCounterJSON);
-        $('#lastDayID').text('As of: ' + cameraJson.cameraDateJSON);
+        $('#lastDayID').text('Age since: ' + cameraJson.cameraDateJSON);
       },
     });
   });
@@ -266,7 +282,7 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelFans').text('Fans: Activated');
+        $('#labelFans').text('On');
       },
 
     });
@@ -286,7 +302,7 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelFans').text('Fans: Deactivated');
+        $('#labelFans').text('Off');
       },
 
     });
@@ -306,7 +322,7 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelLights').text('Lights: Activated');
+        $('#labelLights').text('On');
       },
 
     });
@@ -326,7 +342,7 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelLights').text('Lights: Deactivated');
+        $('#labelLights').text('Off');
       },
 
     });
@@ -335,6 +351,7 @@
   $(".onWater").click(function(e) {
 
     e.preventDefault();
+    $('#labelWater').text('On');
     $.ajax({
       type: 'POST',
       url: '{% url "mainPage" %}',
@@ -346,35 +363,17 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelWater').text('Sprinkler: Activated');
+        $('#labelWater').text('Off');
       },
 
     });
   });
 
-  $(".offWater").click(function(e) {
-
-    e.preventDefault();
-    $.ajax({
-      type: 'POST',
-      url: '{% url "mainPage" %}',
-      data: {
-
-        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-        action: 'offWater',
-
-      },
-      success: function(json) {
-        document.getElementById("mainForm").reset();
-        $('#labelWater').text('Sprinkler: Deactivated');
-      },
-
-    });
-  });
 
   $(".onSeed").click(function(e) {
 
     e.preventDefault();
+    $('#labelSeed').text('On');
     $.ajax({
       type: 'POST',
       url: '{% url "mainPage" %}',
@@ -386,13 +385,34 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelSeed').text('Seeder: Activated');
+        $('#labelSeed').text('Off');
       },
 
     });
   });
 
-  $(".offSeed").click(function(e) {
+  $(".onCalibration").click(function(e) {
+
+    e.preventDefault();
+    $('#labelCalibration').text('On');
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'onCalibration',
+
+      },
+      success: function(json) {
+        document.getElementById("mainForm").reset();
+        $('#labelCalibration').text('Off');
+      },
+
+    });
+  });
+
+  $(".onMode1").click(function(e) {
 
     e.preventDefault();
     $.ajax({
@@ -401,12 +421,73 @@
       data: {
 
         csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-        action: 'offSeed',
+        action: 'onMode1',
 
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelSeed').text('Seeder: Deactivated');
+        $('#labelMode').text('1');
+      },
+
+    });
+  });
+
+  $(".onMode2").click(function(e) {
+
+    e.preventDefault();
+
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'onMode2',
+
+      },
+      success: function(json) {
+        document.getElementById("mainForm").reset();
+        $('#labelMode').text('2');
+      },
+
+    });
+  });
+
+  $(".onMode3").click(function(e) {
+
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'onMode3',
+
+      },
+      success: function(json) {
+        document.getElementById("mainForm").reset();
+        $('#labelMode').text('3');
+      },
+
+    });
+  });
+
+  $(".onMode4").click(function(e) {
+
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'onMode4',
+
+      },
+      success: function(json) {
+        document.getElementById("mainForm").reset();
+        $('#labelMode').text('4');
       },
 
     });

@@ -12,10 +12,12 @@ class sensors(models.Model):
 
 
 class devicestatus(models.Model):
-    fansStatus = models.TextField(max_length=250, default="off");
-    lightsStatus = models.TextField(max_length=250, default="off");
-    waterStatus = models.TextField(max_length=250, default="off");
-    seedStatus = models.TextField(max_length=250, default="off");
+    modeStatus = models.TextField(max_length=250, default="Off");
+    calibrationStatus = models.TextField(max_length=250, default="Off");
+    fansStatus = models.TextField(max_length=250, default="Off");
+    lightsStatus = models.TextField(max_length=250, default="Off");
+    waterStatus = models.TextField(max_length=250, default="Off");
+    seedStatus = models.TextField(max_length=250, default="Off");
     date = models.DateTimeField(auto_now=True);
 
 class camerasnaps(models.Model):
