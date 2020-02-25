@@ -128,7 +128,7 @@ nav {
 .circle.big {
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 50%;
-  width: 55%;
+  width: 53%;
   height: 62%;
   z-index: 86;
   vertical-align: middle;
@@ -437,10 +437,10 @@ nav {
   vertical-align: middle;
   text-align: center;
   border-style: none;
-  width: 20.7%;
-  height: 34.6%;
+  width: 16%;
+  height: 26%;
   left: 15.5%;
-  top: 103%;
+  top: 57.4%;
   background: rgba(0, 0, 0, 0.45);
   color: #fff;
   border-radius: 2.5%;
@@ -453,6 +453,18 @@ nav {
   text-align: center;
   vertical-align: center;
   font-family: Times, serif;
+  font-size: 80%;
+  color: white;
+  text-decoration: none;
+  display: block;
+  align-items: center;
+  text-transform: none;
+}
+
+.daysContainer p {
+  text-align: center;
+  vertical-align: center;
+  font-family: Simplifica;
   font-size: 80%;
   color: white;
   text-decoration: none;

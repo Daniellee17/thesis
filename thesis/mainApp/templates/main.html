@@ -15,7 +15,7 @@
     </div>
   -->
   </div>
-  
+
   <div class="singleContainer" style="width: 16%;">
     <div class="singleContainer_iconContainer" style="width: 80%; height: 40%; margin-top: 6.2%;">
       <img src="../assets/icons/devicesIcons/babyIcon_white.png" class="singleContainer_icon" style="width: 45px; height: 40px;" />
@@ -24,15 +24,20 @@
     <a>Start Date</a>
   </div>
 
-  <div class="singleContainer" style="top: 57.4%; width: 16%;">
-    <div class="singleContainer_iconContainer" style="width: 80%; height: 40%; margin-top: 6.2%;">
-      <img src="../assets/icons/devicesIcons/babyIcon_white.png" class="singleContainer_icon" style="width: 45px; height: 40px;" />
-      <p style="font-size: 25px; margin-top: 6%;" id="daysID">{{countersObject.daysCounter}} Days Old</p>
+  <div class="daysContainer">
+
+    <div class="circle big" style="color: BLACK;">
+      <a id="daysID" style="margin-top: 14%; font-size: 100px; font-family: Simplifica; margin-bottom: -11%;">{{countersObject.daysCounter}}</a>
+      <a style="font-size: 30px; font-family: Simplifica; margin-top: 0px; margin-bottom: 0px;">Days</a>
     </div>
-    <a id="lastDayID">Age since: {{cameraObjects.date}}</a>
+
+    <div class="dateContainer" style="top:89%; width:50%; left:48%;">
+      <p id="lastDayID">As of: {{cameraObjects.date}}</p>
+    </div>
   </div>
 
-  <div class="singleContainer" style="top: 71.8%; width: 16%;">
+
+  <div class="singleContainer" style="top: 11.8%; width: 16%;">
     <div class="singleContainer_iconContainer" style="width: 80%; height: 40%; margin-top: 4.2%;">
       <img src="../assets/icons/sensorsIcons/soilMoistureIcon_white.png" class="singleContainer_icon" style="width: 40px; height: 40px;" />
       <p style="font-size: 27px;" id="gridID">5 x 2</p>
