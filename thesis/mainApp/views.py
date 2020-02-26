@@ -416,14 +416,14 @@ def mainPage(response):
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
-
-
+        
+        
     if response.POST.get('action') == 'onCalibration':
 
         print(" ")
         print("~Calibration Activated~")
         print(" ")
-
+        
         insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
@@ -435,7 +435,7 @@ def mainPage(response):
         GPIO.output(19, GPIO.HIGH)
         sleep(1)
         GPIO.output(19, GPIO.LOW)
-
+        
         print(" ")
         print("~Calibration Deactivated~")
         print(" ")
@@ -447,7 +447,7 @@ def mainPage(response):
         insertDeviceStatus2.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus2.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus2.save()
-
+        
     if response.POST.get('action') == 'onFan':
 
         print(" ")
@@ -603,3 +603,7 @@ def databasePage(response):
                  'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects, 'countersObjects': countersObjects}
 
     return render(response, 'database.html', context=myObjects)
+
+
+
+

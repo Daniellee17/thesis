@@ -128,14 +128,14 @@ nav {
 .circle.big {
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 50%;
-  width: 53%;
+  width: 73%;
   height: 62%;
   z-index: 86;
   vertical-align: middle;
   display: inline-block;
   margin-left: 30px;
   margin-right: 30px;
-  margin-top: 14%;
+  margin-top: 16%;
   margin-bottom: 25px;
   text-align: center;
   font-family: Simplifica;
@@ -351,9 +351,9 @@ nav {
   display: inline-block;
   text-align: center;
   border-style: none;
-  width: 82.3%;
-  height: 33%;
-  top: 5.7%;
+  width: 82.6%;
+  height: 35%;
+  top: 4.5%;
   border-radius: 7px;
   left: 15.5%;
   font-family: Ubuntu-Light;
@@ -508,9 +508,9 @@ nav {
   text-align: center;
   border-style: none;
   width: 16%;
-  height: 23%;
-  left: 15.5%;
-  top: 57.4%;
+  height: 34.6%;
+  left: 53.8%;
+  top: 43%;
   background: rgba(0, 0, 0, 0.45);
   color: #fff;
   border-radius: 2.5%;
@@ -548,13 +548,13 @@ nav {
   vertical-align: middle;
   text-align: center;
   border-style: none;
-  width: 35.7%;
-  height: 40.4%;
+  width: 16.4%;
+  height: 34.6%;
   top: 43%;
   background: rgba(0, 0, 0, 0.45);
   color: #fff;
-  border-radius: 7px;
-  left: 62%;
+  border-radius: 2.5%;
+  left: 81.5%;
   font-family: Ubuntu-Light;
   text-transform: uppercase;
   position: absolute;
@@ -575,11 +575,11 @@ nav {
 }
 
 .cameraImgContainer {
-  width: 41.3%;
-  height: 52.7%;
+  width: 36.5%;
+  height: 43%;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   position: absolute;
-  top: 87.8%;
+  top: 81.9%;
   left: 15.5%;
   padding: 0;
   font-family: sans-serif;
@@ -597,13 +597,13 @@ nav {
   vertical-align: middle;
   text-align: center;
   border-style: none;
-  width: 38.8%;
-  height: 40%;
-  top: 87.8%;
+  width: 43.3%;
+  height: 43%;
+  top: 81.9%;
   background: rgba(0, 0, 0, 0.45);
   color: #fff;
   border-radius: 7px;
-  left: 59%;
+  left: 54.3%;
   font-family: Ubuntu-Light;
   text-transform: uppercase;
   position: absolute;
@@ -622,7 +622,7 @@ nav {
   position: absolute;
   width: 98%;
   height: 10%;
-  top: 91%;
+  11. top: 91%;
   left: 0%;
   font-size: 14px;
   font-family: Simplifica;
