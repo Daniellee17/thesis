@@ -30,20 +30,12 @@ import cv2
 import re
 
 GPIO.setmode(GPIO.BCM) #Read GPIO# and not pin #!
-#RIGHT TERMINAL
 GPIO.setup(21, GPIO.OUT)  # Lights, PIN 40 (Right)
 GPIO.setup(20, GPIO.OUT)  # Fan1, PIN 38 (Right)
-GPIO.setup(16, GPIO.OUT)  # Fan2, PIN 36 (Right)
-
-#LEFT TERMINAL
-GPIO.setup(26, GPIO.OUT)  # CalibrationXYZ, PIN 37 (Left)
-
-GPIO.setup(19, GPIO.OUT)  # WaterXYZ, PIN 35 (Left)
-GPIO.setup(13, GPIO.OUT)  # SeederXYZ, PIN 33 (Left)
-
-GPIO.setup(6, GPIO.OUT)  # Mode_1, PIN 31 (Left)
-GPIO.setup(5, GPIO.OUT)  # Mode_2, PIN 29 (Left)
-
+GPIO.setup(26, GPIO.OUT)  # Fan2, PIN 37 (Left)
+GPIO.setup(16, GPIO.OUT)  # WaterXYZ, PIN 36 (Right)
+GPIO.setup(19, GPIO.OUT)  # CalibrationXYZ, PIN 35 (Left)
+GPIO.setup(12, GPIO.OUT)  # SeederXYZ, PIN 32 (Right)
 DHT_PIN = 1 # PIN 28 (Right)
 DHT_PIN2 = 7 # PIN 26 (Right)
 
@@ -121,11 +113,12 @@ def mainPage(response):
 
         insertSensors.save()
 
-        cameraObjectsSensors = camerasnaps.objects.latest('date')
+        sensorsObjects = sensors.objects.latest('date')
         countersObjectSensors_first = counters.objects.first()
 
         date1 = countersObjectSensors_first.date
-        date2 = cameraObjectsSensors.date
+        date2 = sensorsObjects.date
+
         print(date1)
         print(date2)
 
@@ -424,14 +417,14 @@ def mainPage(response):
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
-        
-        
+
+
     if response.POST.get('action') == 'onCalibration':
 
         print(" ")
-        print("~ (PIN 26) Calibration Activated~")
+        print("~Calibration Activated~")
         print(" ")
-        
+
         insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
@@ -440,12 +433,12 @@ def mainPage(response):
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
 
-        GPIO.output(26, GPIO.HIGH)
+        GPIO.output(19, GPIO.HIGH)
         sleep(1)
-        GPIO.output(26, GPIO.LOW)
-        
+        GPIO.output(19, GPIO.LOW)
+
         print(" ")
-        print("~ (PIN 26) Calibration Deactivated~")
+        print("~Calibration Deactivated~")
         print(" ")
 
         insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
@@ -455,7 +448,7 @@ def mainPage(response):
         insertDeviceStatus2.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus2.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus2.save()
-        
+
     if response.POST.get('action') == 'onFan':
 
         print(" ")
@@ -463,7 +456,7 @@ def mainPage(response):
         print(" ")
 
         GPIO.output(20, GPIO.HIGH)
-        GPIO.output(16, GPIO.HIGH)
+        GPIO.output(26, GPIO.HIGH)
 
         insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus.fansStatus = 'On'
@@ -480,7 +473,7 @@ def mainPage(response):
         print(" ")
 
         GPIO.output(20, GPIO.LOW)
-        GPIO.output(16, GPIO.LOW)
+        GPIO.output(26, GPIO.LOW)
 
         insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus.fansStatus = 'Off'
@@ -526,7 +519,7 @@ def mainPage(response):
     if response.POST.get('action') == 'onWater':
 
         print(" ")
-        print("~ (PIN 19) Watering System Activated~")
+        print("~Watering System Activated~")
         print(" ")
 
         insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
@@ -537,12 +530,12 @@ def mainPage(response):
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
 
-        GPIO.output(19, GPIO.HIGH)
+        GPIO.output(16, GPIO.HIGH)
         sleep(1)
-        GPIO.output(19, GPIO.LOW)
+        GPIO.output(16, GPIO.LOW)
 
         print(" ")
-        print("~ (PIN 19) Watering System Deactivated~")
+        print("~Watering System Deactivated~")
         print(" ")
 
         insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
@@ -557,7 +550,7 @@ def mainPage(response):
     if response.POST.get('action') == 'onSeed':
 
         print(" ")
-        print("~ (PIN 13) Seeder Activated~")
+        print("~Seeder Activated~")
         print(" ")
 
         insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
@@ -568,9 +561,9 @@ def mainPage(response):
         insertDeviceStatus.seedStatus = 'On'
         insertDeviceStatus.save()
 
-        GPIO.output(13, GPIO.HIGH)
+        GPIO.output(12, GPIO.HIGH)
         sleep(1)
-        GPIO.output(13, GPIO.LOW)
+        GPIO.output(12, GPIO.LOW)
 
         print(" ")
         print("~Seeder Deactivated~")
@@ -611,7 +604,3 @@ def databasePage(response):
                  'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects, 'countersObjects': countersObjects}
 
     return render(response, 'database.html', context=myObjects)
-
-
-
-

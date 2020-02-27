@@ -187,11 +187,10 @@
           document.getElementById("mainForm").reset();
           $('#daysID').text(sensorsJson.daysCounterJSON);
           $('#lastDayID').text('Age since: ' + sensorsJson.dateJSON);
-          $('#labelTemperature').text('Temperature: ' + sensorsJson.currentTemperatureJSON);
-          $('#labelHumidity').text('Humidity: ' + sensorsJson.currentHumidityJSON);
-          $('#labelMoisture').text('Soil Moisture: ' + sensorsJson.currentMoistureJSON);
+          $('#labelTemperature').text(sensorsJson.currentTemperatureJSON);
+          $('#labelHumidity').text(sensorsJson.currentHumidityJSON);
+          $('#labelMoisture').text(sensorsJson.currentMoistureJSON);
           $('#labelSummary').text(sensorsJson.currentSummaryJSON);
-          document.getElementById("mainForm").reset();
         },
       });
    // }
