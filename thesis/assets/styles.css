@@ -343,6 +343,14 @@ nav {
   padding: 0;
 }
 
+.titleLogoSquare {
+  width: 140px;
+  height: 40px;
+  border-radius: 0;
+  padding: 0;
+}
+
+
 .headlineContainer {
   display: inline-block;
   vertical-align: middle;
