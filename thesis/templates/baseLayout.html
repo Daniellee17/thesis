@@ -126,40 +126,40 @@
             action: 'fullReset',
 
           },
-          success: function(daysJSON) {
+          success: function(json) {
             document.getElementById("mainForm").reset();
-            $('#cameraID').attr('src', daysJSON.cameraURLJSON);
-            $('#firstDayID').text(daysJSON.day1Formatted);
-            $('#lastDayID').text('Age since: ' + daysJSON.day1Formatted);
-            $('#cameraDateID').text('As of: ' + daysJSON.day1Formatted);
-            $('#summaryDateID').text('As of: ' + daysJSON.day1Formatted);
-            $('#growthDateID').text('As of: ' + daysJSON.day1Formatted);
-            $('#daysID').text(daysJSON.daysCounterJSON);
+            $('#cameraID').attr('src', json.cameraURLJSON);
+            $('#firstDayID').text(json.day1Formatted);
+            $('#lastDayID').text('Age since: ' + json.day1Formatted);
+            $('#cameraDateID').text('As of: ' + json.day1Formatted);
+            $('#summaryDateID').text('As of: ' + json.day1Formatted);
+            $('#growthDateID').text('As of: ' + json.day1Formatted);
+            $('#daysID').text(json.daysCounterJSON);
 
-            $('#labelPlant1Growth').text(daysJSON.plant1JSON);
-            $('#labelPlant2Growth').text(daysJSON.plant2JSON);
-            $('#labelPlant3Growth').text(daysJSON.plant3JSON);
-            $('#labelPlant4Growth').text(daysJSON.plant4JSON);
-            $('#labelPlant5Growth').text(daysJSON.plant5JSON);
-            $('#labelPlant6Growth').text(daysJSON.plant6JSON);
-            $('#labelPlant7Growth').text(daysJSON.plant7JSON);
-            $('#labelPlant8Growth').text(daysJSON.plant8JSON);
-            $('#labelPlant9Growth').text(daysJSON.plant9JSON);
-            $('#labelPlant10Growth').text(daysJSON.plant10JSON);
+            $('#labelPlant1Growth').text(json.plant1JSON);
+            $('#labelPlant2Growth').text(json.plant2JSON);
+            $('#labelPlant3Growth').text(json.plant3JSON);
+            $('#labelPlant4Growth').text(json.plant4JSON);
+            $('#labelPlant5Growth').text(json.plant5JSON);
+            $('#labelPlant6Growth').text(json.plant6JSON);
+            $('#labelPlant7Growth').text(json.plant7JSON);
+            $('#labelPlant8Growth').text(json.plant8JSON);
+            $('#labelPlant9Growth').text(json.plant9JSON);
+            $('#labelPlant10Growth').text(json.plant10JSON);
 
-            $('#labelCalibration').text(daysJSON.calibrationStatusJSON);
-            $('#labelFans').text(daysJSON.fansStatusJSON);
-            $('#labelLights').text(daysJSON.lightsStatusJSON);
-            $('#labelWater').text(daysJSON.waterStatusJSON);
-            $('#labelSeed').text(daysJSON.seedStatusJSON);
+            $('#labelCalibration').text(json.calibrationStatusJSON);
+            $('#labelFans').text(json.fansStatusJSON);
+            $('#labelLights').text(json.lightsStatusJSON);
+            $('#labelWater').text(json.waterStatusJSON);
+            $('#labelSeed').text(json.seedStatusJSON);
 
-            $('#labelTemperature').text(daysJSON.temperatureJSON);
-            $('#labelHumidity').text(daysJSON.humidityJSON);
-            $('#labelMoisture').text(daysJSON.moistureJSON);
-            $('#labelSummary').text(daysJSON.summaryJSON);
+            $('#labelTemperature').text(json.temperatureJSON);
+            $('#labelHumidity').text(json.humidityJSON);
+            $('#labelMoisture').text(json.moistureJSON);
+            $('#labelSummary').text(json.summaryJSON);
 
-            $('#labelMode').text(daysJSON.modeNumberJson);
-            $('#labelGrid').text(daysJSON.gridJson);
+            $('#labelMode').text(json.modeNumberJson);
+            $('#labelGrid').text(json.gridJson);
           },
         });
 
@@ -186,14 +186,14 @@
           csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
           action: 'getSensorValues',
         },
-        success: function(sensorsJson) {
+        success: function(json) {
           document.getElementById("mainForm").reset();
-          $('#daysID').text(sensorsJson.daysCounterJSON);
-          $('#lastDayID').text('Age since: ' + sensorsJson.dateJSON);
-          $('#labelTemperature').text(sensorsJson.currentTemperatureJSON);
-          $('#labelHumidity').text(sensorsJson.currentHumidityJSON);
-          $('#labelMoisture').text(sensorsJson.currentMoistureJSON);
-          $('#labelSummary').text(sensorsJson.currentSummaryJSON);
+          $('#daysID').text(json.daysCounterJSON);
+          $('#lastDayID').text('Age since: ' + json.dateJSON);
+          $('#labelTemperature').text(json.currentTemperatureJSON);
+          $('#labelHumidity').text(json.currentHumidityJSON);
+          $('#labelMoisture').text(json.currentMoistureJSON);
+          $('#labelSummary').text(json.currentSummaryJSON);
         },
       });
    // }
@@ -214,21 +214,21 @@
           csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
           action: 'snapImage',
         },
-        success: function(cameraJson) {
-          $('#cameraID').attr('src', cameraJson.cameraURLJSON);
-          $('#dateID').text('As of: ' + cameraJson.cameraDateJSON);
-          $('#labelPlant1Growth').text(cameraJson.plant1JASON);
-          $('#labelPlant2Growth').text(cameraJson.plant2JASON);
-          $('#labelPlant3Growth').text(cameraJson.plant3JASON);
-          $('#labelPlant4Growth').text(cameraJson.plant4JASON);
-          $('#labelPlant5Growth').text(cameraJson.plant5JASON);
-          $('#labelPlant6Growth').text(cameraJson.plant6JASON);
-          $('#labelPlant7Growth').text(cameraJson.plant7JASON);
-          $('#labelPlant8Growth').text(cameraJson.plant8JASON);
-          $('#labelPlant9Growth').text(cameraJson.plant9JASON);
-          $('#labelPlant10Growth').text(cameraJson.plant10JASON);
-          $('#daysID').text(cameraJson.daysCounterJSON);
-          $('#lastDayID').text('Age since: ' + cameraJson.cameraDateJSON);
+        success: function(json) {
+          $('#cameraID').attr('src', json.cameraURLJSON);
+          $('#dateID').text('As of: ' + json.cameraDateJSON);
+          $('#labelPlant1Growth').text(json.plant1JASON);
+          $('#labelPlant2Growth').text(json.plant2JASON);
+          $('#labelPlant3Growth').text(json.plant3JASON);
+          $('#labelPlant4Growth').text(json.plant4JASON);
+          $('#labelPlant5Growth').text(json.plant5JASON);
+          $('#labelPlant6Growth').text(json.plant6JASON);
+          $('#labelPlant7Growth').text(json.plant7JASON);
+          $('#labelPlant8Growth').text(json.plant8JASON);
+          $('#labelPlant9Growth').text(json.plant9JASON);
+          $('#labelPlant10Growth').text(json.plant10JASON);
+          $('#daysID').text(json.daysCounterJSON);
+          $('#lastDayID').text('Age since: ' + json.cameraDateJSON);
         },
       });
     }
@@ -251,23 +251,23 @@
         csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
         action: 'snapImage',
       },
-      success: function(cameraJson) {
-        $('#cameraID').attr('src', cameraJson.cameraURLJSON);
-        $('#cameraDateID').text('As of: ' + cameraJson.cameraDateJSON);
-        $('#summaryDateID').text('As of: ' + cameraJson.cameraDateJSON);
-        $('#growthDateID').text('As of: ' + cameraJson.cameraDateJSON);
-        $('#labelPlant1Growth').text(cameraJson.plant1JASON);
-        $('#labelPlant2Growth').text(cameraJson.plant2JASON);
-        $('#labelPlant3Growth').text(cameraJson.plant3JASON);
-        $('#labelPlant4Growth').text(cameraJson.plant4JASON);
-        $('#labelPlant5Growth').text(cameraJson.plant5JASON);
-        $('#labelPlant6Growth').text(cameraJson.plant6JASON);
-        $('#labelPlant7Growth').text(cameraJson.plant7JASON);
-        $('#labelPlant8Growth').text(cameraJson.plant8JASON);
-        $('#labelPlant9Growth').text(cameraJson.plant9JASON);
-        $('#labelPlant10Growth').text(cameraJson.plant10JASON);
-        $('#daysID').text(cameraJson.daysCounterJSON);
-        $('#lastDayID').text('Age since: ' + cameraJson.cameraDateJSON);
+      success: function(json) {
+        $('#cameraID').attr('src', json.cameraURLJSON);
+        $('#cameraDateID').text('As of: ' + json.cameraDateJSON);
+        $('#summaryDateID').text('As of: ' + json.cameraDateJSON);
+        $('#growthDateID').text('As of: ' + json.cameraDateJSON);
+        $('#labelPlant1Growth').text(json.plant1JASON);
+        $('#labelPlant2Growth').text(json.plant2JASON);
+        $('#labelPlant3Growth').text(json.plant3JASON);
+        $('#labelPlant4Growth').text(json.plant4JASON);
+        $('#labelPlant5Growth').text(json.plant5JASON);
+        $('#labelPlant6Growth').text(json.plant6JASON);
+        $('#labelPlant7Growth').text(json.plant7JASON);
+        $('#labelPlant8Growth').text(json.plant8JASON);
+        $('#labelPlant9Growth').text(json.plant9JASON);
+        $('#labelPlant10Growth').text(json.plant10JASON);
+        $('#daysID').text(json.daysCounterJSON);
+        $('#lastDayID').text('Age since: ' + json.cameraDateJSON);
       },
     });
   });

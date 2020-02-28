@@ -103,34 +103,34 @@ def mainPage(response):
         averageTemperature = (currentTemperature + currentTemperature2) / 2
         averageHumidity = (currentHumidity + currentHumidity2) / 2
 
-        temperatureStatus = 11
-        humidityStatus = 11
-        soilMoistureStatus = 11
+        temperatureStatus = 'good'
+        humidityStatus = 'good'
+        soilMoistureStatus = 'good'
 
         temperatureStatusSummary = "Default"
         humidityStatusSummary = "Default"
         soilMoistureStatusSummary = "Default"
 
         if(averageTemperature > 26 ):
-            temperatureStatus = 0 # Too High
+            temperatureStatus = 'high' # Too High
         else:
-            temperatureStatus = 1 # Good
+            temperatureStatus = 'good' # Good
 
         if (averageHumidity < 50):
-            humidityStatus = 00 # Too Low
+            humidityStatus = 'low' # Too Low
         elif (averageHumidity > 80):
-            humidityStatus = 10 # Too High
+            humidityStatus = 'high' # Too High
         else:
             temperatureStatus = 11 # Good
 
         if (currentMoisture >= 10 and currentMoisture <= 30):
-            soilMoistureStatus = 00; # Dry
+            soilMoistureStatus = 'dry'; # Dry
         elif (currentMoisture >= 31 and currentMoisture <= 70):
-            soilMoistureStatus = 10; # Moist
+            soilMoistureStatus = 'moist'; # Moist
         elif (currentMoisture >= 71):
-            soilMoistureStatus = 11; # Wet
+            soilMoistureStatus = 'wet'; # Wet
 
-        if(temperatureStatus == 0):
+        if(temperatureStatus == 'high'):
             temperatureStatusSummary = 'Temperature is too high!, activating fans'
             print(" ")
             print("~Fans Activated~")
@@ -149,7 +149,7 @@ def mainPage(response):
             temperatureStatusSummary = 'Temperature is good!'
 
 
-        if (humidityStatus == 10):
+        if (humidityStatus == 'high'):
             humidityStatusSummary = 'Humidity is too high!, activating fans'
             print(" ")
             print("~Fans Activated~")
@@ -165,7 +165,7 @@ def mainPage(response):
             insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
             insertDeviceStatus.save()
 
-        elif (humidityStatus == 00):
+        elif (humidityStatus == 'low'):
             humidityStatusSummary = 'Humidity is too low!, activating fans'
             print(" ")
             print("~Fans Activated~")
@@ -183,7 +183,7 @@ def mainPage(response):
         else:
             humidityStatusSummary = 'Humidity is good!'
 
-        if (soilMoistureStatus == 00):
+        if (soilMoistureStatus == 'dry'):
             soilMoistureStatus = 'Soil Moisture is dry!, activating watering system'
             print(" ")
             print("~ (PIN 19) Watering System Activated~")
@@ -211,9 +211,9 @@ def mainPage(response):
             insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
             insertDeviceStatus.save()
 
-        elif (soilMoistureStatus == 10):
+        elif (soilMoistureStatus == 'moist'):
             soilMoistureStatus = 'Soil Moisture is moist!'
-        elif (soilMoistureStatus == 11):
+        elif (soilMoistureStatus == 'wet'):
             soilMoistureStatus = 'Soil Moisture is wet!'
 
         currentSummary = ('TEMPERATURE STATUS: ' + temperatureStatusSummary + ' HUMIDITY STATUS: ' +  humidityStatusSummary + ' ...' + ' SOIL MOSITURE STATUS: ' + soilMoistureStatus + ' ...')
