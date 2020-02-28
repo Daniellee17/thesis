@@ -128,7 +128,7 @@
           },
           success: function(daysJSON) {
             document.getElementById("mainForm").reset();
-            $('#cameraID').attr('src', '../assets/background/defaultBG.jpg');
+            $('#cameraID').attr('src', daysJSON.cameraURLJSON);
             $('#firstDayID').text(daysJSON.day1Formatted);
             $('#lastDayID').text('Age since: ' + daysJSON.day1Formatted);
             $('#cameraDateID').text('As of: ' + daysJSON.day1Formatted);

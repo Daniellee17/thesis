@@ -313,8 +313,8 @@ def mainPage(response):
         insertDeviceStatus.save()
 
         camerasnaps.objects.all().delete()
-        insertCamera.camera = 'defaultBG.jpg'
-        insertCamera.cameraURL = '../assets/background/defaultBG.jpg'
+        insertCamera.camera = 'defaultBG_withLogo.png'
+        insertCamera.cameraURL = '../assets/background/defaultBG_withLogo.png'
         insertCamera.plant1 = 0
         insertCamera.plant2 = 0
         insertCamera.plant3 = 0
