@@ -337,10 +337,10 @@ def mainPage(response):
         counters.objects.all().delete()
         insertCounters.daysCounter = 0
         insertCounters.save()
-        
+
         mode1Object = mode1_pechay.objects.latest('date')
-        
-        currentMode.objects.all().delete()    
+
+        currentMode.objects.all().delete()
         insertMode.grid = mode1Object.grid
         insertMode.rows = mode1Object.rows
         insertMode.columns = mode1Object.columns
@@ -380,11 +380,11 @@ def mainPage(response):
         'plant10JSON' : camerasnapsObjectsReset.plant10,
 
         'gridJson': currentModeObjectsReset.grid,
-        'modeNumberJson': currentModeObjectsReset.modeNumber,    
+        'modeNumberJson': currentModeObjectsReset.modeNumber,
         }
 
         return JsonResponse(daysJSON)
-        
+
     if response.POST.get('action') == 'onMode1':
 
         print(" ")
@@ -393,7 +393,7 @@ def mainPage(response):
 
         GPIO.output(6, GPIO.LOW)
         GPIO.output(5, GPIO.LOW)
-        
+
         mode = 1
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
@@ -402,20 +402,20 @@ def mainPage(response):
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
-        
+
         mode1Object = mode1_pechay.objects.latest('date')
-        
+
         insertMode.grid = mode1Object.grid
         insertMode.rows = mode1Object.rows
         insertMode.columns = mode1Object.columns
         insertMode.modeNumber = mode1Object.modeNumber
         insertMode.save()
-        
+
         modeObject = currentMode.objects.latest('date')
-        
+
         json = {
         'gridJson': modeObject.grid,
-        'modeNumberJson': modeObject.modeNumber,        
+        'modeNumberJson': modeObject.modeNumber,
         }
 
         return JsonResponse(json)
@@ -425,10 +425,10 @@ def mainPage(response):
         print(" ")
         print("~Mode 2 Activated~")
         print(" ")
-        
+
        GPIO.output(6, GPIO.LOW)
        GPIO.output(5, GPIO.HIGH)
-        
+
         mode = 2
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
@@ -437,33 +437,33 @@ def mainPage(response):
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
-        
+
         mode2Object = mode2_plant2.objects.latest('date')
-    
+
         insertMode.grid = mode2Object.grid
         insertMode.rows = mode2Object.rows
         insertMode.columns = mode2Object.columns
         insertMode.modeNumber = mode2Object.modeNumber
         insertMode.save()
-        
+
         modeObject = currentMode.objects.latest('date')
-        
+
         json = {
         'gridJson': modeObject.grid,
-        'modeNumberJson': modeObject.modeNumber,        
+        'modeNumberJson': modeObject.modeNumber,
         }
 
         return JsonResponse(json)
-        
+
     if response.POST.get('action') == 'onMode3':
 
         print(" ")
         print("~Mode 3 Activated~")
         print(" ")
-        
+
         GPIO.output(6, GPIO.HIGH)
         GPIO.output(5, GPIO.LOW)
-    
+
         mode = 3
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
@@ -472,20 +472,20 @@ def mainPage(response):
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
-        
+
         mode3Object = mode3_plant3.objects.latest('date')
-        
+
         insertMode.grid = mode3Object.grid
         insertMode.rows = mode3Object.rows
         insertMode.columns = mode3Object.columns
         insertMode.modeNumber = mode3Object.modeNumber
         insertMode.save()
-        
+
         modeObject = currentMode.objects.latest('date')
-        
+
         json = {
         'gridJson': modeObject.grid,
-        'modeNumberJson': modeObject.modeNumber,        
+        'modeNumberJson': modeObject.modeNumber,
         }
 
         return JsonResponse(json)
@@ -495,10 +495,10 @@ def mainPage(response):
         print(" ")
         print("~Mode 4 Activated~")
         print(" ")
-        
+
         GPIO.output(6, GPIO.HIGH)
         GPIO.output(5, GPIO.HIGH)
-        
+
         mode = 4
 
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
@@ -507,20 +507,20 @@ def mainPage(response):
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
-        
+
         mode4Object = mode4_plant4.objects.latest('date')
-        
+
         insertMode.grid = mode4Object.grid
         insertMode.rows = mode4Object.rows
         insertMode.columns = mode4Object.columns
         insertMode.modeNumber = mode4Object.modeNumber
         insertMode.save()
-        
+
         modeObject = currentMode.objects.latest('date')
-        
+
         json = {
         'gridJson': modeObject.grid,
-        'modeNumberJson': modeObject.modeNumber,        
+        'modeNumberJson': modeObject.modeNumber,
         }
 
         return JsonResponse(json)
@@ -696,6 +696,3 @@ def databasePage(response):
                  'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects, 'countersObjects': countersObjects}
 
     return render(response, 'database.html', context=myObjects)
-
-
-

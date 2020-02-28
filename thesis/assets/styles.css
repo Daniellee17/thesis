@@ -337,10 +337,11 @@ nav {
 }
 
 .titleLogo {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  border-radius: 0%;
   padding: 0;
+  opacity: 0.55;
 }
 
 .titleLogoSquare {
@@ -605,6 +606,8 @@ nav {
   padding: 0;
   font-family: sans-serif;
   border-radius: 7px;
+  background-repeat: no repeat;
+  background-size: cover;
 }
 
 .cameraImg {
