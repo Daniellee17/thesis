@@ -833,22 +833,27 @@ nav {
 }
 
 .devicesTable td:nth-child(2), .devicesTable th:nth-child(2) {
-  min-width: 80px;
+  min-width: 60px;
   text-align: center;
 }
 
 .devicesTable td:nth-child(3), .devicesTable th:nth-child(3) {
-  min-width: 80px;
+  min-width: 60px;
   text-align: center;
 }
 
 .devicesTable td:nth-child(4), .devicesTable th:nth-child(4) {
-  min-width: 80px;
+  min-width: 60px;
   text-align: center;
 }
 
 .devicesTable td:nth-child(5), .devicesTable th:nth-child(5) {
-  min-width: 80px;
+  min-width: 60px;
+  text-align: center;
+}
+
+.devicesTable td:nth-child(6), .devicesTable th:nth-child(6) {
+  min-width: 60px;
   text-align: center;
 }
 

@@ -698,3 +698,4 @@ def databasePage(response):
     return render(response, 'database.html', context=myObjects)
 
 
+
