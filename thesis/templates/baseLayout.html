@@ -146,7 +146,6 @@
             $('#labelPlant9Growth').text(daysJSON.plant9JSON);
             $('#labelPlant10Growth').text(daysJSON.plant10JSON);
 
-            $('#labelMode').text(daysJSON.modeStatusJSON);
             $('#labelCalibration').text(daysJSON.calibrationStatusJSON);
             $('#labelFans').text(daysJSON.fansStatusJSON);
             $('#labelLights').text(daysJSON.lightsStatusJSON);
@@ -157,6 +156,9 @@
             $('#labelHumidity').text(daysJSON.humidityJSON);
             $('#labelMoisture').text(daysJSON.moistureJSON);
             $('#labelSummary').text(daysJSON.summaryJSON);
+
+            $('#labelMode').text(daysJSON.modeNumberJson);
+            $('#labelGrid').text(daysJSON.gridJson);
           },
         });
 
@@ -427,7 +429,8 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelMode').text('1');
+        $('#labelMode').text(json.modeNumberJson);
+        $('#labelGrid').text(json.gridJson);
       },
 
     });
@@ -448,7 +451,8 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelMode').text('2');
+        $('#labelMode').text(json.modeNumberJson);
+        $('#labelGrid').text(json.gridJson);
       },
 
     });
@@ -468,7 +472,8 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelMode').text('3');
+        $('#labelMode').text(json.modeNumberJson);
+        $('#labelGrid').text(json.gridJson);
       },
 
     });
@@ -488,7 +493,8 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelMode').text('4');
+        $('#labelMode').text(json.modeNumberJson);
+        $('#labelGrid').text(json.gridJson);
       },
 
     });

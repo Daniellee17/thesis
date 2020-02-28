@@ -5,6 +5,11 @@ from .models import devicestatus
 from .models import sensors
 from .models import camerasnaps
 from .models import counters
+from .models import currentMode
+from .models import mode1_pechay
+from .models import mode2_plant2
+from .models import mode3_plant3
+from .models import mode4_plant4
 from pygame.locals import *
 from datetime import datetime
 from datetime import date
@@ -63,6 +68,7 @@ def mainPage(response):
     insertCamera = camerasnaps()
     insertSensors = sensors()
     insertCounters = counters()
+    insertMode = currentMode()
 
 
     if response.POST.get('action') == 'getSensorValues':
@@ -299,7 +305,6 @@ def mainPage(response):
         print("~Database Cleared~")
         print(" ")
         devicestatus.objects.all().delete()
-        insertDeviceStatus.modeStatus = '/'
         insertDeviceStatus.calibrationStatus = '/'
         insertDeviceStatus.fansStatus = '/'
         insertDeviceStatus.lightsStatus = '/'
@@ -332,11 +337,21 @@ def mainPage(response):
         counters.objects.all().delete()
         insertCounters.daysCounter = 0
         insertCounters.save()
+        
+        mode1Object = mode1_pechay.objects.latest('date')
+        
+        currentMode.objects.all().delete()    
+        insertMode.grid = mode1Object.grid
+        insertMode.rows = mode1Object.rows
+        insertMode.columns = mode1Object.columns
+        insertMode.modeNumber = mode1Object.modeNumber
+        insertMode.save()
 
         countersObjectsReset = counters.objects.latest('date')
         camerasnapsObjectsReset = camerasnaps.objects.latest('date')
         sensorsObjectsReset = sensors.objects.latest('date')
         deviceStatusObjectsReset = devicestatus.objects.latest('date')
+        currentModeObjectsReset = currentMode.objects.latest('date')
 
         daysJSON = {
         'day1Formatted': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),
@@ -345,7 +360,6 @@ def mainPage(response):
         'moistureJSON': sensorsObjectsReset.moisture,
         'summaryJSON': sensorsObjectsReset.summary,
 
-        'modeStatusJSON' : deviceStatusObjectsReset.modeStatus,
         'fansStatusJSON' : deviceStatusObjectsReset.fansStatus,
         'lightsStatusJSON' : deviceStatusObjectsReset.lightsStatus,
         'calibrationStatusJSON' : deviceStatusObjectsReset.calibrationStatus,
@@ -365,66 +379,151 @@ def mainPage(response):
         'plant9JSON' : camerasnapsObjectsReset.plant9,
         'plant10JSON' : camerasnapsObjectsReset.plant10,
 
-        'daysCounterJSON' : countersObjectsReset.daysCounter,
+        'gridJson': currentModeObjectsReset.grid,
+        'modeNumberJson': currentModeObjectsReset.modeNumber,    
         }
 
         return JsonResponse(daysJSON)
-
+        
     if response.POST.get('action') == 'onMode1':
 
         print(" ")
         print("~Mode 1 Activated~")
         print(" ")
 
-        insertDeviceStatus.modeStatus = '1'
+        GPIO.output(6, GPIO.LOW)
+        GPIO.output(5, GPIO.LOW)
+        
+        mode = 1
+
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
+        
+        mode1Object = mode1_pechay.objects.latest('date')
+        
+        insertMode.grid = mode1Object.grid
+        insertMode.rows = mode1Object.rows
+        insertMode.columns = mode1Object.columns
+        insertMode.modeNumber = mode1Object.modeNumber
+        insertMode.save()
+        
+        modeObject = currentMode.objects.latest('date')
+        
+        json = {
+        'gridJson': modeObject.grid,
+        'modeNumberJson': modeObject.modeNumber,        
+        }
+
+        return JsonResponse(json)
 
     if response.POST.get('action') == 'onMode2':
 
         print(" ")
         print("~Mode 2 Activated~")
         print(" ")
+        
+       GPIO.output(6, GPIO.LOW)
+       GPIO.output(5, GPIO.HIGH)
+        
+        mode = 2
 
-        insertDeviceStatus.modeStatus = '2'
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
+        
+        mode2Object = mode2_plant2.objects.latest('date')
+    
+        insertMode.grid = mode2Object.grid
+        insertMode.rows = mode2Object.rows
+        insertMode.columns = mode2Object.columns
+        insertMode.modeNumber = mode2Object.modeNumber
+        insertMode.save()
+        
+        modeObject = currentMode.objects.latest('date')
+        
+        json = {
+        'gridJson': modeObject.grid,
+        'modeNumberJson': modeObject.modeNumber,        
+        }
 
+        return JsonResponse(json)
+        
     if response.POST.get('action') == 'onMode3':
 
         print(" ")
         print("~Mode 3 Activated~")
         print(" ")
+        
+        GPIO.output(6, GPIO.HIGH)
+        GPIO.output(5, GPIO.LOW)
+    
+        mode = 3
 
-        insertDeviceStatus.modeStatus = '3'
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
+        
+        mode3Object = mode3_plant3.objects.latest('date')
+        
+        insertMode.grid = mode3Object.grid
+        insertMode.rows = mode3Object.rows
+        insertMode.columns = mode3Object.columns
+        insertMode.modeNumber = mode3Object.modeNumber
+        insertMode.save()
+        
+        modeObject = currentMode.objects.latest('date')
+        
+        json = {
+        'gridJson': modeObject.grid,
+        'modeNumberJson': modeObject.modeNumber,        
+        }
+
+        return JsonResponse(json)
 
     if response.POST.get('action') == 'onMode4':
 
         print(" ")
         print("~Mode 4 Activated~")
         print(" ")
+        
+        GPIO.output(6, GPIO.HIGH)
+        GPIO.output(5, GPIO.HIGH)
+        
+        mode = 4
 
-        insertDeviceStatus.modeStatus = '4'
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
         insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
+        
+        mode4Object = mode4_plant4.objects.latest('date')
+        
+        insertMode.grid = mode4Object.grid
+        insertMode.rows = mode4Object.rows
+        insertMode.columns = mode4Object.columns
+        insertMode.modeNumber = mode4Object.modeNumber
+        insertMode.save()
+        
+        modeObject = currentMode.objects.latest('date')
+        
+        json = {
+        'gridJson': modeObject.grid,
+        'modeNumberJson': modeObject.modeNumber,        
+        }
+
+        return JsonResponse(json)
 
 
     if response.POST.get('action') == 'onCalibration':
@@ -433,7 +532,6 @@ def mainPage(response):
         print("~ (PIN 26) Calibration Activated~")
         print(" ")
 
-        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.calibrationStatus = 'On'
@@ -449,7 +547,6 @@ def mainPage(response):
         print("~ (PIN 26) Calibration Deactivated~")
         print(" ")
 
-        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus2.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus2.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus2.calibrationStatus = 'Off'
@@ -466,7 +563,6 @@ def mainPage(response):
         GPIO.output(20, GPIO.HIGH)
         GPIO.output(16, GPIO.HIGH)
 
-        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus.fansStatus = 'On'
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
@@ -483,7 +579,6 @@ def mainPage(response):
         GPIO.output(20, GPIO.LOW)
         GPIO.output(16, GPIO.LOW)
 
-        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus.fansStatus = 'Off'
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
@@ -499,7 +594,6 @@ def mainPage(response):
 
         GPIO.output(21, GPIO.HIGH)
 
-        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = 'On'
         insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
@@ -516,7 +610,6 @@ def mainPage(response):
 
         GPIO.output(21, GPIO.LOW)
 
-        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = 'Off'
         insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
@@ -530,7 +623,6 @@ def mainPage(response):
         print("~ (PIN 19) Watering System Activated~")
         print(" ")
 
-        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
@@ -546,14 +638,12 @@ def mainPage(response):
         print("~ (PIN 19) Watering System Deactivated~")
         print(" ")
 
-        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
-        insertDeviceStatus.waterStatus = 'On'
+        insertDeviceStatus.waterStatus = 'Off'
         insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
         insertDeviceStatus.save()
-
 
     if response.POST.get('action') == 'onSeed':
 
@@ -561,7 +651,6 @@ def mainPage(response):
         print("~ (PIN 13) Seeder Activated~")
         print(" ")
 
-        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
@@ -577,7 +666,6 @@ def mainPage(response):
         print("~Seeder Deactivated~")
         print(" ")
 
-        insertDeviceStatus.modeStatus = deviceStatusObjects.modeStatus
         insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
         insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
         insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
@@ -585,17 +673,13 @@ def mainPage(response):
         insertDeviceStatus.seedStatus = 'Off'
         insertDeviceStatus.save()
 
-
-
-    # Dito nakalagay sa baba kasi if sa taas,
-    # mauuna kunin data before saving the sensor data so late ng isang query
-
     sensorsObjects = sensors.objects.latest('date')
     cameraObjects = camerasnaps.objects.latest('date')
     countersObject_first = counters.objects.first()
     countersObject = counters.objects.latest('date')
+    modeObject = currentMode.objects.latest('date')
 
-    myObjects = {'deviceStatusObjects': deviceStatusObjects,
+    myObjects = {'modeObject': modeObject, 'deviceStatusObjects': deviceStatusObjects,
                  'countersObject': countersObject, 'countersObject_first': countersObject_first, 'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects}
 
     return render(response, 'main.html', context=myObjects)
@@ -612,3 +696,5 @@ def databasePage(response):
                  'sensorsObjects': sensorsObjects, 'cameraObjects': cameraObjects, 'countersObjects': countersObjects}
 
     return render(response, 'database.html', context=myObjects)
+
+

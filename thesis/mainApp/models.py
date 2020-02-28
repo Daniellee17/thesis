@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-#ONE CLASS ONE TABLE
 
 class sensors(models.Model):
     temperature = models.FloatField(max_length=250, default=0.0);
@@ -12,7 +10,6 @@ class sensors(models.Model):
 
 
 class devicestatus(models.Model):
-    modeStatus = models.TextField(max_length=250, default="Off");
     calibrationStatus = models.TextField(max_length=250, default="Off");
     fansStatus = models.TextField(max_length=250, default="Off");
     lightsStatus = models.TextField(max_length=250, default="Off");
@@ -34,7 +31,42 @@ class camerasnaps(models.Model):
     plant9 = models.IntegerField(default=0);
     plant10 = models.IntegerField(default=0);
     date = models.DateTimeField(auto_now=True);
-    
+
 class counters(models.Model):
     daysCounter = models.IntegerField(default=0);
+    date = models.DateTimeField(auto_now=True);
+
+class currentMode(models.Model):
+    grid = models.TextField(max_length=250, default="5x2");
+    rows = models.IntegerField(default=5);
+    columns = models.IntegerField(default=2);
+    modeNumber = models.IntegerField(default=1);
+    date = models.DateTimeField(auto_now=True);
+
+class mode1_pechay(models.Model):
+    grid = models.TextField(max_length=250, default="5x2");
+    rows = models.IntegerField(default=5);
+    columns = models.IntegerField(default=2);
+    modeNumber = models.IntegerField(default=1);
+    date = models.DateTimeField(auto_now=True);
+
+class mode2_plant2(models.Model):
+    grid = models.TextField(max_length=250, default="4x2");
+    rows = models.IntegerField(default=5);
+    columns = models.IntegerField(default=2);
+    modeNumber = models.IntegerField(default=2);
+    date = models.DateTimeField(auto_now=True);
+
+class mode3_plant3(models.Model):
+    grid = models.TextField(max_length=250, default="3x2");
+    rows = models.IntegerField(default=5);
+    columns = models.IntegerField(default=2);
+    modeNumber = models.IntegerField(default=3);
+    date = models.DateTimeField(auto_now=True);
+
+class mode4_plant4(models.Model):
+    grid = models.TextField(max_length=250, default="2x2");
+    rows = models.IntegerField(default=5);
+    columns = models.IntegerField(default=2);
+    modeNumber = models.IntegerField(default=4);
     date = models.DateTimeField(auto_now=True);

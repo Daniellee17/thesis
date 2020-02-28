@@ -430,7 +430,7 @@ nav {
   align-items: center;
   width: 58px;
   height: 58px;
-  margin-right: 10px;
+  margin-right: 2px;
 }
 
 .doubleContainer {
@@ -555,23 +555,36 @@ nav {
   color: #fff;
   border-radius: 2.5%;
   left: 81.5%;
-  font-family: Ubuntu-Light;
-  text-transform: uppercase;
+  font-family: Simplifica;
+  text-transform: none;
   position: absolute;
 }
 
-.summaryContainer li {
-  list-style: none;
-  padding-top: 10px;
-  padding-bottom: 10px;
+.summaryContainer a {
   text-align: center;
+  vertical-align: center;
+  vertical-align: middle;
+  font-size: 17px;
+  font-family: Simplifica;
+  color: white;
+  text-decoration: none;
+  display: block;
+  align-items: center;
+  text-transform: none;
+  margin-top: 110px;
 }
 
-.summaryContainer a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 15px;
+.summaryContainer p {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 25px;
   font-family: Simplifica;
+  color: white;
+  text-transform: Uppercase;
+  margin-top: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .cameraImgContainer {
@@ -579,7 +592,7 @@ nav {
   height: 43%;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   position: absolute;
-  top: 81.9%;
+  top: 81.2%;
   left: 15.5%;
   padding: 0;
   font-family: sans-serif;
@@ -597,23 +610,32 @@ nav {
   vertical-align: middle;
   text-align: center;
   border-style: none;
-  width: 43.3%;
+  width: 44.3%;
   height: 43%;
-  top: 81.9%;
+  top: 81.2%;
   background: rgba(0, 0, 0, 0.45);
   color: #fff;
   border-radius: 7px;
-  left: 54.3%;
-  font-family: Ubuntu-Light;
-  text-transform: uppercase;
+  left: 53.8%;
+  font-family: Simplifica;
+  text-transform: none;
+  text-decoration: none;;
   position: absolute;
   margin-bottom: 3%;
 }
 
 .growthContainer a {
+  text-align: center;
+  vertical-align: center;
+  vertical-align: middle;
+  font-size: 17px;
+  font-family: Simplifica;
+  color: white;
   text-decoration: none;
-  color: #fff;
-  font-size: 15px;
+  display: block;
+  align-items: center;
+  text-transform: none;
+  margin-top: 85px;
 }
 
 .dateContainer {
@@ -622,7 +644,7 @@ nav {
   position: absolute;
   width: 98%;
   height: 10%;
-  11. top: 91%;
+  top: 91%;
   left: 0%;
   font-size: 14px;
   font-family: Simplifica;

@@ -34,7 +34,7 @@
   <div class="singleContainer" style="left: 71.6%; top: 61.6%">
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/devicesIcons/modeIcon_white.png" class="singleContainer_icon" style="width: 56px;" />
-      <p id="labelGrid">5x2</p>
+      <p id="labelGrid">{{modeObject.grid}}</p>
     </div>
     <a>Grid Measurement</a>
   </div>
@@ -42,7 +42,7 @@
   <div class="singleContainer" style="left: 71.6%; top: 43%">
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/devicesIcons/modeIcon_white.png" class="singleContainer_icon" />
-      <p id="labelMode">{{deviceStatusObjects.modeStatus}}</p>
+      <p id="labelMode">{{modeObject.modeNumber}}</p>
     </div>
     <a>Mode</a>
   </div>
@@ -113,28 +113,20 @@
   </div>
 
   <div class="summaryContainer">
-    <li> Summary </li>
-    <a id="labelSummary">{{sensorsObjects.summary}} </a>
-    <div class="dateContainer">
-      <img src="../assets/icons/updateIcon_white.png" class="dateContainerLogo" />
-      <p id="summaryDateID">{{cameraObjects.date}}</p>
-    </div>
+    <p id="labelSummary">{{sensorsObjects.summary}} </p>
+    <a>Summary</a>
   </div>
 
   <div class="cameraImgContainer">
     <img id="cameraID" class="cameraImg" src={{cameraObjects.cameraURL}}>
     <!--   <img id="cameraID" class="cameraImg" src={{cameraObjects.cameraURL}}> -->
     <!--   <img id="cameraID" class="cameraImg" src="../assets/gardenPics/test.jpg"> -->
-    <div class="dateContainer" style="top:94%;">
 
-      <img src="../assets/icons/updateIcon_white.png" class="dateContainerLogo" />
-      <p id="cameraDateID">{{cameraObjects.date}}</p>
-    </div>
   </div>
 
   <div class="growthContainer_permanent">
     <div class="growthContainer">
-      <li> <a>growth monitor</a> </li>
+
 
       <div class="circle small">
         <a style="font-size: 30px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant1Growth">{{cameraObjects.plant1}}</a>
@@ -195,13 +187,8 @@
         <a style="font-size: 17px; font-family: Simplifica; margin-top: 0px; margin-bottom: 30px;">Days</a>
         <a style="font-size: 18px; font-family: Simplifica; margin-top: 0px; margin-bottom: 0px;">Plant 10</a>
       </div>
-      <div class="dateContainer" style="top:94%;">
-
-        <img src="../assets/icons/updateIcon_white.png" class="dateContainerLogo" />
-        <p id="growthDateID">{{cameraObjects.date}}</p>
-      </div>
+      <a>Growth Monitor</a>
     </div>
-  </div>
 
 </form>
 
