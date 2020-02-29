@@ -211,7 +211,7 @@
             $('#labelSeed').text(json.seedStatusJSON);
 
             $('#labelTemperature').text(json.temperatureJSON + " ° C");
-            $('#labelHumidity').text(json.humidityJSON + "");
+            $('#labelHumidity').text(json.humidityJSON + " %");
             $('#labelMoisture').text(json.moistureJSON + " %");
             $('#labelSummary').text(json.summaryJSON);
 
@@ -244,7 +244,7 @@
         $('#daysID').text(json.daysCounterJSON);
         $('#lastDayID').text('Age since: ' + json.dateJSON);
         $('#labelTemperature').text(json.currentTemperatureJSON + " ° C");
-        $('#labelHumidity').text(json.currentHumidityJSON + "");
+        $('#labelHumidity').text(json.currentHumidityJSON + " %");
         $('#labelMoisture').text(json.currentMoistureJSON + " %");
         $('#labelSummary').text(json.currentSummaryJSON);
       },
