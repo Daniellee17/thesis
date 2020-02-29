@@ -148,7 +148,7 @@ nav {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(255, 255, 255, 0.55);
   overflow-x: hidden;
   transition: 0.4s;
   padding-top: 60px;
@@ -316,7 +316,7 @@ nav {
   width: 14%;
   height: 5%;
   position: fixed;
-  top: 3.1%;
+  top: 1.1%;
   left: 2.5%;
   font-family: Ubuntu;
   font-size: 17px;
@@ -342,6 +342,15 @@ nav {
   border-radius: 0%;
   padding: 0;
   opacity: 0.55;
+}
+
+
+.titleLogoGif {
+  width: 65px;
+  height: 65px;
+  border-radius: 0%;
+  padding: 0;
+
 }
 
 .titleLogoSquare {

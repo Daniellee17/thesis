@@ -24,7 +24,7 @@
 
 
   <div class="title">
-    <img src="../assets/icons/rpiLogo_white.png" class="titleLogo" />
+    <img src="../assets/icons/rpiGif2.gif" class="titleLogoGif" />
   </div>
 
   <div id="mySidenav" class="hiddenSideNav">
@@ -101,6 +101,10 @@
     document.getElementById("mySidenav").style.width = "0";
   }
 
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "15%";
+  }
+
   function confirmFullReset() {
     var txt;
 
@@ -172,31 +176,27 @@
     });
   }
 
-  function openNav() {
-    document.getElementById("mySidenav").style.width = "16%";
-  }
-
   function getSensorValues() {
     var date1 = new Date();
     //if (date1.getMinutes() === 00) {
-      $.ajax({
-        type: 'POST',
-        url: '{% url "mainPage" %}',
-        data: {
-          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-          action: 'getSensorValues',
-        },
-        success: function(json) {
-          document.getElementById("mainForm").reset();
-          $('#daysID').text(json.daysCounterJSON);
-          $('#lastDayID').text('Age since: ' + json.dateJSON);
-          $('#labelTemperature').text(json.currentTemperatureJSON);
-          $('#labelHumidity').text(json.currentHumidityJSON);
-          $('#labelMoisture').text(json.currentMoistureJSON);
-          $('#labelSummary').text(json.currentSummaryJSON);
-        },
-      });
-   // }
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'getSensorValues',
+      },
+      success: function(json) {
+        document.getElementById("mainForm").reset();
+        $('#daysID').text(json.daysCounterJSON);
+        $('#lastDayID').text('Age since: ' + json.dateJSON);
+        $('#labelTemperature').text(json.currentTemperatureJSON);
+        $('#labelHumidity').text(json.currentHumidityJSON);
+        $('#labelMoisture').text(json.currentMoistureJSON);
+        $('#labelSummary').text(json.currentSummaryJSON);
+      },
+    });
+    // }
   }
 
   function snapImage() {
