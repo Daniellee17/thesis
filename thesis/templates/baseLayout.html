@@ -210,12 +210,12 @@
             $('#labelWater').text(json.waterStatusJSON);
             $('#labelSeed').text(json.seedStatusJSON);
 
-            $('#labelTemperature').text(json.temperatureJSON);
-            $('#labelHumidity').text(json.humidityJSON);
-            $('#labelMoisture').text(json.moistureJSON);
+            $('#labelTemperature').text(json.temperatureJSON + " ° C");
+            $('#labelHumidity').text(json.humidityJSON + "");
+            $('#labelMoisture').text(json.moistureJSON + " %");
             $('#labelSummary').text(json.summaryJSON);
 
-            $('#labelMode').text(json.modeNumberJson);
+            $('#labelMode').text("Mode " + json.modeNumberJson);
             $('#labelGrid').text(json.gridJson);
           },
         });
@@ -243,9 +243,9 @@
         document.getElementById("mainForm").reset();
         $('#daysID').text(json.daysCounterJSON);
         $('#lastDayID').text('Age since: ' + json.dateJSON);
-        $('#labelTemperature').text(json.currentTemperatureJSON);
-        $('#labelHumidity').text(json.currentHumidityJSON);
-        $('#labelMoisture').text(json.currentMoistureJSON);
+        $('#labelTemperature').text(json.currentTemperatureJSON + " ° C");
+        $('#labelHumidity').text(json.currentHumidityJSON + "");
+        $('#labelMoisture').text(json.currentMoistureJSON + " %");
         $('#labelSummary').text(json.currentSummaryJSON);
       },
     });
@@ -483,7 +483,7 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelMode').text(json.modeNumberJson);
+        $('#labelMode').text("Mode " + json.modeNumberJson);
         $('#labelGrid').text(json.gridJson);
       },
 
@@ -505,7 +505,7 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelMode').text(json.modeNumberJson);
+        $('#labelMode').text("Mode " + json.modeNumberJson);
         $('#labelGrid').text(json.gridJson);
       },
 
@@ -526,7 +526,7 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelMode').text(json.modeNumberJson);
+        $('#labelMode').text("Mode " + json.modeNumberJson);
         $('#labelGrid').text(json.gridJson);
       },
 
@@ -547,7 +547,7 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelMode').text(json.modeNumberJson);
+        $('#labelMode').text("Mode " + json.modeNumberJson);
         $('#labelGrid').text(json.gridJson);
       },
 

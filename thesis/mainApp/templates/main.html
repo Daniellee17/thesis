@@ -18,7 +18,7 @@
 
 
   <div class="daysContainer">
-
+    <span class="tooltiptext">Age of Crops</span>
     <div class="circle big" style="color: BLACK;">
       <a id="daysID" style="margin-top: 17%; font-size: 120px; font-family: Simplifica; margin-bottom: -11%;">{{countersObject.daysCounter}}</a>
       <a style="font-size: 30px; font-family: Simplifica; margin-top: 0px; margin-bottom: 0px;">Days</a>
@@ -32,92 +32,93 @@
 
 
   <div class="singleContainer" style="left: 71.6%; top: 61.6%">
+    <span class="tooltiptext">Plant Box Grid</span>
     <div class="singleContainer_iconContainer">
-      <img src="../assets/icons/devicesIcons/modeIcon_white.png" class="singleContainer_icon" style="width: 56px;" />
-      <p id="labelGrid">{{modeObject.grid}}</p>
+      <img src="../assets/icons/devicesIcons/gridIcon.png" class="singleContainer_icon" style="width: 56px;" />
     </div>
-    <a>Grid Measurement</a>
+    <p id="labelGrid">{{modeObject.grid}}</p>
   </div>
 
   <div class="singleContainer" style="left: 71.6%; top: 43%">
+    <span class="tooltiptext">Mode</span>
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/devicesIcons/modeIcon_white.png" class="singleContainer_icon" />
-      <p id="labelMode">{{modeObject.modeNumber}}</p>
     </div>
-    <a>Mode</a>
+    <p id="labelMode">Mode {{modeObject.modeNumber}}</p>
   </div>
 
   <div class="singleContainer" style="left: 44%; top: 61.6%">
+    <span class="tooltiptext">Calibration Status</span>
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/devicesIcons/calibrationIcon_white.png" class="singleContainer_icon" />
-      <p id="labelCalibration">{{deviceStatusObjects.calibrationStatus}}</p>
     </div>
-    <a>Calibration</a>
+    <p id="labelCalibration">{{deviceStatusObjects.calibrationStatus}}</p>
   </div>
 
   <div class="singleContainer">
+    <span class="tooltiptext">Lights Status</span>
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/devicesIcons/sunIcon_white.png" class="singleContainer_icon" />
-      <p id="labelLights">{{deviceStatusObjects.lightsStatus}}</p>
     </div>
-    <a>Lights</a>
+    <p id="labelLights">{{deviceStatusObjects.lightsStatus}}</p>
   </div>
 
   <div class="singleContainer" style="left: 25%">
+    <span class="tooltiptext">Fans Status</span>
     <div class=" singleContainer_iconContainer">
       <img src="../assets/icons/devicesIcons/airIcon_white.png" class="singleContainer_icon" />
-      <p id="labelFans">{{deviceStatusObjects.fansStatus}} </p>
     </div>
-    <a>Fans</a>
+    <p id="labelFans">{{deviceStatusObjects.fansStatus}} </p>
   </div>
 
   <div class="singleContainer" style="left: 34.5%">
+    <span class="tooltiptext">Watering System</span>
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/devicesIcons/waterIcon_white.png" class="singleContainer_icon" />
-      <p id="labelWater">{{deviceStatusObjects.waterStatus}}</p>
     </div>
-    <a>Sprinkler</a>
+    <p id="labelWater">{{deviceStatusObjects.waterStatus}}</p>
   </div>
 
   <div class="singleContainer" style="left: 44%">
+    <span class="tooltiptext">Seeder</span>
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/devicesIcons/seedIcon_white.png" class="singleContainer_icon" />
-      <p id="labelSeed">{{deviceStatusObjects.seedStatus}}</p>
     </div>
-    <a>Seeder</a>
+    <p id="labelSeed">{{deviceStatusObjects.seedStatus}}</p>
   </div>
 
 
   <div class="singleContainer" style="top: 61.6%">
+    <span class="tooltiptext">Temperature</span>
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/sensorsIcons/temperatureIcon.png" class="singleContainer_icon" />
-      <p id="labelTemperature">{{sensorsObjects.temperature}}</p>
     </div>
-    <a>Temperature</a>
+    <p id="labelTemperature">{{sensorsObjects.temperature}} ° C</p>
   </div>
 
   <div class="singleContainer" style="left: 25%; top: 61.6%">
+    <span class="tooltiptext">Humidity</span>
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/sensorsIcons/humidityIcon_white.png" class="singleContainer_icon" />
-      <p id="labelHumidity">{{sensorsObjects.humidity}}</p>
     </div>
-    <a>Humidity</a>
+    <p id="labelHumidity">{{sensorsObjects.humidity}}</p>
   </div>
 
   <div class="singleContainer" style="left: 34.5%; top: 61.6%">
+    <span class="tooltiptext">Soil Moisture</span>
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/sensorsIcons/soilMoistureIcon_white.png" class="singleContainer_icon" />
-      <p id="labelMoisture">{{sensorsObjects.moisture}}</p>
     </div>
-    <a>Soil Moisture</a>
+    <p id="labelMoisture">{{sensorsObjects.moisture}} %</p>
   </div>
 
   <div class="summaryContainer">
+    <span class="tooltiptext">Dashboard Summary</span>
     <p id="labelSummary">{{sensorsObjects.summary}} </p>
-    <a>Summary</a>
   </div>
 
   <div class="cameraImgContainer">
+    <span class="tooltiptext">Garden Visual System</span>
     <img id="cameraID" class="cameraImg" src={{cameraObjects.cameraURL}}>
     <!--   <img id="cameraID" class="cameraImg" src={{cameraObjects.cameraURL}}> -->
     <!--   <img id="cameraID" class="cameraImg" src="../assets/gardenPics/test.jpg"> -->
@@ -126,68 +127,56 @@
 
   <div class="growthContainer_permanent">
     <div class="growthContainer">
-
-
+      <span class="tooltiptext">Crop Growth Status</span>
       <div class="circle small">
-        <a style="font-size: 30px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant1Growth">{{cameraObjects.plant1}}</a>
-        <a style="font-size: 17px; font-family: Simplifica; margin-top: 0px; margin-bottom: 30px;">Days</a>
-        <a style="font-size: 18px; font-family: Simplifica; margin-top: 0px; margin-bottom: 0px;">Plant 1</a>
+        <a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant1Growth">{{cameraObjects.plant1}}</a>
+        <a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 1</a>
       </div>
 
       <div class="circle small">
-        <a style="font-size: 30px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant2Growth">{{cameraObjects.plant2}}</a>
-        <a style="font-size: 17px; font-family: Simplifica; margin-top: 0px; margin-bottom: 30px;">Days</a>
-        <a style="font-size: 18px; font-family: Simplifica; margin-top: 0px; margin-bottom: 0px;">Plant 2</a>
+        <a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant2Growth">{{cameraObjects.plant2}}</a>
+        <a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 2</a>
       </div>
 
       <div class="circle small">
-        <a style="font-size: 30px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant3Growth">{{cameraObjects.plant3}}</a>
-        <a style="font-size: 17px; font-family: Simplifica; margin-top: 0px; margin-bottom: 30px;">Days</a>
-        <a style="font-size: 18px; font-family: Simplifica; margin-top: 0px; margin-bottom: 0px;">Plant 3</a>
+        <a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant3Growth">{{cameraObjects.plant3}}</a>
+        <a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 3</a>
       </div>
 
       <div class="circle small">
-        <a style="font-size: 30px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant4Growth">{{cameraObjects.plant4}}</a>
-        <a style="font-size: 17px; font-family: Simplifica; margin-top: 0px; margin-bottom: 30px;">Days</a>
-        <a style="font-size: 18px; font-family: Simplifica; margin-top: 0px; margin-bottom: 0px;">Plant 4</a>
+        <a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant4Growth">{{cameraObjects.plant4}}</a>
+        <a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 4</a>
       </div>
 
       <div class="circle small">
-        <a style="font-size: 30px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant5Growth">{{cameraObjects.plant5}}</a>
-        <a style="font-size: 17px; font-family: Simplifica; margin-top: 0px; margin-bottom: 30px;">Days</a>
-        <a style="font-size: 18px; font-family: Simplifica; margin-top: 0px; margin-bottom: 0px;">Plant 5</a>
+        <a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant5Growth">{{cameraObjects.plant5}}</a>
+        <a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 5</a>
       </div>
 
       <div class="circle small">
-        <a style="font-size: 30px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant6Growth">{{cameraObjects.plant6}}</a>
-        <a style="font-size: 17px; font-family: Simplifica; margin-top: 0px; margin-bottom: 30px;">Days</a>
-        <a style="font-size: 18px; font-family: Simplifica; margin-top: 0px; margin-bottom: 0px;">Plant 6</a>
+        <a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant6Growth">{{cameraObjects.plant6}}</a>
+        <a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 6</a>
       </div>
 
       <div class="circle small">
-        <a style="font-size: 30px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant7Growth">{{cameraObjects.plant7}}</a>
-        <a style="font-size: 17px; font-family: Simplifica; margin-top: 0px; margin-bottom: 30px;">Days</a>
-        <a style="font-size: 18px; font-family: Simplifica; margin-top: 0px; margin-bottom: 0px;">Plant 7</a>
+        <a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant7Growth">{{cameraObjects.plant7}}</a>
+        <a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 7</a>
       </div>
 
       <div class="circle small">
-        <a style="font-size: 30px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant8Growth">{{cameraObjects.plant8}}</a>
-        <a style="font-size: 17px; font-family: Simplifica; margin-top: 0px; margin-bottom: 30px;">Days</a>
-        <a style="font-size: 18px; font-family: Simplifica; margin-top: 0px; margin-bottom: 0px;">Plant 8</a>
+        <a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant8Growth">{{cameraObjects.plant8}}</a>
+        <a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 8</a>
       </div>
 
       <div class="circle small">
-        <a style="font-size: 30px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant9Growth">{{cameraObjects.plant9}}</a>
-        <a style="font-size: 17px; font-family: Simplifica; margin-top: 0px; margin-bottom: 30px;">Days</a>
-        <a style="font-size: 18px; font-family: Simplifica; margin-top: 0px; margin-bottom: 0px;">Plant 9</a>
+        <a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant9Growth">{{cameraObjects.plant9}}</a>
+        <a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 9</a>
       </div>
 
       <div class="circle small">
-        <a style="font-size: 30px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant10Growth">{{cameraObjects.plant10}}</a>
-        <a style="font-size: 17px; font-family: Simplifica; margin-top: 0px; margin-bottom: 30px;">Days</a>
-        <a style="font-size: 18px; font-family: Simplifica; margin-top: 0px; margin-bottom: 0px;">Plant 10</a>
+        <a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant10Growth">{{cameraObjects.plant10}}</a>
+        <a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 10</a>
       </div>
-      <a>Growth Monitor</a>
     </div>
 
 </form>
