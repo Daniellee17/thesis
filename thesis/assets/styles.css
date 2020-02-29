@@ -1,4 +1,9 @@
 @font-face {
+  src: url(../assets/fonts/Oswald/static/Oswald-Light.ttf);
+  font-family: Oswald;
+}
+
+@font-face {
   src: url(../assets/fonts/SIMPLIFICA-Typeface.ttf);
   font-family: Simplifica;
 }
@@ -47,6 +52,17 @@
   background: #555;
 }
 
+* {
+  -webkit-transition-property: all;
+  -webkit-transition-duration: .4s;
+  -moz-transition-timing-function: cubic-bezier(100, 50, 21, 6);
+  -moz-transition-property: all;
+  -moz-transition-duration: .4;
+  -moz-transition-timing-function: cubic-bezier(100, 50, 21, 6);
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -54,11 +70,6 @@ body {
   background: url("background/websiteBG4_2.jpg");
   background-repeat: no repeat;
   background-size: cover;
-}
-
-* {
-  margin: 0;
-  padding: 0;
 }
 
 nav {
@@ -148,7 +159,7 @@ nav {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: rgba(255, 255, 255, 0.55);
+  background-color: rgba(0, 0, 0, 0.80);
   overflow-x: hidden;
   transition: 0.4s;
   padding-top: 60px;
@@ -344,13 +355,11 @@ nav {
   opacity: 0.55;
 }
 
-
 .titleLogoGif {
   width: 65px;
-  height: 65px;
+  height: 60px;
   border-radius: 0%;
   padding: 0;
-
 }
 
 .titleLogoSquare {
@@ -359,7 +368,6 @@ nav {
   border-radius: 0;
   padding: 0;
 }
-
 
 .headlineContainer {
   display: inline-block;
@@ -639,7 +647,8 @@ nav {
   left: 53.8%;
   font-family: Simplifica;
   text-transform: none;
-  text-decoration: none;;
+  text-decoration: none;
+  ;
   position: absolute;
   margin-bottom: 3%;
 }
@@ -943,4 +952,48 @@ nav {
 .sensorsTable tr {
   display: block;
   position: relative;
+}
+
+.btn {
+  position: relative;
+  display: inline-block;
+  width: 166px;
+  height: 45px;
+  font-size: 13px;
+  line-height: 45px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+  overflow: hidden;
+  font-family: Oswald;
+  margin-bottom: 15px;
+  margin-left: -22px;
+}
+
+.btn svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.btn svg rect {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1;
+  stroke-dasharray: 422, 0;
+  @include transition(all 1300ms $ease-out-expo);
+}
+
+.btn:hover svg rect {
+  stroke-width: 5;
+  stroke-dasharray: 10, 310;
+  stroke-dashoffset: 33;
+}
+
+.btn:hover {
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: bold;
 }

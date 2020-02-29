@@ -32,39 +32,91 @@
 
     <div class="devicesContainer">
 
-      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/sunIcon_white.png" class="dateContainerLogo" />
-      <input style="background-color: limegreen;" type='submit' name="onLights_btn" value=" " class="onLights"></button>
-      <input style="background-color: red;" type='submit' name="offLights_btn" value=" " class="offLights"></button>
+      <div name="onLights_btn" id="onLights" class="btn">
+        <svg>
+          <rect x="0" y="0" fill="none" width="166" height="45" />
+        </svg>
+        On Lights
+      </div>
 
-      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/airIcon_white.png" class="dateContainerLogo" />
-      <input style="background-color: limegreen;" type='submit' name="onFans_btn" value=" " class="onFan"></button>
-      <input style="background-color: red;" type='submit' name="offFans_btn" value=" " class="offFan"></button>
+      <div name="offLights_btn" id="offLights" class="btn">
+        <svg>
+          <rect x="0" y="0" fill="none" width="166" height="45" />
+        </svg>
+        Off Lights
+      </div>
+      
+      <div name="onFans_btn" id="onFan" class="btn">
+        <svg>
+          <rect x="0" y="0" fill="none" width="166" height="45" />
+        </svg>
+        On Fans
+      </div>
 
-      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/calibrationIcon_white.png" class="dateContainerLogo" />
-      <input style="background-color: limegreen;" type='submit' name="onCalibration_btn" value=" " class="onCalibration"></button>
+      <div name="offFans_btn" id="offFan" class="btn">
+        <svg>
+          <rect x="0" y="0" fill="none" width="166" height="45" />
+        </svg>
+        Off Fans
+      </div>
 
-      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/waterIcon_white.png" class="dateContainerLogo" />
-      <input style="background-color: limegreen;" type='submit' name="onWater_btn" value=" " class="onWater"></button>
+      <div name="onCalibration_btn" id="onCalibration" class="btn">
+        <svg>
+          <rect x="0" y="0" fill="none" width="166" height="45" />
+        </svg>
+        Calibrate
+      </div>
 
-      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/seedIcon_white.png" class="dateContainerLogo" />
-      <input style="background-color: limegreen;" type='submit' name="onSeed_btn" value=" " class="onSeed"></button>
+      <div name="onWater_btn" id="onWater" class="btn">
+        <svg>
+          <rect x="0" y="0" fill="none" width="166" height="45" />
+        </svg>
+        Water
+      </div>
 
-      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/cameraIcon_white.png" class="dateContainerLogo" />
-      <input style="background-color: white;" type='submit' name="camera_btn" value=" " class="processImage"></button>
+      <div name="onSeed_btn" id="onSeed" class="btn">
+        <svg>
+          <rect x="0" y="0" fill="none" width="166" height="45" />
+        </svg>
+        Seed
+      </div>
+      
+      <div name="camera_btn" id="processImage" class="btn">
+        <svg>
+          <rect x="0" y="0" fill="none" width="166" height="45" />
+        </svg>
+        Capture
+      </div>
 
-      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/modeIcon_white.png" class="dateContainerLogo" />
-      <input style="background-color: white;" type='submit' name="onMode1_btn" value="1" class="onMode1"></button>
+      <div name="onMode1_btn" id="onMode1" class="btn">
+        <svg>
+          <rect x="0" y="0" fill="none" width="166" height="45" />
+        </svg>
+        Mode 1
+      </div>
 
-      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/modeIcon_white.png" class="dateContainerLogo" />
-      <input style="background-color: white;" type='submit' name="onMode2_btn" value="2" class="onMode2"></button>
+      <div name="onMode2_btn" id="onMode2" class="btn">
+        <svg>
+          <rect x="0" y="0" fill="none" width="166" height="45" />
+        </svg>
+        Mode 2
+      </div>
 
-      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/modeIcon_white.png" class="dateContainerLogo" />
-      <input style="background-color: white;" type='submit' name="onMode3_btn" value="3" class="onMode3"></button>
+      <div name="onMode2_btn" id="onMode3" class="btn">
+        <svg>
+          <rect x="0" y="0" fill="none" width="166" height="45" />
+        </svg>
+        Mode 3
+      </div>
 
-      <img style="width: 50px; height: 50px; margin-bottom: 25px;" src="../assets/icons/controllerIcons/modeIcon_white.png" class="dateContainerLogo" />
-      <input style="background-color: white;" type='submit' name="onMode4_btn" value="4" class="onMode4"></button>
+      <div name="onMode2_btn" id="onMode4" class="btn">
+        <svg>
+          <rect x="0" y="0" fill="none" width="166" height="45" />
+        </svg>
+        Mode 4
+      </div>
+
     </div>
-
   </div>
 
   <div class="sidenav">
@@ -88,6 +140,7 @@
       <a onclick="openNav()"> <img src="../assets/icons/sideNavIcons/cropIcon_white.png" class="sidenavIcon" /> CROP INFO</a>
       <a onclick="openNav()"> <img src="../assets/icons/sideNavIcons/growthIcon_white.png" class="sidenavIcon" /> GROWTH INFO</a>
       <a onclick="openNav()"> <img src="../assets/icons/sideNavIcons/contactIcon_white.png" class="sidenavIcon" /> CONTACT US</a>
+
     </div>
   </div>
 
@@ -242,7 +295,7 @@
     setInterval(snapImage, 25000);
   });
 
-  $(".processImage").click(function(e) {
+  $("#processImage").click(function(e) {
     e.preventDefault();
     $.ajax({
       type: 'POST',
@@ -272,7 +325,7 @@
     });
   });
 
-  $(".onFan").click(function(e) {
+  $("#onFan").click(function(e) {
 
     e.preventDefault();
     $.ajax({
@@ -292,7 +345,7 @@
     });
   });
 
-  $(".offFan").click(function(e) {
+  $("#offFan").click(function(e) {
 
     e.preventDefault();
     $.ajax({
@@ -312,7 +365,7 @@
     });
   });
 
-  $(".onLights").click(function(e) {
+  $("#onLights").click(function(e) {
 
     e.preventDefault();
     $.ajax({
@@ -332,7 +385,7 @@
     });
   });
 
-  $(".offLights").click(function(e) {
+  $("#offLights").click(function(e) {
 
     e.preventDefault();
     $.ajax({
@@ -352,7 +405,7 @@
     });
   });
 
-  $(".onWater").click(function(e) {
+  $("#onWater").click(function(e) {
 
     e.preventDefault();
     $('#labelWater').text('On');
@@ -374,7 +427,7 @@
   });
 
 
-  $(".onSeed").click(function(e) {
+  $("#onSeed").click(function(e) {
 
     e.preventDefault();
     $('#labelSeed').text('On');
@@ -395,7 +448,7 @@
     });
   });
 
-  $(".onCalibration").click(function(e) {
+  $("#onCalibration").click(function(e) {
 
     e.preventDefault();
     $('#labelCalibration').text('On');
@@ -416,7 +469,7 @@
     });
   });
 
-  $(".onMode1").click(function(e) {
+  $("#onMode1").click(function(e) {
 
     e.preventDefault();
     $.ajax({
@@ -437,7 +490,7 @@
     });
   });
 
-  $(".onMode2").click(function(e) {
+  $("#onMode2").click(function(e) {
 
     e.preventDefault();
 
@@ -459,7 +512,7 @@
     });
   });
 
-  $(".onMode3").click(function(e) {
+  $("#onMode3").click(function(e) {
 
     e.preventDefault();
     $.ajax({
@@ -480,7 +533,7 @@
     });
   });
 
-  $(".onMode4").click(function(e) {
+  $("#onMode4").click(function(e) {
 
     e.preventDefault();
     $.ajax({

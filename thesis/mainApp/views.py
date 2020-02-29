@@ -412,32 +412,22 @@ def mainPage(response):
 
         return JsonResponse(json)
 
-    if response.POST.get('action') == 'fullReset':
+   if response.POST.get('action') == 'fullReset':
 
         print(" ")
         print("~Database Cleared~")
         print(" ")
-
-        GPIO.output(21, GPIO.LOW)
-        GPIO.output(20, GPIO.LOW)
-        GPIO.output(16, GPIO.LOW)
-        GPIO.output(26, GPIO.LOW)
-        GPIO.output(19, GPIO.LOW)
-        GPIO.output(13, GPIO.LOW)
-        GPIO.output(6, GPIO.LOW)
-        GPIO.output(5, GPIO.LOW)
-
         devicestatus.objects.all().delete()
-        insertDeviceStatus.calibrationStatus = '/'
-        insertDeviceStatus.fansStatus = '/'
-        insertDeviceStatus.lightsStatus = '/'
-        insertDeviceStatus.waterStatus = '/'
-        insertDeviceStatus.seedStatus = '/'
+        insertDeviceStatus.calibrationStatus = 'Off'
+        insertDeviceStatus.fansStatus = 'Off'
+        insertDeviceStatus.lightsStatus = 'Off'
+        insertDeviceStatus.waterStatus = 'Off'
+        insertDeviceStatus.seedStatus = 'Off'
         insertDeviceStatus.save()
 
         camerasnaps.objects.all().delete()
-        insertCamera.camera = 'defaultBG_withLogo.png'
-        insertCamera.cameraURL = '../assets/background/defaultBG_withLogo.png'
+        insertCamera.camera = 'rpiBG.gif'
+        insertCamera.cameraURL = '../assets/background/rpiBG.gif'
         insertCamera.plant1 = 0
         insertCamera.plant2 = 0
         insertCamera.plant3 = 0
@@ -507,6 +497,7 @@ def mainPage(response):
         }
 
         return JsonResponse(json)
+
 
     if response.POST.get('action') == 'onMode1':
 
