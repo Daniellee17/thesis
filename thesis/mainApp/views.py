@@ -177,7 +177,7 @@ def mainPage(response):
         print("Hum2: "+ str(humidity2))
         print("Moisture: "+ str(currentMoisture))
         print("Ave temp: "+ str(round(averageTemperature, 2)))
-        print("Ave humidity: "+ str(round(averageHumidity, 2)))
+        print("Ave humidity: "+ str(round(averageHumidity, 0)))
           
         if(temperatureStatus == 'low' and humidityStatus == 'low'):
             print(" ")
@@ -229,7 +229,7 @@ def mainPage(response):
             insertDeviceStatus_humidity.save()
 
         insertSensors.temperature = round(averageTemperature, 2)
-        insertSensors.humidity = round(averageHumidity, 1)
+        insertSensors.humidity = round(averageHumidity, 0)
         insertSensors.moisture = currentMoisture
         insertSensors.temperatureStatus = temperatureStatusSummary
         insertSensors.humidityStatus = humidityStatusSummary
@@ -252,7 +252,7 @@ def mainPage(response):
         'daysCounterJSON' : str(numOfDays(date1, date2)),
         'dateJSON': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),
         'currentTemperatureJSON': round(averageTemperature, 2),
-        'currentHumidityJSON': round(averageHumidity, 2),
+        'currentHumidityJSON': round(averageHumidity, 0),
         'currentMoistureJSON': currentMoisture,
         'temperatureStatusJSON' : temperatureStatusSummary,
         'humidityStatusJSON' : humidityStatusSummary,
@@ -283,7 +283,6 @@ def mainPage(response):
             def __init__(self):
                 self.debug = "plot"
                 self.outdir = "./assets/gardenPics/"
-
 
         args = options()
         #pcv.params.debug = args.debug
@@ -391,16 +390,16 @@ def mainPage(response):
         'cameraURLJSON': str(cameraObjectsSnap.cameraURL),
         'cameraDateJSON': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),
         'daysCounterJSON' : str(numOfDays(date1, date2)),
-        'plant1JASON': plant_area_list[0],
-        'plant2JASON': plant_area_list[1],
-        'plant3JASON': plant_area_list[2],
-        'plant4JASON': plant_area_list[3],
-        'plant5JASON': plant_area_list[4],
-        'plant6JASON': plant_area_list[5],
-        'plant7JASON': plant_area_list[6],
-        'plant8JASON': plant_area_list[7],
-        'plant9JASON': plant_area_list[8],
-        'plant10JASON': plant_area_list[9]
+        'plant1JSON': plant_area_list[0],
+        'plant2JSON': plant_area_list[1],
+        'plant3JSON': plant_area_list[2],
+        'plant4JSON': plant_area_list[3],
+        'plant5JSON': plant_area_list[4],
+        'plant6JSON': plant_area_list[5],
+        'plant7JSON': plant_area_list[6],
+        'plant8JSON': plant_area_list[7],
+        'plant9JSON': plant_area_list[8],
+        'plant10JSON': plant_area_list[9]
         }
 
         return JsonResponse(json)
