@@ -113,8 +113,18 @@
   </div>
 
   <div class="summaryContainer">
-    <span class="tooltiptext">Dashboard Summary</span>
-    <p id="labelSummary">{{sensorsObjects.summary}} </p>
+    <span class="tooltiptext">Temperature Status</span>
+    <p id="labelTemperatureStatus">Temperature: {{sensorsObjects.temperatureStatus}} </p>
+  </div>
+  
+  <div class="summaryContainer" style="top: 54%">
+    <span class="tooltiptext">Humidity Status</span>
+    <p id="labelHumidityStatus">Humidity: {{sensorsObjects.humidityStatus}} </p>
+  </div>
+  
+  <div class="summaryContainer" style="top: 65%">
+    <span class="tooltiptext">Soil Moisture Status</span>
+    <p id="labelSoilMoistureStatus">Soil Moisture: {{sensorsObjects.soilMoistureStatus}} </p>
   </div>
 
   <div class="cameraImgContainer">

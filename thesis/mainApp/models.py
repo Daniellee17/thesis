@@ -3,9 +3,11 @@ from django.db import models
 
 class sensors(models.Model):
     temperature = models.FloatField(max_length=250, default=0.0);
-    humidity = models.FloatField(max_length=250, default=0.0);
-    moisture = models.IntegerField(default=3);
-    summary = models.TextField(max_length=250, default="None");
+    humidity = models.IntegerField(default=0);
+    moisture = models.IntegerField(default=0);
+    temperatureStatus = models.TextField(max_length=250, default="None");
+    humidityStatus = models.TextField(max_length=250, default="None");
+    soilMoistureStatus = models.TextField(max_length=250, default="None");
     date = models.DateTimeField(auto_now=True);
 
 

@@ -65,6 +65,11 @@ def mainPage(response):
     # Create instance so you can insert into DB
     insertDeviceStatus = devicestatus()
     insertDeviceStatus2 = devicestatus()
+    insertDeviceStatus_temperature = devicestatus()
+    insertDeviceStatus_humidity = devicestatus()
+    insertDeviceStatus_soilMoisture = devicestatus()
+    insertDeviceStatus_soilMoisture2 = devicestatus()
+
     insertCamera = camerasnaps()
     insertSensors = sensors()
     insertCounters = counters()
@@ -83,7 +88,6 @@ def mainPage(response):
         humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
         humidity2, temperature2 = Adafruit_DHT.read_retry(DHT_SENSOR2, DHT_PIN2)
 
-
         def analogInput(channel):
           spi.max_speed_hz = 1350000
           adc = spi.xfer2([1,(8+channel)<<4,0])
@@ -94,14 +98,10 @@ def mainPage(response):
         output = interp(output, [0, 1023], [100, 0])
         output = int(output)
         #print("Moistures", output)
-
-        currentTemperature = round(temperature, 2)
-        currentHumidity = round(humidity, 2)
-        currentTemperature2 = round(temperature2, 2)
-        currentHumidity2 = round(humidity2, 2)
+        
         currentMoisture = output
-        averageTemperature = (currentTemperature + currentTemperature2) / 2
-        averageHumidity = (currentHumidity + currentHumidity2) / 2
+        averageTemperature = (temperature + temperature2) / 2
+        averageHumidity = (humidity + humidity2) / 2
 
         temperatureStatus = 'good'
         humidityStatus = 'good'
@@ -131,113 +131,109 @@ def mainPage(response):
             soilMoistureStatus = 'wet'; # Wet
 
         if(temperatureStatus == 'high'):
-            temperatureStatusSummary = 'Temperature is too high!, activating fans'
-            print(" ")
-            print("~Fans Activated~")
-            print(" ")
-
-            GPIO.output(20, GPIO.HIGH)
-            GPIO.output(16, GPIO.HIGH)
-
-            insertDeviceStatus.fansStatus = 'On'
-            insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
-            insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
-            insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
-            insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
-            insertDeviceStatus.save()
+            temperatureStatusSummary = 'Too High!'
         else:
-            temperatureStatusSummary = 'Temperature is good!'
-
+            temperatureStatusSummary = 'Good'
 
         if (humidityStatus == 'high'):
-            humidityStatusSummary = 'Humidity is too high!, activating fans'
-            print(" ")
-            print("~Fans Activated~")
-            print(" ")
-
-            GPIO.output(20, GPIO.HIGH)
-            GPIO.output(16, GPIO.HIGH)
-
-            insertDeviceStatus.fansStatus = 'On'
-            insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
-            insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
-            insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
-            insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
-            insertDeviceStatus.save()
-
+            humidityStatusSummary = 'Too High!'
         elif (humidityStatus == 'low'):
-            humidityStatusSummary = 'Humidity is too low!, activating fans'
-            print(" ")
-            print("~Fans Activated~")
-            print(" ")
-
-            GPIO.output(20, GPIO.HIGH)
-            GPIO.output(16, GPIO.HIGH)
-
-            insertDeviceStatus.fansStatus = 'On'
-            insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
-            insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
-            insertDeviceStatus.waterStatus = deviceStatusObjects.waterStatus
-            insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
-            insertDeviceStatus.save()
+            humidityStatusSummary = 'Too Low!'
         else:
-            humidityStatusSummary = 'Humidity is good!'
-
-        if (soilMoistureStatus == 'dry'):
-            soilMoistureStatus = 'Soil Moisture is dry!, activating watering system'
+            humidityStatusSummary = 'Good'
+            
+        if (soilMoistureStatus == 'dry'):            
+            soilMoistureStatus = 'Dry!'
             print(" ")
             print("~ (PIN 19) Watering System Activated~")
             print(" ")
-
-            insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
-            insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
-            insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
-            insertDeviceStatus.waterStatus = 'On'
-            insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
-            insertDeviceStatus.save()
-
+            insertDeviceStatus_soilMoisture.fansStatus = deviceStatusObjects.fansStatus
+            insertDeviceStatus_soilMoisture.lightsStatus = deviceStatusObjects.lightsStatus
+            insertDeviceStatus_soilMoisture.calibrationStatus = deviceStatusObjects.calibrationStatus
+            insertDeviceStatus_soilMoisture.waterStatus = 'On'
+            insertDeviceStatus_soilMoisture.seedStatus = deviceStatusObjects.seedStatus
+            insertDeviceStatus_soilMoisture.save()
             GPIO.output(19, GPIO.HIGH)
             sleep(1)
             GPIO.output(19, GPIO.LOW)
-
             print(" ")
             print("~ (PIN 19) Watering System Deactivated~")
             print(" ")
-
-            insertDeviceStatus.fansStatus = deviceStatusObjects.fansStatus
-            insertDeviceStatus.lightsStatus = deviceStatusObjects.lightsStatus
-            insertDeviceStatus.calibrationStatus = deviceStatusObjects.calibrationStatus
-            insertDeviceStatus.waterStatus = 'Off'
-            insertDeviceStatus.seedStatus = deviceStatusObjects.seedStatus
-            insertDeviceStatus.save()
+            insertDeviceStatus_soilMoisture2.fansStatus = deviceStatusObjects.fansStatus
+            insertDeviceStatus_soilMoisture2.lightsStatus = deviceStatusObjects.lightsStatus
+            insertDeviceStatus_soilMoisture2.calibrationStatus = deviceStatusObjects.calibrationStatus
+            insertDeviceStatus_soilMoisture2.waterStatus = 'Off'
+            insertDeviceStatus_soilMoisture2.seedStatus = deviceStatusObjects.seedStatus
+            insertDeviceStatus_soilMoisture2.save()
 
         elif (soilMoistureStatus == 'moist'):
-            soilMoistureStatus = 'Soil Moisture is moist!'
+            soilMoistureStatus = 'Moist'
         elif (soilMoistureStatus == 'wet'):
-            soilMoistureStatus = 'Soil Moisture is wet!'
-
-        currentSummary = ('TEMPERATURE STATUS: ' + temperatureStatusSummary + ' HUMIDITY STATUS: ' +  humidityStatusSummary + ' ...' + ' SOIL MOSITURE STATUS: ' + soilMoistureStatus + ' ...')
-
-
-        print("Current Temp1:")
-        print(currentTemperature)
-        print("Current Hum1:")
-        print(currentHumidity)
-        print("Current Temp2:")
-        print(currentTemperature2)
-        print("Current Hum2:")
-        print(currentHumidity2)
-        print("Current Moisture:")
-        print(currentMoisture)
-        print("Ave temp")
-        print(round(averageTemperature, 2))
-        print("Ave humidity")
-        print(round(averageHumidity, 2))
+            soilMoistureStatus = 'Wet!'
+            
+        print("Temp1: " + str(temperature))
+        print("Hum1: "+ str(humidity))
+        print("Temp2: "+ str(temperature2))
+        print("Hum2: "+ str(humidity2))
+        print("Moisture: "+ str(currentMoisture))
+        print("Ave temp: "+ str(round(averageTemperature, 2)))
+        print("Ave humidity: "+ str(round(averageHumidity, 2)))
+          
+        if(temperatureStatus == 'low' and humidityStatus == 'low'):
+            print(" ")
+            print("~Fans Deactivated~")
+            print(" ")
+            GPIO.output(20, GPIO.LOW)
+            GPIO.output(16, GPIO.LOW)
+            insertDeviceStatus_humidity.fansStatus = 'Off'
+            insertDeviceStatus_humidity.lightsStatus = deviceStatusObjects.lightsStatus
+            insertDeviceStatus_humidity.calibrationStatus = deviceStatusObjects.calibrationStatus
+            insertDeviceStatus_humidity.waterStatus = deviceStatusObjects.waterStatus
+            insertDeviceStatus_humidity.seedStatus = deviceStatusObjects.seedStatus
+            insertDeviceStatus_humidity.save()            
+        elif(temperatureStatus == 'high' and humidityStatus == 'high'):
+            print(" ")
+            print("~Fans Activated~")
+            print(" ")
+            GPIO.output(20, GPIO.HIGH)
+            GPIO.output(16, GPIO.HIGH)
+            insertDeviceStatus_humidity.fansStatus = 'On'
+            insertDeviceStatus_humidity.lightsStatus = deviceStatusObjects.lightsStatus
+            insertDeviceStatus_humidity.calibrationStatus = deviceStatusObjects.calibrationStatus
+            insertDeviceStatus_humidity.waterStatus = deviceStatusObjects.waterStatus
+            insertDeviceStatus_humidity.seedStatus = deviceStatusObjects.seedStatus
+            insertDeviceStatus_humidity.save()            
+        elif(temperatureStatus == 'low' and humidityStatus == 'high'):
+            print(" ")
+            print("~Fans Activated~")
+            print(" ")
+            GPIO.output(20, GPIO.HIGH)
+            GPIO.output(16, GPIO.HIGH)
+            insertDeviceStatus_humidity.fansStatus = 'On'
+            insertDeviceStatus_humidity.lightsStatus = deviceStatusObjects.lightsStatus
+            insertDeviceStatus_humidity.calibrationStatus = deviceStatusObjects.calibrationStatus
+            insertDeviceStatus_humidity.waterStatus = deviceStatusObjects.waterStatus
+            insertDeviceStatus_humidity.seedStatus = deviceStatusObjects.seedStatus
+            insertDeviceStatus_humidity.save()            
+        elif(temperatureStatus == 'high' and humidityStatus == 'low'):
+            print(" ")
+            print("~Fans Activated~")
+            print(" ")
+            GPIO.output(20, GPIO.HIGH)
+            GPIO.output(16, GPIO.HIGH)
+            insertDeviceStatus_humidity.fansStatus = 'On'
+            insertDeviceStatus_humidity.lightsStatus = deviceStatusObjects.lightsStatus
+            insertDeviceStatus_humidity.calibrationStatus = deviceStatusObjects.calibrationStatus
+            insertDeviceStatus_humidity.waterStatus = deviceStatusObjects.waterStatus
+            insertDeviceStatus_humidity.seedStatus = deviceStatusObjects.seedStatus
+            insertDeviceStatus_humidity.save()
 
         insertSensors.temperature = round(averageTemperature, 2)
-        insertSensors.humidity = round(averageHumidity, 2)
+        insertSensors.humidity = round(averageHumidity, 1)
         insertSensors.moisture = currentMoisture
-        insertSensors.summary = currentSummary
+        insertSensors.temperatureStatus = temperatureStatusSummary
+        insertSensors.humidityStatus = humidityStatusSummary
+        insertSensors.soilMoistureStatus = soilMoistureStatus
         insertSensors.save()
 
         sensorsObjects = sensors.objects.latest('date')
@@ -246,13 +242,8 @@ def mainPage(response):
         date1 = countersObjectSensors_first.date
         date2 = sensorsObjects.date
 
-        print(date1)
-        print(date2)
-
         def numOfDays(date1, date2):
             return (date2-date1).days
-
-        print(numOfDays(date1, date2), "days")
 
         insertCounters.daysCounter = numOfDays(date1, date2)
         insertCounters.save()
@@ -263,7 +254,9 @@ def mainPage(response):
         'currentTemperatureJSON': round(averageTemperature, 2),
         'currentHumidityJSON': round(averageHumidity, 2),
         'currentMoistureJSON': currentMoisture,
-        'currentSummaryJSON': currentSummary,
+        'temperatureStatusJSON' : temperatureStatusSummary,
+        'humidityStatusJSON' : humidityStatusSummary,
+        'soilMoistureStatusJSON' : soilMoistureStatus,
         }
 
         return JsonResponse(json)
@@ -412,7 +405,7 @@ def mainPage(response):
 
         return JsonResponse(json)
 
-   if response.POST.get('action') == 'fullReset':
+    if response.POST.get('action') == 'fullReset':
 
         print(" ")
         print("~Database Cleared~")
@@ -444,7 +437,9 @@ def mainPage(response):
         insertSensors.temperature = 0
         insertSensors.humidity = 0
         insertSensors.moisture = 0
-        insertSensors.summary = '/'
+        insertSensors.temperatureStatus = "Good"
+        insertSensors.humidityStatus = "Good"
+        insertSensors.soilMoistureStatus = "Good"
         insertSensors.save()
 
         counters.objects.all().delete()
@@ -471,7 +466,9 @@ def mainPage(response):
         'temperatureJSON': sensorsObjectsReset.temperature,
         'humidityJSON': sensorsObjectsReset.humidity,
         'moistureJSON': sensorsObjectsReset.moisture,
-        'summaryJSON': sensorsObjectsReset.summary,
+        'temperatureStatusJSON': sensorsObjectsReset.temperatureStatus,
+        'humidityStatusJSON': sensorsObjectsReset.humidityStatus,
+        'soilMoistureStatusJSON': sensorsObjectsReset.soilMoistureStatus,
 
         'fansStatusJSON' : deviceStatusObjectsReset.fansStatus,
         'lightsStatusJSON' : deviceStatusObjectsReset.lightsStatus,
@@ -540,8 +537,8 @@ def mainPage(response):
         print("~Mode 2 Activated~")
         print(" ")
 
-       GPIO.output(6, GPIO.LOW)
-       GPIO.output(5, GPIO.HIGH)
+        GPIO.output(6, GPIO.LOW)
+        GPIO.output(5, GPIO.HIGH)
 
         mode = 2
 

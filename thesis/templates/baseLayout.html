@@ -214,7 +214,9 @@
             $('#labelTemperature').text(json.temperatureJSON + " ° C");
             $('#labelHumidity').text(json.humidityJSON + " %");
             $('#labelMoisture').text(json.moistureJSON + " %");
-            $('#labelSummary').text(json.summaryJSON);
+            $('#labelTemperatureStatus').text("Temperature: " + json.temperatureStatusJSON);
+            $('#labelHumidityStatus').text("Humidity: " + json.humidityStatusJSON);
+            $('#labelSoilMoistureStatus').text("Soil Moisture: " + json.soilMoistureStatusJSON);  
 
             $('#labelMode').text("Mode " + json.modeNumberJson);
             $('#labelGrid').text(json.gridJson);
@@ -247,7 +249,9 @@
         $('#labelTemperature').text(json.currentTemperatureJSON + " ° C");
         $('#labelHumidity').text(json.currentHumidityJSON + " %");
         $('#labelMoisture').text(json.currentMoistureJSON + " %");
-        $('#labelSummary').text(json.currentSummaryJSON);
+        $('#labelTemperatureStatus').text("Temperature: " + json.temperatureStatusJSON);
+        $('#labelHumidityStatus').text("Humidity: " + json.humidityStatusJSON);
+        $('#labelSoilMoistureStatus').text("Soil Moisture: " + json.soilMoistureStatusJSON);     
       },
     });
     // }
@@ -255,7 +259,7 @@
 
   function snapImage() {
     var date1 = new Date();
-    if (date1.getHours() === 11 && date1.getMinutes() === 30) {
+    if (date1.getHours() === 17 && date1.getMinutes() === 30) {
       //Change getHours and getMinutes depending on platform used
       //Rpi 24 hr format
       //Ubuntu 12 hr format
@@ -289,7 +293,7 @@
   }
 
   $(document).ready(function() {
-    setInterval(getSensorValues, 5000);
+    setInterval(getSensorValues, 20000);
   });
 
   $(document).ready(function() {
