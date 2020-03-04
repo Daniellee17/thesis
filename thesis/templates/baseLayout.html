@@ -234,7 +234,7 @@
 
   function getSensorValues() {
     var date1 = new Date();
-    //if (date1.getMinutes() === 00) {
+    if (date1.getMinutes() === 00) {
     $.ajax({
       type: 'POST',
       url: '{% url "mainPage" %}',
@@ -254,12 +254,78 @@
         $('#labelSoilMoistureStatus').text("Soil Moisture: " + json.soilMoistureStatusJSON);     
       },
     });
-    // }
+     }
   }
+  
+  function setup() {
+    $.ajax({
+        type: 'POST',
+        url: '{% url "mainPage" %}',
+        data: {
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          action: 'setup',
+        },
+        success: function(json) {
+          if(json.grid === "5x2"){
+            $('#labelPlant1Growth').text("5x2");
+          }
+          
+          else if(json.grid === "4x2"){
+            $('#labelPlant1Growth').text("4x2");
+            $('#growthContainer').remove()
+            $('#growthContainer_permanent').append('<div class="growthContainer" id="growthContainer">'
+              + '<span class="tooltiptext">Crop Growth Status</span>' 
+              + '<div class="circle small">'
+              + '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant1Growth">{{cameraObjects.plant1}}</a>'
+              + '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 1</a>'
+              + '</div>'               
+              + '<div class="circle small">'
+              + '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant2Growth">{{cameraObjects.plant2}}</a>'
+              + '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 2</a>'
+              + '</div>' 
+              + '<div class="circle small">'
+              + '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant3Growth">{{cameraObjects.plant3}}</a>'
+              + '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 3</a>'
+              + '</div>'      
+              + '<div class="circle small">'
+              + '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant4Growth">{{cameraObjects.plant4}}</a>'
+              + '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 4</a>'
+              + '</div>'  
+              + '<div class="circle small">'
+              + '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant5Growth">{{cameraObjects.plant5}}</a>'
+              + '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 5</a>'
+              + '</div>'   
+              + '<div class="circle small">'
+              + '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant6Growth">{{cameraObjects.plant6}}</a>'
+              + '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 6</a>'
+              + '</div>'   
+              + '<div class="circle small">'
+              + '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant7Growth">{{cameraObjects.plant7}}</a>'
+              + '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 7</a>'
+              + '</div>'   
+              + '<div class="circle small">'
+              + '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant8Growth">{{cameraObjects.plant8}}</a>'
+              + '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 8</a>'
+              + '</div>'   
+              + '</div>')
+          }
+          
+          else if(json.grid === "6x2"){
+            $('#labelPlant1Growth').text("6x2");
+          }
+          
+          else if(json.grid === "6x3"){
+            $('#labelPlant1Growth').text("6x3");
+          }
+        },
+      });
+  }
+  
+  setup()
 
   function snapImage() {
     var date1 = new Date();
-    if (date1.getHours() === 17 && date1.getMinutes() === 30) {
+    if (date1.getHours() === 15 && date1.getMinutes() === 06) {
       //Change getHours and getMinutes depending on platform used
       //Rpi 24 hr format
       //Ubuntu 12 hr format
@@ -302,6 +368,7 @@
 
   $("#processImage").click(function(e) {
     e.preventDefault();
+
     $.ajax({
       type: 'POST',
       url: '{% url "mainPage" %}',

@@ -59,8 +59,25 @@ def mainPage(response):
     print("--------------------------- Main Page Refreshed! -------------------------------")
     print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
     print(" ")
-
+    
+    modeObject0 = currentMode.objects.latest('date')
     deviceStatusObjects = devicestatus.objects.latest('date')
+    
+    if response.POST.get('action') == 'setup':
+        print(" ")
+        print("~Initializing~")
+        print(" ")
+        print("Mode: " + str(modeObject0.modeNumber))
+        print("Grid: " + modeObject0.grid)
+        print(" ")
+        print(" ")
+        
+        json = {
+        'grid' :str(modeObject0.grid)
+        }
+
+        return JsonResponse(json)
+
 
     # Create instance so you can insert into DB
     insertDeviceStatus = devicestatus()
