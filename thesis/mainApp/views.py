@@ -76,9 +76,8 @@ def mainPage(response):
         json = {
         'grid' :str(modeObject0.grid)
         }
-
+        
         return JsonResponse(json)
-
 
     # Create instance so you can insert into DB
     insertDeviceStatus = devicestatus()
