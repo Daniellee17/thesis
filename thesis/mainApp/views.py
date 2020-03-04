@@ -48,6 +48,7 @@ GPIO.setup(13, GPIO.OUT)  # SeederXYZ, PIN 33 (Left)
 
 GPIO.setup(6, GPIO.OUT)  # Mode_1, PIN 31 (Left)
 GPIO.setup(5, GPIO.OUT)  # Mode_2, PIN 29 (Left)
+GPIO.setup(0, GPIO.OUT)  # GrowLights, PIN 27 (Left)
 
 DHT_PIN = 1 # PIN 28 (Right)
 DHT_PIN2 = 7 # PIN 26 (Right)
