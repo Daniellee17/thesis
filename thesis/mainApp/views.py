@@ -718,7 +718,6 @@ def mainPage(response):
         sensors_.soilMoistureStatus = "Good"
         sensors_.save()
         
-
         mode1_vision_system.objects.all().delete()
         mode1_vision_system_.image = '../assets/background/rpiBG.gif'
         mode1_vision_system_.plant1 = 0
@@ -783,26 +782,26 @@ def mainPage(response):
         mode4_vision_system_.plant12 = 12
         mode4_vision_system_.save()        
 
-        mode1_obj = mode1.objects.latest('date')
-        systemSettings_obj = mode_selected.objects.latest('date')
+        mode_selected_obj = mode_selected.objects.latest('date')
         mode1_visionSystem_obj = mode1_vision_system.objects.latest('date')
         sensors_obj = sensors.objects.latest('date')
         devices_obj = devices.objects.latest('date')
 
         json = {
-        'startDate_json': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),
-        'grid_json': mode_selected_obj.grid,
         'mode_json': mode_selected_obj.modeNumber,
-        
-        'fans_json' : devices_obj.fansStatus,
-        'lights_json' : devices_obj.lightsStatus,
+        'grid_json': mode_selected_obj.grid,
+        'startDate_json': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),
+        'daysCounter_json' : str(mode_selected_obj.daysCounter),
+
         'calibration_json' : devices_obj.calibrationStatus,
+        'fans_json' : devices_obj.fansStatus,
+        'lights_json' : devices_obj.lightsStatus,        
         'water_json' : devices_obj.waterStatus,
         'seeder_json' : devices_obj.seedStatus,
                 
         'temperature_json': sensors_obj.temperature,
         'humidity_json': sensors_obj.humidity,
-        'moisture_json': sensors_obj.moisture,
+        'soilMoisture_json': sensors_obj.moisture,
         'temperatureStatus_json': sensors_obj.temperatureStatus,
         'humidityStatus_json': sensors_obj.humidityStatus,
         'soilMoistureStatus_json': sensors_obj.soilMoistureStatus,
@@ -849,5 +848,6 @@ def databasePage(response):
                 'sensors_obj_global': sensors_obj_global, 'mode1_vision_system_obj_global': mode1_vision_system_obj_global}
 
     return render(response, 'database.html', context=myObj)
+
 
 

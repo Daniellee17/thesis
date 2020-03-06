@@ -191,12 +191,10 @@
 
             $('#labelMode').text("Mode " + json.mode_json);
             $('#labelGrid').text(json.grid_json);
-
-            $('#cameraID').attr('src', json.image_json);
             $('#firstDayID').text(json.startDate_json);
             $('#lastDayID').text('Age since: ' + json.startDate_json);
-            $('#daysID').text(json.daysCounterJSON);
-
+            $('#daysID').text(json.daysCounter_json);
+            
             $('#labelCalibration').text(json.calibration_json);
             $('#labelFans').text(json.fans_json);
             $('#labelLights').text(json.lights_json);
@@ -205,11 +203,12 @@
 
             $('#labelTemperature').text(json.temperature_json + " ° C");
             $('#labelHumidity').text(json.humidity_json + " %");
-            $('#labelMoisture').text(json.moisture_json + " %");
+            $('#labelMoisture').text(json.soilMoisture_json + " %");
             $('#labelTemperatureStatus').text("Temperature: " + json.temperatureStatus_json);
             $('#labelHumidityStatus').text("Humidity: " + json.humidityStatus_json);
             $('#labelSoilMoistureStatus').text("Soil Moisture: " + json.soilMoistureStatus_json);
 
+            $('#cameraID').attr('src', json.image_json);
             $('#labelPlant1Growth').text(json.plant1_json);
             $('#labelPlant2Growth').text(json.plant2_json);
             $('#labelPlant3Growth').text(json.plant3_json);
@@ -245,11 +244,11 @@
         },
         success: function(json) {
           document.getElementById("mainForm").reset();
-          $('#daysID').text(json.daysCounterJSON);
-          $('#lastDayID').text('Age since: ' + json.dateJSON);
-          $('#labelTemperature').text(json.currentTemperatureJSON + " ° C");
-          $('#labelHumidity').text(json.currentHumidityJSON + " %");
-          $('#labelMoisture').text(json.currentMoistureJSON + " %");
+          $('#daysID').text(json.daysCounter_json);
+          $('#lastDayID').text('Age since: ' + json.date_json);
+          $('#labelTemperature').text(json.temperature_json + " ° C");
+          $('#labelHumidity').text(json.humidity_json + " %");
+          $('#labelMoisture').text(json.soilMoisture_json + " %");
           $('#labelTemperatureStatus').text("Temperature: " + json.temperatureStatus_json);
           $('#labelHumidityStatus').text("Humidity: " + json.humidityStatus_json);
           $('#labelSoilMoistureStatus').text("Soil Moisture: " + json.soilMoistureStatus_json);
@@ -287,7 +286,7 @@
           $('#labelPlant8Growth').text(json.plant8_json);
           $('#labelPlant9Growth').text(json.plant9_json);
           $('#labelPlant10Growth').text(json.plant10_json);
-          $('#daysID').text(json.daysCounterJSON);
+          $('#daysID').text(json.daysCounter_json);
           $('#lastDayID').text('Age since: ' + json.cameraDateJSON);
         },
       });
@@ -327,7 +326,7 @@
         $('#labelPlant8Growth').text(json.plant8_json);
         $('#labelPlant9Growth').text(json.plant9_json);
         $('#labelPlant10Growth').text(json.plant10_json);
-        $('#daysID').text(json.daysCounterJSON);
+        $('#daysID').text(json.daysCounter_json);
         $('#lastDayID').text('Age since: ' + json.cameraDateJSON);
       },
     });
