@@ -5,7 +5,7 @@
 <form method='GET' id="databaseForm">
   {% csrf_token %}
 
-  <div class="growthContainer" style="left: 15.5%; top: 5.7%; width: 62.54%; border-radius: 7px;">
+  <div class="growthContainer" style="left: 15.5%; top: 53%; width: 62.54%; border-radius: 7px;">
     <table class="cameraTable">
       <caption>Camera Snaps</caption>
       <thead>
@@ -25,7 +25,7 @@
         </tr>
       </thead>
       <tbody>
-        {% for values in cameraObjects %}
+        {% for values in mode1_vision_system_obj_global %}
         <tr>
           <td>{{values.date}}</td>
           <td>{{values.camera}}</td>
@@ -45,7 +45,7 @@
     </table>
   </div>
 
-  <div class="growthContainer" style="left: 80%; top: 5.7%; width: 17.82%; border-radius: 7px;">
+  <div class="growthContainer" style="left: 80%; top: 53%; width: 17.82%; border-radius: 7px;">
     <table class="countersTable">
       <caption>Counters</caption>
       <thead>
@@ -55,7 +55,7 @@
         </tr>
       </thead>
       <tbody>
-        {% for values in countersObjects %}
+        {% for values in mode_selected_obj_global %}
         <tr>
           <td>{{values.date}}</td>
           <td>{{values.daysCounter}}</td>
@@ -65,7 +65,7 @@
     </table>
   </div>
 
-  <div class="growthContainer" style="top: 53%;  width: 49.5%; left: 15.5%; border-radius: 7px;">
+  <div class="growthContainer" style="top: 5.7%;  width: 49.5%; left: 15.5%; border-radius: 7px;">
     <table class="sensorsTable">
       <caption>Sensors</caption>
       <thead>
@@ -78,7 +78,7 @@
         </tr>
       </thead>
       <tbody>
-        {% for values in sensorsObjects %}
+        {% for values in sensors_obj_global %}
         <tr>
           <td>{{values.date}}</td>
           <td>{{values.temperature}}</td>
@@ -91,7 +91,7 @@
     </table>
   </div>
 
-  <div class="growthContainer" style="left: 67%; top: 53%; width: 30.82%; border-radius: 7px;">
+  <div class="growthContainer" style="left: 67%; top: 5.7%; width: 30.82%; border-radius: 7px;">
     <table class="devicesTable">
       <caption>Devices</caption>
       <thead>
@@ -105,7 +105,7 @@
         </tr>
       </thead>
       <tbody>
-        {% for values in deviceStatusObjects %}
+        {% for values in devices_obj_global %}
         <tr>
           <td>{{values.date}}</td>
           <td>{{values.calibrationStatus}}</td>

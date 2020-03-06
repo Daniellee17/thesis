@@ -20,13 +20,13 @@
   <div class="daysContainer">
     <span class="tooltiptext">Age of Crops</span>
     <div class="circle big" style="color: BLACK;">
-      <a id="daysID" style="margin-top: 17%; font-size: 120px; font-family: Simplifica; margin-bottom: -11%;">{{countersObject.daysCounter}}</a>
+      <a id="daysID" style="margin-top: 17%; font-size: 120px; font-family: Simplifica; margin-bottom: -11%;">{{mode_selected_obj_global_2.daysCounter}}</a>
       <a style="font-size: 30px; font-family: Simplifica; margin-top: 0px; margin-bottom: 0px;">Days</a>
     </div>
 
     <div class="dateContainer" style="top:85%; width:50%; left:48%;">
-      <p id="firstDayID">{{countersObject_first.date}}</p>
-      <p id="lastDayID">As of: {{countersObject.date}}</p>
+      <p id="firstDayID">{{mode_selected_obj_global_first.date}}</p>
+      <p id="lastDayID">As of: {{mode_selected_obj_global_2.date}}</p>
     </div>
   </div>
 
@@ -36,7 +36,7 @@
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/devicesIcons/gridIcon.png" class="singleContainer_icon" style="width: 56px;" />
     </div>
-    <p id="labelGrid">{{modeObject.grid}}</p>
+    <p id="labelGrid">{{mode_selected_obj_global_2.grid}}</p>
   </div>
 
   <div class="singleContainer" style="left: 71.6%; top: 43%">
@@ -44,7 +44,7 @@
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/devicesIcons/modeIcon_white.png" class="singleContainer_icon" />
     </div>
-    <p id="labelMode">Mode {{modeObject.modeNumber}}</p>
+    <p id="labelMode">Mode {{mode_selected_obj_global_2.modeNumber}}</p>
   </div>
 
   <div class="singleContainer" style="left: 44%; top: 61.6%">
@@ -52,7 +52,7 @@
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/devicesIcons/calibrationIcon_white.png" class="singleContainer_icon" />
     </div>
-    <p id="labelCalibration">{{deviceStatusObjects.calibrationStatus}}</p>
+    <p id="labelCalibration">{{devices_obj_global.calibrationStatus}}</p>
   </div>
 
   <div class="singleContainer">
@@ -60,7 +60,7 @@
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/devicesIcons/sunIcon_white.png" class="singleContainer_icon" />
     </div>
-    <p id="labelLights">{{deviceStatusObjects.lightsStatus}}</p>
+    <p id="labelLights">{{devices_obj_global.lightsStatus}}</p>
   </div>
 
   <div class="singleContainer" style="left: 25%">
@@ -68,7 +68,7 @@
     <div class=" singleContainer_iconContainer">
       <img src="../assets/icons/devicesIcons/airIcon_white.png" class="singleContainer_icon" />
     </div>
-    <p id="labelFans">{{deviceStatusObjects.fansStatus}} </p>
+    <p id="labelFans">{{devices_obj_global.fansStatus}} </p>
   </div>
 
   <div class="singleContainer" style="left: 34.5%">
@@ -76,7 +76,7 @@
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/devicesIcons/waterIcon_white.png" class="singleContainer_icon" />
     </div>
-    <p id="labelWater">{{deviceStatusObjects.waterStatus}}</p>
+    <p id="labelWater">{{devices_obj_global.waterStatus}}</p>
   </div>
 
   <div class="singleContainer" style="left: 44%">
@@ -84,16 +84,15 @@
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/devicesIcons/seedIcon_white.png" class="singleContainer_icon" />
     </div>
-    <p id="labelSeed">{{deviceStatusObjects.seedStatus}}</p>
+    <p id="labelSeed">{{devices_obj_global.seedStatus}}</p>
   </div>
-
 
   <div class="singleContainer" style="top: 61.6%">
     <span class="tooltiptext">Temperature</span>
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/sensorsIcons/temperatureIcon.png" class="singleContainer_icon" />
     </div>
-    <p id="labelTemperature">{{sensorsObjects.temperature}} ° C</p>
+    <p id="labelTemperature">{{sensors_obj_global.temperature}} ° C</p>
   </div>
 
   <div class="singleContainer" style="left: 25%; top: 61.6%">
@@ -101,7 +100,7 @@
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/sensorsIcons/humidityIcon_white.png" class="singleContainer_icon" />
     </div>
-    <p id="labelHumidity">{{sensorsObjects.humidity}} %</p>
+    <p id="labelHumidity">{{sensors_obj_global.humidity}} %</p>
   </div>
 
   <div class="singleContainer" style="left: 34.5%; top: 61.6%">
@@ -109,22 +108,22 @@
     <div class="singleContainer_iconContainer">
       <img src="../assets/icons/sensorsIcons/soilMoistureIcon_white.png" class="singleContainer_icon" />
     </div>
-    <p id="labelMoisture">{{sensorsObjects.moisture}} %</p>
+    <p id="labelMoisture">{{sensors_obj_global.moisture}} %</p>
   </div>
 
   <div class="summaryContainer">
     <span class="tooltiptext">Temperature Status</span>
-    <p id="labelTemperatureStatus">Temperature: {{sensorsObjects.temperatureStatus}} </p>
+    <p id="labelTemperatureStatus">Temperature: {{sensors_obj_global.temperatureStatus}} </p>
   </div>
   
   <div class="summaryContainer" style="top: 54%">
     <span class="tooltiptext">Humidity Status</span>
-    <p id="labelHumidityStatus">Humidity: {{sensorsObjects.humidityStatus}} </p>
+    <p id="labelHumidityStatus">Humidity: {{sensors_obj_global.humidityStatus}} </p>
   </div>
   
   <div class="summaryContainer" style="top: 65%">
     <span class="tooltiptext">Soil Moisture Status</span>
-    <p id="labelSoilMoistureStatus">Soil Moisture: {{sensorsObjects.soilMoistureStatus}} </p>
+    <p id="labelSoilMoistureStatus">Soil Moisture: {{sensors_obj_global.soilMoistureStatus}} </p>
   </div>
 
   <div class="cameraImgContainer">
