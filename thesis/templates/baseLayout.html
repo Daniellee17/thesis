@@ -194,7 +194,7 @@
             $('#firstDayID').text(json.startDate_json);
             $('#lastDayID').text('Age since: ' + json.startDate_json);
             $('#daysID').text(json.daysCounter_json);
-            
+
             $('#labelCalibration').text(json.calibration_json);
             $('#labelFans').text(json.fans_json);
             $('#labelLights').text(json.lights_json);
@@ -219,6 +219,51 @@
             $('#labelPlant8Growth').text(json.plant8_json);
             $('#labelPlant9Growth').text(json.plant9_json);
             $('#labelPlant10Growth').text(json.plant10_json);
+
+            $('#growthContainer').remove()
+            $('#growthContainer_permanent').append('<div class="growthContainer" id="growthContainer">' +
+              '<span class="tooltiptext">Crop Growth Status</span>' +
+              '<div class="circle small">' +
+              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant1Growth">{{mode1_vision_system_obj_global.plant1}}</a>' +
+              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 1</a>' +
+              '</div>' +
+              '<div class="circle small">' +
+              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant2Growth">{{mode1_vision_system_obj_global.plant2}}</a>' +
+              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 2</a>' +
+              '</div>' +
+              '<div class="circle small">' +
+              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant3Growth">{{mode1_vision_system_obj_global.plant3}}</a>' +
+              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 3</a>' +
+              '</div>' +
+              '<div class="circle small">' +
+              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant4Growth">{{mode1_vision_system_obj_global.plant4}}</a>' +
+              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 4</a>' +
+              '</div>' +
+              '<div class="circle small">' +
+              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant5Growth">{{mode1_vision_system_obj_global.plant5}}</a>' +
+              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 5</a>' +
+              '</div>' +
+              '<div class="circle small">' +
+              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant6Growth">{{mode1_vision_system_obj_global.plant6}}</a>' +
+              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 6</a>' +
+              '</div>' +
+              '<div class="circle small">' +
+              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant7Growth">{{mode1_vision_system_obj_global.plant7}}</a>' +
+              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 7</a>' +
+              '</div>' +
+              '<div class="circle small">' +
+              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant8Growth">{{mode1_vision_system_obj_global.plant8}}</a>' +
+              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 8</a>' +
+              '</div>' +
+              '<div class="circle small">' +
+              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant9Growth">{{mode1_vision_system_obj_global.plant9}}</a>' +
+              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 9</a>' +
+              '</div>' +
+              '<div class="circle small">' +
+              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant10Growth">{{mode1_vision_system_obj_global.plant10}}</a>' +
+              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 10</a>' +
+              '</div>' +
+              '</div>')
 
           },
         });

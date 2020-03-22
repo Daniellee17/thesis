@@ -62,15 +62,15 @@ def mainPage(response):
     print("--------------------------- Main Page Refreshed! -------------------------------")
     print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
     print(" ")
-    
+
     mode_selected_obj_global = mode_selected.objects.latest('date')
     devices_obj_global = devices.objects.latest('date')
-    
+
     mode1_obj_global = mode1.objects.latest('date')
     mode2_obj_global = mode2.objects.latest('date')
     mode3_obj_global = mode3.objects.latest('date')
     mode4_obj_global = mode4.objects.latest('date')
-    
+
     if response.POST.get('action') == 'setup':
         print(" ")
         print("~Initializing~")
@@ -87,7 +87,7 @@ def mainPage(response):
         return JsonResponse(json)
 
     # Create instances so you can insert into the database
-    mode_selected_ = mode_selected()    
+    mode_selected_ = mode_selected()
     devices_ = devices()
     devices_2 = devices()
     sensors_ = sensors()
@@ -119,7 +119,7 @@ def mainPage(response):
         output = interp(output, [0, 1023], [100, 0])
         output = int(output)
         #print("Moistures", output)
-        
+
         currentMoisture = output
         averageTemperature = (temperature + temperature2) / 2
         averageHumidity = (humidity + humidity2) / 2
@@ -162,8 +162,8 @@ def mainPage(response):
             humidityStatusSummary = 'Too Low!'
         else:
             humidityStatusSummary = 'Good'
-            
-        if (soilMoistureStatus == 'dry'):            
+
+        if (soilMoistureStatus == 'dry'):
             soilMoistureStatus = 'Dry!'
             print(" ")
             print("~ (PIN 19) Watering System Activated~")
@@ -191,7 +191,7 @@ def mainPage(response):
             soilMoistureStatus = 'Moist'
         elif (soilMoistureStatus == 'wet'):
             soilMoistureStatus = 'Wet!'
-            
+
         print("Temp1: " + str(temperature))
         print("Hum1: "+ str(humidity))
         print("Temp2: "+ str(temperature2))
@@ -199,7 +199,7 @@ def mainPage(response):
         print("Moisture: "+ str(currentMoisture))
         print("Ave temp: "+ str(round(averageTemperature, 2)))
         print("Ave humidity: "+ str(round(averageHumidity, 0)))
-          
+
         if(temperatureStatus == 'low' and humidityStatus == 'low'):
             print(" ")
             print("~Fans Deactivated~")
@@ -211,7 +211,7 @@ def mainPage(response):
             devices_.calibrationStatus = devices_obj_global.calibrationStatus
             devices_.waterStatus = devices_obj_global.waterStatus
             devices_.seedStatus = devices_obj_global.seedStatus
-            devices_.save()   
+            devices_.save()
         elif(temperatureStatus == 'high' and humidityStatus == 'high'):
             print(" ")
             print("~Fans Activated~")
@@ -223,7 +223,7 @@ def mainPage(response):
             devices_.calibrationStatus = devices_obj_global.calibrationStatus
             devices_.waterStatus = devices_obj_global.waterStatus
             devices_.seedStatus = devices_obj_global.seedStatus
-            devices_.save()          
+            devices_.save()
         elif(temperatureStatus == 'low' and humidityStatus == 'high'):
             print(" ")
             print("~Fans Activated~")
@@ -235,7 +235,7 @@ def mainPage(response):
             devices_.calibrationStatus = devices_obj_global.calibrationStatus
             devices_.waterStatus = devices_obj_global.waterStatus
             devices_.seedStatus = devices_obj_global.seedStatus
-            devices_.save()        
+            devices_.save()
         elif(temperatureStatus == 'high' and humidityStatus == 'low'):
             print(" ")
             print("~Fans Activated~")
@@ -248,7 +248,7 @@ def mainPage(response):
             devices_.waterStatus = devices_obj_global.waterStatus
             devices_.seedStatus = devices_obj_global.seedStatus
             devices_.save()
-            
+
         sensors_.temperature = round(averageTemperature, 2)
         sensors_.humidity = round(averageHumidity, 0)
         sensors_.moisture = currentMoisture
@@ -256,7 +256,7 @@ def mainPage(response):
         sensors_.humidityStatus = humidityStatusSummary
         sensors_.soilMoistureStatus = soilMoistureStatus
         sensors_.save()
-        
+
         sensors_obj = sensors.objects.latest('date')
         mode_selected_obj_first = mode_selected.objects.first()
         mode_selected_obj = mode_selected.objects.latest('date')
@@ -273,7 +273,7 @@ def mainPage(response):
         mode_selected_.columns = mode_selected_obj.columns
         mode_selected_.modeNumber = mode_selected_obj.modeNumber
         mode_selected_.save()
-        
+
         mode_selected_obj_2 = mode_selected.objects.latest('date')
 
         json = {
@@ -291,7 +291,7 @@ def mainPage(response):
 
     if response.POST.get('action') == 'snapImage':
         mode_selected_obj = mode_selected.objects.latest('date')
-        if(mode_selected_obj.modeNumber == 1): 
+        if(mode_selected_obj.modeNumber == 1):
             print(" ")
             print("~[ Mode 1 ] Vision System Starting~")
             print(" ")
@@ -424,20 +424,20 @@ def mainPage(response):
             }
 
             return JsonResponse(json)
-            
-        if(mode_selected_obj.modeNumber == 2): 
+
+        if(mode_selected_obj.modeNumber == 2):
             print(" ")
             print("~[ Mode 2 ] Vision System Starting~")
             print(" ")
             print(" ")
-            
-        if(mode_selected_obj.modeNumber == 3): 
+
+        if(mode_selected_obj.modeNumber == 3):
             print(" ")
             print("~[ Mode 3 ] Vision System Starting~")
             print(" ")
             print(" ")
-            
-        if(mode_selected_obj.modeNumber == 4): 
+
+        if(mode_selected_obj.modeNumber == 4):
             print(" ")
             print("~[ Mode 4 ] Vision System Starting~")
             print(" ")
@@ -692,7 +692,7 @@ def mainPage(response):
         print(" ")
         print("~Database Cleared~")
         print(" ")
-        
+
         mode_selected.objects.all().delete()
         mode_selected_.daysCounter = 0
         mode_selected_.grid = mode1_obj_global.grid
@@ -708,7 +708,7 @@ def mainPage(response):
         devices_.waterStatus = 'Off'
         devices_.seedStatus = 'Off'
         devices_.save()
-        
+
         sensors.objects.all().delete()
         sensors_.temperature = 0
         sensors_.humidity = 0
@@ -717,7 +717,7 @@ def mainPage(response):
         sensors_.humidityStatus = "Good"
         sensors_.soilMoistureStatus = "Good"
         sensors_.save()
-        
+
         mode1_vision_system.objects.all().delete()
         mode1_vision_system_.image = '../assets/background/rpiBG.gif'
         mode1_vision_system_.plant1 = 0
@@ -731,7 +731,7 @@ def mainPage(response):
         mode1_vision_system_.plant9 = 0
         mode1_vision_system_.plant10 = 0
         mode1_vision_system_.save()
-    
+
         mode2_vision_system.objects.all().delete()
         mode2_vision_system_.image = '../assets/background/rpiBG.gif'
         mode2_vision_system_.plant1 = 0
@@ -743,7 +743,7 @@ def mainPage(response):
         mode2_vision_system_.plant7 = 0
         mode2_vision_system_.plant8 = 8
         mode2_vision_system_.save()
-        
+
         mode3_vision_system.objects.all().delete()
         mode3_vision_system_.image = '../assets/background/rpiBG.gif'
         mode3_vision_system_.plant1 = 0
@@ -780,7 +780,7 @@ def mainPage(response):
         mode4_vision_system_.plant10 = 0
         mode4_vision_system_.plant11 = 0
         mode4_vision_system_.plant12 = 12
-        mode4_vision_system_.save()        
+        mode4_vision_system_.save()
 
         mode_selected_obj = mode_selected.objects.latest('date')
         mode1_visionSystem_obj = mode1_vision_system.objects.latest('date')
@@ -795,10 +795,10 @@ def mainPage(response):
 
         'calibration_json' : devices_obj.calibrationStatus,
         'fans_json' : devices_obj.fansStatus,
-        'lights_json' : devices_obj.lightsStatus,        
+        'lights_json' : devices_obj.lightsStatus,
         'water_json' : devices_obj.waterStatus,
         'seeder_json' : devices_obj.seedStatus,
-                
+
         'temperature_json': sensors_obj.temperature,
         'humidity_json': sensors_obj.humidity,
         'soilMoisture_json': sensors_obj.moisture,
@@ -830,7 +830,7 @@ def mainPage(response):
     mode_selected_obj_global_first = mode_selected.objects.first()
     mode_selected_obj_global_2 = mode_selected.objects.latest('date')
 
-    myObj = {'mode_selected_obj_global_first': mode_selected_obj_global_first, 'mode_selected_obj_global_2': mode_selected_obj_global_2, 'devices_obj_global': devices_obj_global, 
+    myObj = {'mode_selected_obj_global_first': mode_selected_obj_global_first, 'mode_selected_obj_global_2': mode_selected_obj_global_2, 'devices_obj_global': devices_obj_global,
                 'sensors_obj_global': sensors_obj_global, 'mode1_vision_system_obj_global': mode1_vision_system_obj_global, 'mode2_vision_system_obj_global': mode2_vision_system_obj_global
                 , 'mode3_vision_system_obj_global': mode3_vision_system_obj_global, 'mode4_vision_system_obj_global': mode4_vision_system_obj_global }
 
@@ -848,6 +848,3 @@ def databasePage(response):
                 'sensors_obj_global': sensors_obj_global, 'mode1_vision_system_obj_global': mode1_vision_system_obj_global}
 
     return render(response, 'database.html', context=myObj)
-
-
-
