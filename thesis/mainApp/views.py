@@ -766,4 +766,4 @@ def databasePage(response):
     myObj = {'mode_selected_obj_global': mode_selected_obj_global, 'devices_obj_global': devices_obj_global,
                 'sensors_obj_global': sensors_obj_global, 'mode1_vision_system_obj_global': mode1_vision_system_obj_global}
 
-    return render(response, 'index.html', context=myObj)
+    return render(response, 'database.html', context=myObj)
