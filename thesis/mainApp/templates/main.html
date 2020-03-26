@@ -80,7 +80,6 @@
               <div id="labelTemperature" class="h5 mb-0 font-weight-bold text-gray-800">{{mode_selected_obj_global_2.daysCounter}} Days</div>
               <div id="firstDayID" class="h7 mb-0 font-weight-normal text-gray-800">{{mode_selected_obj_global_first.date}}</div>
               <!-- <div id="lastDayID" class="h7 mb-0 font-weight-normal text-gray-800">{{mode_selected_obj_global_2.date}}</div> -->
-
             </div>
             <div class="col-auto">
               <i><img src="../assets/icons/sensorsIcons/bdayIcon_white.png" class="singleContainer_icon" /></i>
@@ -89,79 +88,138 @@
         </div>
       </div>
     </div>
+  </div>
 
 
+  <div class="row">
 
-    <div class="singleContainer" style="left: 71.6%; top: 61.6%">
-      <span class="tooltiptext">Plant Box Grid</span>
-      <div class="singleContainer_iconContainer">
-        <img src="../assets/icons/devicesIcons/gridIcon.png" class="singleContainer_icon" style="width: 56px;" />
+    <div class="col-xl-3 col-md-6 mb-5">
+      <div class="card border-left-warning shadow h-100 py-2" style="background: black; width: 170px;"">
+        <div class=" card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mode</div>
+            <div id="labelMode" class="h5 mb-0 font-weight-bold text-gray-800">Mode {{mode_selected_obj_global_2.modeNumber}}</div>
+          </div>
+          <div class="col-auto">
+            <i><img src="../assets/icons/devicesIcons/modeIcon_white.png" class="singleContainer_icon" /></i>
+          </div>
+        </div>
       </div>
-      <p id="labelGrid">{{mode_selected_obj_global_2.grid}}</p>
     </div>
+  </div>
 
-    <div class="singleContainer" style="left: 71.6%; top: 43%">
-      <span class="tooltiptext">Mode</span>
-      <div class="singleContainer_iconContainer">
-        <img src="../assets/icons/devicesIcons/modeIcon_white.png" class="singleContainer_icon" />
+  <div class="col-xl-3 col-md-6 mb-5">
+    <div class="card border-left-warning shadow h-100 py-2" style="background: black; width: 170px;"">
+      <div class=" card-body">
+      <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Grid</div>
+          <div id="labelGrid" class="h5 mb-0 font-weight-bold text-gray-800">{{mode_selected_obj_global_2.grid}}</div>
+        </div>
+        <div class="col-auto">
+          <i><img src="../assets/icons/devicesIcons/gridIcon.png" class="singleContainer_icon" /></i>
+        </div>
       </div>
-      <p id="labelMode">Mode {{mode_selected_obj_global_2.modeNumber}}</p>
     </div>
+  </div>
+  </div>
 
-    <div class="singleContainer" style="left: 44%; top: 61.6%">
-      <span class="tooltiptext">Calibration Status</span>
-      <div class="singleContainer_iconContainer">
-        <img src="../assets/icons/devicesIcons/calibrationIcon_white.png" class="singleContainer_icon" />
+  <div class="col-xl-3 col-md-6 mb-5">
+    <div class="card border-left-warning shadow h-100 py-2" style="background: black; width: 170px;"">
+      <div class=" card-body">
+      <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Calibration</div>
+          <div id="labelCalibration" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.calibrationStatus}}</div>
+        </div>
+        <div class="col-auto">
+          <i><img src="../assets/icons/devicesIcons/calibrationIcon_white.png" class="singleContainer_icon" /></i>
+        </div>
       </div>
-      <p id="labelCalibration">{{devices_obj_global.calibrationStatus}}</p>
     </div>
+  </div>
+  </div>
 
-    <div class="singleContainer">
-      <span class="tooltiptext">Lights Status</span>
-      <div class="singleContainer_iconContainer">
-        <img src="../assets/icons/devicesIcons/sunIcon_white.png" class="singleContainer_icon" />
+  <div class="col-xl-3 col-md-6 mb-5">
+    <div class="card border-left-warning shadow h-100 py-2" style="background: black; width: 170px;"">
+      <div class=" card-body">
+      <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Lights</div>
+          <div id="labelLights" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.lightsStatus}}</div>
+        </div>
+        <div class="col-auto">
+          <i><img src="../assets/icons/devicesIcons/sunIcon_white.png" class="singleContainer_icon" /></i>
+        </div>
       </div>
-      <p id="labelLights">{{devices_obj_global.lightsStatus}}</p>
     </div>
+  </div>
+  </div>
 
-    <div class="singleContainer" style="left: 25%">
-      <span class="tooltiptext">Fans Status</span>
-      <div class=" singleContainer_iconContainer">
-        <img src="../assets/icons/devicesIcons/airIcon_white.png" class="singleContainer_icon" />
+  <div class="col-xl-3 col-md-6 mb-5">
+    <div class="card border-left-warning shadow h-100 py-2" style="background: black; width: 170px;"">
+      <div class=" card-body">
+      <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Fans</div>
+          <div id="labelFans" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.fansStatus}}</div>
+        </div>
+        <div class="col-auto">
+          <i><img src="../assets/icons/devicesIcons/airIcon_white.png" class="singleContainer_icon" /></i>
+        </div>
       </div>
-      <p id="labelFans">{{devices_obj_global.fansStatus}} </p>
     </div>
+  </div>
+  </div>
 
-    <div class="singleContainer" style="left: 34.5%">
-      <span class="tooltiptext">Watering System</span>
-      <div class="singleContainer_iconContainer">
-        <img src="../assets/icons/devicesIcons/waterIcon_white.png" class="singleContainer_icon" />
+  <div class="col-xl-3 col-md-6 mb-5">
+    <div class="card border-left-warning shadow h-100 py-2" style="background: black; width: 170px;"">
+      <div class=" card-body">
+      <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Watering</div>
+          <div id="labelWater" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.waterStatus}}</div>
+        </div>
+        <div class="col-auto">
+          <i><img src="../assets/icons/devicesIcons/waterIcon_white.png" class="singleContainer_icon" /></i>
+        </div>
       </div>
-      <p id="labelWater">{{devices_obj_global.waterStatus}}</p>
     </div>
+  </div>
+  </div>
 
-    <div class="singleContainer" style="left: 44%">
-      <span class="tooltiptext">Seeder</span>
-      <div class="singleContainer_iconContainer">
-        <img src="../assets/icons/devicesIcons/seedIcon_white.png" class="singleContainer_icon" />
+  <div class="col-xl-3 col-md-6 mb-5">
+    <div class="card border-left-warning shadow h-100 py-2" style="background: black; width: 170px;"">
+      <div class=" card-body">
+      <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Seeder</div>
+          <div id="labelSeed" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.seedStatus}}</div>
+        </div>
+        <div class="col-auto">
+          <i><img src="../assets/icons/devicesIcons/seedIcon_white.png" class="singleContainer_icon" /></i>
+        </div>
       </div>
-      <p id="labelSeed">{{devices_obj_global.seedStatus}}</p>
     </div>
+  </div>
+  </div>
+
+  </div>
 
 
+  <div class="cameraImgContainer">
+    <span class="tooltiptext">Garden Visual System</span>
+    <img id="cameraID" class="cameraImg" src={{cameraObjects.cameraURL}}>
+    <!--   <img id="cameraID" class="cameraImg" src={{cameraObjects.cameraURL}}> -->
+    <!--   <img id="cameraID" class="cameraImg" src="../assets/gardenPics/test.jpg"> -->
 
-    <div class="cameraImgContainer">
-      <span class="tooltiptext">Garden Visual System</span>
-      <img id="cameraID" class="cameraImg" src={{cameraObjects.cameraURL}}>
-      <!--   <img id="cameraID" class="cameraImg" src={{cameraObjects.cameraURL}}> -->
-      <!--   <img id="cameraID" class="cameraImg" src="../assets/gardenPics/test.jpg"> -->
+  </div>
 
+  <div class="growthContainer_permanent" id="growthContainer_permanent">
+    <div class="growthContainer" id="growthContainer">
+      <span class="tooltiptext">Crop Growth Status</span>
     </div>
-
-    <div class="growthContainer_permanent" id="growthContainer_permanent">
-      <div class="growthContainer" id="growthContainer">
-        <span class="tooltiptext">Crop Growth Status</span>
-      </div>
 
 
 
