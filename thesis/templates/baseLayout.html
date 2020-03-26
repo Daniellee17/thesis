@@ -49,7 +49,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+          <i><img src="../assets/icons/rpiGif2.gif" class="singleContainer_icon" /></i>
         </div>
         <div class="sidebar-brand-text mx-3">A.G.E Thesis</div>
       </a>
@@ -167,6 +167,9 @@
         </div>
         <!-- /.container-fluid -->
 
+
+
+
       </div>
       <!-- End of Main Content -->
 
@@ -187,8 +190,10 @@
   <!-- End of Page Wrapper -->
 
   <div class="title">
-    <img src="../assets/icons/rpiGif2.gif" class="titleLogoGif" />
-    <img src="../assets/icons/wifi.gif" class="titleLogo" />
+    <!-- <img src="../assets/icons/rpiGif2.gif" class="titleLogoGif" /> -->
+    <!-- <img src="../assets/icons/wifi.gif" class="titleLogo" /> -->
+
+
   </div>
 
   <div id="mySidenav" class="hiddenSideNav">
@@ -673,8 +678,7 @@
         $('#labelMode').text("Mode " + json.mode_json);
         $('#labelGrid').text(json.grid_json);
         $('#growthContainer').remove()
-        $('#growthContainer_permanent').append('<div class="growthContainer" id="growthContainer">' +
-          '<span class="tooltiptext">Crop Growth Status</span>' +
+        $('#growthContainer_permanent').append('<div id="growthContainer">' +
           '<div class="circle small">' +
           '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant1Growth">{{mode1_vision_system_obj_global.plant1}}</a>' +
           '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 1</a>' +
@@ -739,8 +743,7 @@
         $('#labelMode').text("Mode " + json.mode_json);
         $('#labelGrid').text(json.grid_json);
         $('#growthContainer').remove()
-        $('#growthContainer_permanent').append('<div class="growthContainer" id="growthContainer">' +
-          '<span class="tooltiptext">Crop Growth Status</span>' +
+        $('#growthContainer_permanent').append('<div id="growthContainer">' +
           '<div class="circle small">' +
           '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant1Growth">{{mode2_vision_system_obj_global.plant1}}</a>' +
           '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 1</a>' +
@@ -796,8 +799,7 @@
         $('#labelMode').text("Mode " + json.mode_json);
         $('#labelGrid').text(json.grid_json);
         $('#growthContainer').remove()
-        $('#growthContainer_permanent').append('<div class="growthContainer" id="growthContainer">' +
-          '<span class="tooltiptext">Crop Growth Status</span>' +
+        $('#growthContainer_permanent').append('<div id="growthContainer">' +
           '<div class="circle small">' +
           '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant1Growth">{{mode3_vision_system_obj_global.plant1}}</a>' +
           '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 1</a>' +
@@ -892,8 +894,7 @@
         $('#labelMode').text("Mode " + json.mode_json);
         $('#labelGrid').text(json.grid_json);
         $('#growthContainer').remove()
-        $('#growthContainer_permanent').append('<div class="growthContainer" id="growthContainer">' +
-          '<span class="tooltiptext">Crop Growth Status</span>' +
+        $('#growthContainer_permanent').append('<div id="growthContainer">' +
           '<div class="circle small">' +
           '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant1Growth">{{mode4_vision_system_obj_global.plant1}}</a>' +
           '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 1</a>' +
@@ -960,8 +961,7 @@
       success: function(json) {
         if (json.modeNumber === 1) {
           $('#growthContainer').remove()
-          $('#growthContainer_permanent').append('<div class="growthContainer" id="growthContainer">' +
-            '<span class="tooltiptext">Crop Growth Status</span>' +
+          $('#growthContainer_permanent').append('<div id="growthContainer">' +
             '<div class="circle small">' +
             '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant1Growth">{{mode1_vision_system_obj_global.plant1}}</a>' +
             '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 1</a>' +
