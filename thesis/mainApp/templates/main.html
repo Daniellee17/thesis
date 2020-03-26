@@ -5,139 +5,165 @@
 <form method='POST' id="mainForm">
   {% csrf_token %}
 
-  <div class="headlineContainer">
-    AGE THESIS
-    <!--
-    <div class="brand">
-      An automated indoor gardening system using raspberry pi.
-      | <a href="{% url 'databasePage' %}">See Database Log</a>
+
+
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+  </div>
+
+  <!-- Content Row -->
+  <div class="row">
+
+    <!-- Temperature -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2" style="background: black">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Temperature (Celsius)</div>
+              <div id="labelTemperature" class="h5 mb-0 font-weight-bold text-gray-800">{{sensors_obj_global.temperature}} ° C</div>
+              <div id="labelTemperatureStatus" class="h7 mb-0 font-weight-normal text-gray-800">Status: {{sensors_obj_global.temperatureStatus}}</div>
+            </div>
+            <div class="col-auto">
+              <i><img src="../assets/icons/sensorsIcons/temperatureIcon.png" class="singleContainer_icon" /></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Humidity -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-success shadow h-100 py-2" style="background: black">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Humidity</div>
+              <div id="labelHumidity" class="h5 mb-0 font-weight-bold text-gray-800">{{sensors_obj_global.humidity}} %</div>
+              <div id="labelHumidityStatus" class="h7 mb-0 font-weight-normal text-gray-800">Status: {{sensors_obj_global.humidityStatus}}</div>
+            </div>
+            <div class="col-auto">
+              <i><img src="../assets/icons/sensorsIcons/humidityIcon_white.png" class="singleContainer_icon" /></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Soil Moisture -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-info shadow h-100 py-2" style="background: black">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Soil Moisture</div>
+              <div id="labelMoisture" class="h5 mb-0 font-weight-bold text-gray-800">{{sensors_obj_global.moisture}} %</div>
+              <div id="labelSoilMoistureStatus" class="h7 mb-0 font-weight-normal text-gray-800">Status: {{sensors_obj_global.soilMoistureStatus}}</div>
+            </div>
+            <div class="col-auto">
+              <i><img src="../assets/icons/sensorsIcons/soilMoistureIcon_white.png" class="singleContainer_icon" /></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2" style="background: black">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Progress</div>
+              <div id="labelTemperature" class="h5 mb-0 font-weight-bold text-gray-800">{{mode_selected_obj_global_2.daysCounter}} Days</div>
+              <div id="firstDayID" class="h7 mb-0 font-weight-normal text-gray-800">{{mode_selected_obj_global_first.date}}</div>
+              <!-- <div id="lastDayID" class="h7 mb-0 font-weight-normal text-gray-800">{{mode_selected_obj_global_2.date}}</div> -->
+
+            </div>
+            <div class="col-auto">
+              <i><img src="../assets/icons/sensorsIcons/bdayIcon_white.png" class="singleContainer_icon" /></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="singleContainer" style="left: 71.6%; top: 61.6%">
+      <span class="tooltiptext">Plant Box Grid</span>
+      <div class="singleContainer_iconContainer">
+        <img src="../assets/icons/devicesIcons/gridIcon.png" class="singleContainer_icon" style="width: 56px;" />
+      </div>
+      <p id="labelGrid">{{mode_selected_obj_global_2.grid}}</p>
+    </div>
+
+    <div class="singleContainer" style="left: 71.6%; top: 43%">
+      <span class="tooltiptext">Mode</span>
+      <div class="singleContainer_iconContainer">
+        <img src="../assets/icons/devicesIcons/modeIcon_white.png" class="singleContainer_icon" />
+      </div>
+      <p id="labelMode">Mode {{mode_selected_obj_global_2.modeNumber}}</p>
+    </div>
+
+    <div class="singleContainer" style="left: 44%; top: 61.6%">
+      <span class="tooltiptext">Calibration Status</span>
+      <div class="singleContainer_iconContainer">
+        <img src="../assets/icons/devicesIcons/calibrationIcon_white.png" class="singleContainer_icon" />
+      </div>
+      <p id="labelCalibration">{{devices_obj_global.calibrationStatus}}</p>
+    </div>
+
+    <div class="singleContainer">
+      <span class="tooltiptext">Lights Status</span>
+      <div class="singleContainer_iconContainer">
+        <img src="../assets/icons/devicesIcons/sunIcon_white.png" class="singleContainer_icon" />
+      </div>
+      <p id="labelLights">{{devices_obj_global.lightsStatus}}</p>
+    </div>
+
+    <div class="singleContainer" style="left: 25%">
+      <span class="tooltiptext">Fans Status</span>
+      <div class=" singleContainer_iconContainer">
+        <img src="../assets/icons/devicesIcons/airIcon_white.png" class="singleContainer_icon" />
+      </div>
+      <p id="labelFans">{{devices_obj_global.fansStatus}} </p>
+    </div>
+
+    <div class="singleContainer" style="left: 34.5%">
+      <span class="tooltiptext">Watering System</span>
+      <div class="singleContainer_iconContainer">
+        <img src="../assets/icons/devicesIcons/waterIcon_white.png" class="singleContainer_icon" />
+      </div>
+      <p id="labelWater">{{devices_obj_global.waterStatus}}</p>
+    </div>
+
+    <div class="singleContainer" style="left: 44%">
+      <span class="tooltiptext">Seeder</span>
+      <div class="singleContainer_iconContainer">
+        <img src="../assets/icons/devicesIcons/seedIcon_white.png" class="singleContainer_icon" />
+      </div>
+      <p id="labelSeed">{{devices_obj_global.seedStatus}}</p>
+    </div>
+
+
+
+    <div class="cameraImgContainer">
+      <span class="tooltiptext">Garden Visual System</span>
+      <img id="cameraID" class="cameraImg" src={{cameraObjects.cameraURL}}>
+      <!--   <img id="cameraID" class="cameraImg" src={{cameraObjects.cameraURL}}> -->
+      <!--   <img id="cameraID" class="cameraImg" src="../assets/gardenPics/test.jpg"> -->
 
     </div>
-  -->
-  </div>
+
+    <div class="growthContainer_permanent" id="growthContainer_permanent">
+      <div class="growthContainer" id="growthContainer">
+        <span class="tooltiptext">Crop Growth Status</span>
+      </div>
 
 
-  <div class="daysContainer">
-    <span class="tooltiptext">Age of Crops</span>
-    <div class="circle big" style="color: BLACK;">
-      <a id="daysID" style="margin-top: 17%; font-size: 120px; font-family: Simplifica; margin-bottom: -11%;">{{mode_selected_obj_global_2.daysCounter}}</a>
-      <a style="font-size: 30px; font-family: Simplifica; margin-top: 0px; margin-bottom: 0px;">Days</a>
-    </div>
-
-    <div class="dateContainer" style="top:85%; width:50%; left:48%;">
-      <p id="firstDayID">{{mode_selected_obj_global_first.date}}</p>
-      <p id="lastDayID">As of: {{mode_selected_obj_global_2.date}}</p>
-    </div>
-  </div>
-
-
-  <div class="singleContainer" style="left: 71.6%; top: 61.6%">
-    <span class="tooltiptext">Plant Box Grid</span>
-    <div class="singleContainer_iconContainer">
-      <img src="../assets/icons/devicesIcons/gridIcon.png" class="singleContainer_icon" style="width: 56px;" />
-    </div>
-    <p id="labelGrid">{{mode_selected_obj_global_2.grid}}</p>
-  </div>
-
-  <div class="singleContainer" style="left: 71.6%; top: 43%">
-    <span class="tooltiptext">Mode</span>
-    <div class="singleContainer_iconContainer">
-      <img src="../assets/icons/devicesIcons/modeIcon_white.png" class="singleContainer_icon" />
-    </div>
-    <p id="labelMode">Mode {{mode_selected_obj_global_2.modeNumber}}</p>
-  </div>
-
-  <div class="singleContainer" style="left: 44%; top: 61.6%">
-    <span class="tooltiptext">Calibration Status</span>
-    <div class="singleContainer_iconContainer">
-      <img src="../assets/icons/devicesIcons/calibrationIcon_white.png" class="singleContainer_icon" />
-    </div>
-    <p id="labelCalibration">{{devices_obj_global.calibrationStatus}}</p>
-  </div>
-
-  <div class="singleContainer">
-    <span class="tooltiptext">Lights Status</span>
-    <div class="singleContainer_iconContainer">
-      <img src="../assets/icons/devicesIcons/sunIcon_white.png" class="singleContainer_icon" />
-    </div>
-    <p id="labelLights">{{devices_obj_global.lightsStatus}}</p>
-  </div>
-
-  <div class="singleContainer" style="left: 25%">
-    <span class="tooltiptext">Fans Status</span>
-    <div class=" singleContainer_iconContainer">
-      <img src="../assets/icons/devicesIcons/airIcon_white.png" class="singleContainer_icon" />
-    </div>
-    <p id="labelFans">{{devices_obj_global.fansStatus}} </p>
-  </div>
-
-  <div class="singleContainer" style="left: 34.5%">
-    <span class="tooltiptext">Watering System</span>
-    <div class="singleContainer_iconContainer">
-      <img src="../assets/icons/devicesIcons/waterIcon_white.png" class="singleContainer_icon" />
-    </div>
-    <p id="labelWater">{{devices_obj_global.waterStatus}}</p>
-  </div>
-
-  <div class="singleContainer" style="left: 44%">
-    <span class="tooltiptext">Seeder</span>
-    <div class="singleContainer_iconContainer">
-      <img src="../assets/icons/devicesIcons/seedIcon_white.png" class="singleContainer_icon" />
-    </div>
-    <p id="labelSeed">{{devices_obj_global.seedStatus}}</p>
-  </div>
-
-  <div class="singleContainer" style="top: 61.6%">
-    <span class="tooltiptext">Temperature</span>
-    <div class="singleContainer_iconContainer">
-      <img src="../assets/icons/sensorsIcons/temperatureIcon.png" class="singleContainer_icon" />
-    </div>
-    <p id="labelTemperature">{{sensors_obj_global.temperature}} ° C</p>
-  </div>
-
-  <div class="singleContainer" style="left: 25%; top: 61.6%">
-    <span class="tooltiptext">Humidity</span>
-    <div class="singleContainer_iconContainer">
-      <img src="../assets/icons/sensorsIcons/humidityIcon_white.png" class="singleContainer_icon" />
-    </div>
-    <p id="labelHumidity">{{sensors_obj_global.humidity}} %</p>
-  </div>
-
-  <div class="singleContainer" style="left: 34.5%; top: 61.6%">
-    <span class="tooltiptext">Soil Moisture</span>
-    <div class="singleContainer_iconContainer">
-      <img src="../assets/icons/sensorsIcons/soilMoistureIcon_white.png" class="singleContainer_icon" />
-    </div>
-    <p id="labelMoisture">{{sensors_obj_global.moisture}} %</p>
-  </div>
-
-  <div class="summaryContainer">
-    <span class="tooltiptext">Temperature Status</span>
-    <p id="labelTemperatureStatus">Temperature: {{sensors_obj_global.temperatureStatus}} </p>
-  </div>
-  
-  <div class="summaryContainer" style="top: 54%">
-    <span class="tooltiptext">Humidity Status</span>
-    <p id="labelHumidityStatus">Humidity: {{sensors_obj_global.humidityStatus}} </p>
-  </div>
-  
-  <div class="summaryContainer" style="top: 65%">
-    <span class="tooltiptext">Soil Moisture Status</span>
-    <p id="labelSoilMoistureStatus">Soil Moisture: {{sensors_obj_global.soilMoistureStatus}} </p>
-  </div>
-
-  <div class="cameraImgContainer">
-    <span class="tooltiptext">Garden Visual System</span>
-    <img id="cameraID" class="cameraImg" src={{cameraObjects.cameraURL}}>
-    <!--   <img id="cameraID" class="cameraImg" src={{cameraObjects.cameraURL}}> -->
-    <!--   <img id="cameraID" class="cameraImg" src="../assets/gardenPics/test.jpg"> -->
-
-  </div>
-
-  <div class="growthContainer_permanent" id="growthContainer_permanent">
-    <div class="growthContainer" id="growthContainer">
-      <span class="tooltiptext">Crop Growth Status</span>
-    </div>
 
 
 </form>
