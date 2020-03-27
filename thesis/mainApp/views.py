@@ -87,7 +87,7 @@ def mainPage(response):
         humidityStatusSummary = "Default"
         soilMoistureStatusSummary = "Default"
 
-        if (averageTemperature > 26 ):
+        if(averageTemperature > 26 ):
             temperatureStatus = 'high' # Too High
         else:
             temperatureStatus = 'good' # Good
@@ -97,7 +97,7 @@ def mainPage(response):
         elif (averageHumidity > 80):
             humidityStatus = 'high' # Too High
         else:
-            temperatureStatus = 11 # Good
+            humidityStatus = 'good' # Good
 
         if (currentMoisture >= 10 and currentMoisture <= 30):
             soilMoistureStatus = 'dry'; # Dry
