@@ -15,6 +15,25 @@
   <!-- Content Row -->
   <div class="row">
 
+    <!-- Progress -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2" style="background: white">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Progress</div>
+              <div id="labelTemperature" class="h5 mb-0 font-weight-bold text-gray-800">{{mode_selected_obj_global_2.daysCounter}} Days</div>
+              <div id="firstDayID" class="h7 mb-0 font-weight-normal text-gray-800">{{mode_selected_obj_global_first.date}}</div>
+              <!-- <div id="lastDayID" class="h7 mb-0 font-weight-normal text-gray-800">{{mode_selected_obj_global_2.date}}</div> -->
+            </div>
+            <div class="col-auto">
+              <i><img src="../assets/icons/devicesIcons/bdayIcon_black.png" class="singleContainer_icon" /></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Temperature -->
     <div class="col-xl-3 col-md-6 mb-4">
       <div class="card border-left-primary shadow h-100 py-2" style="background: white">
@@ -36,7 +55,7 @@
 
     <!-- Humidity -->
     <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-success shadow h-100 py-2" style="background: black">
+      <div class="card border-left-danger shadow h-100 py-2" style="background: white">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
@@ -54,7 +73,7 @@
 
     <!-- Soil Moisture -->
     <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-info shadow h-100 py-2" style="background: black">
+      <div class="card border-left-info shadow h-100 py-2" style="background: white">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
@@ -70,39 +89,22 @@
       </div>
     </div>
 
-    <!-- Progress -->
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-warning shadow h-100 py-2" style="background: black">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Progress</div>
-              <div id="labelTemperature" class="h5 mb-0 font-weight-bold text-gray-800">{{mode_selected_obj_global_2.daysCounter}} Days</div>
-              <div id="firstDayID" class="h7 mb-0 font-weight-normal text-gray-800">{{mode_selected_obj_global_first.date}}</div>
-              <!-- <div id="lastDayID" class="h7 mb-0 font-weight-normal text-gray-800">{{mode_selected_obj_global_2.date}}</div> -->
-            </div>
-            <div class="col-auto">
-              <i><img src="../assets/icons/sensorsIcons/bdayIcon_white.png" class="singleContainer_icon" /></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
   </div>
 
 
   <div class="row">
 
     <div class="col-xl-2 col-md-3 mb-4">
-      <div class="card border-left-warning shadow h-100 py-2" style="background: black; ">
+      <div class="card border-left-success shadow h-100 py-2" style="background: white; ">
         <div class=" card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mode</div>
-              <div id="labelMode" class="h5 mb-0 font-weight-bold text-gray-800">Mode {{mode_selected_obj_global_2.modeNumber}}</div>
+              <div id="labelMode" class="h5 mb-0 font-weight-bold text-gray-800">{{mode_selected_obj_global_2.modeNumber}}</div>
             </div>
             <div class="col-auto">
-              <i><img src="../assets/icons/devicesIcons/modeIcon_white.png" class="singleContainer_icon" /></i>
+              <i><img src="../assets/icons/devicesIcons/modeIcon_black.png" class="singleContainer_icon" /></i>
             </div>
           </div>
         </div>
@@ -110,7 +112,7 @@
     </div>
 
     <div class="col-xl-2 col-md-3 mb-4">
-      <div class="card border-left-warning shadow h-100 py-2" style="background: black; "">
+      <div class="card border-left-success shadow h-100 py-2" style="background: white; "">
       <div class=" card-body">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
@@ -126,15 +128,15 @@
   </div>
 
   <div class="col-xl-2 col-md-3 mb-4">
-    <div class="card border-left-warning shadow h-100 py-2" style="background: black; "">
+    <div class="card border-left-success shadow h-100 py-2" style="background: white; "">
       <div class=" card-body">
       <div class="row no-gutters align-items-center">
         <div class="col mr-2">
-          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Calibration</div>
+          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Calibrate</div>
           <div id="labelCalibration" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.calibrationStatus}}</div>
         </div>
         <div class="col-auto">
-          <i><img src="../assets/icons/devicesIcons/calibrationIcon_white.png" class="singleContainer_icon" /></i>
+          <i><img src="../assets/icons/devicesIcons/calibrationIcon_black.png" class="singleContainer_icon" /></i>
         </div>
       </div>
     </div>
@@ -142,15 +144,31 @@
   </div>
 
   <div class="col-xl-2 col-md-3 mb-4">
-    <div class="card border-left-warning shadow h-100 py-2" style="background: black; "">
+    <div class="card border-left-success shadow h-100 py-2" style="background: white; "">
     <div class=" card-body">
       <div class="row no-gutters align-items-center">
         <div class="col mr-2">
-          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Lights</div>
+          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">LED</div>
           <div id="labelLights" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.lightsStatus}}</div>
         </div>
         <div class="col-auto">
-          <i><img src="../assets/icons/devicesIcons/sunIcon_white.png" class="singleContainer_icon" /></i>
+          <i><img src="../assets/icons/devicesIcons/sunIcon_black.png" class="singleContainer_icon" /></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="col-xl-2 col-md-3 mb-4">
+    <div class="card border-left-success shadow h-100 py-2" style="background: white; "">
+    <div class=" card-body">
+      <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">RGB LED</div>
+          <div id="labelLights" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.lightsStatus}}</div>
+        </div>
+        <div class="col-auto">
+          <i><img src="../assets/icons/devicesIcons/sunIcon_black.png" class="singleContainer_icon" /></i>
         </div>
       </div>
     </div>
@@ -163,7 +181,7 @@
 
 
     <div class="col-xl-2 col-md-3 mb-4">
-      <div class="card border-left-warning shadow h-100 py-2" style="background: black; "">
+      <div class="card border-left-success shadow h-100 py-2" style="background: white; "">
       <div class=" card-body">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
@@ -171,7 +189,7 @@
             <div id="labelFans" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.fansStatus}}</div>
           </div>
           <div class="col-auto">
-            <i><img src="../assets/icons/devicesIcons/airIcon_white.png" class="singleContainer_icon" /></i>
+            <i><img src="../assets/icons/devicesIcons/airIcon_black.png" class="singleContainer_icon" /></i>
           </div>
         </div>
       </div>
@@ -179,7 +197,7 @@
   </div>
 
   <div class="col-xl-2 col-md-3 mb-4">
-    <div class="card border-left-warning shadow h-100 py-2" style="background: black; "">
+    <div class="card border-left-success shadow h-100 py-2" style="background: white; "">
       <div class=" card-body">
       <div class="row no-gutters align-items-center">
         <div class="col mr-2">
@@ -187,7 +205,7 @@
           <div id="labelWater" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.waterStatus}}</div>
         </div>
         <div class="col-auto">
-          <i><img src="../assets/icons/devicesIcons/waterIcon_white.png" class="singleContainer_icon" /></i>
+          <i><img src="../assets/icons/devicesIcons/waterIcon_black.png" class="singleContainer_icon" /></i>
         </div>
       </div>
     </div>
@@ -195,7 +213,7 @@
   </div>
 
   <div class="col-xl-2 col-md-3 mb-4">
-    <div class="card border-left-warning shadow h-100 py-2" style="background: black; "">
+    <div class="card border-left-success shadow h-100 py-2" style="background: white; "">
     <div class=" card-body">
       <div class="row no-gutters align-items-center">
         <div class="col mr-2">
@@ -203,7 +221,7 @@
           <div id="labelSeed" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.seedStatus}}</div>
         </div>
         <div class="col-auto">
-          <i><img src="../assets/icons/devicesIcons/seedIcon_white.png" class="singleContainer_icon" /></i>
+          <i><img src="../assets/icons/devicesIcons/seedIcon_black.png" class="singleContainer_icon" /></i>
         </div>
       </div>
     </div>
@@ -219,7 +237,7 @@
       <div class="card shadow mb-4">
         <!-- Card Header - Dropdown -->
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-          <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Vision System: Logitech C310 @ 960x720</h6>
           <div class="dropdown no-arrow">
             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -234,7 +252,7 @@
           </div>
         </div>
         <!-- Card Body -->
-        <div class="card-body">
+        <div class="card-body" style="height: 37rem;">
           <div class="chart-area">
             <img id="cameraID" class="cameraImg" src={{cameraObjects.cameraURL}}>
           </div>
@@ -244,10 +262,10 @@
 
     <!-- Pie Chart -->
     <div class="col-xl-6 col-lg-5">
-      <div class="card shadow mb-4" style="background: black;">
+      <div class="card shadow mb-4" style="background: white;">
         <!-- Card Header - Dropdown -->
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-          <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Vision System: PlantCV</h6>
           <div class="dropdown no-arrow">
             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -262,7 +280,7 @@
           </div>
         </div>
         <!-- Card Body -->
-        <div class="card-body">
+        <div class="card-body" style="height: 37rem;">
 
           <div id="growthContainer_permanent">
             <div id="growthContainer">
@@ -270,17 +288,6 @@
             </div>
           </div>
 
-          <div class="mt-4 text-center small">
-            <span class="mr-2">
-              <i class="fas fa-circle text-primary"></i> Direct
-            </span>
-            <span class="mr-2">
-              <i class="fas fa-circle text-success"></i> Social
-            </span>
-            <span class="mr-2">
-              <i class="fas fa-circle text-info"></i> Referral
-            </span>
-          </div>
         </div>
       </div>
     </div>

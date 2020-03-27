@@ -11,7 +11,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <!-- <link rel="stylesheet" href="{% static 'styles.css' %}"> -->
+
+  <link rel="stylesheet" href="/assets/css/styles.css">
 
   <!-- Jquery for ajax calls -->
   <script src="/assets/js/jquery-3.4.1.min.js"></script>
@@ -44,7 +46,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="background: black">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="background: #1cc88a">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -329,7 +331,7 @@
           success: function(json) {
             document.getElementById("mainForm").reset();
 
-            $('#labelMode').text("Mode " + json.mode_json);
+            $('#labelMode').text(json.mode_json);
             $('#labelGrid').text(json.grid_json);
             $('#firstDayID').text(json.startDate_json);
             $('#lastDayID').text('Age since: ' + json.startDate_json);
@@ -674,7 +676,7 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelMode').text("Mode " + json.mode_json);
+        $('#labelMode').text(json.mode_json);
         $('#labelGrid').text(json.grid_json);
         $('#growthContainer').remove()
         $('#growthContainer_permanent').append('<div id="growthContainer">' +
@@ -739,7 +741,7 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelMode').text("Mode " + json.mode_json);
+        $('#labelMode').text(json.mode_json);
         $('#labelGrid').text(json.grid_json);
         $('#growthContainer').remove()
         $('#growthContainer_permanent').append('<div id="growthContainer">' +
@@ -795,7 +797,7 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelMode').text("Mode " + json.mode_json);
+        $('#labelMode').text(json.mode_json);
         $('#labelGrid').text(json.grid_json);
         $('#growthContainer').remove()
         $('#growthContainer_permanent').append('<div id="growthContainer">' +
@@ -890,7 +892,7 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelMode').text("Mode " + json.mode_json);
+        $('#labelMode').text(json.mode_json);
         $('#labelGrid').text(json.grid_json);
         $('#growthContainer').remove()
         $('#growthContainer_permanent').append('<div id="growthContainer">' +

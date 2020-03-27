@@ -323,7 +323,7 @@ def mainPage(response):
             #pcv.print_results(filename="./assets/gardenPics/plant_area_results.xml")
 
 
-            mode1_vision_system_.image = '../assets/gardenPics/' + getTime + '.jpg'
+            mode1_vision_system_.image = '../assets/gardenPics/' + 'test' + '.jpg'
             mode1_vision_system_.plant1 = plant_area_list[0]
             mode1_vision_system_.plant2 = plant_area_list[1]
             mode1_vision_system_.plant3 = plant_area_list[2]
