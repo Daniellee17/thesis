@@ -12,16 +12,49 @@ from .models import mode1_vision_system
 from .models import mode2_vision_system
 from .models import mode3_vision_system
 from .models import mode4_vision_system
-
+from pygame.locals import *
 from datetime import datetime
 from datetime import date
-from time import sleep
+from numpy import interp  # To scale values
+from time import sleep  # To add delay
+from plantcv import plantcv as pcv
 
+import os
 import sys
+import RPi.GPIO as GPIO
+#Soil Moisture Sensor
+import spidev # To communicate with SPI devices
+#Camera
+import pygame
+import pygame.camera
+#DHT22
+import Adafruit_DHT
+DHT_SENSOR = Adafruit_DHT.DHT22
+DHT_SENSOR2 = Adafruit_DHT.DHT22
+#Image Processing
 import numpy as np
 import cv2
 import re
-from plantcv import plantcv as pcv
+
+GPIO.setmode(GPIO.BCM) #Read GPIO# and not pin #!
+#RIGHT TERMINAL
+GPIO.setup(21, GPIO.OUT)  # Lights, PIN 40 (Right)
+GPIO.setup(20, GPIO.OUT)  # Fan1, PIN 38 (Right)
+GPIO.setup(16, GPIO.OUT)  # Fan2, PIN 36 (Right)
+
+#LEFT TERMINAL
+GPIO.setup(26, GPIO.OUT)  # CalibrationXYZ, PIN 37 (Left)
+
+GPIO.setup(19, GPIO.OUT)  # WaterXYZ, PIN 35 (Left)
+GPIO.setup(13, GPIO.OUT)  # SeederXYZ, PIN 33 (Left)
+
+GPIO.setup(6, GPIO.OUT)  # Mode_1, PIN 31 (Left)
+GPIO.setup(5, GPIO.OUT)  # Mode_2, PIN 29 (Left)
+GPIO.setup(0, GPIO.OUT)  # GrowLights, PIN 27 (Left)
+
+DHT_PIN = 1 # PIN 28 (Right)
+DHT_PIN2 = 7 # PIN 26 (Right)
+
 
 def mainPage(response):
 
@@ -37,7 +70,6 @@ def mainPage(response):
     mode2_obj_global = mode2.objects.latest('date')
     mode3_obj_global = mode3.objects.latest('date')
     mode4_obj_global = mode4.objects.latest('date')
-
 
     if response.POST.get('action') == 'setup':
         print(" ")
@@ -70,12 +102,25 @@ def mainPage(response):
         print("~Sensor Values Updated~")
         print(" ")
 
-        currentMoisture = 19
-        temperature = 68
-        temperature2 = 70
-        humidity = 68
-        humidity2 = 70
+        # Start SPI connection
+        spi = spidev.SpiDev() # Created an object
+        spi.open(0,0)
 
+        humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
+        humidity2, temperature2 = Adafruit_DHT.read_retry(DHT_SENSOR2, DHT_PIN2)
+
+        def analogInput(channel):
+          spi.max_speed_hz = 1350000
+          adc = spi.xfer2([1,(8+channel)<<4,0])
+          data = ((adc[1]&3) << 8) + adc[2]
+          return data
+
+        output = analogInput(0) # Reading from CH0
+        output = interp(output, [0, 1023], [100, 0])
+        output = int(output)
+        #print("Moistures", output)
+
+        currentMoisture = output
         averageTemperature = (temperature + temperature2) / 2
         averageHumidity = (humidity + humidity2) / 2
 
@@ -99,6 +144,7 @@ def mainPage(response):
         else:
             humidityStatus = 'good' # Good
 
+
         if (currentMoisture >= 10 and currentMoisture <= 30):
             soilMoistureStatus = 'dry'; # Dry
         elif (currentMoisture >= 31 and currentMoisture <= 70):
@@ -106,7 +152,7 @@ def mainPage(response):
         elif (currentMoisture >= 71):
             soilMoistureStatus = 'wet'; # Wet
 
-        if (temperatureStatus == 'high'):
+        if(temperatureStatus == 'high'):
             temperatureStatusSummary = 'Too High!'
         else:
             temperatureStatusSummary = 'Good'
@@ -129,7 +175,9 @@ def mainPage(response):
             devices_.waterStatus = 'On'
             devices_.seedStatus = devices_obj_global.seedStatus
             devices_.save()
+            GPIO.output(19, GPIO.HIGH)
             sleep(1)
+            GPIO.output(19, GPIO.LOW)
             print(" ")
             print("~ (PIN 19) Watering System Deactivated~")
             print(" ")
@@ -157,6 +205,8 @@ def mainPage(response):
             print(" ")
             print("~Fans Deactivated~")
             print(" ")
+            GPIO.output(20, GPIO.LOW)
+            GPIO.output(16, GPIO.LOW)
             devices_.fansStatus = 'Off'
             devices_.lightsStatus = devices_obj_global.lightsStatus
             devices_.calibrationStatus = devices_obj_global.calibrationStatus
@@ -167,6 +217,8 @@ def mainPage(response):
             print(" ")
             print("~Fans Activated~")
             print(" ")
+            GPIO.output(20, GPIO.HIGH)
+            GPIO.output(16, GPIO.HIGH)
             devices_.fansStatus = 'On'
             devices_.lightsStatus = devices_obj_global.lightsStatus
             devices_.calibrationStatus = devices_obj_global.calibrationStatus
@@ -177,6 +229,8 @@ def mainPage(response):
             print(" ")
             print("~Fans Activated~")
             print(" ")
+            GPIO.output(20, GPIO.HIGH)
+            GPIO.output(16, GPIO.HIGH)
             devices_.fansStatus = 'On'
             devices_.lightsStatus = devices_obj_global.lightsStatus
             devices_.calibrationStatus = devices_obj_global.calibrationStatus
@@ -187,6 +241,8 @@ def mainPage(response):
             print(" ")
             print("~Fans Activated~")
             print(" ")
+            GPIO.output(20, GPIO.HIGH)
+            GPIO.output(16, GPIO.HIGH)
             devices_.fansStatus = 'On'
             devices_.lightsStatus = devices_obj_global.lightsStatus
             devices_.calibrationStatus = devices_obj_global.calibrationStatus
@@ -234,7 +290,6 @@ def mainPage(response):
 
         return JsonResponse(json)
 
-
     if response.POST.get('action') == 'snapImage':
         mode_selected_obj = mode_selected.objects.latest('date')
         if(mode_selected_obj.modeNumber == 1):
@@ -243,7 +298,14 @@ def mainPage(response):
             print(" ")
             print(" ")
 
+            pygame.init()
+            pygame.camera.init()
+            cam = pygame.camera.Camera("/dev/video0", (960, 720))
+            cam.start()
+            image = cam.get_image()
             getTime = datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
+            pygame.image.save(image, '/home/pi/Desktop/thesis/thesis/assets/gardenPics/' + getTime + '.jpg')
+            cam.stop()
 
             class options:
                 def __init__(self):
@@ -256,8 +318,8 @@ def mainPage(response):
 
             plant_area_list = [] #Plant area array for storage
 
-            #img, path, filename = pcv.readimage(filename='./assets/gardenPics/' + getTime + '.jpg', modeNumber="native") # Read image to be used
-            img, path, filename = pcv.readimage(filename= './assets/gardenPics/test.jpg', mode="native") # Read image to be used
+            img, path, filename = pcv.readimage(filename='./assets/gardenPics/' + getTime + '.jpg', modeNumber="native") # Read image to be used
+            #img, path, filename = pcv.readimage(filename= './assets/gardenPics/test.jpg', mode="native") # Read image to be used
 
             # START of  Multi Plant Workflow https://plantcv.readthedocs.io/en/stable/multi-plant_tutorial/
 
@@ -323,7 +385,7 @@ def mainPage(response):
             #pcv.print_results(filename="./assets/gardenPics/plant_area_results.xml")
 
 
-            mode1_vision_system_.image = '../assets/gardenPics/' + 'test' + '.jpg'
+            mode1_vision_system_.image = '../assets/gardenPics/' + getTime + '.jpg'
             mode1_vision_system_.plant1 = plant_area_list[0]
             mode1_vision_system_.plant2 = plant_area_list[1]
             mode1_vision_system_.plant3 = plant_area_list[2]
@@ -395,6 +457,9 @@ def mainPage(response):
         print("~Mode 1 Activated~")
         print(" ")
 
+        GPIO.output(6, GPIO.LOW)
+        GPIO.output(5, GPIO.LOW)
+
         mode_selected_.grid = mode1_obj_global.grid
         mode_selected_.rows = mode1_obj_global.rows
         mode_selected_.columns = mode1_obj_global.columns
@@ -415,6 +480,9 @@ def mainPage(response):
         print(" ")
         print("~Mode 2 Activated~")
         print(" ")
+
+        GPIO.output(6, GPIO.LOW)
+        GPIO.output(5, GPIO.HIGH)
 
         mode_selected_.grid = mode2_obj_global.grid
         mode_selected_.rows = mode2_obj_global.rows
@@ -437,6 +505,9 @@ def mainPage(response):
         print("~Mode 3 Activated~")
         print(" ")
 
+        GPIO.output(6, GPIO.HIGH)
+        GPIO.output(5, GPIO.LOW)
+
         mode_selected_.grid = mode3_obj_global.grid
         mode_selected_.rows = mode3_obj_global.rows
         mode_selected_.columns = mode3_obj_global.columns
@@ -458,6 +529,9 @@ def mainPage(response):
         print("~Mode 4 Activated~")
         print(" ")
 
+        GPIO.output(6, GPIO.HIGH)
+        GPIO.output(5, GPIO.HIGH)
+
         mode_selected_.grid = mode4_obj_global.grid
         mode_selected_.rows = mode4_obj_global.rows
         mode_selected_.columns = mode4_obj_global.columns
@@ -477,7 +551,7 @@ def mainPage(response):
     if response.POST.get('action') == 'onCalibration':
 
         print(" ")
-        print("~Calibration Activated~")
+        print("~ (PIN 26) Calibration Activated~")
         print(" ")
 
         devices_.fansStatus = devices_obj_global.fansStatus
@@ -487,10 +561,12 @@ def mainPage(response):
         devices_.seedStatus = devices_obj_global.seedStatus
         devices_.save()
 
+        GPIO.output(26, GPIO.HIGH)
         sleep(1)
+        GPIO.output(26, GPIO.LOW)
 
         print(" ")
-        print("~Calibration Deactivated~")
+        print("~ (PIN 26) Calibration Deactivated~")
         print(" ")
 
         devices_2.fansStatus = devices_obj_global.fansStatus
@@ -506,6 +582,9 @@ def mainPage(response):
         print("~Fans Activated~")
         print(" ")
 
+        GPIO.output(20, GPIO.HIGH)
+        GPIO.output(16, GPIO.HIGH)
+
         devices_.fansStatus = 'On'
         devices_.lightsStatus = devices_obj_global.lightsStatus
         devices_.calibrationStatus = devices_obj_global.calibrationStatus
@@ -513,12 +592,14 @@ def mainPage(response):
         devices_.seedStatus = devices_obj_global.seedStatus
         devices_.save()
 
-
     if response.POST.get('action') == 'offFan':
 
         print(" ")
-        print("~Fans Deactivated~")
+        print("~Fans deactivated~")
         print(" ")
+
+        GPIO.output(20, GPIO.LOW)
+        GPIO.output(16, GPIO.LOW)
 
         devices_.fansStatus = 'Off'
         devices_.lightsStatus = devices_obj_global.lightsStatus
@@ -533,6 +614,8 @@ def mainPage(response):
         print("~Lights Activated~")
         print(" ")
 
+        GPIO.output(21, GPIO.HIGH)
+
         devices_.fansStatus = devices_obj_global.fansStatus
         devices_.lightsStatus = 'On'
         devices_.calibrationStatus = devices_obj_global.calibrationStatus
@@ -540,11 +623,14 @@ def mainPage(response):
         devices_.seedStatus = devices_obj_global.seedStatus
         devices_.save()
 
+
     if response.POST.get('action') == 'offLights':
 
         print(" ")
         print("~Lights Deactivated~")
         print(" ")
+
+        GPIO.output(21, GPIO.LOW)
 
         devices_.fansStatus = devices_obj_global.fansStatus
         devices_.lightsStatus = 'Off'
@@ -556,7 +642,7 @@ def mainPage(response):
     if response.POST.get('action') == 'onWater':
 
         print(" ")
-        print("~Watering System Activated~")
+        print("~ (PIN 19) Watering System Activated~")
         print(" ")
 
         devices_.fansStatus = devices_obj_global.fansStatus
@@ -566,10 +652,12 @@ def mainPage(response):
         devices_.seedStatus = devices_obj_global.seedStatus
         devices_.save()
 
+        GPIO.output(19, GPIO.HIGH)
         sleep(1)
+        GPIO.output(19, GPIO.LOW)
 
         print(" ")
-        print("~Watering System Deactivated~")
+        print("~ (PIN 19) Watering System Deactivated~")
         print(" ")
 
         devices_.fansStatus = devices_obj_global.fansStatus
@@ -579,11 +667,10 @@ def mainPage(response):
         devices_.seedStatus = devices_obj_global.seedStatus
         devices_.save()
 
-
     if response.POST.get('action') == 'onSeed':
 
         print(" ")
-        print("~Seeder Activated~")
+        print("~ (PIN 13) Seeder Activated~")
         print(" ")
 
         devices_.fansStatus = devices_obj_global.fansStatus
@@ -593,7 +680,9 @@ def mainPage(response):
         devices_.seedStatus = 'On'
         devices_.save()
 
+        GPIO.output(13, GPIO.HIGH)
         sleep(1)
+        GPIO.output(13, GPIO.LOW)
 
         print(" ")
         print("~Seeder Deactivated~")
