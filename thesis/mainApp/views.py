@@ -91,6 +91,12 @@ def mainPage(response):
     devices_ = devices()
     devices_2 = devices()
     sensors_ = sensors()
+
+    mode1_ = mode1()
+    mode2_ = mode2()
+    mode3_ = mode3()
+    mode4_ = mode4()
+
     mode1_vision_system_ = mode1_vision_system()
     mode2_vision_system_ = mode2_vision_system()
     mode3_vision_system_ = mode3_vision_system()
@@ -467,7 +473,7 @@ def mainPage(response):
         mode_selected_.rows = mode1_obj_global.rows
         mode_selected_.columns = mode1_obj_global.columns
         mode_selected_.modeNumber = mode1_obj_global.modeNumber
-        mode_selected_.image = mode1_obj_global.image
+        mode_selected_.image = '../assets/background/rpiBG.gif'
         mode_selected_.save()
 
         mode_selected_obj = mode_selected.objects.latest('date')
@@ -492,7 +498,7 @@ def mainPage(response):
         mode_selected_.rows = mode2_obj_global.rows
         mode_selected_.columns = mode2_obj_global.columns
         mode_selected_.modeNumber = mode2_obj_global.modeNumber
-        mode_selected_.image = mode2_obj_global.image
+        mode_selected_.image = '../assets/background/rpiBG.gif'
         mode_selected_.save()
 
         mode_selected_obj = mode_selected.objects.latest('date')
@@ -517,7 +523,7 @@ def mainPage(response):
         mode_selected_.rows = mode3_obj_global.rows
         mode_selected_.columns = mode3_obj_global.columns
         mode_selected_.modeNumber = mode3_obj_global.modeNumber
-        mode_selected_.image = mode3_obj_global.image
+        mode_selected_.image = '../assets/background/rpiBG.gif'
         mode_selected_.save()
 
         mode_selected_obj = mode_selected.objects.latest('date')
@@ -542,7 +548,7 @@ def mainPage(response):
         mode_selected_.rows = mode4_obj_global.rows
         mode_selected_.columns = mode4_obj_global.columns
         mode_selected_.modeNumber = mode4_obj_global.modeNumber
-        mode_selected_.image = mode4_obj_global.image
+        mode_selected_.image = '../assets/background/rpiBG.gif'
         mode_selected_.save()
 
         mode_selected_obj = mode_selected.objects.latest('date')
@@ -734,6 +740,34 @@ def mainPage(response):
         sensors_.soilMoistureStatus = "Good"
         sensors_.save()
 
+        mode1.objects.all().delete()
+        mode1_.grid = '2x5'
+        mode1_.rows = 2
+        mode1_.columns = 5
+        mode1_.modeNumber = 1
+        mode1_.save()
+
+        mode2.objects.all().delete()
+        mode2_.grid = '2x4'
+        mode2_.rows = 2
+        mode2_.columns = 4
+        mode2_.modeNumber = 2
+        mode2_.save()
+
+        mode3.objects.all().delete()
+        mode3_.grid = '3x6'
+        mode3_.rows = 3
+        mode3_.columns = 6
+        mode3_.modeNumber = 3
+        mode3_.save()
+
+        mode4.objects.all().delete()
+        mode4_.grid = '3x4'
+        mode4_.rows = 3
+        mode4_.columns = 4
+        mode4_.modeNumber = 4
+        mode4_.save()
+
         mode1_vision_system.objects.all().delete()
         mode1_vision_system_.image = '../assets/background/rpiBG.gif'
         mode1_vision_system_.plant1 = 0
@@ -846,7 +880,12 @@ def mainPage(response):
     mode_selected_obj_global_first = mode_selected.objects.first()
     mode_selected_obj_global_2 = mode_selected.objects.latest('date')
 
+    myObj = {'mode_selected_obj_global_first': mode_selected_obj_global_first, 'mode_selected_obj_global_2': mode_selected_obj_global_2, 'devices_obj_global': devices_obj_global,
+                'sensors_obj_global': sensors_obj_global, 'mode1_vision_system_obj_global': mode1_vision_system_obj_global, 'mode2_vision_system_obj_global': mode2_vision_system_obj_global
+                , 'mode3_vision_system_obj_global': mode3_vision_system_obj_global, 'mode4_vision_system_obj_global': mode4_vision_system_obj_global }
+
     return render(response, 'main.html', context=myObj)
+
 
 
 def databasePage(response):
