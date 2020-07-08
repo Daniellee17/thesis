@@ -6,6 +6,7 @@ class mode_selected(models.Model):
     rows = models.IntegerField(default=5);
     columns = models.IntegerField(default=2);
     modeNumber = models.IntegerField(default=1);
+    image = models.TextField(default='../assets/gardenPics/default.png', blank=True);
     date = models.DateTimeField(auto_now=True);
 
 class devices(models.Model):
@@ -15,7 +16,7 @@ class devices(models.Model):
     waterStatus = models.TextField(max_length=250, default="Off");
     seedStatus = models.TextField(max_length=250, default="Off");
     date = models.DateTimeField(auto_now=True);
-    
+
 class sensors(models.Model):
     temperature = models.FloatField(max_length=250, default=0.0);
     humidity = models.IntegerField(default=0);
@@ -52,7 +53,7 @@ class mode4(models.Model):
     columns = models.IntegerField(default=2);
     modeNumber = models.IntegerField(default=4);
     date = models.DateTimeField(auto_now=True);
-    
+
 class mode1_vision_system(models.Model):
     image = models.TextField(default='../assets/gardenPics/default.png', blank=True);
     plant1 = models.IntegerField(default=0);
@@ -116,4 +117,3 @@ class mode4_vision_system(models.Model):
     plant11 = models.IntegerField(default=0);
     plant12 = models.IntegerField(default=0);
     date = models.DateTimeField(auto_now=True);
-

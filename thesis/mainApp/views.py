@@ -273,6 +273,7 @@ def mainPage(response):
         mode_selected_.rows = mode_selected_obj.rows
         mode_selected_.columns = mode_selected_obj.columns
         mode_selected_.modeNumber = mode_selected_obj.modeNumber
+        mode_selected_.image = mode_selected_obj.image
         mode_selected_.save()
 
         mode_selected_obj_2 = mode_selected.objects.latest('date')
@@ -298,7 +299,8 @@ def mainPage(response):
             print(" ")
             print(" ")
 
-            pygame.init()
+            #pygame.init()
+            pygame.font.init()
             pygame.camera.init()
             cam = pygame.camera.Camera("/dev/video0", (960, 720))
             cam.start()
@@ -413,6 +415,7 @@ def mainPage(response):
             mode_selected_.rows = mode_selected_obj.rows
             mode_selected_.columns = mode_selected_obj.columns
             mode_selected_.modeNumber = mode_selected_obj.modeNumber
+            mode_selected_.image = '../assets/gardenPics/' + getTime + '.jpg'
             mode_selected_.save()
 
             json = {
@@ -464,6 +467,7 @@ def mainPage(response):
         mode_selected_.rows = mode1_obj_global.rows
         mode_selected_.columns = mode1_obj_global.columns
         mode_selected_.modeNumber = mode1_obj_global.modeNumber
+        mode_selected_.image = mode1_obj_global.image
         mode_selected_.save()
 
         mode_selected_obj = mode_selected.objects.latest('date')
@@ -488,6 +492,7 @@ def mainPage(response):
         mode_selected_.rows = mode2_obj_global.rows
         mode_selected_.columns = mode2_obj_global.columns
         mode_selected_.modeNumber = mode2_obj_global.modeNumber
+        mode_selected_.image = mode2_obj_global.image
         mode_selected_.save()
 
         mode_selected_obj = mode_selected.objects.latest('date')
@@ -512,6 +517,7 @@ def mainPage(response):
         mode_selected_.rows = mode3_obj_global.rows
         mode_selected_.columns = mode3_obj_global.columns
         mode_selected_.modeNumber = mode3_obj_global.modeNumber
+        mode_selected_.image = mode3_obj_global.image
         mode_selected_.save()
 
         mode_selected_obj = mode_selected.objects.latest('date')
@@ -536,6 +542,7 @@ def mainPage(response):
         mode_selected_.rows = mode4_obj_global.rows
         mode_selected_.columns = mode4_obj_global.columns
         mode_selected_.modeNumber = mode4_obj_global.modeNumber
+        mode_selected_.image = mode4_obj_global.image
         mode_selected_.save()
 
         mode_selected_obj = mode_selected.objects.latest('date')
@@ -707,6 +714,7 @@ def mainPage(response):
         mode_selected_.rows = mode1_obj_global.rows
         mode_selected_.columns = mode1_obj_global.columns
         mode_selected_.modeNumber = mode1_obj_global.modeNumber
+        mode_selected_.image = '../assets/background/rpiBG.gif'
         mode_selected_.save()
 
         devices.objects.all().delete()
@@ -837,10 +845,6 @@ def mainPage(response):
     mode4_vision_system_obj_global = mode4_vision_system.objects.latest('date')
     mode_selected_obj_global_first = mode_selected.objects.first()
     mode_selected_obj_global_2 = mode_selected.objects.latest('date')
-
-    myObj = {'mode_selected_obj_global_first': mode_selected_obj_global_first, 'mode_selected_obj_global_2': mode_selected_obj_global_2, 'devices_obj_global': devices_obj_global,
-                'sensors_obj_global': sensors_obj_global, 'mode1_vision_system_obj_global': mode1_vision_system_obj_global, 'mode2_vision_system_obj_global': mode2_vision_system_obj_global
-                , 'mode3_vision_system_obj_global': mode3_vision_system_obj_global, 'mode4_vision_system_obj_global': mode4_vision_system_obj_global }
 
     return render(response, 'main.html', context=myObj)
 

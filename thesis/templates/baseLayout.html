@@ -448,7 +448,7 @@
 
   function automaticIrrigation() {
     var date1 = new Date();
-    if (date1.getHours() === 18 && date1.getMinutes() === 00) {
+    if (date1.getHours() === 00 && date1.getMinutes() === 00) {
       $('#labelWater').text('On');
       $.ajax({
         type: 'POST',
@@ -469,7 +469,7 @@
 
   function snapImage() {
     var date1 = new Date();
-    if (date1.getHours() === 19 && date1.getMinutes() === 00) {
+    if (date1.getHours() === 01 && date1.getMinutes() === 00) {
       //Change getHours and getMinutes depending on platform used
       //Rpi 24 hr format
       //Ubuntu 12 hr format
