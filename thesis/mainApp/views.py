@@ -318,7 +318,7 @@ def mainPage(response):
 
             plant_area_list = [] #Plant area array for storage
 
-            img, path, filename = pcv.readimage(filename='./assets/gardenPics/' + getTime + '.jpg', modeNumber="native") # Read image to be used
+            img, path, filename = pcv.readimage(filename='./assets/gardenPics/' + getTime + '.jpg', mode="native") # Read image to be used
             #img, path, filename = pcv.readimage(filename= './assets/gardenPics/test.jpg', mode="native") # Read image to be used
 
             # START of  Multi Plant Workflow https://plantcv.readthedocs.io/en/stable/multi-plant_tutorial/
