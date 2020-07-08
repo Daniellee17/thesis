@@ -420,33 +420,56 @@
 
   function getSensorValues() {
     var date1 = new Date();
-    //if (date1.getMinutes() === 00) {
-    $.ajax({
-      type: 'POST',
-      url: '{% url "mainPage" %}',
-      data: {
-        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-        action: 'getSensorValues',
-      },
-      success: function(json) {
-        document.getElementById("mainForm").reset();
-        $('#daysID').text(json.daysCounter_json);
-        $('#lastDayID').text('Age since: ' + json.date_json);
-        $('#labelTemperature').text(json.temperature_json + " ° C");
-        $('#labelHumidity').text(json.humidity_json + " %");
-        $('#labelMoisture').text(json.soilMoisture_json + " %");
-        $('#labelTemperatureStatus').text("Status: " + json.temperatureStatus_json);
-        $('#labelHumidityStatus').text("Status: " + json.humidityStatus_json);
-        $('#labelSoilMoistureStatus').text("Status: " + json.soilMoistureStatus_json);
-      },
-    });
-    //}
+    if (date1.getMinutes() === 00) {
+      $.ajax({
+        type: 'POST',
+        url: '{% url "mainPage" %}',
+        data: {
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          action: 'getSensorValues',
+        },
+        success: function(json) {
+          document.getElementById("mainForm").reset();
+          $('#daysID').text(json.daysCounter_json);
+          $('#lastDayID').text('Age since: ' + json.date_json);
+          $('#labelTemperature').text(json.temperature_json + " ° C");
+          $('#labelHumidity').text(json.humidity_json + " %");
+          $('#labelMoisture').text(json.soilMoisture_json + " %");
+          $('#labelTemperatureStatus').text("Status: " + json.temperatureStatus_json);
+          $('#labelHumidityStatus').text("Status: " + json.humidityStatus_json);
+          $('#labelSoilMoistureStatus').text("Status: " + json.soilMoistureStatus_json);
+        },
+      });
+    }
   }
 
 
+
+
+  function automaticIrrigation() {
+    var date1 = new Date();
+    if (date1.getHours() === 18 && date1.getMinutes() === 00) {
+      $('#labelWater').text('On');
+      $.ajax({
+        type: 'POST',
+        url: '{% url "mainPage" %}',
+        data: {
+
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          action: 'onWater',
+
+        },
+        success: function(json) {
+          document.getElementById("mainForm").reset();
+          $('#labelWater').text('Off');
+        },
+      });
+    }
+  }
+
   function snapImage() {
     var date1 = new Date();
-    if (date1.getHours() === 15 && date1.getMinutes() === 06) {
+    if (date1.getHours() === 19 && date1.getMinutes() === 00) {
       //Change getHours and getMinutes depending on platform used
       //Rpi 24 hr format
       //Ubuntu 12 hr format
@@ -478,13 +501,16 @@
       });
     }
   }
-
   $(document).ready(function() {
-    setInterval(getSensorValues, 20000);
+    setInterval(automaticIrrigation, 50000);
   });
 
   $(document).ready(function() {
-    setInterval(snapImage, 25000);
+    setInterval(getSensorValues, 50000);
+  });
+
+  $(document).ready(function() {
+    setInterval(snapImage, 50000);
   });
 
   $("#processImage").click(function(e) {
@@ -618,6 +644,8 @@
 
     });
   });
+
+
 
 
   $("#onSeed").click(function(e) {

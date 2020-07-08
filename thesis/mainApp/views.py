@@ -145,7 +145,7 @@ def mainPage(response):
             humidityStatus = 'good' # Good
 
 
-        if (currentMoisture >= 10 and currentMoisture <= 30):
+        if (currentMoisture <= 30):
             soilMoistureStatus = 'dry'; # Dry
         elif (currentMoisture >= 31 and currentMoisture <= 70):
             soilMoistureStatus = 'moist'; # Moist
