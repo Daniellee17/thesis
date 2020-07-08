@@ -479,6 +479,7 @@ def mainPage(response):
         mode_selected_obj = mode_selected.objects.latest('date')
 
         json = {
+        'image_json': mode_selected_obj.image,
         'grid_json': mode_selected_obj.grid,
         'mode_json': mode_selected_obj.modeNumber,
         }
@@ -504,6 +505,7 @@ def mainPage(response):
         mode_selected_obj = mode_selected.objects.latest('date')
 
         json = {
+        'image_json': mode_selected_obj.image,
         'grid_json': mode_selected_obj.grid,
         'mode_json': mode_selected_obj.modeNumber,
         }
@@ -529,6 +531,7 @@ def mainPage(response):
         mode_selected_obj = mode_selected.objects.latest('date')
 
         json = {
+        'image_json': mode_selected_obj.image,
         'grid_json': mode_selected_obj.grid,
         'mode_json': mode_selected_obj.modeNumber,
         }
@@ -554,6 +557,7 @@ def mainPage(response):
         mode_selected_obj = mode_selected.objects.latest('date')
 
         json = {
+        'image_json': mode_selected_obj.image,
         'grid_json': mode_selected_obj.grid,
         'mode_json': mode_selected_obj.modeNumber,
         }

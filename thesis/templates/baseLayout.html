@@ -704,6 +704,7 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
+        $('#cameraID').attr('src', json.image_json);
         $('#labelMode').text(json.mode_json);
         $('#labelGrid').text(json.grid_json);
         $('#growthContainer').remove()
@@ -769,6 +770,7 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
+        $('#cameraID').attr('src', json.image_json);
         $('#labelMode').text(json.mode_json);
         $('#labelGrid').text(json.grid_json);
         $('#growthContainer').remove()
@@ -825,6 +827,7 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
+        $('#cameraID').attr('src', json.image_json);
         $('#labelMode').text(json.mode_json);
         $('#labelGrid').text(json.grid_json);
         $('#growthContainer').remove()
@@ -920,6 +923,7 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
+        $('#cameraID').attr('src', json.image_json);
         $('#labelMode').text(json.mode_json);
         $('#labelGrid').text(json.grid_json);
         $('#growthContainer').remove()
