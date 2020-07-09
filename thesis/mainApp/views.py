@@ -138,7 +138,9 @@ def mainPage(response):
         humidityStatusSummary = "Default"
         soilMoistureStatusSummary = "Default"
 
-        if(averageTemperature > 26 ):
+        if(averageTemperature > 20):
+            temperatureStatus = 'low' # Too Low
+        elif(averageTemperature > 30 ):
             temperatureStatus = 'high' # Too High
         else:
             temperatureStatus = 'good' # Good
@@ -150,7 +152,6 @@ def mainPage(response):
         else:
             humidityStatus = 'good' # Good
 
-
         if (currentMoisture <= 30):
             soilMoistureStatus = 'dry'; # Dry
         elif (currentMoisture >= 31 and currentMoisture <= 70):
@@ -160,6 +161,8 @@ def mainPage(response):
 
         if(temperatureStatus == 'high'):
             temperatureStatusSummary = 'Too High!'
+        elif (temperatureStatus == 'low'):
+            temperatureStatusSummary = 'Too Low!'
         else:
             temperatureStatusSummary = 'Good'
 
@@ -170,6 +173,15 @@ def mainPage(response):
         else:
             humidityStatusSummary = 'Good'
 
+        print("Moisture: "+ str(currentMoisture))
+        print("Temp1: " + str(temperature))
+        print("Temp2: "+ str(temperature2))
+        print("Ave temp: "+ str(round(averageTemperature, 2)))
+        print("Hum1: "+ str(humidity))
+        print("Hum2: "+ str(humidity2))
+        print("Ave humidity: "+ str(round(averageHumidity, 0)))
+
+        # Adaptive Irrigation System Code
         if (soilMoistureStatus == 'dry'):
             soilMoistureStatus = 'Dry!'
             print(" ")
@@ -199,15 +211,7 @@ def mainPage(response):
         elif (soilMoistureStatus == 'wet'):
             soilMoistureStatus = 'Wet!'
 
-        print("Temp1: " + str(temperature))
-        print("Hum1: "+ str(humidity))
-        print("Temp2: "+ str(temperature2))
-        print("Hum2: "+ str(humidity2))
-        print("Moisture: "+ str(currentMoisture))
-        print("Ave temp: "+ str(round(averageTemperature, 2)))
-        print("Ave humidity: "+ str(round(averageHumidity, 0)))
-
-        if(temperatureStatus == 'low' and humidityStatus == 'low'):
+        if(temperatureStatus == 'low'):
             print(" ")
             print("~Fans Deactivated~")
             print(" ")
@@ -219,7 +223,7 @@ def mainPage(response):
             devices_.waterStatus = devices_obj_global.waterStatus
             devices_.seedStatus = devices_obj_global.seedStatus
             devices_.save()
-        elif(temperatureStatus == 'high' and humidityStatus == 'high'):
+        elif(temperatureStatus == 'high'):
             print(" ")
             print("~Fans Activated~")
             print(" ")
@@ -231,19 +235,7 @@ def mainPage(response):
             devices_.waterStatus = devices_obj_global.waterStatus
             devices_.seedStatus = devices_obj_global.seedStatus
             devices_.save()
-        elif(temperatureStatus == 'low' and humidityStatus == 'high'):
-            print(" ")
-            print("~Fans Activated~")
-            print(" ")
-            GPIO.output(20, GPIO.HIGH)
-            GPIO.output(16, GPIO.HIGH)
-            devices_.fansStatus = 'On'
-            devices_.lightsStatus = devices_obj_global.lightsStatus
-            devices_.calibrationStatus = devices_obj_global.calibrationStatus
-            devices_.waterStatus = devices_obj_global.waterStatus
-            devices_.seedStatus = devices_obj_global.seedStatus
-            devices_.save()
-        elif(temperatureStatus == 'high' and humidityStatus == 'low'):
+        elif(temperatureStatus != 'low' and humidityStatus == 'high'):
             print(" ")
             print("~Fans Activated~")
             print(" ")
