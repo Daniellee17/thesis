@@ -461,7 +461,7 @@
 
   function automaticRgbLed_on() {
     var date1 = new Date();
-    if (date1.getHours() === 20 && date1.getMinutes() === 00) {
+    if (date1.getHours() === 21 && date1.getMinutes() === 00) {
       $.ajax({
         type: 'POST',
         url: '{% url "mainPage" %}',
@@ -482,7 +482,7 @@
 
   function automaticRgbLed_off() {
     var date1 = new Date();
-    if (date1.getHours() === 20 && date1.getMinutes() === 10) {
+    if (date1.getHours() === 21 && date1.getMinutes() === 10) {
       $.ajax({
         type: 'POST',
         url: '{% url "mainPage" %}',
@@ -526,7 +526,7 @@
 
   function automaticWhiteLed_on() {
     var date1 = new Date();
-    if (date1.getHours() === 21 && date1.getMinutes() === 00) {
+    if (date1.getHours() === 21 && date1.getMinutes() === 30) {
       $.ajax({
         type: 'POST',
         url: '{% url "mainPage" %}',
@@ -547,7 +547,7 @@
 
   function automaticWhiteLed_off() {
     var date1 = new Date();
-    if (date1.getHours() === 21 && date1.getMinutes() === 3) {
+    if (date1.getHours() === 21 && date1.getMinutes() === 35) {
       $.ajax({
         type: 'POST',
         url: '{% url "mainPage" %}',
@@ -569,7 +569,7 @@
 
   function snapImage() {
     var date1 = new Date();
-    if (date1.getHours() === 21 && date1.getMinutes() === 01) {
+    if (date1.getHours() === 21 && date1.getMinutes() === 31) {
       //Change getHours and getMinutes depending on platform used
       //Rpi 24 hr format
       //Ubuntu 12 hr format

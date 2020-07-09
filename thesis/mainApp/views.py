@@ -715,13 +715,13 @@ def mainPage(response):
         print("~ (PIN 19) Watering System Deactivated~")
         print(" ")
 
-        devices_.fansStatus = devices_obj_global.fansStatus
-        devices_.whiteLedStatus = devices_obj_global.whiteLedStatus
-        devices_.rgbLedStatus = devices_obj_global.rgbLedStatus
-        devices_.calibrationStatus = devices_obj_global.calibrationStatus
-        devices_.waterStatus = 'Off'
-        devices_.seedStatus = devices_obj_global.seedStatus
-        devices_.save()
+        devices_2.fansStatus = devices_obj_global.fansStatus
+        devices_2.whiteLedStatus = devices_obj_global.whiteLedStatus
+        devices_2.rgbLedStatus = devices_obj_global.rgbLedStatus
+        devices_2.calibrationStatus = devices_obj_global.calibrationStatus
+        devices_2.waterStatus = 'Off'
+        devices_2.seedStatus = devices_obj_global.seedStatus
+        devices_2.save()
 
     if response.POST.get('action') == 'onSeed':
 
@@ -745,13 +745,13 @@ def mainPage(response):
         print("~Seeder Deactivated~")
         print(" ")
 
-        devices_.fansStatus = devices_obj_global.fansStatus
-        devices_.whiteLedStatus = devices_obj_global.whiteLedStatus
-        devices_.rgbLedStatus = devices_obj_global.rgbLedStatus
-        devices_.calibrationStatus = devices_obj_global.calibrationStatus
-        devices_.waterStatus = devices_obj_global.waterStatus
-        devices_.seedStatus = 'Off'
-        devices_.save()
+        devices_2.fansStatus = devices_obj_global.fansStatus
+        devices_2.whiteLedStatus = devices_obj_global.whiteLedStatus
+        devices_2.rgbLedStatus = devices_obj_global.rgbLedStatus
+        devices_2.calibrationStatus = devices_obj_global.calibrationStatus
+        devices_2.waterStatus = devices_obj_global.waterStatus
+        devices_2.seedStatus = 'Off'
+        devices_2.save()
 
     if response.POST.get('action') == 'fullReset':
 
