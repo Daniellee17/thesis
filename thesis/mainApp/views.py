@@ -38,9 +38,10 @@ import re
 
 GPIO.setmode(GPIO.BCM) #Read GPIO# and not pin #!
 #RIGHT TERMINAL
-GPIO.setup(21, GPIO.OUT)  # Lights, PIN 40 (Right)
+GPIO.setup(21, GPIO.OUT)  # White LED, PIN 40 (Right)
 GPIO.setup(20, GPIO.OUT)  # Fan1, PIN 38 (Right)
 GPIO.setup(16, GPIO.OUT)  # Fan2, PIN 36 (Right)
+GPIO.setup(12, GPIO.OUT)  # RGB LED, PIN 12 (Right)
 
 #LEFT TERMINAL
 GPIO.setup(26, GPIO.OUT)  # CalibrationXYZ, PIN 37 (Left)
@@ -665,7 +666,7 @@ def mainPage(response):
         print("~Lights Activated~")
         print(" ")
 
-        GPIO.output(21, GPIO.HIGH)
+        GPIO.output(12, GPIO.HIGH)
 
         devices_.fansStatus = devices_obj_global.fansStatus
         devices_.whiteLedStatus = devices_obj_global.whiteLedStatus
@@ -682,7 +683,7 @@ def mainPage(response):
         print("~Lights Deactivated~")
         print(" ")
 
-        GPIO.output(21, GPIO.LOW)
+        GPIO.output(12, GPIO.LOW)
 
         devices_.fansStatus = devices_obj_global.fansStatus
         devices_.whiteLedStatus =  devices_obj_global.whiteLedStatus
