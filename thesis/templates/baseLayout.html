@@ -502,7 +502,6 @@
   }
 
 
-
   function automaticIrrigation() {
     var date1 = new Date();
     if (date1.getHours() === 22 && date1.getMinutes() === 00) {
@@ -603,31 +602,31 @@
   }
 
   $(document).ready(function() {
-    setInterval(automaticRgbLed_on, 50000);
+    setInterval(automaticRgbLed_on, 55000);
   });
 
   $(document).ready(function() {
-    setInterval(automaticRgbLed_off, 50000);
+    setInterval(automaticRgbLed_off, 55000);
   });
 
   $(document).ready(function() {
-    setInterval(automaticIrrigation, 50000);
+    setInterval(automaticIrrigation, 55000);
   });
 
   $(document).ready(function() {
-    setInterval(getSensorValues, 50000);
+    setInterval(getSensorValues, 55000);
   });
 
   $(document).ready(function() {
-    setInterval(automaticWhiteLed_on, 50000);
+    setInterval(automaticWhiteLed_on, 55000);
   });
 
   $(document).ready(function() {
-    setInterval(automaticWhiteLed_off, 50000);
+    setInterval(automaticWhiteLed_off, 55000);
   });
 
   $(document).ready(function() {
-    setInterval(snapImage, 50000);
+    setInterval(snapImage, 55000);
   });
 
   $("#processImage").click(function(e) {
