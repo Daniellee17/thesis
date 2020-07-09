@@ -533,12 +533,12 @@
         data: {
 
           csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-          action: 'onRgbLed',
+          action: 'onWhiteLed',
 
         },
         success: function(json) {
           document.getElementById("mainForm").reset();
-          $('#labelRgbLed').text('On');
+          $('#labelLights').text('On');
         },
 
       });
@@ -554,12 +554,12 @@
         data: {
 
           csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-          action: 'offRgbLed',
+          action: 'offWhiteLed',
 
         },
         success: function(json) {
           document.getElementById("mainForm").reset();
-          $('#labelRgbLed').text('Off');
+          $('#labelLights').text('Off');
         },
 
       });
