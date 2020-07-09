@@ -203,19 +203,34 @@
 
     <div class="devicesContainer">
 
-      <div name="onLights_btn" id="onLights" class="btn">
+      <div name="onLights_btn" id="onWhiteLed" class="btn">
         <svg>
           <rect x="0" y="0" fill="none" width="166" height="45" />
         </svg>
-        On Lights
+        On White LED
       </div>
 
-      <div name="offLights_btn" id="offLights" class="btn">
+      <div name="offLights_btn" id="offWhiteLed" class="btn">
         <svg>
           <rect x="0" y="0" fill="none" width="166" height="45" />
         </svg>
-        Off Lights
+        Off White LED
       </div>
+
+      <div name="onLights_btn" id="onRgbLed" class="btn">
+        <svg>
+          <rect x="0" y="0" fill="none" width="166" height="45" />
+        </svg>
+        On RGB LED
+      </div>
+
+      <div name="offLights_btn" id="offRgbLed" class="btn">
+        <svg>
+          <rect x="0" y="0" fill="none" width="166" height="45" />
+        </svg>
+        Off RGB LED
+      </div>
+
 
       <div name="onFans_btn" id="onFan" class="btn">
         <svg>
@@ -585,7 +600,7 @@
     });
   });
 
-  $("#onLights").click(function(e) {
+  $("#onWhiteLed").click(function(e) {
 
     e.preventDefault();
     $.ajax({
@@ -594,7 +609,7 @@
       data: {
 
         csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-        action: 'onLights',
+        action: 'onWhiteLed',
 
       },
       success: function(json) {
@@ -605,7 +620,7 @@
     });
   });
 
-  $("#offLights").click(function(e) {
+  $("#offWhiteLed").click(function(e) {
 
     e.preventDefault();
     $.ajax({
@@ -614,7 +629,7 @@
       data: {
 
         csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-        action: 'offLights',
+        action: 'offWhiteLed',
 
       },
       success: function(json) {
@@ -624,6 +639,47 @@
 
     });
   });
+
+  $("#onRgbLed").click(function(e) {
+
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'onRgbLed',
+
+      },
+      success: function(json) {
+        document.getElementById("mainForm").reset();
+        $('#labelRgbLed').text('On');
+      },
+
+    });
+  });
+
+  $("#offRgbLed").click(function(e) {
+
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'offRgbLed',
+
+      },
+      success: function(json) {
+        document.getElementById("mainForm").reset();
+        $('#labelRgbLed').text('Off');
+      },
+
+    });
+  });
+
 
   $("#onWater").click(function(e) {
 

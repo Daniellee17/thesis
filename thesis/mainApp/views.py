@@ -626,7 +626,7 @@ def mainPage(response):
         devices_.seedStatus = devices_obj_global.seedStatus
         devices_.save()
 
-    if response.POST.get('action') == 'onLights':
+    if response.POST.get('action') == 'onWhiteLed':
 
         print(" ")
         print("~White LED Activated~")
@@ -643,7 +643,7 @@ def mainPage(response):
         devices_.save()
 
 
-    if response.POST.get('action') == 'offLights':
+    if response.POST.get('action') == 'offWhiteLed':
 
         print(" ")
         print("~White LED Deactivated~")
