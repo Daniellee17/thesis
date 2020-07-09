@@ -12,7 +12,8 @@ class mode_selected(models.Model):
 class devices(models.Model):
     calibrationStatus = models.TextField(max_length=250, default="Off");
     fansStatus = models.TextField(max_length=250, default="Off");
-    lightsStatus = models.TextField(max_length=250, default="Off");
+    rgbLedStatus = models.TextField(max_length=250, default="Off");
+    whiteLedStatus = models.TextField(max_length=250, default="Off");
     waterStatus = models.TextField(max_length=250, default="Off");
     seedStatus = models.TextField(max_length=250, default="Off");
     date = models.DateTimeField(auto_now=True);

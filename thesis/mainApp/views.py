@@ -188,7 +188,8 @@ def mainPage(response):
             print("~ (PIN 19) Watering System Activated~")
             print(" ")
             devices_.fansStatus = devices_obj_global.fansStatus
-            devices_.lightsStatus = devices_obj_global.lightsStatus
+            devices_.whiteLedStatus = devices_obj_global.whiteLedStatus
+            devices_.rgbLedStatus = devices_obj_global.rgbLedStatus
             devices_.calibrationStatus = devices_obj_global.calibrationStatus
             devices_.waterStatus = 'On'
             devices_.seedStatus = devices_obj_global.seedStatus
@@ -200,7 +201,8 @@ def mainPage(response):
             print("~ (PIN 19) Watering System Deactivated~")
             print(" ")
             devices_2.fansStatus = devices_obj_global.fansStatus
-            devices_2.lightsStatus = devices_obj_global.lightsStatus
+            devices_2.whiteLedStatus = devices_obj_global.whiteLedStatus
+            devices_2.rgbLedStatus = devices_obj_global.rgbLedStatus
             devices_2.calibrationStatus = devices_obj_global.calibrationStatus
             devices_2.waterStatus = 'Off'
             devices_2.seedStatus = devices_obj_global.seedStatus
@@ -218,7 +220,8 @@ def mainPage(response):
             GPIO.output(20, GPIO.LOW)
             GPIO.output(16, GPIO.LOW)
             devices_.fansStatus = 'Off'
-            devices_.lightsStatus = devices_obj_global.lightsStatus
+            devices_.whiteLedStatus = devices_obj_global.whiteLedStatus
+            devices_.rgbLedStatus = devices_obj_global.rgbLedStatus
             devices_.calibrationStatus = devices_obj_global.calibrationStatus
             devices_.waterStatus = devices_obj_global.waterStatus
             devices_.seedStatus = devices_obj_global.seedStatus
@@ -230,7 +233,8 @@ def mainPage(response):
             GPIO.output(20, GPIO.HIGH)
             GPIO.output(16, GPIO.HIGH)
             devices_.fansStatus = 'On'
-            devices_.lightsStatus = devices_obj_global.lightsStatus
+            devices_.whiteLedStatus = devices_obj_global.whiteLedStatus
+            devices_.rgbLedStatus = devices_obj_global.rgbLedStatus
             devices_.calibrationStatus = devices_obj_global.calibrationStatus
             devices_.waterStatus = devices_obj_global.waterStatus
             devices_.seedStatus = devices_obj_global.seedStatus
@@ -242,7 +246,8 @@ def mainPage(response):
             GPIO.output(20, GPIO.HIGH)
             GPIO.output(16, GPIO.HIGH)
             devices_.fansStatus = 'On'
-            devices_.lightsStatus = devices_obj_global.lightsStatus
+            devices_.whiteLedStatus = devices_obj_global.whiteLedStatus
+            devices_.rgbLedStatus = devices_obj_global.rgbLedStatus
             devices_.calibrationStatus = devices_obj_global.calibrationStatus
             devices_.waterStatus = devices_obj_global.waterStatus
             devices_.seedStatus = devices_obj_global.seedStatus
@@ -564,7 +569,8 @@ def mainPage(response):
         print(" ")
 
         devices_.fansStatus = devices_obj_global.fansStatus
-        devices_.lightsStatus = devices_obj_global.lightsStatus
+        devices_.whiteLedStatus = devices_obj_global.whiteLedStatus
+        devices_.rgbLedStatus = devices_obj_global.rgbLedStatus
         devices_.calibrationStatus = 'On'
         devices_.waterStatus = devices_obj_global.waterStatus
         devices_.seedStatus = devices_obj_global.seedStatus
@@ -579,7 +585,8 @@ def mainPage(response):
         print(" ")
 
         devices_2.fansStatus = devices_obj_global.fansStatus
-        devices_2.lightsStatus = devices_obj_global.lightsStatus
+        devices_2.whiteLedStatus = devices_obj_global.whiteLedStatus
+        devices_.rgbLedStatus = devices_obj_global.rgbLedStatus
         devices_2.calibrationStatus = 'Off'
         devices_2.waterStatus = devices_obj_global.waterStatus
         devices_2.seedStatus = devices_obj_global.seedStatus
@@ -595,7 +602,8 @@ def mainPage(response):
         GPIO.output(16, GPIO.HIGH)
 
         devices_.fansStatus = 'On'
-        devices_.lightsStatus = devices_obj_global.lightsStatus
+        devices_.whiteLedStatus = devices_obj_global.whiteLedStatus
+        devices_.rgbLedStatus = devices_obj_global.rgbLedStatus
         devices_.calibrationStatus = devices_obj_global.calibrationStatus
         devices_.waterStatus = devices_obj_global.waterStatus
         devices_.seedStatus = devices_obj_global.seedStatus
@@ -611,7 +619,8 @@ def mainPage(response):
         GPIO.output(16, GPIO.LOW)
 
         devices_.fansStatus = 'Off'
-        devices_.lightsStatus = devices_obj_global.lightsStatus
+        devices_.whiteLedStatus = devices_obj_global.whiteLedStatus
+        devices_.rgbLedStatus = devices_obj_global.rgbLedStatus
         devices_.calibrationStatus = devices_obj_global.calibrationStatus
         devices_.waterStatus = devices_obj_global.waterStatus
         devices_.seedStatus = devices_obj_global.seedStatus
@@ -620,13 +629,14 @@ def mainPage(response):
     if response.POST.get('action') == 'onLights':
 
         print(" ")
-        print("~Lights Activated~")
+        print("~White LED Activated~")
         print(" ")
 
         GPIO.output(21, GPIO.HIGH)
 
         devices_.fansStatus = devices_obj_global.fansStatus
-        devices_.lightsStatus = 'On'
+        devices_.whiteLedStatus = 'On'
+        devices_.rgbLedStatus = devices_obj_global.rgbLedStatus
         devices_.calibrationStatus = devices_obj_global.calibrationStatus
         devices_.waterStatus = devices_obj_global.waterStatus
         devices_.seedStatus = devices_obj_global.seedStatus
@@ -636,13 +646,47 @@ def mainPage(response):
     if response.POST.get('action') == 'offLights':
 
         print(" ")
+        print("~White LED Deactivated~")
+        print(" ")
+
+        GPIO.output(21, GPIO.LOW)
+
+        devices_.fansStatus = devices_obj_global.fansStatus
+        devices_.whiteLedStatus = 'Off'
+        devices_.rgbLedStatus = devices_obj_global.rgbLedStatus
+        devices_.calibrationStatus = devices_obj_global.calibrationStatus
+        devices_.waterStatus = devices_obj_global.waterStatus
+        devices_.seedStatus = devices_obj_global.seedStatus
+        devices_.save()
+
+    if response.POST.get('action') == 'onRgbLed':
+
+        print(" ")
+        print("~Lights Activated~")
+        print(" ")
+
+        GPIO.output(21, GPIO.HIGH)
+
+        devices_.fansStatus = devices_obj_global.fansStatus
+        devices_.whiteLedStatus = devices_obj_global.whiteLedStatus
+        devices_.rgbLedStatus = 'On'
+        devices_.calibrationStatus = devices_obj_global.calibrationStatus
+        devices_.waterStatus = devices_obj_global.waterStatus
+        devices_.seedStatus = devices_obj_global.seedStatus
+        devices_.save()
+
+
+    if response.POST.get('action') == 'offRgbLed':
+
+        print(" ")
         print("~Lights Deactivated~")
         print(" ")
 
         GPIO.output(21, GPIO.LOW)
 
         devices_.fansStatus = devices_obj_global.fansStatus
-        devices_.lightsStatus = 'Off'
+        devices_.whiteLedStatus =  devices_obj_global.whiteLedStatus
+        devices_.rgbLedStatus = 'Off'
         devices_.calibrationStatus = devices_obj_global.calibrationStatus
         devices_.waterStatus = devices_obj_global.waterStatus
         devices_.seedStatus = devices_obj_global.seedStatus
@@ -655,7 +699,8 @@ def mainPage(response):
         print(" ")
 
         devices_.fansStatus = devices_obj_global.fansStatus
-        devices_.lightsStatus = devices_obj_global.lightsStatus
+        devices_.whiteLedStatus = devices_obj_global.whiteLedStatus
+        devices_.rgbLedStatus = devices_obj_global.rgbLedStatus
         devices_.calibrationStatus = devices_obj_global.calibrationStatus
         devices_.waterStatus = 'On'
         devices_.seedStatus = devices_obj_global.seedStatus
@@ -670,7 +715,8 @@ def mainPage(response):
         print(" ")
 
         devices_.fansStatus = devices_obj_global.fansStatus
-        devices_.lightsStatus = devices_obj_global.lightsStatus
+        devices_.whiteLedStatus = devices_obj_global.whiteLedStatus
+        devices_.rgbLedStatus = devices_obj_global.rgbLedStatus
         devices_.calibrationStatus = devices_obj_global.calibrationStatus
         devices_.waterStatus = 'Off'
         devices_.seedStatus = devices_obj_global.seedStatus
@@ -683,7 +729,8 @@ def mainPage(response):
         print(" ")
 
         devices_.fansStatus = devices_obj_global.fansStatus
-        devices_.lightsStatus = devices_obj_global.lightsStatus
+        devices_.whiteLedStatus = devices_obj_global.whiteLedStatus
+        devices_.rgbLedStatus = devices_obj_global.rgbLedStatus
         devices_.calibrationStatus = devices_obj_global.calibrationStatus
         devices_.waterStatus = devices_obj_global.waterStatus
         devices_.seedStatus = 'On'
@@ -698,7 +745,8 @@ def mainPage(response):
         print(" ")
 
         devices_.fansStatus = devices_obj_global.fansStatus
-        devices_.lightsStatus = devices_obj_global.lightsStatus
+        devices_.whiteLedStatus = devices_obj_global.whiteLedStatus
+        devices_.rgbLedStatus = devices_obj_global.rgbLedStatus
         devices_.calibrationStatus = devices_obj_global.calibrationStatus
         devices_.waterStatus = devices_obj_global.waterStatus
         devices_.seedStatus = 'Off'
@@ -722,7 +770,8 @@ def mainPage(response):
         devices.objects.all().delete()
         devices_.calibrationStatus = 'Off'
         devices_.fansStatus = 'Off'
-        devices_.lightsStatus = 'Off'
+        devices_.whiteLedStatus = 'Off'
+        devices_.rgbLedStatus = 'Off'
         devices_.waterStatus = 'Off'
         devices_.seedStatus = 'Off'
         devices_.save()
@@ -841,7 +890,8 @@ def mainPage(response):
 
         'calibration_json' : devices_obj.calibrationStatus,
         'fans_json' : devices_obj.fansStatus,
-        'lights_json' : devices_obj.lightsStatus,
+        'whiteLed_json' : devices_obj.whiteLedStatus,
+        'rgbLed_json' : devices_obj.rgbLedStatus,
         'water_json' : devices_obj.waterStatus,
         'seeder_json' : devices_obj.seedStatus,
 
