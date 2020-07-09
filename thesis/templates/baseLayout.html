@@ -459,6 +459,47 @@
     }
   }
 
+  function automaticRgbLed_on() {
+    var date1 = new Date();
+    if (date1.getHours() === 20 && date1.getMinutes() === 00) {
+      $.ajax({
+        type: 'POST',
+        url: '{% url "mainPage" %}',
+        data: {
+
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          action: 'onRgbLed',
+
+        },
+        success: function(json) {
+          document.getElementById("mainForm").reset();
+          $('#labelRgbLed').text('On');
+        },
+
+      });
+    }
+  }
+
+  function automaticRgbLed_off() {
+    var date1 = new Date();
+    if (date1.getHours() === 20 && date1.getMinutes() === 10) {
+      $.ajax({
+        type: 'POST',
+        url: '{% url "mainPage" %}',
+        data: {
+
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          action: 'offRgbLed',
+
+        },
+        success: function(json) {
+          document.getElementById("mainForm").reset();
+          $('#labelRgbLed').text('Off');
+        },
+
+      });
+    }
+  }
 
 
 
@@ -483,9 +524,52 @@
     }
   }
 
+  function automaticWhiteLed_on() {
+    var date1 = new Date();
+    if (date1.getHours() === 21 && date1.getMinutes() === 00) {
+      $.ajax({
+        type: 'POST',
+        url: '{% url "mainPage" %}',
+        data: {
+
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          action: 'onRgbLed',
+
+        },
+        success: function(json) {
+          document.getElementById("mainForm").reset();
+          $('#labelRgbLed').text('On');
+        },
+
+      });
+    }
+  }
+
+  function automaticWhiteLed_off() {
+    var date1 = new Date();
+    if (date1.getHours() === 21 && date1.getMinutes() === 3) {
+      $.ajax({
+        type: 'POST',
+        url: '{% url "mainPage" %}',
+        data: {
+
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          action: 'offRgbLed',
+
+        },
+        success: function(json) {
+          document.getElementById("mainForm").reset();
+          $('#labelRgbLed').text('Off');
+        },
+
+      });
+    }
+  }
+
+
   function snapImage() {
     var date1 = new Date();
-    if (date1.getHours() === 23 && date1.getMinutes() === 00) {
+    if (date1.getHours() === 21 && date1.getMinutes() === 01) {
       //Change getHours and getMinutes depending on platform used
       //Rpi 24 hr format
       //Ubuntu 12 hr format
@@ -517,12 +601,29 @@
       });
     }
   }
+
+  $(document).ready(function() {
+    setInterval(automaticRgbLed_on, 50000);
+  });
+
+  $(document).ready(function() {
+    setInterval(automaticRgbLed_off, 50000);
+  });
+
   $(document).ready(function() {
     setInterval(automaticIrrigation, 50000);
   });
 
   $(document).ready(function() {
     setInterval(getSensorValues, 50000);
+  });
+
+  $(document).ready(function() {
+    setInterval(automaticWhiteLed_on, 50000);
+  });
+
+  $(document).ready(function() {
+    setInterval(automaticWhiteLed_off, 50000);
   });
 
   $(document).ready(function() {
