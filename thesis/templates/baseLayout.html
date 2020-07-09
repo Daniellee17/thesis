@@ -354,7 +354,7 @@
 
             $('#labelCalibration').text(json.calibration_json);
             $('#labelFans').text(json.fans_json);
-            $('#labelLights').text(json.whiteLed_json);
+            $('#labelWhiteLed').text(json.whiteLed_json);
             $('#labelRgbLed').text(json.rgbLed_json);
             $('#labelWater').text(json.water_json);
             $('#labelSeed').text(json.seeder_json);
@@ -461,7 +461,7 @@
 
   function automaticRgbLed_on() {
     var date1 = new Date();
-    if (date1.getHours() === 21 && date1.getMinutes() === 00) {
+    if (date1.getHours() === 22 && date1.getMinutes() === 10) {
       $.ajax({
         type: 'POST',
         url: '{% url "mainPage" %}',
@@ -482,7 +482,7 @@
 
   function automaticRgbLed_off() {
     var date1 = new Date();
-    if (date1.getHours() === 21 && date1.getMinutes() === 10) {
+    if (date1.getHours() === 22 && date1.getMinutes() === 20) {
       $.ajax({
         type: 'POST',
         url: '{% url "mainPage" %}',
@@ -538,7 +538,7 @@
         },
         success: function(json) {
           document.getElementById("mainForm").reset();
-          $('#labelLights').text('On');
+          $('#labelWhiteLed').text('On');
         },
 
       });
@@ -559,7 +559,7 @@
         },
         success: function(json) {
           document.getElementById("mainForm").reset();
-          $('#labelLights').text('Off');
+          $('#labelWhiteLed').text('Off');
         },
 
       });
@@ -715,7 +715,7 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelLights').text('On');
+        $('#labelWhiteLed').text('On');
       },
 
     });
@@ -735,7 +735,7 @@
       },
       success: function(json) {
         document.getElementById("mainForm").reset();
-        $('#labelLights').text('Off');
+        $('#labelWhiteLed').text('Off');
       },
 
     });

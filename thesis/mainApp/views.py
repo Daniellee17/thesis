@@ -759,6 +759,14 @@ def mainPage(response):
         print("~Database Cleared~")
         print(" ")
 
+        # Deactivate Fans
+        GPIO.output(20, GPIO.LOW)
+        GPIO.output(16, GPIO.LOW)
+        # Deactivate White LED
+        GPIO.output(21, GPIO.LOW)
+        # Deactivate RGB LED
+        GPIO.output(12, GPIO.LOW)
+
         mode_selected.objects.all().delete()
         mode_selected_.daysCounter = 0
         mode_selected_.grid = mode1_obj_global.grid
