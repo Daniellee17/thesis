@@ -436,7 +436,7 @@
 
   function automaticRgbLed_on() {
     var date1 = new Date();
-    if (date1.getHours() === 12 && date1.getMinutes() === 00) {
+    if (date1.getHours() === 13 && date1.getMinutes() === 00) {
       $.ajax({
         type: 'POST',
         url: '{% url "mainPage" %}',
@@ -479,7 +479,7 @@
 
   function automaticWhiteLed_on() {
     var date1 = new Date();
-    if (date1.getHours() === 9 && date1.getMinutes() === 55) {
+    if (date1.getHours() === 11 && date1.getMinutes() === 55) {
       $.ajax({
         type: 'POST',
         url: '{% url "mainPage" %}',
@@ -500,7 +500,7 @@
 
   function automaticWhiteLed_off() {
     var date1 = new Date();
-    if (date1.getHours() === 10 && date1.getMinutes() === 05) {
+    if (date1.getHours() === 12 && date1.getMinutes() === 05) {
       $.ajax({
         type: 'POST',
         url: '{% url "mainPage" %}',
@@ -519,30 +519,9 @@
     }
   }
 
-  function automaticIrrigation() {
-    var date1 = new Date();
-    if (date1.getHours() === 9 && date1.getMinutes() === 00) {
-      $('#labelWater').text('On');
-      $.ajax({
-        type: 'POST',
-        url: '{% url "mainPage" %}',
-        data: {
-
-          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-          action: 'onWater',
-
-        },
-        success: function(json) {
-          document.getElementById("mainForm").reset();
-          $('#labelWater').text('Off');
-        },
-      });
-    }
-  }
-
   function snapImage() {
     var date1 = new Date();
-    if (date1.getHours() === 10 && date1.getMinutes() === 00) {
+    if (date1.getHours() === 12 && date1.getMinutes() === 00) {
       //Change getHours and getMinutes depending on platform used
       //Rpi 24 hr format
       //Ubuntu 12 hr format
@@ -570,6 +549,28 @@
           $('#labelPlant10Growth').text(json.plant10_json);
           $('#daysID').text(json.daysCounter_json);
           $('#lastDayID').text('Age since: ' + json.cameraDateJSON);
+        },
+      });
+    }
+  }
+
+
+  function automaticIrrigation() {
+    var date1 = new Date();
+    if (date1.getHours() === 18 && date1.getMinutes() === 00) {
+      $('#labelWater').text('On');
+      $.ajax({
+        type: 'POST',
+        url: '{% url "mainPage" %}',
+        data: {
+
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          action: 'onWater',
+
+        },
+        success: function(json) {
+          document.getElementById("mainForm").reset();
+          $('#labelWater').text('Off');
         },
       });
     }
