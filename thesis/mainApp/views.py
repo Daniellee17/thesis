@@ -59,11 +59,6 @@ DHT_PIN2 = 7 # PIN 26 (Right)
 
 def mainPage(response):
 
-    print(" ")
-    print("--------------------------- Main Page Refreshed! -------------------------------")
-    print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-    print(" ")
-
     mode_selected_obj_global = mode_selected.objects.latest('date')
     devices_obj_global = devices.objects.latest('date')
 
@@ -71,21 +66,6 @@ def mainPage(response):
     mode2_obj_global = mode2.objects.latest('date')
     mode3_obj_global = mode3.objects.latest('date')
     mode4_obj_global = mode4.objects.latest('date')
-
-    if response.POST.get('action') == 'setup':
-        print(" ")
-        print("~GrowSmart Initializing~")
-        print(" ")
-        print("Mode: " + str(mode_selected_obj_global.modeNumber))
-        print("Grid: " + mode_selected_obj_global.grid)
-        print(" ")
-        print(" ")
-
-        json = {
-        'modeNumber' :mode_selected_obj_global.modeNumber
-        }
-
-        return JsonResponse(json)
 
     # Create instances so you can insert into the database
     mode_selected_ = mode_selected()
@@ -102,6 +82,21 @@ def mainPage(response):
     mode2_vision_system_ = mode2_vision_system()
     mode3_vision_system_ = mode3_vision_system()
     mode4_vision_system_ = mode4_vision_system()
+
+    if response.POST.get('action') == 'setup':
+
+        print(" ")
+        print("--------------------------- GrowSmart Initializing -----------------------------")
+        print("Time: " + datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        print("Mode: " + str(mode_selected_obj_global.modeNumber))
+        print("Grid: " + mode_selected_obj_global.grid)
+        print(" ")
+        print(" ")
+
+        json = {
+        'modeNumber' :mode_selected_obj_global.modeNumber
+        }
+        return JsonResponse(json)
 
 
     if response.POST.get('action') == 'getSensorValues':
@@ -758,6 +753,8 @@ def mainPage(response):
         print(" ")
         print("~Formatting Database, Turning Off Devices...~")
         print(" ")
+        print(" ")
+        print(" ")
 
         # Deactivate Fans
         GPIO.output(20, GPIO.LOW)
@@ -924,6 +921,13 @@ def mainPage(response):
         'plant10_json' : mode1_visionSystem_obj.plant10,
 
         }
+
+        print("--------------------------- GrowSmart Initializing -----------------------------")
+        print("Time: " + datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        print("Mode: " + str(mode_selected_obj.modeNumber))
+        print("Grid: " + mode_selected_obj.grid)
+        print(" ")
+        print(" ")
 
         return JsonResponse(json)
 
