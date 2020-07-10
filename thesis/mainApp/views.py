@@ -74,7 +74,7 @@ def mainPage(response):
 
     if response.POST.get('action') == 'setup':
         print(" ")
-        print("~Initializing~")
+        print("~GrowSmart Initializing~")
         print(" ")
         print("Mode: " + str(mode_selected_obj_global.modeNumber))
         print("Grid: " + mode_selected_obj_global.grid)
@@ -186,7 +186,7 @@ def mainPage(response):
         if (soilMoistureStatus == 'dry'):
             soilMoistureStatus = 'Dry!'
             print(" ")
-            print("~ (PIN 19) Watering System Activated~")
+            print("~ Soil moisture is dry, adaptive irrigation system activated~")
             print(" ")
             devices_.fansStatus = devices_obj_global.fansStatus
             devices_.whiteLedStatus = devices_obj_global.whiteLedStatus
@@ -199,7 +199,7 @@ def mainPage(response):
             sleep(1)
             GPIO.output(19, GPIO.LOW)
             print(" ")
-            print("~ (PIN 19) Watering System Deactivated~")
+            print("~Adaptive irrigation system deactivated~")
             print(" ")
             devices_2.fansStatus = devices_obj_global.fansStatus
             devices_2.whiteLedStatus = devices_obj_global.whiteLedStatus
@@ -216,7 +216,7 @@ def mainPage(response):
 
         if(temperatureStatus == 'low'):
             print(" ")
-            print("~Fans Deactivated~")
+            print("~Temperatures is low, fans deactivated~")
             print(" ")
             GPIO.output(20, GPIO.LOW)
             GPIO.output(16, GPIO.LOW)
@@ -229,7 +229,7 @@ def mainPage(response):
             devices_.save()
         elif(temperatureStatus == 'high'):
             print(" ")
-            print("~Fans Activated~")
+            print("~Temperatures is high, fans activated~")
             print(" ")
             GPIO.output(20, GPIO.HIGH)
             GPIO.output(16, GPIO.HIGH)
@@ -242,7 +242,7 @@ def mainPage(response):
             devices_.save()
         elif(temperatureStatus != 'low' and humidityStatus == 'high'):
             print(" ")
-            print("~Fans Activated~")
+            print("~Temperatures is not low and humidity is high, fans activated~")
             print(" ")
             GPIO.output(20, GPIO.HIGH)
             GPIO.output(16, GPIO.HIGH)
@@ -596,7 +596,7 @@ def mainPage(response):
     if response.POST.get('action') == 'onFan':
 
         print(" ")
-        print("~Fans Activated~")
+        print("~Air Circulation System Activated~")
         print(" ")
 
         GPIO.output(20, GPIO.HIGH)
@@ -613,7 +613,7 @@ def mainPage(response):
     if response.POST.get('action') == 'offFan':
 
         print(" ")
-        print("~Fans deactivated~")
+        print("~Air Circulation System Deactivated~")
         print(" ")
 
         GPIO.output(20, GPIO.LOW)
@@ -663,7 +663,7 @@ def mainPage(response):
     if response.POST.get('action') == 'onRgbLed':
 
         print(" ")
-        print("~Lights Activated~")
+        print("~Grow Lights Activated~")
         print(" ")
 
         GPIO.output(12, GPIO.HIGH)
@@ -680,7 +680,7 @@ def mainPage(response):
     if response.POST.get('action') == 'offRgbLed':
 
         print(" ")
-        print("~Lights Deactivated~")
+        print("~Grow Lights Deactivated~")
         print(" ")
 
         GPIO.output(12, GPIO.LOW)
@@ -696,7 +696,7 @@ def mainPage(response):
     if response.POST.get('action') == 'onWater':
 
         print(" ")
-        print("~ (PIN 19) Watering System Activated~")
+        print("~Automatic Irrigation System Activated~")
         print(" ")
 
         devices_.fansStatus = devices_obj_global.fansStatus
@@ -712,7 +712,7 @@ def mainPage(response):
         GPIO.output(19, GPIO.LOW)
 
         print(" ")
-        print("~ (PIN 19) Watering System Deactivated~")
+        print("~Automatic Irrigation System Deactivated~")
         print(" ")
 
         devices_2.fansStatus = devices_obj_global.fansStatus
@@ -726,7 +726,7 @@ def mainPage(response):
     if response.POST.get('action') == 'onSeed':
 
         print(" ")
-        print("~ (PIN 13) Seeder Activated~")
+        print("~Seeding System Activated~")
         print(" ")
 
         devices_.fansStatus = devices_obj_global.fansStatus
@@ -742,7 +742,7 @@ def mainPage(response):
         GPIO.output(13, GPIO.LOW)
 
         print(" ")
-        print("~Seeder Deactivated~")
+        print("~Seeding System Deactivated~")
         print(" ")
 
         devices_2.fansStatus = devices_obj_global.fansStatus
@@ -756,7 +756,7 @@ def mainPage(response):
     if response.POST.get('action') == 'fullReset':
 
         print(" ")
-        print("~Database Cleared~")
+        print("~Formatting Database, Turning Off Devices...~")
         print(" ")
 
         # Deactivate Fans
