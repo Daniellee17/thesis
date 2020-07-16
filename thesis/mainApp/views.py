@@ -134,7 +134,7 @@ def mainPage(response):
         humidityStatusSummary = "Default"
         soilMoistureStatusSummary = "Default"
 
-        if(averageTemperature > 20):
+        if(averageTemperature < 20):
             temperatureStatus = 'low' # Too Low
         elif(averageTemperature > 30 ):
             temperatureStatus = 'high' # Too High
