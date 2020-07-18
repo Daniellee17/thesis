@@ -5,7 +5,7 @@
 
 <head>
 
-  <title>A.G.E Thesis</title>
+  <title>GrowSmart</title>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,7 +53,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i><img src="../assets/icons/rpiGif2.gif" class="singleContainer_icon" /></i>
         </div>
-        <div class="sidebar-brand-text mx-3">A.G.E Thesis</div>
+        <div class="sidebar-brand-text mx-3">GrowSmart</div>
       </a>
 
       <!-- Divider -->
@@ -121,14 +121,22 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Addons
+        Configuration
       </div>
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
+          <span id="labelMode">Mode: {{mode_selected_obj_global_2.modeNumber}}</span>
+
+        </a>
+        <a class="nav-link">
+          <i class="fas fa-fw fa-chart-area"></i>
+
+          <span id="labelGrid">Grid: {{mode_selected_obj_global_2.grid}}</span>
+        </a>
+
       </li>
 
 
@@ -845,8 +853,8 @@
       success: function(json) {
         document.getElementById("mainForm").reset();
         $('#cameraID').attr('src', json.image_json);
-        $('#labelMode').text(json.mode_json);
-        $('#labelGrid').text(json.grid_json);
+        $('#labelMode').text("Mode: " + json.mode_json);
+        $('#labelGrid').text("Grid: " + json.grid_json);
         $('#growthContainer').remove()
         $('#growthContainer_permanent').append('<div id="growthContainer">' +
           '<div class="circle small">' +
@@ -911,8 +919,8 @@
       success: function(json) {
         document.getElementById("mainForm").reset();
         $('#cameraID').attr('src', json.image_json);
-        $('#labelMode').text(json.mode_json);
-        $('#labelGrid').text(json.grid_json);
+        $('#labelMode').text("Mode: " + json.mode_json);
+        $('#labelGrid').text("Grid: " + json.grid_json);
         $('#growthContainer').remove()
         $('#growthContainer_permanent').append('<div id="growthContainer">' +
           '<div class="circle small">' +
@@ -968,8 +976,8 @@
       success: function(json) {
         document.getElementById("mainForm").reset();
         $('#cameraID').attr('src', json.image_json);
-        $('#labelMode').text(json.mode_json);
-        $('#labelGrid').text(json.grid_json);
+        $('#labelMode').text("Mode: " + json.mode_json);
+        $('#labelGrid').text("Grid: " + json.grid_json);
         $('#growthContainer').remove()
         $('#growthContainer_permanent').append('<div id="growthContainer">' +
           '<div class="circle small">' +
@@ -1064,8 +1072,8 @@
       success: function(json) {
         document.getElementById("mainForm").reset();
         $('#cameraID').attr('src', json.image_json);
-        $('#labelMode').text(json.mode_json);
-        $('#labelGrid').text(json.grid_json);
+        $('#labelMode').text("Mode: " + json.mode_json);
+        $('#labelGrid').text("Grid: " + json.grid_json);
         $('#growthContainer').remove()
         $('#growthContainer_permanent').append('<div id="growthContainer">' +
           '<div class="circle small">' +

@@ -131,16 +131,65 @@
 
   <div class="row">
 
+
     <div class="col-xl-2 col-md-3 mb-4">
-      <div class="card border-left-success shadow h-100 py-2" style="background: white; ">
+      <div class="card border-left-success shadow h-100 py-2" style="background: white; width: 15.7rem;">
         <div class=" card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mode</div>
-              <div id="labelMode" class="h5 mb-0 font-weight-bold text-gray-800">{{mode_selected_obj_global_2.modeNumber}}</div>
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Calibration</div>
+              <div id="labelCalibration" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.calibrationStatus}}</div>
             </div>
             <div class="col-auto">
-              <i><img src="../assets/icons/devicesIcons/modeIcon_black.png" class="singleContainer_icon" /></i>
+              <i><img src="../assets/icons/devicesIcons/calibrationIcon_black.png" class="singleContainer_icon" /></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-2 col-md-3 mb-4">
+      <div class="card border-left-success shadow h-100 py-2" style="background: white; width: 15.7rem;">
+        <div class=" card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">White LED</div>
+              <div id="labelWhiteLed" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.whiteLedStatus}}</div>
+            </div>
+            <div class="col-auto">
+              <i><img src="../assets/icons/devicesIcons/sunIcon_black.png" class="singleContainer_icon" /></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-2 col-md-3 mb-4">
+      <div class="card border-left-success shadow h-100 py-2" style="background: white; width: 15.7rem;">
+        <div class=" card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">RGB LED</div>
+              <div id="labelRgbLed" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.rgbLedStatus}}</div>
+            </div>
+            <div class="col-auto">
+              <i><img src="../assets/icons/devicesIcons/sunIcon_black.png" class="singleContainer_icon" /></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-2 col-md-3 mb-4">
+      <div class="card border-left-success shadow h-100 py-2" style="background: white; width: 15.7rem;">
+        <div class=" card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Fans</div>
+              <div id="labelFans" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.fansStatus}}</div>
+            </div>
+            <div class="col-auto">
+              <i><img src="../assets/icons/devicesIcons/airIcon_black.png" class="singleContainer_icon" /></i>
             </div>
           </div>
         </div>
@@ -152,100 +201,15 @@
       <div class=" card-body">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Grid</div>
-            <div id="labelGrid" class="h5 mb-0 font-weight-bold text-gray-800">{{mode_selected_obj_global_2.grid}}</div>
+            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Irrigation</div>
+            <div id="labelWater" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.waterStatus}}</div>
           </div>
           <div class="col-auto">
-            <i><img src="../assets/icons/devicesIcons/gridIcon.png" class="singleContainer_icon" /></i>
+            <i><img src="../assets/icons/devicesIcons/waterIcon_black.png" class="singleContainer_icon" /></i>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="col-xl-2 col-md-3 mb-4">
-    <div class="card border-left-success shadow h-100 py-2" style="background: white; "">
-      <div class=" card-body">
-      <div class="row no-gutters align-items-center">
-        <div class="col mr-2">
-          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Calibrate</div>
-          <div id="labelCalibration" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.calibrationStatus}}</div>
-        </div>
-        <div class="col-auto">
-          <i><img src="../assets/icons/devicesIcons/calibrationIcon_black.png" class="singleContainer_icon" /></i>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-
-  <div class="col-xl-2 col-md-3 mb-4">
-    <div class="card border-left-success shadow h-100 py-2" style="background: white; "">
-    <div class=" card-body">
-      <div class="row no-gutters align-items-center">
-        <div class="col mr-2">
-          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">LED</div>
-          <div id="labelWhiteLed" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.whiteLedStatus}}</div>
-        </div>
-        <div class="col-auto">
-          <i><img src="../assets/icons/devicesIcons/sunIcon_black.png" class="singleContainer_icon" /></i>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-
-  <div class="col-xl-2 col-md-3 mb-4">
-    <div class="card border-left-success shadow h-100 py-2" style="background: white; "">
-    <div class=" card-body">
-      <div class="row no-gutters align-items-center">
-        <div class="col mr-2">
-          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">RGB LED</div>
-          <div id="labelRgbLed" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.rgbLedStatus}}</div>
-        </div>
-        <div class="col-auto">
-          <i><img src="../assets/icons/devicesIcons/sunIcon_black.png" class="singleContainer_icon" /></i>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-
-  </div>
-
-  <div class="row">
-
-
-    <div class="col-xl-2 col-md-3 mb-4">
-      <div class="card border-left-success shadow h-100 py-2" style="background: white; "">
-      <div class=" card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Fans</div>
-            <div id="labelFans" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.fansStatus}}</div>
-          </div>
-          <div class="col-auto">
-            <i><img src="../assets/icons/devicesIcons/airIcon_black.png" class="singleContainer_icon" /></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-xl-2 col-md-3 mb-4">
-    <div class="card border-left-success shadow h-100 py-2" style="background: white; "">
-      <div class=" card-body">
-      <div class="row no-gutters align-items-center">
-        <div class="col mr-2">
-          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Watering</div>
-          <div id="labelWater" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.waterStatus}}</div>
-        </div>
-        <div class="col-auto">
-          <i><img src="../assets/icons/devicesIcons/waterIcon_black.png" class="singleContainer_icon" /></i>
-        </div>
-      </div>
-    </div>
-  </div>
   </div>
 
   <div class="col-xl-2 col-md-3 mb-4">
