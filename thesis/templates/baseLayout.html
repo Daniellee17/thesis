@@ -354,8 +354,8 @@
           success: function(json) {
             document.getElementById("mainForm").reset();
 
-            $('#labelMode').text(json.mode_json);
-            $('#labelGrid').text(json.grid_json);
+            $('#labelMode').text("Mode: " + json.mode_json);
+            $('#labelGrid').text("Grid: " + json.grid_json);
             $('#firstDayID').text(json.startDate_json);
             $('#lastDayID').text('Age since: ' + json.startDate_json);
             $('#daysID').text(json.daysCounter_json);
