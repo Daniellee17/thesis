@@ -208,10 +208,9 @@
         },
 
       });
+      alertify.custom = alertify.extend("custom");
+      alertify.custom("Grown Lights Activated");
     }
-
-    alertify.custom = alertify.extend("custom");
-    alertify.custom("Grown Lights Activated");
   }
 
   function automaticRgbLed_off() {
@@ -232,9 +231,9 @@
         },
 
       });
+      alertify.custom = alertify.extend("custom");
+      alertify.custom("Grown Lights Deactivated");
     }
-    alertify.custom = alertify.extend("custom");
-    alertify.custom("Grown Lights Deactivated");
   }
 
 
@@ -256,9 +255,9 @@
         },
 
       });
+      alertify.custom = alertify.extend("custom");
+      alertify.custom("White Leds Activated");
     }
-    alertify.custom = alertify.extend("custom");
-    alertify.custom("White Leds Activated");
   }
 
   function automaticWhiteLed_off() {
@@ -279,9 +278,9 @@
         },
 
       });
+      alertify.custom = alertify.extend("custom");
+      alertify.custom("White Leds Deactivated");
     }
-    alertify.custom = alertify.extend("custom");
-    alertify.custom("White Leds Deactivated");
   }
 
   function snapImage() {
@@ -316,9 +315,9 @@
           $('#lastDayID').text('Age since: ' + json.cameraDateJSON);
         },
       });
+      alertify.custom = alertify.extend("custom");
+      alertify.custom("Vision System Activated");
     }
-    alertify.custom = alertify.extend("custom");
-    alertify.custom("Vision System Activated");
   }
 
 
@@ -340,9 +339,9 @@
           $('#labelWater').text('Off');
         },
       });
+      alertify.custom = alertify.extend("custom");
+      alertify.custom("Irrigation System Activated");
     }
-    alertify.custom = alertify.extend("custom");
-    alertify.custom("Irrigation System Activated");
   }
 
   function getSensorValues() {
@@ -367,8 +366,9 @@
           $('#labelSoilMoistureStatus').text("Status: " + json.soilMoistureStatus_json);
         },
       });
+      alertify.custom = alertify.extend("custom");
+      alertify.custom("Sensor Values Updated");
     }
-    alertify.custom("Sensor Values Updated");
   }
 
 
