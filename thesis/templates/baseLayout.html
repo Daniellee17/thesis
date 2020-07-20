@@ -49,7 +49,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="background: #1cc88a">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'mainPage' %}">
         <div class="sidebar-brand-icon rotate-n-15">
           <i><img src="../assets/icons/rpiGif2.gif" class="singleContainer_icon" /></i>
         </div>
@@ -90,14 +90,34 @@
         </a>
       </li>
 
-      <!-- Nav Item - Pages Collapse Menu -->
+      <!-- Button trigger modal -->
       <li class="nav-item">
-        <a class="nav-link collapsed" id='fullReset' onclick="confirmFullReset()">
+        <a class="nav-link collapsed" id='fullReset' data-toggle="modal" data-target="#exampleModal">
           <i class="fas fa-fw fa-cog"></i>
           <span>Reset</span>
         </a>
       </li>
 
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to format the database?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+              <button type="button" class="btn btn-primary" onclick="confirmFullReset()" data-dismiss="modal">Yes</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
@@ -326,120 +346,102 @@
     document.getElementById("mySidenav").style.width = "15%";
   }
 
+
   function confirmFullReset() {
-    var txt;
+    $.ajax({
+      type: 'POST',
+      url: '{% url "mainPage" %}',
+      data: {
 
-    alertify.set({
-      labels: {
-        ok: " ",
-        cancel: " "
-      }
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'fullReset',
+
+      },
+      success: function(json) {
+        document.getElementById("mainForm").reset();
+
+        $('#labelMode').text("Mode: " + json.mode_json);
+        $('#labelGrid').text("Grid: " + json.grid_json);
+        $('#firstDayID').text(json.startDate_json);
+        $('#lastDayID').text('Age since: ' + json.startDate_json);
+        $('#daysID').text(json.daysCounter_json);
+
+        $('#labelCalibration').text(json.calibration_json);
+        $('#labelFans').text(json.fans_json);
+        $('#labelWhiteLed').text(json.whiteLed_json);
+        $('#labelRgbLed').text(json.rgbLed_json);
+        $('#labelWater').text(json.water_json);
+        $('#labelSeed').text(json.seeder_json);
+
+        $('#labelTemperature').text(json.temperature_json + " ° C");
+        $('#labelHumidity').text(json.humidity_json + " %");
+        $('#labelMoisture').text(json.soilMoisture_json + " %");
+        $('#labelTemperatureStatus').text("Status: " + json.temperatureStatus_json);
+        $('#labelHumidityStatus').text("Status: " + json.humidityStatus_json);
+        $('#labelSoilMoistureStatus').text("Status: " + json.soilMoistureStatus_json);
+
+        $('#cameraID').attr('src', json.image_json);
+        $('#labelPlant1Growth').text(json.plant1_json);
+        $('#labelPlant2Growth').text(json.plant2_json);
+        $('#labelPlant3Growth').text(json.plant3_json);
+        $('#labelPlant4Growth').text(json.plant4_json);
+        $('#labelPlant5Growth').text(json.plant5_json);
+        $('#labelPlant6Growth').text(json.plant6_json);
+        $('#labelPlant7Growth').text(json.plant7_json);
+        $('#labelPlant8Growth').text(json.plant8_json);
+        $('#labelPlant9Growth').text(json.plant9_json);
+        $('#labelPlant10Growth').text(json.plant10_json);
+
+        $('#growthContainer').remove()
+        $('#growthContainer_permanent').append('<div id="growthContainer">' +
+          '<div class="circle small">' +
+          '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant1Growth">{{mode1_vision_system_obj_global.plant1}}</a>' +
+          '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 1</a>' +
+          '</div>' +
+          '<div class="circle small">' +
+          '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant2Growth">{{mode1_vision_system_obj_global.plant2}}</a>' +
+          '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 2</a>' +
+          '</div>' +
+          '<div class="circle small">' +
+          '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant3Growth">{{mode1_vision_system_obj_global.plant3}}</a>' +
+          '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 3</a>' +
+          '</div>' +
+          '<div class="circle small">' +
+          '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant4Growth">{{mode1_vision_system_obj_global.plant4}}</a>' +
+          '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 4</a>' +
+          '</div>' +
+          '<div class="circle small">' +
+          '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant5Growth">{{mode1_vision_system_obj_global.plant5}}</a>' +
+          '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 5</a>' +
+          '</div>' +
+          '<div class="circle small">' +
+          '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant6Growth">{{mode1_vision_system_obj_global.plant6}}</a>' +
+          '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 6</a>' +
+          '</div>' +
+          '<div class="circle small">' +
+          '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant7Growth">{{mode1_vision_system_obj_global.plant7}}</a>' +
+          '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 7</a>' +
+          '</div>' +
+          '<div class="circle small">' +
+          '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant8Growth">{{mode1_vision_system_obj_global.plant8}}</a>' +
+          '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 8</a>' +
+          '</div>' +
+          '<div class="circle small">' +
+          '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant9Growth">{{mode1_vision_system_obj_global.plant9}}</a>' +
+          '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 9</a>' +
+          '</div>' +
+          '<div class="circle small">' +
+          '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant10Growth">{{mode1_vision_system_obj_global.plant10}}</a>' +
+          '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 10</a>' +
+          '</div>' +
+          '</div>')
+
+      },
     });
 
-    alertify.set({
-      delay: 2500
-    });
+    alertify.custom = alertify.extend("custom");
+    alertify.custom("Database Cleared!");
 
-    alertify.confirm("ARE YOU SURE YOU WANT TO RESET YOUR DATABASE?", function(e) {
-      if (e) {
-        $.ajax({
-          type: 'POST',
-          url: '{% url "mainPage" %}',
-          data: {
-
-            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-            action: 'fullReset',
-
-          },
-          success: function(json) {
-            document.getElementById("mainForm").reset();
-
-            $('#labelMode').text("Mode: " + json.mode_json);
-            $('#labelGrid').text("Grid: " + json.grid_json);
-            $('#firstDayID').text(json.startDate_json);
-            $('#lastDayID').text('Age since: ' + json.startDate_json);
-            $('#daysID').text(json.daysCounter_json);
-
-            $('#labelCalibration').text(json.calibration_json);
-            $('#labelFans').text(json.fans_json);
-            $('#labelWhiteLed').text(json.whiteLed_json);
-            $('#labelRgbLed').text(json.rgbLed_json);
-            $('#labelWater').text(json.water_json);
-            $('#labelSeed').text(json.seeder_json);
-
-            $('#labelTemperature').text(json.temperature_json + " ° C");
-            $('#labelHumidity').text(json.humidity_json + " %");
-            $('#labelMoisture').text(json.soilMoisture_json + " %");
-            $('#labelTemperatureStatus').text("Status: " + json.temperatureStatus_json);
-            $('#labelHumidityStatus').text("Status: " + json.humidityStatus_json);
-            $('#labelSoilMoistureStatus').text("Status: " + json.soilMoistureStatus_json);
-
-            $('#cameraID').attr('src', json.image_json);
-            $('#labelPlant1Growth').text(json.plant1_json);
-            $('#labelPlant2Growth').text(json.plant2_json);
-            $('#labelPlant3Growth').text(json.plant3_json);
-            $('#labelPlant4Growth').text(json.plant4_json);
-            $('#labelPlant5Growth').text(json.plant5_json);
-            $('#labelPlant6Growth').text(json.plant6_json);
-            $('#labelPlant7Growth').text(json.plant7_json);
-            $('#labelPlant8Growth').text(json.plant8_json);
-            $('#labelPlant9Growth').text(json.plant9_json);
-            $('#labelPlant10Growth').text(json.plant10_json);
-
-            $('#growthContainer').remove()
-            $('#growthContainer_permanent').append('<div id="growthContainer">' +
-              '<div class="circle small">' +
-              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant1Growth">{{mode1_vision_system_obj_global.plant1}}</a>' +
-              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 1</a>' +
-              '</div>' +
-              '<div class="circle small">' +
-              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant2Growth">{{mode1_vision_system_obj_global.plant2}}</a>' +
-              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 2</a>' +
-              '</div>' +
-              '<div class="circle small">' +
-              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant3Growth">{{mode1_vision_system_obj_global.plant3}}</a>' +
-              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 3</a>' +
-              '</div>' +
-              '<div class="circle small">' +
-              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant4Growth">{{mode1_vision_system_obj_global.plant4}}</a>' +
-              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 4</a>' +
-              '</div>' +
-              '<div class="circle small">' +
-              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant5Growth">{{mode1_vision_system_obj_global.plant5}}</a>' +
-              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 5</a>' +
-              '</div>' +
-              '<div class="circle small">' +
-              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant6Growth">{{mode1_vision_system_obj_global.plant6}}</a>' +
-              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 6</a>' +
-              '</div>' +
-              '<div class="circle small">' +
-              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant7Growth">{{mode1_vision_system_obj_global.plant7}}</a>' +
-              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 7</a>' +
-              '</div>' +
-              '<div class="circle small">' +
-              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant8Growth">{{mode1_vision_system_obj_global.plant8}}</a>' +
-              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 8</a>' +
-              '</div>' +
-              '<div class="circle small">' +
-              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant9Growth">{{mode1_vision_system_obj_global.plant9}}</a>' +
-              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 9</a>' +
-              '</div>' +
-              '<div class="circle small">' +
-              '<a style="font-size: 45px; margin-top: 30%; margin-bottom: -5%;" id="labelPlant10Growth">{{mode1_vision_system_obj_global.plant10}}</a>' +
-              '<a style="font-size: 18px; font-family: Simplifica; margin-top: 37px; margin-bottom: 0px;">Plant 10</a>' +
-              '</div>' +
-              '</div>')
-
-          },
-        });
-
-        alertify.custom = alertify.extend("custom");
-        alertify.custom("Database Cleared!");
-      } else {
-        alertify.custom = alertify.extend("custom");
-        alertify.custom("Action Cancelled!");
-      }
-    });
   }
 
   function automaticRgbLed_on() {
