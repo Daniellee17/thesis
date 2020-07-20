@@ -11,6 +11,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
   <!-- <link rel="stylesheet" href="{% static 'styles.css' %}"> -->
 
   <link rel="stylesheet" href="/assets/css/styles.css">
@@ -146,18 +147,33 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
+
+
+
+        <div class="dropdown">
+          <a class="nav-link" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-chart-area"></i>
+
+            <span id="labelMode">Mode: {{mode_selected_obj_global_2.modeNumber}}</span>
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#" id="onMode1">Mode 1</a>
+            <a class="dropdown-item" href="#" id="onMode2">Mode 2</a>
+            <a class="dropdown-item" href="#" id="onMode3">Mode 3</a>
+            <a class="dropdown-item" href="#" id="onMode4">Mode 4</a>
+          </div>
+        </div>
+
         <a class="nav-link">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span id="labelMode">Mode: {{mode_selected_obj_global_2.modeNumber}}</span>
-
-        </a>
-        <a class="nav-link">
-          <i class="fas fa-fw fa-chart-area"></i>
-
           <span id="labelGrid">Grid: {{mode_selected_obj_global_2.grid}}</span>
+
         </a>
 
       </li>
+
+
 
 
       <!-- Divider -->
@@ -238,6 +254,17 @@
         On White LED
       </div>
 
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown button
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
+
       <div name="offLights_btn" id="offWhiteLed" class="btn">
         <svg>
           <rect x="0" y="0" fill="none" width="166" height="45" />
@@ -302,33 +329,6 @@
         Capture
       </div>
 
-      <div name="onMode1_btn" id="onMode1" class="btn">
-        <svg>
-          <rect x="0" y="0" fill="none" width="166" height="45" />
-        </svg>
-        Mode 1
-      </div>
-
-      <div name="onMode2_btn" id="onMode2" class="btn">
-        <svg>
-          <rect x="0" y="0" fill="none" width="166" height="45" />
-        </svg>
-        Mode 2
-      </div>
-
-      <div name="onMode2_btn" id="onMode3" class="btn">
-        <svg>
-          <rect x="0" y="0" fill="none" width="166" height="45" />
-        </svg>
-        Mode 3
-      </div>
-
-      <div name="onMode2_btn" id="onMode4" class="btn">
-        <svg>
-          <rect x="0" y="0" fill="none" width="166" height="45" />
-        </svg>
-        Mode 4
-      </div>
 
     </div>
   </div>
@@ -903,6 +903,9 @@
       },
 
     });
+
+    alertify.custom = alertify.extend("custom");
+    alertify.custom("Mode 1 Activated");
   });
 
   $("#onMode2").click(function(e) {
@@ -961,6 +964,9 @@
       },
 
     });
+
+    alertify.custom = alertify.extend("custom");
+    alertify.custom("Mode 2 Activated");
   });
 
   $("#onMode3").click(function(e) {
@@ -1057,6 +1063,9 @@
       },
 
     });
+
+    alertify.custom = alertify.extend("custom");
+    alertify.custom("Mode 3 Activated");
   });
 
   $("#onMode4").click(function(e) {
@@ -1130,6 +1139,9 @@
       },
 
     });
+
+    alertify.custom = alertify.extend("custom");
+    alertify.custom("Mode 4 Activated");
   });
 
   function setup() {
