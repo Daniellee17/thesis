@@ -2,123 +2,155 @@
 
 {% block content %}
 
-<form method='GET' id="databaseForm">
-  {% csrf_token %}
 
-  <div class="growthContainer" style="left: 15.5%; top: 53%; width: 62.54%; border-radius: 7px;">
-    <table class="cameraTable">
-      <caption>Camera Snaps</caption>
-      <thead>
-        <tr>
-          <th>Date&Time</th>
-          <th>Image File Name</th>
-          <th>Plant 1</th>
-          <th>Plant 2</th>
-          <th>Plant 3</th>
-          <th>Plant 4</th>
-          <th>Plant 5</th>
-          <th>Plant 6</th>
-          <th>Plant 7</th>
-          <th>Plant 8</th>
-          <th>Plant 9</th>
-          <th>Plant 10</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for values in mode1_vision_system_obj_global %}
-        <tr>
-          <td>{{values.date}}</td>
-          <td>{{values.camera}}</td>
-          <td>{{values.plant1}}</td>
-          <td>{{values.plant2}}</td>
-          <td>{{values.plant3}}</td>
-          <td>{{values.plant4}}</td>
-          <td>{{values.plant5}}</td>
-          <td>{{values.plant6}}</td>
-          <td>{{values.plant7}}</td>
-          <td>{{values.plant8}}</td>
-          <td>{{values.plant9}}</td>
-          <td>{{values.plant10}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
+<!-- Nav Item - Dashboard      -->
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'mainPage' %}">
+    <i class="fas fa-fw fa-tachometer-alt"></i>
+    <span>Dashboard</span></a>
+</li>
+<li class="nav-item active">
+  <a class="nav-link" href="{% url 'databasePage' %}">
+    <i class="fas fa-fw fa-chart-area"></i>
+    <span>Database</span>
+  </a>
+</li>
 
-  <div class="growthContainer" style="left: 80%; top: 53%; width: 17.82%; border-radius: 7px;">
-    <table class="countersTable">
-      <caption>Counters</caption>
-      <thead>
-        <tr>
-          <th>Date&Time</th>
-          <th>daysCounter</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for values in mode_selected_obj_global %}
-        <tr>
-          <td>{{values.date}}</td>
-          <td>{{values.daysCounter}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
+<!-- Divider -->
+<hr class="sidebar-divider d-none d-md-block">
 
-  <div class="growthContainer" style="top: 5.7%;  width: 49.5%; left: 15.5%; border-radius: 7px;">
-    <table class="sensorsTable">
-      <caption>Sensors</caption>
-      <thead>
-        <tr>
-          <th>Date&Time</th>
-          <th>Temperature</th>
-          <th>Humidity</th>
-          <th>Soil Moisture</th>
-          <th>Summary</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for values in sensors_obj_global %}
-        <tr>
-          <td>{{values.date}}</td>
-          <td>{{values.temperature}}</td>
-          <td>{{values.humidity}}</td>
-          <td>{{values.moisture}}</td>
-          <td>{{values.summary}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
 
-  <div class="growthContainer" style="left: 67%; top: 5.7%; width: 30.82%; border-radius: 7px;">
-    <table class="devicesTable">
-      <caption>Devices</caption>
-      <thead>
-        <tr>
-          <th>Date&Time</th>
-          <th>Calibration</th>
-          <th>Fan</th>
-          <th>Light</th>
-          <th>Watering</th>
-          <th>Seeding</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for values in devices_obj_global %}
-        <tr>
-          <td>{{values.date}}</td>
-          <td>{{values.calibrationStatus}}</td>
-          <td>{{values.fansStatus}}</td>
-          <td>{{values.lightsStatus}}</td>
-          <td>{{values.waterStatus}}</td>
-          <td>{{values.seedStatus}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
+</ul>
+<!-- End of Sidebar -->
 
-</form>
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
 
-{% endblock %}
+  <!-- Main Content -->
+  <div id="content">
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+      <form method='GET' id="databaseForm">
+        {% csrf_token %}
+
+        <div class="growthContainer" style="left: 15.5%; top: 53%; width: 62.54%; border-radius: 7px;">
+          <table class="cameraTable">
+            <caption>Camera Snaps</caption>
+            <thead>
+              <tr>
+                <th>Date&Time</th>
+                <th>Image File Name</th>
+                <th>Plant 1</th>
+                <th>Plant 2</th>
+                <th>Plant 3</th>
+                <th>Plant 4</th>
+                <th>Plant 5</th>
+                <th>Plant 6</th>
+                <th>Plant 7</th>
+                <th>Plant 8</th>
+                <th>Plant 9</th>
+                <th>Plant 10</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for values in mode1_vision_system_obj_global %}
+              <tr>
+                <td>{{values.date}}</td>
+                <td>{{values.camera}}</td>
+                <td>{{values.plant1}}</td>
+                <td>{{values.plant2}}</td>
+                <td>{{values.plant3}}</td>
+                <td>{{values.plant4}}</td>
+                <td>{{values.plant5}}</td>
+                <td>{{values.plant6}}</td>
+                <td>{{values.plant7}}</td>
+                <td>{{values.plant8}}</td>
+                <td>{{values.plant9}}</td>
+                <td>{{values.plant10}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="growthContainer" style="left: 80%; top: 53%; width: 17.82%; border-radius: 7px;">
+          <table class="countersTable">
+            <caption>Counters</caption>
+            <thead>
+              <tr>
+                <th>Date&Time</th>
+                <th>daysCounter</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for values in mode_selected_obj_global %}
+              <tr>
+                <td>{{values.date}}</td>
+                <td>{{values.daysCounter}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="growthContainer" style="top: 5.7%;  width: 49.5%; left: 15.5%; border-radius: 7px;">
+          <table class="sensorsTable">
+            <caption>Sensors</caption>
+            <thead>
+              <tr>
+                <th>Date&Time</th>
+                <th>Temperature</th>
+                <th>Humidity</th>
+                <th>Soil Moisture</th>
+                <th>Summary</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for values in sensors_obj_global %}
+              <tr>
+                <td>{{values.date}}</td>
+                <td>{{values.temperature}}</td>
+                <td>{{values.humidity}}</td>
+                <td>{{values.moisture}}</td>
+                <td>{{values.summary}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="growthContainer" style="left: 67%; top: 5.7%; width: 30.82%; border-radius: 7px;">
+          <table class="devicesTable">
+            <caption>Devices</caption>
+            <thead>
+              <tr>
+                <th>Date&Time</th>
+                <th>Calibration</th>
+                <th>Fan</th>
+                <th>Light</th>
+                <th>Watering</th>
+                <th>Seeding</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for values in devices_obj_global %}
+              <tr>
+                <td>{{values.date}}</td>
+                <td>{{values.calibrationStatus}}</td>
+                <td>{{values.fansStatus}}</td>
+                <td>{{values.lightsStatus}}</td>
+                <td>{{values.waterStatus}}</td>
+                <td>{{values.seedStatus}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+    </div>
+
+    </form>
+
+    {% endblock %}
