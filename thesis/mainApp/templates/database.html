@@ -43,126 +43,146 @@
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
+      <!-- Page Heading -->
+      <h1 class="h3 mb-2 text-gray-800">Database</h1>
+      <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables
+          documentation</a>.</p>
 
       <form method='GET' id="databaseForm">
         {% csrf_token %}
 
-        <div class="growthContainer" style="left: 15.5%; top: 53%; width: 62.54%; border-radius: 7px;">
-          <table class="cameraTable">
-            <caption>Camera Snaps</caption>
-            <thead>
-              <tr>
-                <th>Date&Time</th>
-                <th>Image File Name</th>
-                <th>Plant 1</th>
-                <th>Plant 2</th>
-                <th>Plant 3</th>
-                <th>Plant 4</th>
-                <th>Plant 5</th>
-                <th>Plant 6</th>
-                <th>Plant 7</th>
-                <th>Plant 8</th>
-                <th>Plant 9</th>
-                <th>Plant 10</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for values in mode1_vision_system_obj_global %}
-              <tr>
-                <td>{{values.date}}</td>
-                <td>{{values.camera}}</td>
-                <td>{{values.plant1}}</td>
-                <td>{{values.plant2}}</td>
-                <td>{{values.plant3}}</td>
-                <td>{{values.plant4}}</td>
-                <td>{{values.plant5}}</td>
-                <td>{{values.plant6}}</td>
-                <td>{{values.plant7}}</td>
-                <td>{{values.plant8}}</td>
-                <td>{{values.plant9}}</td>
-                <td>{{values.plant10}}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+        <!--Devices Table-->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Devices Table</h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>
+                      <font size="2">Date&Time</font>
+                    </th>
+                    <th>
+                      <font size="2">Fans</font>
+                    </th>
+                    <th>
+                      <font size="2">W. LED</font>
+                    </th>
+                    <th>
+                      <font size="2">G. Lights</font>
+                    </th>
+                    <th>
+                      <font size="2">Watering</font>
+                    </th>
+                    <th>
+                      <font size="2">Calibration</font>
+                    </th>
+                    <th>
+                      <font size="2">Seeding</font>
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {% for values in devices_obj_global %}
+                  <tr>
+                    <td>
+                      <font size="2">{{values.date}}</font>
+                    </td>
+                    <td>
+                      <font size="2">{{values.fansStatus}}</font>
+                    </td>
+                    <td>
+                      <font size="2">{{values.whiteLedStatus}}</font>
+                    </td>
+                    <td>
+                      <font size="2">{{values.rgbLedStatus}}</font>
+                    </td>
+                    <td>
+                      <font size="2">{{values.waterStatus}}</font>
+                    </td>
+                    <td>
+                      <font size="2">{{values.calibrationStatus}}</font>
+                    </td>
+                    <td>
+                      <font size="2">{{values.seedStatus}}</font>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!--Sensors Table-->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Sensors Table</h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="sensorsTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>
+                      <font size="2">Date&Time
+                    </th>
+                    <th>
+                      <font size="2">Temperature
+                    </th>
+                    <th>
+                      <font size="2">T. Status
+                    </th>
+                    <th>
+                      <font size="2">Humidity
+                    </th>
+                    <th>
+                      <font size="2">H. Status
+                    </th>
+                    <th>
+                      <font size="2">S. Moisture
+                    </th>
+                    <th>
+                      <font size="2">S.M. Status
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for values in sensors_obj_global %}
+                  <tr>
+                    <td>
+                      <font size="2">{{values.date}}</font>
+                    </td>
+                    <td>
+                      <font size="2">{{values.temperature}}</font>
+                    </td>
+                    <td>
+                      <font size="2">{{values.temperatureStatus}}</font>
+                    </td>
+                    <td>
+                      <font size="2">{{values.humidity}}</font>
+                    </td>
+                    <td>
+                      <font size="2">{{values.humidityStatus}}</font>
+                    </td>
+                    <td>
+                      <font size="2">{{values.moisture}}</font>
+                    </td>
+                    <td>
+                      <font size="2">{{values.soilMoistureStatus}}</font>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
 
-        <div class="growthContainer" style="left: 80%; top: 53%; width: 17.82%; border-radius: 7px;">
-          <table class="countersTable">
-            <caption>Counters</caption>
-            <thead>
-              <tr>
-                <th>Date&Time</th>
-                <th>daysCounter</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for values in mode_selected_obj_global %}
-              <tr>
-                <td>{{values.date}}</td>
-                <td>{{values.daysCounter}}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
 
-        <div class="growthContainer" style="top: 5.7%;  width: 49.5%; left: 15.5%; border-radius: 7px;">
-          <table class="sensorsTable">
-            <caption>Sensors</caption>
-            <thead>
-              <tr>
-                <th>Date&Time</th>
-                <th>Temperature</th>
-                <th>Humidity</th>
-                <th>Soil Moisture</th>
-                <th>Summary</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for values in sensors_obj_global %}
-              <tr>
-                <td>{{values.date}}</td>
-                <td>{{values.temperature}}</td>
-                <td>{{values.humidity}}</td>
-                <td>{{values.moisture}}</td>
-                <td>{{values.summary}}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
 
-        <div class="growthContainer" style="left: 67%; top: 5.7%; width: 30.82%; border-radius: 7px;">
-          <table class="devicesTable">
-            <caption>Devices</caption>
-            <thead>
-              <tr>
-                <th>Date&Time</th>
-                <th>Calibration</th>
-                <th>Fan</th>
-                <th>Light</th>
-                <th>Watering</th>
-                <th>Seeding</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for values in devices_obj_global %}
-              <tr>
-                <td>{{values.date}}</td>
-                <td>{{values.calibrationStatus}}</td>
-                <td>{{values.fansStatus}}</td>
-                <td>{{values.lightsStatus}}</td>
-                <td>{{values.waterStatus}}</td>
-                <td>{{values.seedStatus}}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
+      </form>
 
-    </div>
-
-    </form>
-
-    {% endblock %}
+      {% endblock %}
