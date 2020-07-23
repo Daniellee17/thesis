@@ -123,9 +123,7 @@
 
         $('#labelMode').text("Mode: " + json.mode_json);
         $('#labelGrid').text("Grid: " + json.grid_json);
-        $('#firstDayID').text(json.startDate_json);
-        $('#lastDayID').text('Age since: ' + json.startDate_json);
-        $('#daysID').text(json.daysCounter_json);
+        $('#daysID').text(json.daysCounter_json + " Days");
 
         $('#labelCalibration').text(json.calibration_json);
         $('#labelFans').text(json.fans_json);
@@ -450,7 +448,7 @@
           $('#labelPlant8Growth').text(json.plant8_json);
           $('#labelPlant9Growth').text(json.plant9_json);
           $('#labelPlant10Growth').text(json.plant10_json);
-          $('#daysID').text(json.daysCounter_json);
+          $('#daysID').text(json.daysCounter_json + " Days");
           $('#lastDayID').text('Age since: ' + json.cameraDateJSON);
         },
       });
@@ -495,7 +493,7 @@
         },
         success: function(json) {
           document.getElementById("mainForm").reset();
-          $('#daysID').text(json.daysCounter_json);
+          $('#daysID').text(json.daysCounter_json + " Days");
           $('#lastDayID').text('Age since: ' + json.date_json);
           $('#labelTemperature').text(json.temperature_json + " ° C");
           $('#labelHumidity').text(json.humidity_json + " %");
@@ -549,7 +547,7 @@
         $('#labelPlant8Growth').text(json.plant8_json);
         $('#labelPlant9Growth').text(json.plant9_json);
         $('#labelPlant10Growth').text(json.plant10_json);
-        $('#daysID').text(json.daysCounter_json);
+        $('#daysID').text(json.daysCounter_json + " Days");
         $('#lastDayID').text('Age since: ' + json.cameraDateJSON);
       },
     });
