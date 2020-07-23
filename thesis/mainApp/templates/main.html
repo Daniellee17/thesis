@@ -57,16 +57,16 @@
   <div id="collapseController" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">Action:</h6>
-      <a class="collapse-item" href="#" id="onWhiteLed">ON White LED</a>
-      <a class="collapse-item" href="#" id="offWhiteLed">OFF White LED</a>
-      <a class="collapse-item" href="#" id="onRgbLed">ON Grow Lights</a>
-      <a class="collapse-item" href="#" id="offRgbLed">OFF Grow Lights</a>
-      <a class="collapse-item" href="#" id="onFan">ON Fans</a>
-      <a class="collapse-item" href="#" id="offFan">OFF Fans</a>
-      <a class="collapse-item" href="#" id="processImage">ON Vision System</a>
-      <a class="collapse-item" href="#" id="onWater">ON Irrigation System</a>
-      <a class="collapse-item" href="#" id="onSeed">ON Seeding System</a>
-      <a class="collapse-item" href="#" id="onCalibration">ON Calibration</a>
+      <a class="collapse-item" href="#" id="onWhiteLed" style="color: #1cc88a"> ON White LED</a>
+      <a class="collapse-item" href="#" id="offWhiteLed" style="color: #e74a3b">OFF White LED</a>
+      <a class="collapse-item" href="#" id="onRgbLed" style="color: #1cc88a">ON Grow Lights</a>
+      <a class="collapse-item" href="#" id="offRgbLed" style="color: #e74a3b">OFF Grow Lights</a>
+      <a class="collapse-item" href="#" id="onFan" style="color: #1cc88a">ON Fans</a>
+      <a class="collapse-item" href="#" id="offFan" style="color: #e74a3b">OFF Fans</a>
+      <a class="collapse-item" href="#" id="processImage" style="color: #4e73df">ON Vision System</a>
+      <a class="collapse-item" href="#" id="onWater" style="color: #4e73df">ON Irrigation System</a>
+      <a class="collapse-item" href="#" id="onSeed" style="color: #4e73df">ON Seeding System</a>
+      <a class="collapse-item" href="#" id="onCalibration" style="color: #4e73df">ON Calibration</a>
       <a class="collapse-item" href="#" id="fullReset" data-toggle="modal" data-target="#resetModal"> Reset </a>
     </div>
   </div>
@@ -83,11 +83,11 @@
         </button>
       </div>
       <div class="modal-body">
-        Are you sure you want to format the database?
+        Are you sure you want to reset GrowSmart?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-        <button type="button" class="btn btn-primary" onclick="confirmFullReset()" data-dismiss="modal">Yes</button>
+        <button type="button" class="btn btn-primary" onclick="confirmFullReset()" data-dismiss="modal" style="background-color: #1cc88a; border-color: #1cc88a;">Yes</button>
       </div>
     </div>
   </div>
@@ -337,8 +337,8 @@
         <div class=" card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Calibration</div>
-              <div id="labelCalibration" class="h5 mb-0 font-weight-bold text-gray-800">{{devices_obj_global.calibrationStatus}}</div>
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="color: #1cc88a">Calibration</div>
+              <div id="labelCalibration" class="h5 mb-0 font-weight-bold text-gray-800" style="color: #1cc88a">{{devices_obj_global.calibrationStatus}}</div>
             </div>
             <div class="col-auto">
               <i><img src="../assets/icons/devicesIcons/calibrationIcon_black.png" class="singleContainer_icon" /></i>
