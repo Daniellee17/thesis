@@ -6,6 +6,7 @@ table.dataTable {
   border-collapse: separate !important;
   border-spacing: 0;
   font-size: 8px;
+  overflow-x: hidden;
 }
 
 table.dataTable td,

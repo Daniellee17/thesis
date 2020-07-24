@@ -70,6 +70,7 @@ body {
   background: url("background/websiteBG4_2.jpg");
   background-repeat: no repeat;
   background-size: cover;
+  overflow-x: hidden;
 }
 
 .circle.small {
