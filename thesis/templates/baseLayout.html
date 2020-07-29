@@ -372,7 +372,7 @@
 
   function automaticWhiteLed_on() {
     var date1 = new Date();
-    if (date1.getHours() === 11 && date1.getMinutes() === 55) {
+    if (date1.getHours() === 7 && date1.getMinutes() === 55) {
       $.ajax({
         type: 'POST',
         url: '{% url "mainPage" %}',
@@ -395,7 +395,7 @@
 
   function automaticWhiteLed_off() {
     var date1 = new Date();
-    if (date1.getHours() === 12 && date1.getMinutes() === 05) {
+    if (date1.getHours() === 8 && date1.getMinutes() === 05) {
       $.ajax({
         type: 'POST',
         url: '{% url "mainPage" %}',
@@ -418,7 +418,7 @@
 
   function snapImage() {
     var date1 = new Date();
-    if (date1.getHours() === 12 && date1.getMinutes() === 00) {
+    if (date1.getHours() === 8 && date1.getMinutes() === 00) {
       //Change getHours and getMinutes depending on platform used
       //Rpi 24 hr format
       //Ubuntu 12 hr format
