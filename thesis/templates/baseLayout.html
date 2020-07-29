@@ -456,7 +456,7 @@
 
   function automaticIrrigation() {
     var date1 = new Date();
-    if (date1.getHours() === 18 && date1.getMinutes() === 00) {
+    if (date1.getHours() === 12 && date1.getMinutes() === 00) {
       $('#labelWater').text('On');
       $.ajax({
         type: 'POST',
