@@ -86,7 +86,7 @@ def mainPage(response):
     if response.POST.get('action') == 'setup':
 
         print(" ")
-        print("--------------------------- GrowSmart Initializing -----------------------------")
+        print("--------------------------- GrowSmart Initializing ----------------------------")
         print("Time: " + datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         print("Mode: " + str(mode_selected_obj_global.modeNumber))
         print("Grid: " + mode_selected_obj_global.grid)
@@ -101,8 +101,8 @@ def mainPage(response):
 
     if response.POST.get('action') == 'getSensorValues':
         print(" ")
-        print("~Sensor Values Updated~")
-        print(" ")
+        print("-------------------------- Checking Sensor Readings ---------------------------")
+        print("Time: " + datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
         # Start SPI connection
         spi = spidev.SpiDev() # Created an object
@@ -169,13 +169,13 @@ def mainPage(response):
         else:
             humidityStatusSummary = 'Good'
 
-        print("Moisture: "+ str(currentMoisture))
-        print("Temp1: " + str(temperature))
-        print("Temp2: "+ str(temperature2))
-        print("Ave temp: "+ str(round(averageTemperature, 2)))
-        print("Hum1: "+ str(humidity))
-        print("Hum2: "+ str(humidity2))
-        print("Ave humidity: "+ str(round(averageHumidity, 0)))
+        print("Soil Moisture: "+ str(currentMoisture))
+        print("Temperature Left: " + str(temperature))
+        print("Temperature Right: "+ str(temperature2))
+        print("Average Temperature: "+ str(round(averageTemperature, 2)))
+        print("Humidity Left: "+ str(humidity))
+        print("Humidity Rght: "+ str(humidity2))
+        print("Average Humidity: "+ str(round(averageHumidity, 0)))
 
         # Adaptive Irrigation System Code
         if (soilMoistureStatus == 'dry'):
@@ -276,6 +276,10 @@ def mainPage(response):
         mode_selected_.save()
 
         mode_selected_obj_2 = mode_selected.objects.latest('date')
+
+        print("Days: "+ str(mode_selected_obj_2.daysCounter))
+        print(" ")
+        print(" ")
 
         json = {
         'daysCounter_json' : str(mode_selected_obj_2.daysCounter),
@@ -664,9 +668,9 @@ def mainPage(response):
 
         if (sensors_water.moisture < 50):
             print(" ")
+            print("-------------------- Automatic Irrigation System Activated --------------------")
+            print("Time: " + datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
             print("Soil Moisture: " + str(sensors_water.moisture))
-            print("~Automatic Irrigation System Activated~")
-            print(" ")
 
             devices_.fansStatus = devices_obj_global.fansStatus
             devices_.whiteLedStatus = devices_obj_global.whiteLedStatus
@@ -680,8 +684,8 @@ def mainPage(response):
             sleep(1)
             GPIO.output(19, GPIO.LOW)
 
+            print("Trigger Deactivated...")
             print(" ")
-            print("~Automatic Irrigation System Deactivated~")
             print(" ")
 
             devices_2.fansStatus = devices_obj_global.fansStatus
