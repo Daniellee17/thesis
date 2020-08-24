@@ -401,7 +401,132 @@ def mainPage(response):
             mode1_vision_system_.plant8 = plant_area_list[7]
             mode1_vision_system_.plant9 = plant_area_list[8]
             mode1_vision_system_.plant10 = plant_area_list[9]
+
+            if(plant_area_list[0] < 20):
+                status1 = 'Early'
+                image1 = '../assets/icons/seedIcon.png'
+            elif((plant_area_list[0] > 20) and (plant_area_list[0] < 50)):
+                status1 = 'Developing'
+                image1 = '../assets/icons/plantIcon.png'
+            else:
+                status1 = 'Mature'
+                image1 = '../assets/icons/pechayIcon.png'
+
+            if(plant_area_list[1] < 20):
+                status2 = 'Early'
+                image2 = '../assets/icons/seedIcon.png'
+            elif((plant_area_list[1] > 20) and (plant_area_list[1] < 50)):
+                status2 = 'Developing'
+                image2 = '../assets/icons/plantIcon.png'
+            else:
+                status2 = 'Mature'
+                image2 = '../assets/icons/pechayIcon.png'
+
+            if(plant_area_list[2] < 20):
+                status3 = 'Early'
+                image3 = '../assets/icons/seedIcon.png'
+            elif((plant_area_list[2] > 20) and (plant_area_list[2] < 50)):
+                status3 = 'Developing'
+                image3 = '../assets/icons/plantIcon.png'
+            else:
+                status3 = 'Mature'
+                image3 = '../assets/icons/pechayIcon.png'
+
+            if(plant_area_list[3] < 20):
+                status4 = 'Early'
+                image4 = '../assets/icons/seedIcon.png'
+            elif((plant_area_list[3] > 20) and (plant_area_list[3] < 50)):
+                status4 = 'Developing'
+                image4 = '../assets/icons/plantIcon.png'
+            else:
+                status4 = 'Mature'
+                image4 = '../assets/icons/pechayIcon.png'
+
+            if(plant_area_list[4] < 20):
+                status5 = 'Early'
+                image5 = '../assets/icons/seedIcon.png'
+            elif((plant_area_list[4] > 20) and (plant_area_list[0] < 50)):
+                status5 = 'Developing'
+                image5 = '../assets/icons/plantIcon.png'
+            else:
+                status5 = 'Mature'
+                image5 = '../assets/icons/pechayIcon.png'
+
+            if(plant_area_list[5] < 20):
+                status6 = 'Early'
+                image6 = '../assets/icons/seedIcon.png'
+            elif((plant_area_list[5] > 20) and (plant_area_list[5] < 50)):
+                status6 = 'Developing'
+                image6 = '../assets/icons/plantIcon.png'
+            else:
+                status6 = 'Mature'
+                image6 = '../assets/icons/pechayIcon.png'
+
+            if(plant_area_list[6] < 20):
+                status7 = 'Early'
+                image7 = '../assets/icons/seedIcon.png'
+            elif((plant_area_list[6] > 20) and (plant_area_list[6] < 50)):
+                status7 = 'Developing'
+                image7 = '../assets/icons/plantIcon.png'
+            else:
+                status7 = 'Mature'
+                image7 = '../assets/icons/pechayIcon.png'
+
+            if(plant_area_list[7] < 20):
+                status8 = 'Early'
+                image8 = '../assets/icons/seedIcon.png'
+            elif((plant_area_list[7] > 20) and (plant_area_list[7] < 50)):
+                status8 = 'Developing'
+                image8 = '../assets/icons/plantIcon.png'
+            else:
+                status8 = 'Mature'
+                image8 = '../assets/icons/pechayIcon.png'
+
+            if(plant_area_list[8] < 20):
+                status9 = 'Early'
+                image9 = '../assets/icons/seedIcon.png'
+            elif((plant_area_list[8] > 20) and (plant_area_list[8] < 50)):
+                status9 = 'Developing'
+                image9 = '../assets/icons/plantIcon.png'
+            else:
+                status9 = 'Mature'
+                image9 = '../assets/icons/pechayIcon.png'
+
+            if(plant_area_list[9] < 20):
+                status10 = 'Early'
+                image10 = '../assets/icons/seedIcon.png'
+            elif((plant_area_list[9] > 20) and (plant_area_list[9] < 50)):
+                status10 = 'Developing'
+                image10 = '../assets/icons/plantIcon.png'
+            else:
+                status10 = 'Mature'
+                image10 = '../assets/icons/pechayIcon.png'
+
+
+            mode1_vision_system_.status1  = status1
+            mode1_vision_system_.status2  = status2
+            mode1_vision_system_.status3  = status3
+            mode1_vision_system_.status4  = status4
+            mode1_vision_system_.status5  = status5
+            mode1_vision_system_.status6  = status6
+            mode1_vision_system_.status7  = status7
+            mode1_vision_system_.status8  = status8
+            mode1_vision_system_.status9  = status9
+            mode1_vision_system_.status10  = status10
+
+            mode1_vision_system_.image1 = image1
+            mode1_vision_system_.image2 = image2
+            mode1_vision_system_.image3 = image3
+            mode1_vision_system_.image4 = image4
+            mode1_vision_system_.image5 = image5
+            mode1_vision_system_.image6 = image6
+            mode1_vision_system_.image7 = image7
+            mode1_vision_system_.image8 = image8
+            mode1_vision_system_.image9 = image9
+            mode1_vision_system_.image10 = image10
+
             mode1_vision_system_.save()
+
 
             mode1_visionSystem_obj_afterInsertion = mode1_vision_system.objects.latest('date')
             mode_selected_obj_first = mode_selected.objects.first()
@@ -425,6 +550,7 @@ def mainPage(response):
             'image_json': str(mode1_vision_system_.image),
             'cameraDateJSON': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),
             'daysCounter_json' : str(numOfDays(date1, date2)),
+
             'plant1_json': mode1_vision_system_.plant1,
             'plant2_json': mode1_vision_system_.plant2,
             'plant3_json': mode1_vision_system_.plant3,
@@ -434,7 +560,29 @@ def mainPage(response):
             'plant7_json': mode1_vision_system_.plant7,
             'plant8_json': mode1_vision_system_.plant8,
             'plant9_json': mode1_vision_system_.plant9,
-            'plant10_json': mode1_vision_system_.plant10
+            'plant10_json': mode1_vision_system_.plant10,
+
+            'status1_json': mode1_vision_system_.status1,
+            'status2_json': mode1_vision_system_.status2,
+            'status3_json': mode1_vision_system_.status3,
+            'status4_json': mode1_vision_system_.status4,
+            'status5_json': mode1_vision_system_.status5,
+            'status6_json': mode1_vision_system_.status6,
+            'status7_json': mode1_vision_system_.status7,
+            'status8_json': mode1_vision_system_.status8,
+            'status9_json': mode1_vision_system_.status9,
+            'status10_json': mode1_vision_system_.status10,
+
+            'image1_json': mode1_vision_system_.image1,
+            'image2_json': mode1_vision_system_.image2,
+            'image3_json': mode1_vision_system_.image3,
+            'image4_json': mode1_vision_system_.image4,
+            'image5_json': mode1_vision_system_.image5,
+            'image6_json': mode1_vision_system_.image6,
+            'image7_json': mode1_vision_system_.image7,
+            'image8_json': mode1_vision_system_.image8,
+            'image9_json': mode1_vision_system_.image9,
+            'image10_json': mode1_vision_system_.image10,
             }
 
             return JsonResponse(json)
@@ -798,9 +946,9 @@ def mainPage(response):
         devices_.save()
 
         sensors.objects.all().delete()
-        sensors_.temperature = 0
-        sensors_.humidity = 0
-        sensors_.moisture = 0
+        sensors_.temperature = 24
+        sensors_.humidity = 65
+        sensors_.moisture = 34
         sensors_.temperatureStatus = "Good"
         sensors_.humidityStatus = "Good"
         sensors_.soilMoistureStatus = "Good"
@@ -846,6 +994,26 @@ def mainPage(response):
         mode1_vision_system_.plant8 = 0
         mode1_vision_system_.plant9 = 0
         mode1_vision_system_.plant10 = 0
+        mode1_vision_system_.status1 = 'Early'
+        mode1_vision_system_.status2 = 'Early'
+        mode1_vision_system_.status3 = 'Early'
+        mode1_vision_system_.status4 = 'Early'
+        mode1_vision_system_.status5 = 'Early'
+        mode1_vision_system_.status6 = 'Early'
+        mode1_vision_system_.status7 = 'Early'
+        mode1_vision_system_.status8 = 'Early'
+        mode1_vision_system_.status9 = 'Early'
+        mode1_vision_system_.status10 = 'Early'
+        mode1_vision_system_.image1 = '../assets/icons/seedIcon.png'
+        mode1_vision_system_.image2 = '../assets/icons/seedIcon.png'
+        mode1_vision_system_.image3 = '../assets/icons/seedIcon.png'
+        mode1_vision_system_.image4 = '../assets/icons/seedIcon.png'
+        mode1_vision_system_.image5 = '../assets/icons/seedIcon.png'
+        mode1_vision_system_.image6 = '../assets/icons/seedIcon.png'
+        mode1_vision_system_.image7 = '../assets/icons/seedIcon.png'
+        mode1_vision_system_.image8 = '../assets/icons/seedIcon.png'
+        mode1_vision_system_.image9 = '../assets/icons/seedIcon.png'
+        mode1_vision_system_.image10 = '../assets/icons/seedIcon.png'
         mode1_vision_system_.save()
 
         mode2_vision_system.objects.all().delete()
@@ -858,6 +1026,23 @@ def mainPage(response):
         mode2_vision_system_.plant6 = 0
         mode2_vision_system_.plant7 = 0
         mode2_vision_system_.plant8 = 8
+        mode2_vision_system_.plant10 = 0
+        mode2_vision_system_.status1 = 'Early'
+        mode2_vision_system_.status2 = 'Early'
+        mode2_vision_system_.status3 = 'Early'
+        mode2_vision_system_.status4 = 'Early'
+        mode2_vision_system_.status5 = 'Early'
+        mode2_vision_system_.status6 = 'Early'
+        mode2_vision_system_.status7 = 'Early'
+        mode2_vision_system_.status8 = 'Early'
+        mode2_vision_system_.image1 = '../assets/icons/seedIcon.png'
+        mode2_vision_system_.image2 = '../assets/icons/seedIcon.png'
+        mode2_vision_system_.image3 = '../assets/icons/seedIcon.png'
+        mode2_vision_system_.image4 = '../assets/icons/seedIcon.png'
+        mode2_vision_system_.image5 = '../assets/icons/seedIcon.png'
+        mode2_vision_system_.image6 = '../assets/icons/seedIcon.png'
+        mode2_vision_system_.image7 = '../assets/icons/seedIcon.png'
+        mode2_vision_system_.image8 = '../assets/icons/seedIcon.png'
         mode2_vision_system_.save()
 
         mode3_vision_system.objects.all().delete()
@@ -880,6 +1065,42 @@ def mainPage(response):
         mode3_vision_system_.plant16 = 0
         mode3_vision_system_.plant17 = 0
         mode3_vision_system_.plant18 = 18
+        mode3_vision_system_.status1 = 'Early'
+        mode3_vision_system_.status2 = 'Early'
+        mode3_vision_system_.status3 = 'Early'
+        mode3_vision_system_.status4 = 'Early'
+        mode3_vision_system_.status5 = 'Early'
+        mode3_vision_system_.status6 = 'Early'
+        mode3_vision_system_.status7 = 'Early'
+        mode3_vision_system_.status8 = 'Early'
+        mode3_vision_system_.status9 = 'Early'
+        mode3_vision_system_.status10 = 'Early'
+        mode3_vision_system_.status11 = 'Early'
+        mode3_vision_system_.status12 = 'Early'
+        mode3_vision_system_.status13 = 'Early'
+        mode3_vision_system_.status14 = 'Early'
+        mode3_vision_system_.status15 = 'Early'
+        mode3_vision_system_.status16 = 'Early'
+        mode3_vision_system_.status17 = 'Early'
+        mode3_vision_system_.status18 = 'Early'
+        mode3_vision_system_.image1 = '../assets/icons/seedIcon.png'
+        mode3_vision_system_.image2 = '../assets/icons/seedIcon.png'
+        mode3_vision_system_.image3 = '../assets/icons/seedIcon.png'
+        mode3_vision_system_.image4 = '../assets/icons/seedIcon.png'
+        mode3_vision_system_.image5 = '../assets/icons/seedIcon.png'
+        mode3_vision_system_.image6 = '../assets/icons/seedIcon.png'
+        mode3_vision_system_.image7 = '../assets/icons/seedIcon.png'
+        mode3_vision_system_.image8 = '../assets/icons/seedIcon.png'
+        mode3_vision_system_.image9 = '../assets/icons/seedIcon.png'
+        mode3_vision_system_.image10 = '../assets/icons/seedIcon.png'
+        mode3_vision_system_.image11 = '../assets/icons/seedIcon.png'
+        mode3_vision_system_.image12 = '../assets/icons/seedIcon.png'
+        mode3_vision_system_.image13 = '../assets/icons/seedIcon.png'
+        mode3_vision_system_.image14 = '../assets/icons/seedIcon.png'
+        mode3_vision_system_.image15 = '../assets/icons/seedIcon.png'
+        mode3_vision_system_.image16 = '../assets/icons/seedIcon.png'
+        mode3_vision_system_.image17 = '../assets/icons/seedIcon.png'
+        mode3_vision_system_.image18 = '../assets/icons/seedIcon.png'
         mode3_vision_system_.save()
 
         mode4_vision_system.objects.all().delete()
@@ -896,6 +1117,30 @@ def mainPage(response):
         mode4_vision_system_.plant10 = 0
         mode4_vision_system_.plant11 = 0
         mode4_vision_system_.plant12 = 12
+        mode4_vision_system_.status1 = 'Early'
+        mode4_vision_system_.status2 = 'Early'
+        mode4_vision_system_.status3 = 'Early'
+        mode4_vision_system_.status4 = 'Early'
+        mode4_vision_system_.status5 = 'Early'
+        mode4_vision_system_.status6 = 'Early'
+        mode4_vision_system_.status7 = 'Early'
+        mode4_vision_system_.status8 = 'Early'
+        mode4_vision_system_.status9 = 'Early'
+        mode4_vision_system_.status10 = 'Early'
+        mode4_vision_system_.status11 = 'Early'
+        mode4_vision_system_.status12 = 'Early'
+        mode4_vision_system_.image1 = '../assets/icons/seedIcon.png'
+        mode4_vision_system_.image2 = '../assets/icons/seedIcon.png'
+        mode4_vision_system_.image3 = '../assets/icons/seedIcon.png'
+        mode4_vision_system_.image4 = '../assets/icons/seedIcon.png'
+        mode4_vision_system_.image5 = '../assets/icons/seedIcon.png'
+        mode4_vision_system_.image6 = '../assets/icons/seedIcon.png'
+        mode4_vision_system_.image7 = '../assets/icons/seedIcon.png'
+        mode4_vision_system_.image8 = '../assets/icons/seedIcon.png'
+        mode4_vision_system_.image9 = '../assets/icons/seedIcon.png'
+        mode4_vision_system_.image10 = '../assets/icons/seedIcon.png'
+        mode4_vision_system_.image11 = '../assets/icons/seedIcon.png'
+        mode4_vision_system_.image12 = '../assets/icons/seedIcon.png'
         mode4_vision_system_.save()
 
         mode_selected_obj = mode_selected.objects.latest('date')
@@ -924,17 +1169,6 @@ def mainPage(response):
         'soilMoistureStatus_json': sensors_obj.soilMoistureStatus,
 
         'image_json' : str(mode1_visionSystem_obj.image),
-        'plant1_json' : mode1_visionSystem_obj.plant1,
-        'plant2_json' : mode1_visionSystem_obj.plant2,
-        'plant3_json' : mode1_visionSystem_obj.plant3,
-        'plant4_json' : mode1_visionSystem_obj.plant4,
-        'plant5_json' : mode1_visionSystem_obj.plant5,
-        'plant6_json' : mode1_visionSystem_obj.plant6,
-        'plant7_json' : mode1_visionSystem_obj.plant7,
-        'plant8_json' : mode1_visionSystem_obj.plant8,
-        'plant9_json' : mode1_visionSystem_obj.plant9,
-        'plant10_json' : mode1_visionSystem_obj.plant10,
-
         }
 
         print("--------------------------- GrowSmart Initializing -----------------------------")
