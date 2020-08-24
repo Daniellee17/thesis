@@ -406,7 +406,7 @@ def mainPage(response):
                 status1 = 'Early'
                 image1 = '../assets/icons/seedIcon.png'
             elif((plant_area_list[0] > 20) and (plant_area_list[0] < 50)):
-                status1 = 'Developing'
+                status1 = 'Dvlping'
                 image1 = '../assets/icons/plantIcon.png'
             else:
                 status1 = 'Mature'
@@ -416,7 +416,7 @@ def mainPage(response):
                 status2 = 'Early'
                 image2 = '../assets/icons/seedIcon.png'
             elif((plant_area_list[1] > 20) and (plant_area_list[1] < 50)):
-                status2 = 'Developing'
+                status2 = 'Dvlping'
                 image2 = '../assets/icons/plantIcon.png'
             else:
                 status2 = 'Mature'
@@ -426,7 +426,7 @@ def mainPage(response):
                 status3 = 'Early'
                 image3 = '../assets/icons/seedIcon.png'
             elif((plant_area_list[2] > 20) and (plant_area_list[2] < 50)):
-                status3 = 'Developing'
+                status3 = 'Dvlping'
                 image3 = '../assets/icons/plantIcon.png'
             else:
                 status3 = 'Mature'
@@ -436,7 +436,7 @@ def mainPage(response):
                 status4 = 'Early'
                 image4 = '../assets/icons/seedIcon.png'
             elif((plant_area_list[3] > 20) and (plant_area_list[3] < 50)):
-                status4 = 'Developing'
+                status4 = 'Dvlping'
                 image4 = '../assets/icons/plantIcon.png'
             else:
                 status4 = 'Mature'
@@ -446,7 +446,7 @@ def mainPage(response):
                 status5 = 'Early'
                 image5 = '../assets/icons/seedIcon.png'
             elif((plant_area_list[4] > 20) and (plant_area_list[0] < 50)):
-                status5 = 'Developing'
+                status5 = 'Dvlping'
                 image5 = '../assets/icons/plantIcon.png'
             else:
                 status5 = 'Mature'
@@ -456,7 +456,7 @@ def mainPage(response):
                 status6 = 'Early'
                 image6 = '../assets/icons/seedIcon.png'
             elif((plant_area_list[5] > 20) and (plant_area_list[5] < 50)):
-                status6 = 'Developing'
+                status6 = 'Dvlping'
                 image6 = '../assets/icons/plantIcon.png'
             else:
                 status6 = 'Mature'
@@ -466,7 +466,7 @@ def mainPage(response):
                 status7 = 'Early'
                 image7 = '../assets/icons/seedIcon.png'
             elif((plant_area_list[6] > 20) and (plant_area_list[6] < 50)):
-                status7 = 'Developing'
+                status7 = 'Dvlping'
                 image7 = '../assets/icons/plantIcon.png'
             else:
                 status7 = 'Mature'
@@ -476,7 +476,7 @@ def mainPage(response):
                 status8 = 'Early'
                 image8 = '../assets/icons/seedIcon.png'
             elif((plant_area_list[7] > 20) and (plant_area_list[7] < 50)):
-                status8 = 'Developing'
+                status8 = 'Dvlping'
                 image8 = '../assets/icons/plantIcon.png'
             else:
                 status8 = 'Mature'
@@ -486,7 +486,7 @@ def mainPage(response):
                 status9 = 'Early'
                 image9 = '../assets/icons/seedIcon.png'
             elif((plant_area_list[8] > 20) and (plant_area_list[8] < 50)):
-                status9 = 'Developing'
+                status9 = 'Dvlping'
                 image9 = '../assets/icons/plantIcon.png'
             else:
                 status9 = 'Mature'
@@ -496,7 +496,7 @@ def mainPage(response):
                 status10 = 'Early'
                 image10 = '../assets/icons/seedIcon.png'
             elif((plant_area_list[9] > 20) and (plant_area_list[9] < 50)):
-                status10 = 'Developing'
+                status10 = 'Dvlping'
                 image10 = '../assets/icons/plantIcon.png'
             else:
                 status10 = 'Mature'
