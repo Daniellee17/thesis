@@ -119,8 +119,8 @@
 
         $('#labelMode').text("Mode: " + json.mode_json);
         $('#labelGrid').text("Grid: " + json.grid_json);
-        $('#daysID').text(json.daysCounter_json + " Days");
-        $('#firstDayID').text(json.startDate_json);
+        $('#daysID').text("Day " + json.daysCounter_json);
+        $('#firstDayID').text("Day 1: " + json.startDate_json);
 
         $('#labelCalibration').text(json.calibration_json);
         $('#labelFans').text(json.fans_json);
@@ -436,7 +436,6 @@
         },
         success: function(json) {
           $('#cameraID').attr('src', json.image_json);
-          $('#dateID').text('As of: ' + json.cameraDateJSON);
 
           $('#labelPlant1Growth').text(json.plant1_json);
           $('#labelPlant2Growth').text(json.plant2_json);
@@ -471,7 +470,7 @@
           $('#image9ID').attr('src', json.image9_json);
           $('#image10ID').attr('src', json.image10_json);
 
-          $('#daysID').text(json.daysCounter_json + " Days");
+          $('#daysID').text("Day " + json.daysCounter_json);
         },
       });
       alertify.custom = alertify.extend("custom");
@@ -515,7 +514,7 @@
         },
         success: function(json) {
           document.getElementById("mainForm").reset();
-          $('#daysID').text(json.daysCounter_json + " Days");
+          $('#daysID').text("Day " + json.daysCounter_json);
           $('#lastDayID').text('Age since: ' + json.date_json);
           $('#labelTemperature').text(json.temperature_json + " ° C");
           $('#labelHumidity').text(json.humidity_json + " %");
@@ -556,7 +555,6 @@
       },
       success: function(json) {
         $('#cameraID').attr('src', json.image_json);
-        $('#dateID').text('As of: ' + json.cameraDateJSON);
 
         $('#labelPlant1Growth').text(json.plant1_json);
         $('#labelPlant2Growth').text(json.plant2_json);
@@ -591,7 +589,7 @@
         $('#image9ID').attr('src', json.image9_json);
         $('#image10ID').attr('src', json.image10_json);
 
-        $('#daysID').text(json.daysCounter_json + " Days");
+        $('#daysID').text("Day " + json.daysCounter_json);
       },
     });
     alertify.custom = alertify.extend("custom");

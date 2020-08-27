@@ -267,7 +267,7 @@ def mainPage(response):
         def numOfDays(date1, date2):
             return (date2-date1).days
 
-        mode_selected_.daysCounter = numOfDays(date1, date2)
+        mode_selected_.daysCounter = numOfDays(date1, date2) + 1
         mode_selected_.grid = mode_selected_obj.grid
         mode_selected_.rows = mode_selected_obj.rows
         mode_selected_.columns = mode_selected_obj.columns
@@ -277,7 +277,7 @@ def mainPage(response):
 
         mode_selected_obj_2 = mode_selected.objects.latest('date')
 
-        print("Days: "+ str(mode_selected_obj_2.daysCounter))
+        print("Day "+ str(mode_selected_obj_2.daysCounter))
         print(" ")
         print(" ")
 
@@ -402,105 +402,106 @@ def mainPage(response):
             mode1_vision_system_.plant9 = plant_area_list[8]
             mode1_vision_system_.plant10 = plant_area_list[9]
 
-            if(plant_area_list[0] < 20):
+            if(plant_area_list[0] < 721):
                 status1 = 'Early'
                 image1 = '../assets/icons/seedIcon.png'
-            elif((plant_area_list[0] > 20) and (plant_area_list[0] < 50)):
+            elif((plant_area_list[0] > 720) and (plant_area_list[0] < 861)):
                 status1 = 'Dvlping'
                 image1 = '../assets/icons/plantIcon.png'
             else:
                 status1 = 'Mature'
                 image1 = '../assets/icons/pechayIcon.png'
 
-            if(plant_area_list[1] < 20):
+            if(plant_area_list[1] < 721):
                 status2 = 'Early'
                 image2 = '../assets/icons/seedIcon.png'
-            elif((plant_area_list[1] > 20) and (plant_area_list[1] < 50)):
+            elif((plant_area_list[1] > 720) and (plant_area_list[1] < 861)):
                 status2 = 'Dvlping'
                 image2 = '../assets/icons/plantIcon.png'
             else:
                 status2 = 'Mature'
                 image2 = '../assets/icons/pechayIcon.png'
 
-            if(plant_area_list[2] < 20):
+            if(plant_area_list[2] < 721):
                 status3 = 'Early'
                 image3 = '../assets/icons/seedIcon.png'
-            elif((plant_area_list[2] > 20) and (plant_area_list[2] < 50)):
+            elif((plant_area_list[2] > 720) and (plant_area_list[2] < 861)):
                 status3 = 'Dvlping'
                 image3 = '../assets/icons/plantIcon.png'
             else:
                 status3 = 'Mature'
                 image3 = '../assets/icons/pechayIcon.png'
 
-            if(plant_area_list[3] < 20):
+            if(plant_area_list[3] < 721):
                 status4 = 'Early'
                 image4 = '../assets/icons/seedIcon.png'
-            elif((plant_area_list[3] > 20) and (plant_area_list[3] < 50)):
+            elif((plant_area_list[3] > 720) and (plant_area_list[3] < 861)):
                 status4 = 'Dvlping'
                 image4 = '../assets/icons/plantIcon.png'
             else:
                 status4 = 'Mature'
                 image4 = '../assets/icons/pechayIcon.png'
 
-            if(plant_area_list[4] < 20):
+            if(plant_area_list[4] < 721):
                 status5 = 'Early'
                 image5 = '../assets/icons/seedIcon.png'
-            elif((plant_area_list[4] > 20) and (plant_area_list[0] < 50)):
+            elif((plant_area_list[4] > 720) and (plant_area_list[0] < 861)):
                 status5 = 'Dvlping'
                 image5 = '../assets/icons/plantIcon.png'
             else:
                 status5 = 'Mature'
                 image5 = '../assets/icons/pechayIcon.png'
 
-            if(plant_area_list[5] < 20):
+            if(plant_area_list[5] < 721):
                 status6 = 'Early'
                 image6 = '../assets/icons/seedIcon.png'
-            elif((plant_area_list[5] > 20) and (plant_area_list[5] < 50)):
+            elif((plant_area_list[5] > 720) and (plant_area_list[5] < 861)):
                 status6 = 'Dvlping'
                 image6 = '../assets/icons/plantIcon.png'
             else:
                 status6 = 'Mature'
                 image6 = '../assets/icons/pechayIcon.png'
 
-            if(plant_area_list[6] < 20):
+            if(plant_area_list[6] < 721):
                 status7 = 'Early'
                 image7 = '../assets/icons/seedIcon.png'
-            elif((plant_area_list[6] > 20) and (plant_area_list[6] < 50)):
+            elif((plant_area_list[6] > 720) and (plant_area_list[6] < 861)):
                 status7 = 'Dvlping'
                 image7 = '../assets/icons/plantIcon.png'
             else:
                 status7 = 'Mature'
                 image7 = '../assets/icons/pechayIcon.png'
 
-            if(plant_area_list[7] < 20):
+            if(plant_area_list[7] < 721):
                 status8 = 'Early'
                 image8 = '../assets/icons/seedIcon.png'
-            elif((plant_area_list[7] > 20) and (plant_area_list[7] < 50)):
+            elif((plant_area_list[7] > 720) and (plant_area_list[7] < 861)):
                 status8 = 'Dvlping'
                 image8 = '../assets/icons/plantIcon.png'
             else:
                 status8 = 'Mature'
                 image8 = '../assets/icons/pechayIcon.png'
 
-            if(plant_area_list[8] < 20):
+            if(plant_area_list[8] < 721):
                 status9 = 'Early'
                 image9 = '../assets/icons/seedIcon.png'
-            elif((plant_area_list[8] > 20) and (plant_area_list[8] < 50)):
+            elif((plant_area_list[8] > 720) and (plant_area_list[8] < 861)):
                 status9 = 'Dvlping'
                 image9 = '../assets/icons/plantIcon.png'
             else:
                 status9 = 'Mature'
                 image9 = '../assets/icons/pechayIcon.png'
 
-            if(plant_area_list[9] < 20):
+            if(plant_area_list[9] < 721):
                 status10 = 'Early'
                 image10 = '../assets/icons/seedIcon.png'
-            elif((plant_area_list[9] > 20) and (plant_area_list[9] < 50)):
+            elif((plant_area_list[9] > 720) and (plant_area_list[9] < 861)):
                 status10 = 'Dvlping'
                 image10 = '../assets/icons/plantIcon.png'
             else:
                 status10 = 'Mature'
                 image10 = '../assets/icons/pechayIcon.png'
+
 
 
             mode1_vision_system_.status1  = status1
@@ -538,7 +539,7 @@ def mainPage(response):
             def numOfDays(date1, date2):
                 return (date2-date1).days
 
-            mode_selected_.daysCounter = numOfDays(date1, date2)
+            mode_selected_.daysCounter = numOfDays(date1, date2) + 1
             mode_selected_.grid = mode_selected_obj.grid
             mode_selected_.rows = mode_selected_obj.rows
             mode_selected_.columns = mode_selected_obj.columns
@@ -549,7 +550,7 @@ def mainPage(response):
             json = {
             'image_json': str(mode1_vision_system_.image),
             'cameraDateJSON': str(datetime.now().strftime('%b. %d, %Y, %-I:%M %p')),
-            'daysCounter_json' : str(numOfDays(date1, date2)),
+            'daysCounter_json' : str(numOfDays(date1, date2) + 1),
 
             'plant1_json': mode1_vision_system_.plant1,
             'plant2_json': mode1_vision_system_.plant2,
@@ -928,7 +929,7 @@ def mainPage(response):
         GPIO.output(12, GPIO.LOW)
 
         mode_selected.objects.all().delete()
-        mode_selected_.daysCounter = 0
+        mode_selected_.daysCounter = 1
         mode_selected_.grid = mode1_obj_global.grid
         mode_selected_.rows = mode1_obj_global.rows
         mode_selected_.columns = mode1_obj_global.columns
