@@ -799,6 +799,30 @@
     alertify.custom("Calibration Activated");
   });
 
+  $("#temperature_low_btn").click(function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "sensorsPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'temperature_low_set',
+        temperature_low_data: document.getElementById("low-threshold").value
+
+      },
+      success: function(json) {
+        document.getElementById("sensorsForm").reset();
+        $('#temperature_low_label').text(json.temperature_low);
+      },
+
+    });
+    alertify.custom = alertify.extend("custom");
+    alertify.custom("Temperature threshold updated");
+  });
+
+
+
   $("#onMode1").click(function(e) {
 
     e.preventDefault();

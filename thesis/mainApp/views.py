@@ -1223,13 +1223,23 @@ def databasePage(response):
 
 def sensorsPage(response):
 
-    devices_obj_global = devices.objects.all()
-    sensors_obj_global = sensors.objects.all()
-    mode1_vision_system_obj_global = mode1_vision_system.objects.all()
-    mode_selected_obj_global = mode_selected.objects.all()
-    mode_selected_obj_global_2 = mode_selected.objects.latest('date')
+    threshold_ = threshold()
 
-    myObj = {'mode_selected_obj_global': mode_selected_obj_global, 'mode_selected_obj_global_2': mode_selected_obj_global_2, 'devices_obj_global': devices_obj_global,
-                'sensors_obj_global': sensors_obj_global, 'mode1_vision_system_obj_global': mode1_vision_system_obj_global}
+    if response.POST.get('action') == 'temperature_low_set':
+
+
+        threshold_.temperature_low = response.POST.get('temperature_low_data')
+        threshold_.save()
+
+        threshold_obj = threshold.objects.latest('date')
+
+        json = {
+        'temperature_low' : threshold_obj.temperature_low
+        }
+        return JsonResponse(json)
+
+    threshold_obj_global = threshold.objects.latest('date')
+
+    myObj = {'threshold_obj_global': threshold_obj_global}
 
     return render(response, 'sensors.html', context=myObj)

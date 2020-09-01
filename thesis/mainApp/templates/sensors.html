@@ -38,14 +38,11 @@
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-
-
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
       </ul>
 
     </nav>
-
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -53,139 +50,79 @@
       <h1 class="h3 mb-2 text-gray-800">Sensors</h1>
       <p class="mb-4">View or modify the threshold of each sensor through GrowSmart's sensors page</a>.</p>
 
-      <form method='GET' id="databaseForm">
+      <form method='GET' id="sensorsForm">
         {% csrf_token %}
 
-        <!--Devices Table-->
-        <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Devices Table</h6>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive" style="overflow-x: hidden">
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                  <tr>
-                    <th>
-                      <font size="2">Date&Time</font>
-                    </th>
-                    <th>
-                      <font size="2">Fans</font>
-                    </th>
-                    <th>
-                      <font size="2">W.LED</font>
-                    </th>
-                    <th>
-                      <font size="2">G.Lights</font>
-                    </th>
-                    <th>
-                      <font size="2">Irrigation</font>
-                    </th>
-                    <th>
-                      <font size="2">Calibration</font>
-                    </th>
-                    <th>
-                      <font size="2">Seeding</font>
-                    </th>
-                  </tr>
-                </thead>
 
-                <tbody>
-                  {% for values in devices_obj_global %}
-                  <tr>
-                    <td>
-                      <font size="2">{{values.date}}</font>
-                    </td>
-                    <td>
-                      <font size="2">{{values.fansStatus}}</font>
-                    </td>
-                    <td>
-                      <font size="2">{{values.whiteLedStatus}}</font>
-                    </td>
-                    <td>
-                      <font size="2">{{values.rgbLedStatus}}</font>
-                    </td>
-                    <td>
-                      <font size="2">{{values.waterStatus}}</font>
-                    </td>
-                    <td>
-                      <font size="2">{{values.calibrationStatus}}</font>
-                    </td>
-                    <td>
-                      <font size="2">{{values.seedStatus}}</font>
-                    </td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
+        <div class="row">
+
+          <div class="col-xl-4 col-lg-4">
+            <div class="card shadow mb-4">
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-gray-800">Temperature</h6>
+              </div>
+              <!-- Card Body -->
+              <div class="card-body" style="height: 32rem;">
+
+                <li> <a id="temperature_low_label">Low {{threshold_obj_global.temperature_low}}</a></li>
+                <li> <a>High {{threshold_obj_global.temperature_high}}</a></li>
+
+                <div class="row">
+                  <div class="col-xl-6 col-md-6 mb-4">
+                    <div class="input-group mb-6">
+                      <input type="text" class="form-control" id="low-threshold" placeholder="Low Threshold" aria-label="Low Threshold" aria-describedby="basic-addon2">
+                      <div class="input-group-append">
+                        <button class="input-group-text" id="temperature_low_btn">Update</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-64 col-md-6 mb-4">
+                    <div class="input-group mb-6">
+                      <input type="text" class="form-control" placeholder="High Threshold" aria-label="High Threshold" aria-describedby="basic-addon2">
+                      <div class="input-group-append">
+                        <button class="input-group-text" id="temperature_high_btn">Update</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
-        </div>
-        <!--Sensors Table-->
-        <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Sensors Table</h6>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive" style="overflow-x: hidden">
-              <table class="table table-bordered" id="sensorsTable" width="100%" cellspacing="0">
-                <thead>
-                  <tr>
-                    <th>
-                      <font size="2">Date&Time
-                    </th>
-                    <th>
-                      <font size="2">Temperature
-                    </th>
-                    <th>
-                      <font size="2">
-                    </th>
-                    <th>
-                      <font size="2">Humidity
-                    </th>
-                    <th>
-                      <font size="2">
-                    </th>
-                    <th>
-                      <font size="2">S.M.
-                    </th>
-                    <th>
-                      <font size="2">
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for values in sensors_obj_global %}
-                  <tr>
-                    <td>
-                      <font size="2">{{values.date}}</font>
-                    </td>
-                    <td>
-                      <font size="2">{{values.temperature}}</font>
-                    </td>
-                    <td>
-                      <font size="2">{{values.temperatureStatus}}</font>
-                    </td>
-                    <td>
-                      <font size="2">{{values.humidity}}</font>
-                    </td>
-                    <td>
-                      <font size="2">{{values.humidityStatus}}</font>
-                    </td>
-                    <td>
-                      <font size="2">{{values.moisture}}</font>
-                    </td>
-                    <td>
-                      <font size="2">{{values.soilMoistureStatus}}</font>
-                    </td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
+
+          <div class="col-xl-4 col-lg-4">
+            <div class="card shadow mb-4" style="background: white;">
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-gray-800">Humidity</h6>
+              </div>
+              <div class="card-body" style="height: 32rem;">
+                <li> <a>Low {{threshold_obj_global.humidity_low}}</a></li>
+                <li> <a>High {{threshold_obj_global.humidity_high}}</a></li>
+
+
+              </div>
             </div>
           </div>
-        </div>
 
+          <div class="col-xl-4 col-lg-4">
+            <div class="card shadow mb-4" style="background: white;">
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-gray-800">Soil Moisture</h6>
+              </div>
+              <div class="card-body" style="height: 32rem;">
+
+                <li> <a>Dry {{threshold_obj_global.moisture_dry}}</a></li>
+                <li> <a>Moist {{threshold_obj_global.moisture_moist}} </a></li>
+                <li> <a>Wet {{threshold_obj_global.moisture_wet}}</a></li>
+
+
+
+
+              </div>
+            </div>
+          </div>
+
+        </div>
 
 
       </form>
