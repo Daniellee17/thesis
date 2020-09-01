@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from .models import mode_selected
 from .models import devices
 from .models import sensors
+from .models import threshold
 from .models import mode1
 from .models import mode2
 from .models import mode3
@@ -12,6 +13,7 @@ from .models import mode1_vision_system
 from .models import mode2_vision_system
 from .models import mode3_vision_system
 from .models import mode4_vision_system
+
 from pygame.locals import *
 from datetime import datetime
 from datetime import date
@@ -72,6 +74,7 @@ def mainPage(response):
     devices_ = devices()
     devices_2 = devices()
     sensors_ = sensors()
+    threshold_ = threshold()
 
     mode1_ = mode1()
     mode2_ = mode2()
@@ -955,6 +958,16 @@ def mainPage(response):
         sensors_.soilMoistureStatus = "Good"
         sensors_.save()
 
+        threshold.objects.all().delete()
+        threshold_.temperature_low = 20
+        threshold_.temperature_high = 30
+        threshold_.humidity_low = 49
+        threshold_.humidity_high = 81
+        threshold_.moisture_dry = 30
+        threshold_.moisture_moist = 70
+        threshold_.moisture_wet = 71
+        threshold_.save()
+
         mode1.objects.all().delete()
         mode1_.grid = '2x5'
         mode1_.rows = 2
@@ -1207,3 +1220,16 @@ def databasePage(response):
                 'sensors_obj_global': sensors_obj_global, 'mode1_vision_system_obj_global': mode1_vision_system_obj_global}
 
     return render(response, 'database.html', context=myObj)
+
+def sensorsPage(response):
+
+    devices_obj_global = devices.objects.all()
+    sensors_obj_global = sensors.objects.all()
+    mode1_vision_system_obj_global = mode1_vision_system.objects.all()
+    mode_selected_obj_global = mode_selected.objects.all()
+    mode_selected_obj_global_2 = mode_selected.objects.latest('date')
+
+    myObj = {'mode_selected_obj_global': mode_selected_obj_global, 'mode_selected_obj_global_2': mode_selected_obj_global_2, 'devices_obj_global': devices_obj_global,
+                'sensors_obj_global': sensors_obj_global, 'mode1_vision_system_obj_global': mode1_vision_system_obj_global}
+
+    return render(response, 'sensors.html', context=myObj)

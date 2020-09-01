@@ -7,7 +7,8 @@ from . import views as main_views #this says that import views from the current 
 
 urlpatterns = [
     path('', main_views.mainPage, name="mainPage"), #home page
-    path('databasePage/', main_views.databasePage, name="databasePage"), #help page
+    path('databasePage/', main_views.databasePage, name="databasePage"),
+    path('sensorsPage/', main_views.sensorsPage, name="sensorsPage"), 
 
 ]
 

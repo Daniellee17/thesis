@@ -27,6 +27,16 @@ class sensors(models.Model):
     soilMoistureStatus = models.TextField(max_length=250, default="None");
     date = models.DateTimeField(auto_now=True);
 
+class threshold(models.Model):
+    temperature_low = models.FloatField(max_length=250, default=0.0);
+    temperature_high = models.FloatField(max_length=250, default=0.0);
+    humidity_low = models.IntegerField(default=0);
+    humidity_high = models.IntegerField(default=0);
+    moisture_dry = models.IntegerField(default=0);
+    moisture_moist = models.IntegerField(default=0);
+    moisture_wet = models.IntegerField(default=0);
+    date = models.DateTimeField(auto_now=True);
+
 class mode1(models.Model):
     grid = models.TextField(max_length=250, default="5x2");
     rows = models.IntegerField(default=5);
