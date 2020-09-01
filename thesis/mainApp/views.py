@@ -137,25 +137,25 @@ def mainPage(response):
         humidityStatusSummary = "Default"
         soilMoistureStatusSummary = "Default"
 
-        if(averageTemperature < 20):
+        if(averageTemperature <= threshold_obj_global.temperature_low):
             temperatureStatus = 'low' # Too Low
-        elif(averageTemperature > 30 ):
+        elif(averageTemperature >= threshold_obj_global.temperature_high):
             temperatureStatus = 'high' # Too High
         else:
             temperatureStatus = 'good' # Good
 
-        if (averageHumidity < 50):
+        if (averageHumidity <= threshold_obj_global.humidity_low):
             humidityStatus = 'low' # Too Low
-        elif (averageHumidity > 80):
+        elif (averageHumidity >= threshold_obj_global.humidity_high):
             humidityStatus = 'high' # Too High
         else:
             humidityStatus = 'good' # Good
 
-        if (currentMoisture <= 30):
+        if (currentMoisture <= threshold_obj_global.moisture_dry):
             soilMoistureStatus = 'dry'; # Dry
-        elif (currentMoisture >= 31 and currentMoisture <= 70):
+        elif (currentMoisture >= threshold_obj_global.moisture_dry and currentMoisture <= threshold_obj_global.moisture_wet):
             soilMoistureStatus = 'moist'; # Moist
-        elif (currentMoisture >= 71):
+        elif (currentMoisture >= threshold_obj_global.moisture_wet):
             soilMoistureStatus = 'wet'; # Wet
 
         if(temperatureStatus == 'high'):
@@ -955,7 +955,7 @@ def mainPage(response):
         sensors_.moisture = 34
         sensors_.temperatureStatus = "Good"
         sensors_.humidityStatus = "Good"
-        sensors_.soilMoistureStatus = "Good"
+        sensors_.soilMoistureStatus = "Moist"
         sensors_.save()
 
         threshold.objects.all().delete()
@@ -1260,6 +1260,82 @@ def sensorsPage(response):
 
         json = {
         'temperature_high' : threshold_obj.temperature_high
+        }
+        return JsonResponse(json)
+
+    if response.POST.get('action') == 'humidity_low_set':
+
+        threshold_obj0 = threshold.objects.latest('date')
+
+        threshold_.temperature_low = threshold_obj0.temperature_low
+        threshold_.temperature_high = threshold_obj0.temperature_high
+        threshold_.humidity_low = response.POST.get('humidity_low_data')
+        threshold_.humidity_high = threshold_obj0.humidity_high
+        threshold_.moisture_dry = threshold_obj0.moisture_dry
+        threshold_.moisture_wet = threshold_obj0.moisture_wet
+        threshold_.save()
+
+        threshold_obj = threshold.objects.latest('date')
+
+        json = {
+        'humidity_low' : threshold_obj.humidity_low
+        }
+        return JsonResponse(json)
+
+    if response.POST.get('action') == 'humidity_high_set':
+
+        threshold_obj0 = threshold.objects.latest('date')
+
+        threshold_.temperature_low = threshold_obj0.temperature_low
+        threshold_.temperature_high = threshold_obj0.temperature_high
+        threshold_.humidity_low = threshold_obj0.humidity_low
+        threshold_.humidity_high = response.POST.get('humidity_high_data')
+        threshold_.moisture_dry = threshold_obj0.moisture_dry
+        threshold_.moisture_wet = threshold_obj0.moisture_wet
+        threshold_.save()
+
+        threshold_obj = threshold.objects.latest('date')
+
+        json = {
+        'humidity_high' : threshold_obj.humidity_high
+        }
+        return JsonResponse(json)
+
+    if response.POST.get('action') == 'moisture_dry_set':
+
+        threshold_obj0 = threshold.objects.latest('date')
+
+        threshold_.temperature_low = threshold_obj0.temperature_low
+        threshold_.temperature_high = threshold_obj0.temperature_high
+        threshold_.humidity_low = threshold_obj0.humidity_low
+        threshold_.humidity_high = threshold_obj0.humidity_high
+        threshold_.moisture_dry = response.POST.get('moisture_dry_data')
+        threshold_.moisture_wet = threshold_obj0.moisture_wet
+        threshold_.save()
+
+        threshold_obj = threshold.objects.latest('date')
+
+        json = {
+        'moisture_dry' : threshold_obj.moisture_dry
+        }
+        return JsonResponse(json)
+
+    if response.POST.get('action') == 'moisture_wet_set':
+
+        threshold_obj0 = threshold.objects.latest('date')
+
+        threshold_.temperature_low = threshold_obj0.temperature_low
+        threshold_.temperature_high = threshold_obj0.temperature_high
+        threshold_.humidity_low = threshold_obj0.humidity_low
+        threshold_.humidity_high = threshold_obj0.humidity_high
+        threshold_.moisture_dry = threshold_obj0.moisture_dry
+        threshold_.moisture_wet = response.POST.get('moisture_wet_data')
+        threshold_.save()
+
+        threshold_obj = threshold.objects.latest('date')
+
+        json = {
+        'moisture_wet' : threshold_obj.moisture_wet
         }
         return JsonResponse(json)
 

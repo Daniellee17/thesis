@@ -843,6 +843,94 @@
     alertify.custom("Temperature high threshold updated");
   });
 
+  $("#humidity_low_btn").click(function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "sensorsPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'humidity_low_set',
+        humidity_low_data: document.getElementById("humidity_low_input").value
+
+      },
+      success: function(json) {
+        document.getElementById("sensorsForm").reset();
+        $('#humidity_low_label').text("<= " + json.humidity_low + " %");
+      },
+
+    });
+    alertify.custom = alertify.extend("custom");
+    alertify.custom("Humidity low threshold updated");
+  });
+
+  $("#humidity_high_btn").click(function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "sensorsPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'humidity_high_set',
+        humidity_high_data: document.getElementById("humidity_high_input").value
+
+      },
+      success: function(json) {
+        document.getElementById("sensorsForm").reset();
+        $('#humidity_high_label').text(">= " + json.humidity_high + " %");
+      },
+
+    });
+    alertify.custom = alertify.extend("custom");
+    alertify.custom("Humidity high threshold updated");
+  });
+
+  $("#moisture_dry_btn").click(function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "sensorsPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'moisture_dry_set',
+        moisture_dry_data: document.getElementById("moisture_dry_input").value
+
+      },
+      success: function(json) {
+        document.getElementById("sensorsForm").reset();
+        $('#moisture_dry_label').text("<= " + json.moisture_dry + " %");
+      },
+
+    });
+    alertify.custom = alertify.extend("custom");
+    alertify.custom("Moisture dry threshold updated");
+  });
+
+  $("#moisture_wet_btn").click(function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "sensorsPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'moisture_wet_set',
+        moisture_wet_data: document.getElementById("moisture_wet_input").value
+
+      },
+      success: function(json) {
+        document.getElementById("sensorsForm").reset();
+        $('#moisture_wet_label').text(">= " + json.moisture_wet + " %");
+      },
+
+    });
+    alertify.custom = alertify.extend("custom");
+    alertify.custom("Moisture wet threshold updated");
+  });
+
 
 
   $("#onMode1").click(function(e) {
