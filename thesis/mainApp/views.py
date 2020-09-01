@@ -1227,14 +1227,39 @@ def sensorsPage(response):
 
     if response.POST.get('action') == 'temperature_low_set':
 
+        threshold_obj0 = threshold.objects.latest('date')
 
         threshold_.temperature_low = response.POST.get('temperature_low_data')
+        threshold_.temperature_high = threshold_obj0.temperature_high
+        threshold_.humidity_low = threshold_obj0.humidity_low
+        threshold_.humidity_high = threshold_obj0.humidity_high
+        threshold_.moisture_dry = threshold_obj0.moisture_dry
+        threshold_.moisture_wet = threshold_obj0.moisture_wet
         threshold_.save()
 
         threshold_obj = threshold.objects.latest('date')
 
         json = {
         'temperature_low' : threshold_obj.temperature_low
+        }
+        return JsonResponse(json)
+
+    if response.POST.get('action') == 'temperature_high_set':
+
+        threshold_obj0 = threshold.objects.latest('date')
+
+        threshold_.temperature_low = threshold_obj0.temperature_low
+        threshold_.temperature_high = response.POST.get('temperature_high_data')
+        threshold_.humidity_low = threshold_obj0.humidity_low
+        threshold_.humidity_high = threshold_obj0.humidity_high
+        threshold_.moisture_dry = threshold_obj0.moisture_dry
+        threshold_.moisture_wet = threshold_obj0.moisture_wet
+        threshold_.save()
+
+        threshold_obj = threshold.objects.latest('date')
+
+        json = {
+        'temperature_high' : threshold_obj.temperature_high
         }
         return JsonResponse(json)
 

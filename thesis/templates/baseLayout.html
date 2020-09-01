@@ -808,17 +808,39 @@
 
         csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
         action: 'temperature_low_set',
-        temperature_low_data: document.getElementById("low-threshold").value
+        temperature_low_data: document.getElementById("temperature_low_input").value
 
       },
       success: function(json) {
         document.getElementById("sensorsForm").reset();
-        $('#temperature_low_label').text(json.temperature_low);
+        $('#temperature_low_label').text("<= " + json.temperature_low + " ° C");
       },
 
     });
     alertify.custom = alertify.extend("custom");
-    alertify.custom("Temperature threshold updated");
+    alertify.custom("Temperature low threshold updated");
+  });
+
+  $("#temperature_high_btn").click(function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '{% url "sensorsPage" %}',
+      data: {
+
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        action: 'temperature_high_set',
+        temperature_high_data: document.getElementById("temperature_high_input").value
+
+      },
+      success: function(json) {
+        document.getElementById("sensorsForm").reset();
+        $('#temperature_high_label').text(">= " + json.temperature_high + " ° C");
+      },
+
+    });
+    alertify.custom = alertify.extend("custom");
+    alertify.custom("Temperature high threshold updated");
   });
 
 

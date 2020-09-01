@@ -61,68 +61,225 @@
               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-gray-800">Temperature</h6>
               </div>
-              <!-- Card Body -->
-              <div class="card-body" style="height: 32rem;">
 
-                <li> <a id="temperature_low_label">Low {{threshold_obj_global.temperature_low}}</a></li>
-                <li> <a>High {{threshold_obj_global.temperature_high}}</a></li>
+              <!-- Card Body -->
+              <div class="card-body" style="height: 15rem;">
 
                 <div class="row">
+
+                  <!-- Low Temperature -->
                   <div class="col-xl-6 col-md-6 mb-4">
-                    <div class="input-group mb-6">
-                      <input type="text" class="form-control" id="low-threshold" placeholder="Low Threshold" aria-label="Low Threshold" aria-describedby="basic-addon2">
-                      <div class="input-group-append">
-                        <button class="input-group-text" id="temperature_low_btn">Update</button>
+                    <div class="card border-left-info shadow h-100 py-2">
+                      <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                          <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Temperature (Celsius)</div>
+                            <div id="temperature_low_label" class="h5 mb-0 font-weight-bold text-gray-800">
+                              <= {{threshold_obj_global.temperature_low}} ° C</div>
+                                <div class="h7 mb-0 font-weight-normal text-gray-800">Low Threshold</div>
+                            </div>
+                            <div class="col-auto">
+                              <i><img src="../assets/icons/sensorsIcons/temperatureIcon_black.png" class="singleContainer_icon" /></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- High Temperature -->
+                    <div class="col-xl-6 col-md-6 mb-4">
+                      <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                          <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Temperature (Celsius)</div>
+                              <div id="temperature_high_label" class="h5 mb-0 font-weight-bold text-gray-800"> >= {{threshold_obj_global.temperature_high}} ° C</div>
+                              <div class="h7 mb-0 font-weight-normal text-gray-800">High Threshold</div>
+                            </div>
+                            <div class="col-auto">
+                              <i><img src="../assets/icons/sensorsIcons/temperatureIcon_black.png" class="singleContainer_icon" /></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                    <div class="col-xl-6 col-md-6 mb-4">
+                      <div class="input-group mb-6">
+                        <input type="text" class="form-control" id="temperature_low_input" placeholder="Low Threshold" aria-label="Low Threshold" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                          <button class="input-group-text" id="temperature_low_btn">Update</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 mb-4">
+                      <div class="input-group mb-6">
+                        <input type="text" class="form-control" id="temperature_high_input" placeholder="High Threshold" aria-label="High Threshold" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                          <button class="input-group-text" id="temperature_high_btn">Update</button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-xl-64 col-md-6 mb-4">
-                    <div class="input-group mb-6">
-                      <input type="text" class="form-control" placeholder="High Threshold" aria-label="High Threshold" aria-describedby="basic-addon2">
-                      <div class="input-group-append">
-                        <button class="input-group-text" id="temperature_high_btn">Update</button>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-4">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-gray-800">Humidity</h6>
+                </div>
+
+                <!-- Card Body -->
+                <div class="card-body" style="height: 15rem;">
+
+                  <div class="row">
+
+                    <!-- Low Humidity -->
+                    <div class="col-xl-6 col-md-6 mb-4">
+                      <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                          <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Humidity (%)</div>
+                              <div id="humidity_high_label" class="h5 mb-0 font-weight-bold text-gray-800">
+                                <= {{threshold_obj_global.humidity_low}} %</div>
+                                  <div class="h7 mb-0 font-weight-normal text-gray-800">Low Threshold</div>
+                              </div>
+                              <div class="col-auto">
+                                <i><img src="../assets/icons/sensorsIcons/humidityIcon_black.png" class="singleContainer_icon" /></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
+
+                      <!-- High Humidity -->
+                      <div class="col-xl-6 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                          <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                              <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Humidity (%)</div>
+                                <div id="humidity_high_label" class="h5 mb-0 font-weight-bold text-gray-800"> >= {{threshold_obj_global.humidity_high}} %</div>
+                                <div class="h7 mb-0 font-weight-normal text-gray-800">High Threshold</div>
+                              </div>
+                              <div class="col-auto">
+                                <i><img src="../assets/icons/sensorsIcons/humidityIcon_black.png" class="singleContainer_icon" /></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="row">
+                      <div class="col-xl-6 col-md-6 mb-4">
+                        <div class="input-group mb-6">
+                          <input type="text" class="form-control" id="humidity_low_input" placeholder="Low Threshold" aria-label="Low Threshold" aria-describedby="basic-addon2">
+                          <div class="input-group-append">
+                            <button class="input-group-text" id="humidity_low_btn">Update</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-6 col-md-6 mb-4">
+                        <div class="input-group mb-6">
+                          <input type="text" class="form-control" id="humidity_high_input" placeholder="High Threshold" aria-label="High Threshold" aria-describedby="basic-addon2">
+                          <div class="input-group-append">
+                            <button class="input-group-text" id="humidity_high_btn">Update</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-xl-4 col-lg-4">
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-gray-800">Soil Moisture</h6>
+                  </div>
+
+                  <!-- Card Body -->
+                  <div class="card-body" style="height: 15rem;">
+
+                    <div class="row">
+
+                      <!-- Dry Moisture -->
+                      <div class="col-xl-6 col-md-6 mb-4">
+                        <div class="card border-left-danger shadow h-100 py-2">
+                          <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                              <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Soil Moisture (%)</div>
+                                <div id="humidity_high_label" class="h5 mb-0 font-weight-bold text-gray-800">
+                                  <= {{threshold_obj_global.moisture_dry}} %</div>
+                                    <div class="h7 mb-0 font-weight-normal text-gray-800">Dry Threshold</div>
+                                </div>
+                                <div class="col-auto">
+                                  <i><img src="../assets/icons/sensorsIcons/soilMoistureIcon_black.png" class="singleContainer_icon" /></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Wet Moisture -->
+                        <div class="col-xl-6 col-md-6 mb-4">
+                          <div class="card border-left-danger shadow h-100 py-2">
+                            <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                  <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Soil Moisture (%)</div>
+                                  <div id="humidity_high_label" class="h5 mb-0 font-weight-bold text-gray-800"> >= {{threshold_obj_global.moisture_wet}} %</div>
+                                  <div class="h7 mb-0 font-weight-normal text-gray-800">Wet Threshold</div>
+                                </div>
+                                <div class="col-auto">
+                                  <i><img src="../assets/icons/sensorsIcons/soilMoistureIcon_black.png" class="singleContainer_icon" /></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+                      </div>
+
+                      <div class="row">
+                        <div class="col-xl-6 col-md-6 mb-4">
+                          <div class="input-group mb-6">
+                            <input type="text" class="form-control" id="humidity_low_input" placeholder="Dry Threshold" aria-label="Low Threshold" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                              <button class="input-group-text" id="humidity_low_btn">Update</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xl-6 col-md-6 mb-4">
+                          <div class="input-group mb-6">
+                            <input type="text" class="form-control" id="humidity_high_input" placeholder="Wet Threshold" aria-label="High Threshold" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                              <button class="input-group-text" id="humidity_high_btn">Update</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
 
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xl-4 col-lg-4">
-            <div class="card shadow mb-4" style="background: white;">
-              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-gray-800">Humidity</h6>
-              </div>
-              <div class="card-body" style="height: 32rem;">
-                <li> <a>Low {{threshold_obj_global.humidity_low}}</a></li>
-                <li> <a>High {{threshold_obj_global.humidity_high}}</a></li>
-
 
               </div>
-            </div>
-          </div>
-
-          <div class="col-xl-4 col-lg-4">
-            <div class="card shadow mb-4" style="background: white;">
-              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-gray-800">Soil Moisture</h6>
-              </div>
-              <div class="card-body" style="height: 32rem;">
-
-                <li> <a>Dry {{threshold_obj_global.moisture_dry}}</a></li>
-                <li> <a>Moist {{threshold_obj_global.moisture_moist}} </a></li>
-                <li> <a>Wet {{threshold_obj_global.moisture_wet}}</a></li>
-
-
-
-
-              </div>
-            </div>
-          </div>
-
-        </div>
 
 
       </form>
