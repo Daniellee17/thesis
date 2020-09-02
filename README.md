@@ -2,7 +2,7 @@
 
 GrowSmart: Automation of Seed Planting and Crop Watering with Monitoring System Using Mobile Application 
 
-GrowSmart Web Application:
+<h4>GrowSmart Web Application </h4>
 <u1>
   <li> A Mobile friendly Django Web Application Hosted by a Raspberry Pi 4B
   <li> Bootstrap template based
@@ -10,6 +10,7 @@ GrowSmart Web Application:
 
 
 <h4>GrowSmart Mobile Application </h4>
+
 ![1598935279966](https://user-images.githubusercontent.com/28699887/91795566-920bb100-ec50-11ea-9f82-67a8599fb894.png)
 
 
