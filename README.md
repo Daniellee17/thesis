@@ -18,4 +18,7 @@ GrowSmart Web Application:
 ![1598935172173](https://user-images.githubusercontent.com/28699887/91795571-9768fb80-ec50-11ea-9941-0ed62fcf89c6.png)
 
 
+GrowSmart Prototype: 
 
+
+![20200726_153520](https://user-images.githubusercontent.com/28699887/91960700-ceb4d680-ed3c-11ea-9923-ce9c78ad15c2.jpg)
