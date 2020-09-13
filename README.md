@@ -17,6 +17,12 @@ GrowSmart: Automation of Seed Planting and Crop Watering with Monitoring System 
 ![1598935249541](https://user-images.githubusercontent.com/28699887/91795569-9637ce80-ec50-11ea-9718-060626581ff2.png)
 
 
+![1600004144618](https://user-images.githubusercontent.com/28699887/93019895-7cad6400-f60c-11ea-8f5c-66f1919d5580.png)
+
+
+![1599830572798](https://user-images.githubusercontent.com/28699887/93019898-7f0fbe00-f60c-11ea-9fca-14a26df65b7b.png)
+
+
 ![1598935172173](https://user-images.githubusercontent.com/28699887/91795571-9768fb80-ec50-11ea-9941-0ed62fcf89c6.png)
 
 
